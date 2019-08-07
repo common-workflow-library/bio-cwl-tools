@@ -2,7 +2,7 @@ cwlVersion: v1.0
 class: CommandLineTool
 
 doc: |
-  Aligns reads from ATAC-seq to an indexed reference genome
+  Aligns reads from ATAC-seq or ChIP-seq to an indexed reference genome
 
 requirements:
   InlineJavascriptRequirement: {}
@@ -31,10 +31,10 @@ arguments:
           return "-U";
         }
       }
-  - valueFrom: $(inputs.fastq1.nameroot + ".sam") # set the number of threads
+  - valueFrom: $(inputs.fastq1.nameroot).sam
     prefix: "-S"
     position: 6
-stderr: $( inputs.fastq1.nameroot + ".bowtie2_stderr") # log file
+stderr: $(inputs.fastq1.nameroot).bowtie2_stderr # log file
   
 
 inputs:
