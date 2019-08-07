@@ -1,0 +1,23 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "KerstenBreuer",
+      "name": "KerstenBreuer",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/28008309?v=4",
+      "profile": "https://github.com/KerstenBreuer",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "bio-cwl-tools",
+  "projectOwner": "common-workflow-library",
+  "repoType": "github",
+  "repoHost": "https://github.com"
+}
