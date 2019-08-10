@@ -1,0 +1,28 @@
+class: s:SoftwareSourceCode
+s:name: "fastqc"
+s:about: |
+  FastQC is a program designed to spot potential problems in high througput sequencing datasets.
+  It runs a set of analyses on one or more raw sequence files in fastq or bam format and produces
+  a report which summarises the results.
+
+s:url: http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+s:codeRepository: https://github.com/s-andrews/FastQC/releases
+
+s:license:
+- https://opensource.org/licenses/GPL-2.0
+
+s:targetProduct:
+  class: s:SoftwareApplication
+  s:applicationCategory: "command line tool"
+
+s:programmingLanguage: "Java"
+
+s:discussionUrl:
+- https://github.com/s-andrews/FastQC/issues
+
+s:creator:
+- class: s:Organization
+  s:name: "Babraham Bioinformatics"
+  s:member:
+  - class: s:Person
+    s:name: "Simon Andrews"

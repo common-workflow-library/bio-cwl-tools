@@ -1,0 +1,11 @@
+{
+    "file_a": {
+        "class": "File",
+        "location": "./data/dm3_chr4/generated_inputs/macs_peaks/chr4_100_mapped_reads.Aligned.out_macs_peaks.narrowPeak"
+    },
+    "file_b": {
+        "class": "File",
+        "location": "./data/dm3_chr4/generated_inputs/bam_bai/chr4_100_mapped_reads.Aligned.out.bam"
+    },
+    "no_overlaps": true
+}

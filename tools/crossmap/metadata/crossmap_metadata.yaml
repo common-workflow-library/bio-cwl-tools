@@ -1,0 +1,7 @@
+class: s:SoftwareSourceCode
+s:name: "CrossMap"
+s:about: |
+  CrossMap is a program for convenient conversion of genome coordinates and
+  genomeannotation files between assemblies (eg. lift from human hg18 to hg19 or
+  vice versa).It supports file in BAM, SAM, BED, Wiggle, BigWig, GFF, GTF and VCF
+  format

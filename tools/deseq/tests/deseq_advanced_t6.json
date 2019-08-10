@@ -1,0 +1,31 @@
+{
+  "untreated_files": [
+    {
+      "class": "File",
+      "location": "./data/dm3_chr4/generated_inputs/group_isoforms/u1_1000.common_tss.tsv"
+    },
+    {
+      "class": "File",
+       "location": "./data/dm3_chr4/generated_inputs/group_isoforms/u2_1000.common_tss.tsv"
+    },
+    {
+      "class": "File",
+      "location": "./data/dm3_chr4/generated_inputs/group_isoforms/u3_1000.common_tss.tsv"
+    }
+  ],
+  "treated_files": [
+    {
+      "class": "File",
+      "location": "./data/dm3_chr4/generated_inputs/group_isoforms/t1_1000.common_tss.tsv"
+    },
+    {
+      "class": "File",
+      "location": "./data/dm3_chr4/generated_inputs/group_isoforms/t2_1000.common_tss.tsv"
+    },
+    {
+      "class": "File",
+      "location": "./data/dm3_chr4/generated_inputs/group_isoforms/t3_1000.common_tss.tsv"
+    }
+  ],
+  "output_filename": "deseq_common_tss.tsv"
+}

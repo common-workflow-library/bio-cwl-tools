@@ -1,0 +1,9 @@
+{
+  "indices_folder": {"class": "Directory", "location": "./data/dm3_chr4/generated_inputs/indices/bowtie_dm3_chr4"},
+  "upstream_filelist": [{"class": "File", "location": "./data/dm3_chr4/main_inputs/fastq/chr4_100_chrM_25_mapped_reads/upstream.fastq"}],
+  "threads": 1,
+  "un": "unaligned.txt",
+  "al": "aligned.txt",
+  "max": "multimapped.txt",
+  "refout": true
+}

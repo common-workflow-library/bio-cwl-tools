@@ -1,0 +1,13 @@
+{
+  "input_file": [
+    {
+      "class": "File",
+      "location": "./data/dm3_chr4/generated_inputs/logs/bowtie_align_log/upstream.bw"
+    },
+    {
+      "class": "File",
+      "location": "./data/dm3_chr4/generated_inputs/logs/samtools_rmdup_log/chr4_100_mapped_reads.Aligned.out.rmdup"
+    }],
+  "param": "concatenated.txt",
+  "script": 'cat $0 $1 > $2'
+}

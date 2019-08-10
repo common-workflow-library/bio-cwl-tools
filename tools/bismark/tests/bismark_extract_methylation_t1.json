@@ -1,0 +1,10 @@
+{
+    "genome_folder": {
+        "class": "Directory",
+        "location": "./data/dm3_chr4/main_inputs/fasta"
+    },
+    "bam_file": {
+        "class": "File",
+        "location": "./data/dm3_chr4/generated_inputs/bismark/upstream_bismark_bt2.bam"
+    }
+}

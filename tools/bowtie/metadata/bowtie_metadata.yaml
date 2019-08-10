@@ -1,0 +1,46 @@
+class: s:SoftwareSourceCode
+s:name: "bowtie"
+s:about: |
+  Bowtie is an ultrafast, memory-efficient short read aligner. It aligns short DNA sequences (reads)
+  to the human genome at a rate of over 25 million 35-bp reads per hour. Bowtie indexes the genome
+  with a Burrows-Wheeler index to keep its memory footprint small: typically about 2.2 GB for
+  the human genome (2.9 GB for paired-end).
+
+s:url: http://bowtie-bio.sourceforge.net/index.shtml
+s:codeRepository: https://github.com/BenLangmead/bowtie
+
+s:license:
+- https://opensource.org/licenses/GPL-3.0
+
+s:targetProduct:
+  class: s:SoftwareApplication
+  s:applicationCategory: "command line tool"
+
+s:programmingLanguage: "C++"
+
+s:publication:
+- class: s:ScholarlyArticle
+  id: 10.1186/gb-2009-10-3-r25
+  s:name: "Ultrafast and memory-efficient alignment of short DNA sequences to the human genome"
+  s:author:
+  - class: s:Person
+    s:name: "Ben Langmead"
+  - class: s:Person
+    s:name: "Steven L Salzberg"
+  - class: s:Person
+    s:name: "Cole Trapnell"
+  - class: s:Person
+    s:name: "Mihai Pop"
+  datePublished: 04 March 2009
+  s:url: https://genomebiology.biomedcentral.com/articles/10.1186/gb-2009-10-3-r25
+
+s:discussionUrl:
+- https://github.com/BenLangmead/bowtie/issues
+
+s:creator:
+- class: s:Organization
+  s:name: "Johns Hopkins University"
+  s:member:
+  - class: s:Person
+    s:name: "Ben Langmead"
+    s:description: "Main author"

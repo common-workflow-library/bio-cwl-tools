@@ -1,0 +1,7 @@
+{
+  "input_file": {
+    "class": "File",
+    "location": "./data/dm3_chr4/generated_inputs/sam/chr4_100_mapped_reads.Aligned.out.sam"
+  },
+  "script": 'cat "$0" > `basename $0`'
+}

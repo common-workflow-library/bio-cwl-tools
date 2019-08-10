@@ -1,0 +1,4 @@
+class: s:SoftwareSourceCode
+s:name: "DESeq"
+s:about: |
+  Differential expression of RNA-Seq data at the gene level

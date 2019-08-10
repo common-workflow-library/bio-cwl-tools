@@ -1,0 +1,6 @@
+{
+    "genome_folder": {
+        "class": "Directory",
+        "location": "./data/dm3_chr4/main_inputs/fasta"
+    }
+}

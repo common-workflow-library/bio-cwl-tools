@@ -1,0 +1,10 @@
+{
+    "bambai_pair": {
+        "class": "File",
+        "location": "./data/dm3_chr4/generated_inputs/bam_bai/chr4_100_mapped_reads.Aligned.out.bam"
+    },
+    "min_fragment_length": 150,
+    "max_fragment_length": 300,
+    "shift": [4, -5, 5, -4],
+    "output_filename": "filtered.bam"
+}

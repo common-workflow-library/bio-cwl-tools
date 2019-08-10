@@ -1,0 +1,6 @@
+{
+  "fasta_file": {"class": "File", "location": "./data/dm3_chr4/main_inputs/fasta/chr4.fa"},
+  "index_base_name": "dm3_chr4",
+  "offrate": 7,
+  "quiet": true
+}

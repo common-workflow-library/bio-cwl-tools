@@ -1,0 +1,26 @@
+class: s:SoftwareSourceCode
+s:name: "sratoolkit"
+s:about: |
+  The SRA Toolkit and SDK from NCBI is a collection of tools and libraries for using data in the INSDC Sequence Read Archives
+
+s:url: https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=toolkit_doc
+s:codeRepository: https://github.com/ncbi/sra-tools
+
+s:license:
+- United States Government Work
+
+s:targetProduct:
+  class: s:SoftwareApplication
+  s:applicationCategory: "command line tool"
+
+s:programmingLanguage: "C"
+
+s:discussionUrl:
+- https://github.com/ncbi/sra-tools/issues
+
+s:creator:
+- class: s:Organization
+  s:name: "National Center for Biotechnology Information"
+  s:member:
+  - class: s:Organization
+    s:name: "SRA Toolkit Development Team"

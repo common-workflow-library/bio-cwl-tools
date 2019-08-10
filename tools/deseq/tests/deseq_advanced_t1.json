@@ -1,0 +1,31 @@
+{
+  "untreated_files": [
+    {
+      "class": "File",
+      "location": "./data/dm3_chr4/main_inputs/geep/u1_1000.isoforms.csv"
+    },
+    {
+      "class": "File",
+       "location": "./data/dm3_chr4/main_inputs/geep/u2_1000.isoforms.csv"
+    },
+    {
+      "class": "File",
+      "location": "./data/dm3_chr4/main_inputs/geep/u3_1000.isoforms.csv"
+    }
+  ],
+  "treated_files": [
+    {
+      "class": "File",
+      "location": "./data/dm3_chr4/main_inputs/geep/t1_1000.isoforms.csv"
+    },
+    {
+      "class": "File",
+      "location": "./data/dm3_chr4/main_inputs/geep/t2_1000.isoforms.csv"
+    },
+    {
+      "class": "File",
+      "location": "./data/dm3_chr4/main_inputs/geep/t3_1000.isoforms.csv"
+    }
+  ],
+  "output_filename": "deseq_results.tsv"
+}

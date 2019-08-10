@@ -1,0 +1,25 @@
+class: s:SoftwareSourceCode
+s:name: "bzip2"
+s:about: |
+  bzip2 is a freely available, patent free, high-quality data compressor. It typically compresses files
+  to within 10% to 15% of the best available techniques (the PPM family of statistical compressors),
+  whilst being around twice as fast at compression and six times faster at decompression.
+
+s:url: http://www.bzip.org/index.html
+s:codeRepository: http://www.bzip.org/downloads.html
+
+s:license:
+- https://spdx.org/licenses/BSD-4-Clause.html
+
+s:targetProduct:
+  class: s:SoftwareApplication
+  s:applicationCategory: "command line tool"
+
+s:programmingLanguage: "C"
+
+s:creator:
+- class: s:Organization
+  s:member:
+  - class: s:Person
+    s:name: "Julian Seward"
+    s:description: "Main author"

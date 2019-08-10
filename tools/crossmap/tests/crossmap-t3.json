@@ -1,0 +1,11 @@
+{
+  "input_file_type": "bed",
+  "chain_file": {
+    "class": "File",
+    "location": "./data/dm3_chr4/main_inputs/chain/dm3ToDm2.over.chain.gz"
+  },
+  "input_file": {
+    "class": "File",
+    "location": "./data/dm3_chr4/generated_inputs/bedgraph/chr4_100_mapped_reads.Aligned.out.sorted.bedGraph"
+  }
+}

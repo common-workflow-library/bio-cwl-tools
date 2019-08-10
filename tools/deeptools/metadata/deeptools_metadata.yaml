@@ -1,0 +1,5 @@
+class: s:SoftwareSourceCode
+s:name: "deepTools"
+s:about: |
+  deepTools is a suite of python tools particularly developed for the efficient analysis
+  of high-throughput sequencing data, such as ChIP-seq, RNA-seq or MNase-seq.

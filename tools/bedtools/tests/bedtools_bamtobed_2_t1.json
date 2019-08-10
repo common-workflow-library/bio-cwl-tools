@@ -1,0 +1,6 @@
+{
+    "bam_file": {
+        "class": "File",
+        "location": "./data/dm3_chr4/generated_inputs/bam_bai/chr4_100_mapped_reads.Aligned.out.bam"
+    }
+}

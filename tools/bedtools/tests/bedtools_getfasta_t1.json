@@ -1,0 +1,10 @@
+{
+    "genome_fasta_file": {
+        "class": "File",
+        "location": "./data/dm3_chr4/main_inputs/fasta/chr4.fa"
+    },
+    "intervals_file": {
+        "class": "File",
+        "location": "./data/dm3_chr4/generated_inputs/macs_peaks/chr4_100_mapped_reads.Aligned.out_macs_peaks.narrowPeak"
+    }
+}

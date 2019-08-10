@@ -1,0 +1,50 @@
+class: s:SoftwareSourceCode
+s:name: "bedtools"
+s:about: |
+  A software suite for the comparison, manipulation and annotation of genomic features
+  in browser extensible data (BED) and general feature format (GFF) format.
+  BEDTools also supports the comparison of sequence alignments in BAM format to both
+  BED and GFF features. The tools are extremely efficient and allow the user to compare
+  large datasets (e.g. next-generation sequencing data) with both public and custom
+  genome annotation tracks. BEDTools can be combined with one another as well as with
+  standard UNIX commands, thus facilitating routine genomics tasks as well as pipelines
+  that can quickly answer intricate questions of large genomic datasets.
+
+s:url: http://bedtools.readthedocs.org
+s:codeRepository: https://github.com/arq5x/bedtools2
+
+s:license:
+- https://opensource.org/licenses/GPL-2.0
+
+s:targetProduct:
+  class: s:SoftwareApplication
+  s:applicationCategory: "command line tool"
+
+s:programmingLanguage: "C++"
+
+s:publication:
+- class: s:ScholarlyArticle
+  id: 10.1093/bioinformatics/btq033
+  s:name: "BEDTools: a flexible suite of utilities for comparing genomic features"
+  s:author:
+  - class: s:Person
+    s:name: "Aaron R. Quinlan"
+  - class: s:Person
+    s:name: "Ira M. Hall"
+  datePublished: 28 January 2010
+  s:url: https://academic.oup.com/bioinformatics/article-lookup/doi/10.1093/bioinformatics/btq033
+
+s:discussionUrl:
+- https://github.com/arq5x/bedtools2/issues
+- https://groups.google.com/forum/#!forum/bedtools-discuss
+
+s:creator:
+- class: s:Organization
+  s:name: "University of Utah"
+  s:member:
+  - class: s:Person
+    s:name: "Aaron Quinlan"
+    s:description: "Main author"
+  - class: s:Person
+    s:name: "Neil Kindlon"
+    s:description: "Main author"

@@ -1,0 +1,13 @@
+{
+  "untreated_files": {
+    "class": "File",
+    "location": "./data/dm3_chr4/main_inputs/geep/u1_1000.isoforms.csv"
+  },
+  "treated_files": {
+    "class": "File",
+    "location": "./data/dm3_chr4/main_inputs/geep/t1_1000.isoforms.csv"
+  },
+  "untreated_col_suffix": "_WT",
+  "treated_col_suffix": "_KO",
+  "output_filename": "deseq_results.tsv"
+}
