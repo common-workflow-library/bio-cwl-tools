@@ -2,6 +2,10 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
+doc: |
+  Tool to run custom script set as `script` input with arguments from `param`.
+  Default script runs sed command over the input file and exports results to the file with the same name as input's basename
+
 
 hints:
 - class: DockerRequirement
@@ -84,9 +88,6 @@ s:creator:
         s:sameAs:
         - id: http://orcid.org/0000-0002-6486-3898
 
-doc: |
-  Tool to run custom script set as `script` input with arguments from `param`.
-  Default script runs sed command over the input file and exports results to the file with the same name as input's basename
-
 s:about: |
   Custom bash script runner
+

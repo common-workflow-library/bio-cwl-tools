@@ -2,6 +2,14 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
+doc: |
+  Tool to decompress input FASTQ file
+  Bash script's logic:
+  - disable case sensitive glob check
+  - check if root name of input file already include '.fastq' or '.fq' extension. If yes, set DEFAULT_EXT to ""
+  - check file type, decompress if needed
+  - return 1, if file type is not recognized
+  This script also works of input file doesn't have any extension at all
 
 requirements:
 - class: ShellCommandRequirement
@@ -119,14 +127,6 @@ s:creator:
         s:sameAs:
         - id: http://orcid.org/0000-0002-6486-3898
 
-doc: |
-  Tool to decompress input FASTQ file
-  Bash script's logic:
-  - disable case sensitive glob check
-  - check if root name of input file already include '.fastq' or '.fq' extension. If yes, set DEFAULT_EXT to ""
-  - check file type, decompress if needed
-  - return 1, if file type is not recognized
-  This script also works of input file doesn't have any extension at all
 
 s:about: |
   Tool to decompress input FASTQ file
