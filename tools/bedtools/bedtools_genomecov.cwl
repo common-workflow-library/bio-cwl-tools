@@ -7,7 +7,7 @@ requirements:
 - class: InlineJavascriptRequirement
   expressionLib:
   - var default_output_filename = function() {
-          let ext = (inputs.depth == "-bg" || inputs.depth == "-bga")?".bedGraph":".tab";
+          var ext = (inputs.depth == "-bg" || inputs.depth == "-bga")?".bedGraph":".tab";
           return inputs.input_file.location.split('/').slice(-1)[0].split('.').slice(0,-1).join('.') + ext;
         };
 

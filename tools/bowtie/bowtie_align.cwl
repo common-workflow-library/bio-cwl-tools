@@ -12,7 +12,7 @@ requirements:
          return inputs.output_filename;
       }
       ext = ext || ".sam";
-      let root = "";
+      var root = "";
       if (inputs.output_filename != ""){
          root = inputs.output_filename.split('.').slice(0,-1).join('.');
          return (root == "")?inputs.output_filename+ext:root+ext;
@@ -821,7 +821,7 @@ outputs:
       glob: $(default_output_filename(".bw"))
       outputEval: |
         ${
-          let unmappedRegex = /align\:.*/;
+          var unmappedRegex = /align\:.*/;
           return parseInt(self[0].contents.match(unmappedRegex)[0].split(" ")[1]);
         }
 
@@ -832,7 +832,7 @@ outputs:
       glob: $(default_output_filename(".bw"))
       outputEval: |
         ${
-          let mappedRegex = /alignment\:.*/;
+          var mappedRegex = /alignment\:.*/;
           return parseInt(self[0].contents.match(mappedRegex)[0].split(" ")[1]);
         }
 
@@ -843,7 +843,7 @@ outputs:
       glob: $(default_output_filename(".bw"))
       outputEval: |
         ${
-          let totalRegex = /processed\:.*/;
+          var totalRegex = /processed\:.*/;
           return parseInt(self[0].contents.match(totalRegex)[0].split(" ")[1]);
         }
 

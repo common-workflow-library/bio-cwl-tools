@@ -19,7 +19,7 @@ requirements:
         }
         ext = (ext || ext=="")?ext:alt_ext;
         if (inputs.output_basename == ""){
-          let root = inputs.input_file.basename.split('.').slice(0,-1).join('.');
+          var root = inputs.input_file.basename.split('.').slice(0,-1).join('.');
           return (root == "")?inputs.input_file.basename+ext:root+ext;
         } else {
           return inputs.output_basename+ext;
@@ -28,7 +28,7 @@ requirements:
     - var get_log_filename = function() {
         var ext = ".log";
         if (inputs.output_basename == ""){
-          let root = inputs.input_file.basename.split('.').slice(0,-1).join('.');
+          var root = inputs.input_file.basename.split('.').slice(0,-1).join('.');
           return (root == "")?inputs.input_file.basename+ext:root+ext;
         } else {
           return inputs.output_basename+ext;

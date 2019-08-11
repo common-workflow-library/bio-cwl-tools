@@ -8,7 +8,7 @@ requirements:
   expressionLib:
   - var default_output_filename = function() {
         if (inputs.output_filename == ""){
-            let root = inputs.bambai_pair.basename.split('.').slice(0,-1).join('.');
+            var root = inputs.bambai_pair.basename.split('.').slice(0,-1).join('.');
             return (root == "")?inputs.bambai_pair.basename+".bam":root+".bam";
         } else {
             return inputs.output_filename;
