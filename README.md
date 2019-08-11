@@ -7,6 +7,16 @@ Non-goals: software packaging or containerization, go to https://biocontainers.p
 All CWL tool descriptions are licensed under the Apache 2.0 license.
 The underlying tools are under one or more Free and Open Source Software licenses.
 
+
+# Styleguide
+
+1. First line must be `#!/usr/bin/env cwl-wrapper`
+1. Second line is `cwlVersion: v1.0`
+1. Third line is `class: CommandLineTool`
+1. `*.cwl` files must be marked executable (`chmod a+x *.cwl`)
+1. All tool descriptions must have a software container. Use a container from biocontainers.pro if available
+1. If you use schema.org annotations, specify the schema using the RDF version: `$schemas: [ http://schema.org/version/latest/schema.rdf ]`
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
