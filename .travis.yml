@@ -11,5 +11,8 @@ install:
 branches:
   only:
    - release
-cache: pip
+cache:
+  pip: true
+  directories:
+    - ${HOME}/.cache/salad
 script: find . -name "*.cwl" | xargs -n1 cwltool --validate
