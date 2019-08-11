@@ -1,3 +1,4 @@
+#!/usr/bin/env cwl-runner
 # for single end data
 
 cwlVersion: v1.0

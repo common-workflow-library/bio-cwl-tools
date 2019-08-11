@@ -1,4 +1,5 @@
-# for single end data
+#!/usr/bin/env cwl-runner
+
 
 cwlVersion: v1.0
 class: CommandLineTool
@@ -10,6 +11,8 @@ hints:
     ramMin: 10000
   DockerRequirement:
     dockerPull: kerstenbreuer/samtools:1.7
+
+doc: for single end data
 
 baseCommand: ["samtools", "view"]
 arguments:
