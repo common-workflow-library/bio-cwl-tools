@@ -47,7 +47,7 @@ $namespaces:
   s: http://schema.org/
 
 $schemas:
-- http://schema.org/docs/schema_org_rdfa.html
+- http://schema.org/version/latest/schema.rdf
 
 s:name: "custom_bash"
 s:downloadUrl: https://raw.githubusercontent.com/common-workflow-library/bio-cwl-tools/release/tools/bash/custom_bash.cwl
