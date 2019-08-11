@@ -15,7 +15,7 @@ doc: |
   
 baseCommand: ["bash", "-c"]
 arguments:
-  - valueFrom: $("LC_COLLATE=C sort -k1,1 -k2,2n " + inputs.bedgraph.path)
+  - LC_COLLATE=C sort -k1,1 -k2,2n $(inputs.bedgraph.path)
 stdout: |
   ${
     if( inputs.output_name == null ){
