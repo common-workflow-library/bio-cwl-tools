@@ -1,5 +1,5 @@
-services:
-  - docker
+# services:
+#   - docker
 language: python
 python:
   - 3.7
@@ -11,4 +11,5 @@ install:
 branches:
   only:
    - release
+cache: pip
 script: find . -name "*.cwl" | xargs -n1 cwltool --validate
