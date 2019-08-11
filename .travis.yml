@@ -5,6 +5,7 @@ python:
   - 3.7
 os:
   - linux
+dist: xenial
 install:
   - pip install cwltool
 script: find . -name "*.cwl" | xargs -n1 cwltool --validate
