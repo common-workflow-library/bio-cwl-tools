@@ -8,4 +8,7 @@ os:
 dist: xenial
 install:
   - pip install cwltool
+branches:
+  only:
+   - release
 script: find . -name "*.cwl" | xargs -n1 cwltool --validate
