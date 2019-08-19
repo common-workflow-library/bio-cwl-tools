@@ -130,12 +130,9 @@ $namespaces:
 $schemas:
 - http://schema.org/version/latest/schema.rdf
 
-s:mainEntity:
-  $import: ./metadata/bamtools_metadata.yaml
+s:mainEntity: https://bio.tools/bamtools
 
 s:name: "bamtools_stats"
-s:downloadUrl: https://raw.githubusercontent.com/common-workflow-library/bio-cwl-tools/release/tools/bamtools/bamtools_stats.cwl
-s:codeRepository: https://github.com/common-workflow-library/bio-cwl-tools
 s:license: http://www.apache.org/licenses/LICENSE-2.0
 
 s:isPartOf:
@@ -173,18 +170,3 @@ doc: |
   Tool runs `bamtools stats' to calculate general alignment statistics from the input BAM file
 
   `-insert` parameter is not implemented
-
-
-s:about: |
-  Usage: bamtools stats [-in <filename> -in <filename> ... | -list <filelist>] [statsOptions]
-
-  Input & Output:
-    -in <BAM filename>                the input BAM file [stdin]
-    -list <filename>                  the input BAM file list, one
-                                      line per file
-
-  Additional Stats:
-    -insert                           summarize insert size data
-
-  Help:
-    --help, -h                        shows this help text

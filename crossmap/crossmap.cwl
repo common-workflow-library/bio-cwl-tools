@@ -160,12 +160,9 @@ $namespaces:
 $schemas:
 - http://schema.org/version/latest/schema.rdf
 
-s:mainEntity:
-  $import: ./metadata/crossmap_metadata.yaml
+s:mainEntity: http://crossmap.sourceforge.net/
 
 s:name: "crossmap"
-s:downloadUrl: https://raw.githubusercontent.com/common-workflow-library/bio-cwl-tools/release/tools/crossmap/crossmap.cwl
-s:codeRepository: https://github.com/common-workflow-library/bio-cwl-tools
 s:license: http://www.apache.org/licenses/LICENSE-2.0
 
 s:isPartOf:
@@ -204,35 +201,3 @@ doc: |
 
   If `output_basename` is not set, call get_output_filename() and get_log_filename() functions to
   get default output and log filenames. Input `output_basename` should not include extension.
-
-s:about: |
-  Description:
-    CrossMap is a program for convenient conversion of genome coordinates and
-    genomeannotation files between assemblies (eg. lift from human hg18 to hg19 or
-    vice versa).It supports file in BAM, SAM, BED, Wiggle, BigWig, GFF, GTF and VCF
-    format.
-
-  Usage: CrossMap.py <command> [options]
-
-    bam	convert alignment file in BAM or SAM format.
-    bed	convert genome cooridnate or annotation file in BED or BED-like format.
-    bigwig	convert genome coordinate file in BigWig format.
-    gff	convert genome cooridnate or annotation file in GFF or GTF format.
-    vcf	convert genome coordinate file in VCF format.
-    wig	convert genome coordinate file in Wiggle, or bedGraph format.
-
-  Usage: CrossMap.py bam input_chain_file input_bam_file output_file [options]
-  Note: If output_file == STDOUT or -, CrossMap will write BAM file to the screen
-
-  Options:
-    -m INSERT_SIZE, --mean=INSERT_SIZE
-                          Average insert size of pair-end sequencing (bp).
-                          [default=200.0]
-    -s INSERT_SIZE_STDEV, --stdev=INSERT_SIZE_STDEV
-                          Stanadard deviation of insert size. [default=30.0]
-    -t INSERT_SIZE_FOLD, --times=INSERT_SIZE_FOLD
-                          A mapped pair is considered as "proper pair" if both
-                          ends mapped to different strand and the distance
-                          between them is less then '-t' * stdev from the mean.
-                          [default=3.0]
-    -a, --append-tags     Add tag to each alignment.

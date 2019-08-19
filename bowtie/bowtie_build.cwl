@@ -216,12 +216,9 @@ $namespaces:
 $schemas:
 - http://schema.org/version/latest/schema.rdf
 
-s:mainEntity:
-  $import: ./metadata/bowtie_metadata.yaml
+s:mainEntity: https://bio.tools/bowtie
 
 s:name: "bowtie_build"
-s:downloadUrl: https://raw.githubusercontent.com/common-workflow-library/bio-cwl-tools/release/tools/bowtie/bowtie_build.cwl
-s:codeRepository: https://github.com/common-workflow-library/bio-cwl-tools
 s:license: http://www.apache.org/licenses/LICENSE-2.0
 
 s:isPartOf:
@@ -258,30 +255,3 @@ doc: |
   Tool runs bowtie-build
   Not supported parameters:
     -c  -  reference sequences given on cmd line (as <seq_in>)
-
-s:about: |
-  Usage: bowtie-build [options]* <reference_in> <ebwt_outfile_base>
-      reference_in            comma-separated list of files with ref sequences
-      ebwt_outfile_base       write Ebwt data to files with this dir/basename
-  Options:
-      -f                      reference files are Fasta (default)
-      -c                      reference sequences given on cmd line (as <seq_in>)
-      --large-index           force generated index to be 'large', even if ref
-                              has fewer than 4 billion nucleotides
-      -C/--color              build a colorspace index
-      -a/--noauto             disable automatic -p/--bmax/--dcv memory-fitting
-      -p/--packed             use packed strings internally; slower, uses less mem
-      --bmax <int>            max bucket sz for blockwise suffix-array builder
-      --bmaxdivn <int>        max bucket sz as divisor of ref len (default: 4)
-      --dcv <int>             diff-cover period for blockwise (default: 1024)
-      --nodc                  disable diff-cover (algorithm becomes quadratic)
-      -r/--noref              don't build .3/.4.ebwt (packed reference) portion
-      -3/--justref            just build .3/.4.ebwt (packed reference) portion
-      -o/--offrate <int>      SA is sampled every 2^offRate BWT chars (default: 5)
-      -t/--ftabchars <int>    # of chars consumed in initial lookup (default: 10)
-      --ntoa                  convert Ns in reference to As
-      --seed <int>            seed for random number generator
-      -q/--quiet              verbose output (for debugging)
-      -h/--help               print detailed description of tool and its options
-      --usage                 print this usage message
-      --version               print version information and quit

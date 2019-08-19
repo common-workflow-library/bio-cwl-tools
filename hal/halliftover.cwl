@@ -110,6 +110,8 @@ $namespaces:
 $schemas:
 - http://schema.org/version/latest/schema.rdf
 
+s:mainEntity: https://github.com/ComparativeGenomicsToolkit/hal
+
 s:name: "halliftover"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
 

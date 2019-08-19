@@ -55,12 +55,9 @@ $namespaces:
 $schemas:
 - http://schema.org/version/latest/schema.rdf
 
-s:mainEntity:
-  $import: ./metadata/bedtools_metadata.yaml
+s:mainEntity: https://bio.tools/bedtools
 
 s:name: "bedtools_bamtobed_2"
-s:downloadUrl: https://raw.githubusercontent.com/common-workflow-library/bio-cwl-tools/release/tools/bedtools/bedtools_bamtobed_2.cwl
-s:codeRepository: https://github.com/common-workflow-library/bio-cwl-tools
 s:license: http://www.apache.org/licenses/LICENSE-2.0
 
 s:isPartOf:
@@ -94,40 +91,4 @@ s:creator:
         - id: http://orcid.org/0000-0002-6486-3898
 
 doc: |
-  Converts BAM to BED. All Options are not implemented.
-
-s:about: |
-  Usage:   bedtools bamtobed [OPTIONS] -i <bam> 
-
-  Options: 
-    -bedpe	Write BEDPE format.
-      - Requires BAM to be grouped or sorted by query.
-
-    -mate1	When writing BEDPE (-bedpe) format, 
-      always report mate one as the first BEDPE "block".
-
-    -bed12	Write "blocked" BED format (aka "BED12"). Forces -split.
-
-      http://genome-test.cse.ucsc.edu/FAQ/FAQformat#format1
-
-    -split	Report "split" BAM alignments as separate BED entries.
-      Splits only on N CIGAR operations.
-
-    -splitD	Split alignments based on N and D CIGAR operators.
-      Forces -split.
-
-    -ed	Use BAM edit distance (NM tag) for BED score.
-      - Default for BED is to use mapping quality.
-      - Default for BEDPE is to use the minimum of
-        the two mapping qualities for the pair.
-      - When -ed is used with -bedpe, the total edit
-        distance from the two mates is reported.
-
-    -tag	Use other NUMERIC BAM alignment tag for BED score.
-      - Default for BED is to use mapping quality.
-        Disallowed with BEDPE output.
-
-    -color	An R,G,B string for the color used with BED12 format.
-      Default is (255,0,0).
-
-    -cigar	Add the CIGAR string to the BED entry as a 7th column.
+  Converts BAM to BED. All additional options are not implemented.
