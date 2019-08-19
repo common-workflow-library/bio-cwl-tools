@@ -94,11 +94,10 @@ $schemas:
 - http://schema.org/version/latest/schema.rdf
 
 s:mainEntity:
-  $import: ./metadata/deseq_metadata.yaml
+- https://bio.tools/deseq
+- https://bio.tools/deseq2
 
 s:name: "deseq_advanced"
-s:downloadUrl: https://raw.githubusercontent.com/common-workflow-library/bio-cwl-tools/release/tools/deseq/deseq_advanced.cwl
-s:codeRepository: https://github.com/common-workflow-library/bio-cwl-tools
 s:license: http://www.apache.org/licenses/LICENSE-2.0
 
 s:isPartOf:
@@ -149,27 +148,3 @@ doc: |
   RefseqId, GeneId, Chrom, TxStart, TxEnd, Strand
 
   DESeq/DESeq2 always compares untreated_vs_treated groups
-
-
-s:about: |
-  Usage:
-    run_deseq.R
-         [-h] -u UNTREATED [UNTREATED ...] -t TREATED [TREATED ...] [-un UNAME]
-         [-tn TNAME] [-o OUTPUT] [-p THREADS]
-
-  Run BioWardrobe DESeq/DESeq2 for untreated-vs-treated groups
-
-  -h, --help            show this help message and exit
-  -u UNTREATED [UNTREATED ...], --untreated UNTREATED [UNTREATED ...]
-                        Untreated CSV/TSV isoforms expression files
-  -t TREATED [TREATED ...], --treated TREATED [TREATED ...]
-                        Treated CSV/TSV isoforms expression files
-  -un UNAME, --uname UNAME
-                        Suffix for untreated RPKM column name
-  -tn TNAME, --tname TNAME
-                        Suffix for treated RPKM column name
-  -o OUTPUT, --output OUTPUT
-                        Output TSV filename
-  -p THREADS, --threads THREADS
-                        Threads
-

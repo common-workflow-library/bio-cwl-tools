@@ -95,12 +95,9 @@ $namespaces:
 $schemas:
 - http://schema.org/version/latest/schema.rdf
 
-s:mainEntity:
-  $import: ./metadata/fastx_toolkit_metadata.yaml
+s:mainEntity: https://bio.tools/fastx-toolkit
 
 s:name: "fastx_quality_stats"
-s:downloadUrl: https://raw.githubusercontent.com/common-workflow-library/bio-cwl-tools/release/tools/fastx_toolkit/fastx_quality_stats.cwl
-s:codeRepository: https://github.com/common-workflow-library/bio-cwl-tools
 s:license: http://www.apache.org/licenses/LICENSE-2.0
 
 s:isPartOf:
@@ -137,45 +134,3 @@ doc: |
   Tool calculates statistics on the base of FASTQ file quality scores.
   If `output_filename` is not provided call function `default_output_filename` to return default output file name
   generated as `input_file` basename + `.fastxstat` extension.
-
-s:about: |
-  usage: fastx_quality_stats [-h] [-N] [-i INFILE] [-o OUTFILE]
-  Part of FASTX Toolkit 0.0.14 by A. Gordon (assafgordon@gmail.com)
-     [-h] = This helpful help screen.
-     [-i INFILE]  = FASTQ input file. default is STDIN.
-     [-o OUTFILE] = TEXT output file. default is STDOUT.
-     [-N]         = New output format (with more information per nucleotide/cycle).
-  The *OLD* output TEXT file will have the following fields (one row per column):
-  	column	= column number (1 to 36 for a 36-cycles read solexa file)
-  	count   = number of bases found in this column.
-  	min     = Lowest quality score value found in this column.
-  	max     = Highest quality score value found in this column.
-  	sum     = Sum of quality score values for this column.
-  	mean    = Mean quality score value for this column.
-  	Q1	= 1st quartile quality score.
-  	med	= Median quality score.
-  	Q3	= 3rd quartile quality score.
-  	IQR	= Inter-Quartile range (Q3-Q1).
-  	lW	= 'Left-Whisker' value (for boxplotting).
-  	rW	= 'Right-Whisker' value (for boxplotting).
-  	A_Count	= Count of 'A' nucleotides found in this column.
-  	C_Count	= Count of 'C' nucleotides found in this column.
-  	G_Count	= Count of 'G' nucleotides found in this column.
-  	T_Count	= Count of 'T' nucleotides found in this column.
-  	N_Count = Count of 'N' nucleotides found in this column.
-  	max-count = max. number of bases (in all cycles)
-  The *NEW* output format:
-  	cycle (previously called 'column') = cycle number
-  	max-count
-    For each nucleotide in the cycle (ALL/A/C/G/T/N):
-  		count   = number of bases found in this column.
-  		min     = Lowest quality score value found in this column.
-  		max     = Highest quality score value found in this column.
-  		sum     = Sum of quality score values for this column.
-  		mean    = Mean quality score value for this column.
-  		Q1	= 1st quartile quality score.
-  		med	= Median quality score.
-  		Q3	= 3rd quartile quality score.
-  		IQR	= Inter-Quartile range (Q3-Q1).
-  		lW	= 'Left-Whisker' value (for boxplotting).
-  		rW	= 'Right-Whisker' value (for boxplotting).

@@ -73,12 +73,9 @@ $namespaces:
 $schemas:
 - http://schema.org/version/latest/schema.rdf
 
-s:mainEntity:
-  $import: ./metadata/bzip2_metadata.yaml
+s:mainEntity: http://www.bzip.org/downloads.html
 
 s:name: "bzip2_compress"
-s:downloadUrl: https://raw.githubusercontent.com/common-workflow-library/bio-cwl-tools/release/tools/bzip2/bzip2_compress.cwl
-s:codeRepository: https://github.com/common-workflow-library/bio-cwl-tools
 s:license: http://www.apache.org/licenses/LICENSE-2.0
 
 s:isPartOf:
@@ -118,30 +115,3 @@ doc: |
   directory using `"writable": true`. Setting `writable: true` makes cwl-runner to make a copy of input file and
   mount it to docker container with `rw` mode as part of `--workdir` (if set to false, the file staged into output
   directory will be mounted to docker container separately with `ro` mode)
-
-s:about: |
-   usage: bzip2 [flags and input files in any order]
-
-   -h --help           print this message
-   -d --decompress     force decompression
-   -z --compress       force compression
-   -k --keep           keep (don't delete) input files
-   -f --force          overwrite existing output files
-   -t --test           test compressed file integrity
-   -c --stdout         output to standard out
-   -q --quiet          suppress noncritical error messages
-   -v --verbose        be verbose (a 2nd -v gives more)
-   -L --license        display software version & license
-   -V --version        display software version & license
-   -s --small          use less memory (at most 2500k)
-   -1 .. -9            set block size to 100k .. 900k
-   --fast              alias for -1
-   --best              alias for -9
-
-   If invoked as `bzip2', default action is to compress.
-              as `bunzip2',  default action is to decompress.
-              as `bzcat', default action is to decompress to stdout.
-
-   If no file names are given, bzip2 compresses or decompresses
-   from standard input to standard output.  You can combine
-   short flags, so `-v -4' means the same as -v4 or -4v, &c.

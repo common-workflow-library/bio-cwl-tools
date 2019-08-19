@@ -63,12 +63,9 @@ $namespaces:
 $schemas:
 - http://schema.org/version/latest/schema.rdf
 
-s:mainEntity:
-  $import: ./metadata/bedtools_metadata.yaml
+s:mainEntity: https://bio.tools/bedtools
 
 s:name: "bedtools_getfasta"
-s:downloadUrl: https://raw.githubusercontent.com/common-workflow-library/bio-cwl-tools/release/tools/bedtools/bedtools_getfasta.cwl
-s:codeRepository: https://github.com/common-workflow-library/bio-cwl-tools
 s:license: http://www.apache.org/licenses/LICENSE-2.0
 
 s:isPartOf:
@@ -103,21 +100,3 @@ s:creator:
 
 doc: |
   Extracts sequences from a FASTA file for each of the intervals defined in a BED/GFF/VCF file. Only selected parameters are implemented.
-
-s:about: |
-  Usage:   bedtools getfasta [OPTIONS] -fi <fasta> -bed <bed/gff/vcf>
-
-  Options: 
-    -fi	Input FASTA file
-    -bed	BED/GFF/VCF file of ranges to extract from -fi
-    -name	Use the name field for the FASTA header
-    -split	given BED12 fmt., extract and concatenate the sequencesfrom the BED "blocks" (e.g., exons)
-    -tab	Write output in TAB delimited format.
-      - Default is FASTA format.
-
-    -s	Force strandedness. If the feature occupies the antisense,
-      strand, the sequence will be reverse complemented.
-      - By default, strand information is ignored.
-
-    -fullHeader	Use full fasta header.
-      - By default, only the word before the first space or tab is used.

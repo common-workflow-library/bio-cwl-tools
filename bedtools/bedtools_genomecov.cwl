@@ -220,12 +220,9 @@ $namespaces:
 $schemas:
 - http://schema.org/version/latest/schema.rdf
 
-s:mainEntity:
-  $import: ./metadata/bedtools_metadata.yaml
+s:mainEntity: https://bio.tools/bedtools
 
 s:name: "bedtools_genomecov"
-s:downloadUrl: https://raw.githubusercontent.com/common-workflow-library/bio-cwl-tools/release/tools/bedtools/bedtools_genomecov.cwl
-s:codeRepository: https://github.com/common-workflow-library/bio-cwl-tools
 s:license: http://www.apache.org/licenses/LICENSE-2.0
 
 s:isPartOf:
@@ -270,94 +267,3 @@ doc: |
   `default_output_filename` function returns default output filename and is used when `output_filename` is not provided.
   Default output file extention is `.tab`. If bedGraph should be generated (check flags `inputs.depth`), extension is
   updated to `.bedGraph`. Default basename of the output file is generated on the base of `input_file` basename.
-
-s:about: |
-  Usage: bedtools genomecov [OPTIONS] -i <bed/gff/vcf> -g <genome>
-
-  Options:
-  	-ibam		The input file is in BAM format.
-  			Note: BAM _must_ be sorted by position
-
-  	-d		Report the depth at each genome position (with one-based coordinates).
-  			Default behavior is to report a histogram.
-
-  	-dz		Report the depth at each genome position (with zero-based coordinates).
-  			Reports only non-zero positions.
-  			Default behavior is to report a histogram.
-
-  	-bg		Report depth in BedGraph format. For details, see:
-  			genome.ucsc.edu/goldenPath/help/bedgraph.html
-
-  	-bga		Report depth in BedGraph format, as above (-bg).
-  			However with this option, regions with zero
-  			coverage are also reported. This allows one to
-  			quickly extract all regions of a genome with 0
-  			coverage by applying: "grep -w 0$" to the output.
-
-  	-split		Treat "split" BAM or BED12 entries as distinct BED intervals.
-  			when computing coverage.
-  			For BAM files, this uses the CIGAR "N" and "D" operations
-  			to infer the blocks for computing coverage.
-  			For BED12 files, this uses the BlockCount, BlockStarts, and BlockEnds
-  			fields (i.e., columns 10,11,12).
-
-  	-strand		Calculate coverage of intervals from a specific strand.
-  			With BED files, requires at least 6 columns (strand is column 6).
-  			- (STRING): can be + or -
-
-  	-pc		Calculate coverage of pair-end fragments.
-  			Works for BAM files only
-  	-fs		Force to use provided fragment size instead of read length
-  			Works for BAM files only
-  	-du		Change strand af the mate read (so both reads from the same strand) useful for strand specific
-  			Works for BAM files only
-  	-5		Calculate coverage of 5" positions (instead of entire interval).
-
-  	-3		Calculate coverage of 3" positions (instead of entire interval).
-
-  	-max		Combine all positions with a depth >= max into
-  			a single bin in the histogram. Irrelevant
-  			for -d and -bedGraph
-  			- (INTEGER)
-
-  	-scale		Scale the coverage by a constant factor.
-  			Each coverage value is multiplied by this factor before being reported.
-  			Useful for normalizing coverage by, e.g., reads per million (RPM).
-  			- Default is 1.0; i.e., unscaled.
-  			- (FLOAT)
-
-  	-trackline	Adds a UCSC/Genome-Browser track line definition in the first line of the output.
-  			- See here for more details about track line definition:
-  			      http://genome.ucsc.edu/goldenPath/help/bedgraph.html
-  			- NOTE: When adding a trackline definition, the output BedGraph can be easily
-  			      uploaded to the Genome Browser as a custom track,
-  			      BUT CAN NOT be converted into a BigWig file (w/o removing the first line).
-
-  	-trackopts	Writes additional track line definition parameters in the first line.
-  			- Example:
-  			   -trackopts 'name="My Track" visibility=2 color=255,30,30'
-  			   Note the use of single-quotes if you have spaces in your parameters.
-  			- (TEXT)
-
-  Notes:
-  	(1) The genome file should tab delimited and structured as follows:
-  	 <chromName><TAB><chromSize>
-
-  	For example, Human (hg19):
-  	chr1	249250621
-  	chr2	243199373
-  	...
-  	chr18_gl000207_random	4262
-
-  	(2) The input BED (-i) file must be grouped by chromosome.
-  	 A simple "sort -k 1,1 <BED> > <BED>.sorted" will suffice.
-
-  	(3) The input BAM (-ibam) file must be sorted by position.
-  	 A "samtools sort <BAM>" should suffice.
-
-  Tips:
-  	One can use the UCSC Genome Browser's MySQL database to extract
-  	chromosome sizes. For example, H. sapiens:
-
-  	mysql --user=genome --host=genome-mysql.cse.ucsc.edu -A -e \
-  	"select chrom, size from hg19.chromInfo" > hg19.genome
