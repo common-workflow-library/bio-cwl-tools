@@ -1,0 +1,20 @@
+{
+  "peak_file": {
+    "class": "File",
+    "location": "./data/dm3_chr4/generated_inputs/homer/peak_files/chr4.tss.peak.tsv"
+  },
+  "tag_folders": [
+    {
+      "class": "Directory",
+      "location": "./data/dm3_chr4/generated_inputs/homer/tag_folders/chr4_100_mapped_reads"
+    },
+    {
+      "class": "Directory",
+      "location": "./data/dm3_chr4/generated_inputs/homer/tag_folders/chr4_100_mapped_reads"
+    }
+  ],
+  "hist_width": 2000,
+  "hist_bin_size": 20,
+  "export_heatmap": false,
+  "histogram_filename": "output.hist"
+}
