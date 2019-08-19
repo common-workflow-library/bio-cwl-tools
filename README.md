@@ -11,7 +11,7 @@ The underlying tools are under one or more Free and Open Source Software license
 
 # Styleguide
 
-1. First line must be `#!/usr/bin/env cwl-wrapper`
+1. First line must be `#!/usr/bin/env cwl-runner`
 1. Second line is `cwlVersion: v1.0`
 1. Third line is `class: CommandLineTool`
 1. `*.cwl` files must be marked executable (`chmod a+x *.cwl`)
