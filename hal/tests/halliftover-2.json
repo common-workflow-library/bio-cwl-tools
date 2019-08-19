@@ -1,0 +1,16 @@
+{
+  "hal_file": {
+    "class": "File",
+    "location": "./data/dm3_chr4/generated_inputs/hal/chr4.hal"
+  },
+  "input_bed_file": {
+    "class": "File",
+    "location": "./data/dm3_chr4/generated_inputs/bedgraph/chr4_100_mapped_reads.Aligned.out.sorted.bedGraph"
+  },
+  "source_genome_name": "dm3",
+  "target_genome_name": "droSim2",
+  "tab_separated": false,
+  "keep_extra": true,
+  "no_dupes": true,
+  "output_filename": "output.bedGraph"
+}
