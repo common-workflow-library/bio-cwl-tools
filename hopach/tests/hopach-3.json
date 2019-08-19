@@ -1,0 +1,29 @@
+{
+  "expression_files": [
+    {
+      "class": "File",
+      "location": "./data/dm3_chr4/main_inputs/geep/u1_1000.isoforms.csv"
+    },
+    {
+      "class": "File",
+       "location": "./data/dm3_chr4/main_inputs/geep/u2_1000.isoforms.csv"
+    },
+    {
+      "class": "File",
+      "location": "./data/dm3_chr4/main_inputs/geep/u3_1000.isoforms.csv"
+    }
+  ],
+  "cluster_method": "row",
+  "row_logtransform": true,
+  "col_logtransform": true,
+  "row_center": "mean",
+  "col_center": "median",
+  "row_normalize": true,
+  "col_normalize": true,
+  "row_min": 3.5,
+  "keep_discarded": true,
+  "row_dist_metric": "cosangle",
+  "col_dist_metric": "euclid",
+  "palette": ["Red", "Black", "White"],
+  "output_prefix": "results"
+}
