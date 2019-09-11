@@ -18,6 +18,9 @@ The underlying tools are under one or more Free and Open Source Software license
 1. All tool descriptions must have a software container. Use a container from biocontainers.pro if available
 1. If you use schema.org annotations, specify the schema using the RDF version: `$schemas: [ http://schema.org/version/latest/schema.rdf ]`
 1. Must be free from warning when `cwltool --validate` is run
+1. Tool descriptions should be motivated by a real world use of this tool in a workflow.
+   The description should focus on a single way of using the tool.
+   Signs that a tool description is including too much: lots of javascript; complicated data structures; every single flag is listed.
 
 ## Contributors ✨
 
