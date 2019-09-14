@@ -12,7 +12,7 @@ inputs:
     label: "Kraken 2 DB"
     doc: "(either a File refer to the hash.k2d file in the DB or a Directory to reference the entire directory)"
     inputBinding:
-      position: 0
+      position: 1
       prefix: --db
       valueFrom: |
         ${ return (self.class == "File") ? self.dirname : self.path }
@@ -20,57 +20,59 @@ inputs:
       - $("opts.k2d")
       - $("taxo.k2d")
   input_sequences:
-    type: File[]
+    type: 
+      - File
+      - File[]
     label: "Input sequence files"
     format:
       - edam:format_1929  # FASTA
       - edam:format_1930  # FASTQ
     inputBinding:
-      position: 1
+      position: 2
   output:
     type: string
     label: "Filename for output"
     inputBinding:
-      position: 2
+      position: 0
       prefix: --output
   threads:
     type: int?
     label: "Number of threads"
     default: 1
     inputBinding:
-      position: 3
+      position: 0
       prefix: --threads
   quick:
     type: boolean?
     label: "Quick operation (use first hit or hits)"
     inputBinding:
-      position: 3
+      position: 0
       prefix: --quick
   unclassified_output:
     type: string?
     label: "Print unclassified sequences to this filename"
     inputBinding:
-      position: 3
+      position: 0
       prefix: unclassified_output
   classified_output:
     type: string?
     label: "Print classified sequences to this filename"
     inputBinding:
-      position: 3
+      position: 0
       prefix: classified_output
   confidence:
     type: float?
     label: "Confidence score threshold"
     default: 0.0
     inputBinding:
-      position: 3
+      position: 0
       prefix: --confidence
   minimum-base-quality:
     type: int?
     label: "Minimum base quality used in classification (only used with FASTQ input"
     default: 0
     inputBinding:
-      position: 3
+      position: 0
       prefix: --minimum-base-quality
   report:
     type:
@@ -82,50 +84,50 @@ inputs:
             type: string?
             label: "Print a report with aggregate counts/clade to file"
             inputBinding:
-              position: 3
+              position: 0
               prefix: --report
           use-mpa-style:
             type: boolean?
             label: "With --report, format report output like Kraken 1's kraken-mpa-report"
             inputBinding:
-              position: 3
+              position: 0
               prefix: --use-mpa-style
           report-zero-counts:
             type: boolean?
             label: "With --report, report countrs for ALL taxa, even if counts are zero"
             inputBinding:
-              position: 3
+              position: 0
               prefix: --report-zero-counts
   memory-mapping:
     type: boolean?
     label: "Avoid loading database into RAM"
     inputBinding:
-      position: 3
+      position: 0
       prefix: --memory-mapping
   paired:
     type: boolean?
     label: "The filenames provided have paired end reads"
     inputBinding:
-      position: 3
+      position: 0
       prefix: --paired
 
   use-names:
     type: boolean?
     label: "Print scientific names instead of just taxids"
     inputBinding:
-      position: 3
+      position: 0
       prefix: --use-names
   gzip-compressed:
     type: boolean?
     label: "Input files are compressed with GZIP"
     inputBinding:
-      position: 3
+      position: 0
       prefix: --gzip-compressed
   bzip2-compressed:
     type: boolean?
     label: "Input files are compressed with BZIP2"
     inputBinding:
-      position: 3
+      position: 0
       prefix: --bzip2-compressed
 outputs:
   kraken_output:
