@@ -15,6 +15,6 @@ cache:
   pip: true
   directories:
     - ${HOME}/.cache/salad
-script: git diff --name-status origin/release..$(git branch | grep \* | cut -d ' ' -f2) | 
+script: python ci.py
   
   #find . -name "*.cwl" | xargs -n1 cwltool --validate
