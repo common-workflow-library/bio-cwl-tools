@@ -14,10 +14,6 @@ inputs:
     inputBinding:
       prefix: "--runThreadN"
 
-  GenomeDir:
-    type: Directory
-    inputBinding:
-      prefix: "--genomeDir"
 
   ForwardReads:
     format: http://edamontology.org/format_1930
