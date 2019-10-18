@@ -1,4 +1,5 @@
 import crayons
+import os
 from subprocess import check_output, check_call
 import sys
 
@@ -46,6 +47,12 @@ for line in changed_files.decode('utf-8').rstrip().split('\n'):
         print(crayons.green(f"Tool Passed Repo Requirements: {fs}\n"))
     else:
         print(crayons.red(f"Tool Failed Repo Requirements: {fs}\n"))
+        has_failed = True
+
+    if os.access(fs, os.X_OK):
+        print(crayons.green(f"Tool Passed Executable Test: {fs}"))
+    else:
+        print(crayons.red(f"File Failed Executable Requirement: {fs}"))
         has_failed = True
     print("=====================")
 
