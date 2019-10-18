@@ -8,6 +8,7 @@ os:
 dist: xenial
 install:
   - pip install cwltool
+  - pip install crayons
 branches:
   only:
    - release
