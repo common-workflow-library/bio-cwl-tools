@@ -14,7 +14,7 @@ for line in changed_files.decode('utf-8').rstrip().split('\n'):
     if not fs.lower().endswith(".cwl"):
         continue
 
-    file_validation_status = check_call("cwltool --validate ")
+    file_validation_status = check_call(f"cwltool --validate {fs}")
     if file_validation_status != 0:
         print(f'Tool Failed: {fs}')
         has_failed = True
