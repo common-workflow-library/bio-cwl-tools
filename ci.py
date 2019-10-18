@@ -5,7 +5,7 @@ import sys
 
 has_failed = False
 tool_failed = False
-changed_files = check_output("git --no-pager diff --name-status origin/release..$(git branch | grep \* | cut -d ' ' -f2)", shell=True)
+changed_files = check_output("git --no-pager diff --name-status release..$(git branch | grep \* | cut -d ' ' -f2)", shell=True)
 for line in changed_files.decode('utf-8').rstrip().split('\n'):
     tool_failed = False
     change = line.split('\t')[0]
