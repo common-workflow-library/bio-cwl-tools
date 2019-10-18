@@ -6,12 +6,7 @@ requirements:
     dockerPull: "quay.io/biocontainers/kallisto:0.45.0--hdcc98e5_0"
   InlineJavascriptRequirement: {}
 
-inputs:
-  InputFiles:
-    type: File[]
-    format: http://edamontology.org/format_1929 # FASTA
-    inputBinding:
-      position: 200
+
     
   IndexName:
     type: string
