@@ -1,0 +1,7 @@
+{
+  "bam_file": {
+    "class": "File",
+    "location": "./data/dm3_chr4/main_inputs/bam/small.sorted.bam"
+  },
+  "estimates_filename": "output.tsv"
+}
