@@ -45,14 +45,19 @@ Files should be marked as executable before being added
 chmod +x tool.cwl
 `
 
-## Requirements Section 🧾
+## Requirements & Hints Section 🧾
 
-There is a requirements section which handles settings for docker and runner config. Docker containers should be from biocontainers.pro if possible.
+There is a requirements section which handles settings for the runner config. Docker containers should be from biocontainers.pro if possible and placed in the hints section.
 
 ```yaml
 requirements:
+  InlineJavascriptRequirement: {}
+```
+
+```yaml
+hints:
   DockerRequirement:
-    dockerPull: "biocontainers/fastqc:v0.11.5_cv3"
+    dockerPull: "quay.io/biocontainers/bwa:0.7.17--ha92aebf_3"
 ```
 
 ## Validation ✅
