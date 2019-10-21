@@ -8,6 +8,7 @@ os:
 dist: xenial
 install:
   - pip install cwltool
+  - pip install crayons
 branches:
   only:
    - release
@@ -15,4 +16,6 @@ cache:
   pip: true
   directories:
     - ${HOME}/.cache/salad
-script: find . -name "*.cwl" | xargs -n1 cwltool --validate
+script: python ci.py
+  
+  #find . -name "*.cwl" | xargs -n1 cwltool --validate
