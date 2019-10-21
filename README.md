@@ -34,7 +34,7 @@ The second specifies the cwl version.
 <br/>
 
 **IMPORTANT!** 
-The current spec is at v1.1, the IIDSGT group commits tools at **v1.0** due to a limit in our job management system. It is recommended to use the current spec whenever possible.
+We are using `cwlVersion` `v1.0` unless a `v1.1` feature is needed.
 
 
 ## Making Files Executable ✴️
