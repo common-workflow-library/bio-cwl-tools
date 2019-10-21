@@ -22,7 +22,7 @@ BWA-Index.cwl
 
 ## Tool Feature Requirements 🆕
 
-In order to keep consistent with the biotools spec, the first 3 lines of tool wrappers should be as follows. Our CI/CD system checks for these so make sure to include them so they can be merged into the repo.
+The first 3 lines of tool wrappers should be as follows. Our CI/CD system checks for these so make sure to include them so they can be merged into the repo.
 
 ```yaml
 #!/usr/bin/env cwl-runner
