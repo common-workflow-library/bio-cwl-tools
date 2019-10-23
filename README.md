@@ -11,16 +11,77 @@ The underlying tools are under one or more Free and Open Source Software license
 
 # Styleguide
 
-1. First line must be `#!/usr/bin/env cwl-runner`
-1. Second line is `cwlVersion: v1.0`
-1. Third line is `class: CommandLineTool`
-1. `*.cwl` files must be marked executable (`chmod a+x *.cwl`)
-1. All tool descriptions must have a software container. Use a container from biocontainers.pro if available
-1. If you use schema.org annotations, specify the schema using the RDF version: `$schemas: [ http://schema.org/version/latest/schema.rdf ]`
-1. Must be free from warning when `cwltool --validate` is run
-1. Tool descriptions should be motivated by a real world use of this tool in a workflow.
-   The description should focus on a single way of using the tool.
-   Signs that a tool description is including too much: lots of javascript; complicated data structures; every single flag is listed.
+## Naming Tools 📛
+
+Tools should follow the convention of being prefixed by the parent tool name and Camelcase like so i.e.
+`
+BWA-Mem.cwl`
+or `
+BWA-Index.cwl
+`
+
+## Tool Feature Requirements 🆕
+
+The first 3 lines of tool wrappers should be as follows. Our CI/CD system checks for these so make sure to include them so they can be merged into the repo.
+
+```yaml
+#!/usr/bin/env cwl-runner
+cwlVersion: v1.0
+class: CommandLineTool
+```
+The first line allows the tool to be run as a single command.
+The second specifies the cwl version.
+<br/>
+
+**IMPORTANT!** 
+We are using `cwlVersion` `v1.0` unless a `v1.1` feature is needed.
+
+
+## Making Files Executable ✴️
+
+Files should be marked as executable before being added 
+
+`
+chmod +x tool.cwl
+`
+
+## Requirements & Hints Section 🧾
+
+There is a requirements section which handles settings for the runner config. Docker containers should be from biocontainers.pro if possible and placed in the hints section.
+
+```yaml
+requirements:
+  InlineJavascriptRequirement: {}
+```
+
+```yaml
+hints:
+  DockerRequirement:
+    dockerPull: "quay.io/biocontainers/bwa:0.7.17--ha92aebf_3"
+```
+
+## Validation ✅
+
+Tools need to be free of warning when running with
+
+`
+cwltool --validate
+`
+
+## Adding Tools To The Repository ➕
+
+Please add tools via pull requests to the repository. Our CI/CD runs validation against the tools and will soon support doing unit tests on the individual tools.
+
+## Descriptions 📃
+
+Tool descriptions should be motivated by a real world use of this tool in a workflow.
+The description should focus on a single way of using the tool.
+Signs that a tool description is including too much: lots of javascript; complicated data structures; every single flag is listed.
+
+## Schema Description
+
+If you use schema.org annotations, specify the schema using the RDF version: `$schemas: [ http://schema.org/version/latest/schema.rdf ]`
+
 
 ## Contributors ✨
 
