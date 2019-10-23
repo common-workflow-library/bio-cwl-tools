@@ -9,7 +9,15 @@ requirements:
     - var default_output_filename = function() {
         var ext = ".bed";
         if (inputs.output_filename == ""){
-          va
+          var root = inputs.input_bed_file.basename.split('.').slice(0,-1).join('.');
+          return (root == "")?inputs.input_bed_file.basename+ext:root+ext;
+        } else {
+          return inputs.output_filename;
+        }
+      };
+
+
+hints:
 - class: DockerRequirement
   dockerPull: biowardrobe2/hal:v0.0.1
 
