@@ -41,6 +41,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "medcelerate",
+      "name": "medcelerate",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/32549017?v=4",
+      "profile": "https://github.com/medcelerate",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,

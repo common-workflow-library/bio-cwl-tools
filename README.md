@@ -95,6 +95,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/tetron"><img src="https://avatars3.githubusercontent.com/u/1316612?v=4" width="100px;" alt="Peter Amstutz"/><br /><sub><b>Peter Amstutz</b></sub></a><br /><a href="#ideas-tetron" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/michael-kotliar"><img src="https://avatars1.githubusercontent.com/u/19493721?v=4" width="100px;" alt="Michael Kotliar"/><br /><sub><b>Michael Kotliar</b></sub></a><br /><a href="#ideas-michael-kotliar" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/common-workflow-library/bio-cwl-tools/commits?author=michael-kotliar" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/pvanheus"><img src="https://avatars0.githubusercontent.com/u/4154788?v=4" width="100px;" alt="pvanheus"/><br /><sub><b>pvanheus</b></sub></a><br /><a href="https://github.com/common-workflow-library/bio-cwl-tools/commits?author=pvanheus" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/medcelerate"><img src="https://avatars3.githubusercontent.com/u/32549017?v=4" width="100px;" alt="medcelerate"/><br /><sub><b>medcelerate</b></sub></a><br /><a href="#ideas-medcelerate" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
 </table>
 
