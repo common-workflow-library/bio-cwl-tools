@@ -6,7 +6,10 @@ import sys
 has_failed = False
 tool_failed = False
 #changed_files = check_output("git --no-pager diff --name-status release..$(git branch | grep \* | cut -d ' ' -f2)", shell=True)
-changed_files = check_output("git --no-pager diff --name-status release..FETCH_HEAD", shell=True)
+try:
+    changed_files = check_output("git --no-pager diff --name-status release..FETCH_HEAD", shell=True)
+except:
+    changed_files = check_output("git --no-pager diff --name-status HEAD", shell=True)
 
 for line in changed_files.decode('utf-8').rstrip().split('\n'):
     tool_failed = False
