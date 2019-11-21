@@ -14,6 +14,11 @@ hints:
     ramMin: 30000
   DockerRequirement:
     dockerPull: kerstenbreuer/bowtie2:2.2.6-2
+  SoftwareRequirement:
+    packages:
+      bowtie2:
+        specs: [ "https://bio.tools/bowtie2" ]
+        version: [ "2.3.0" ]
 
 baseCommand: ["bowtie2"]
 arguments:

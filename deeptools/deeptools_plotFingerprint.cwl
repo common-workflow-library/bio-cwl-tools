@@ -15,7 +15,12 @@ hints:
     ramMin: 15000
   DockerRequirement:
     dockerPull: kerstenbreuer/deeptools:3.1.1
-  
+  SoftwareRequirement:
+    packages:
+      deeptools:
+        specs: [ "https://bio.tools/deeptools" ]
+        version: [ "3.1.1"
+
 baseCommand: ["plotFingerprint"]
 arguments:
   - valueFrom: $(inputs.sample_id)

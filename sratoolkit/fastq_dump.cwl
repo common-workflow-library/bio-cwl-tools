@@ -10,6 +10,11 @@ requirements:
 hints:
 - class: DockerRequirement
   dockerPull: biowardrobe2/sratoolkit:v2.8.2-1
+- class:  SoftwareRequirement
+  packages:
+    sra-tools:
+      specs: [ "https://bio.tools/sra-tools" ]
+      version: [ "2.8.2" ]
 
 
 inputs:

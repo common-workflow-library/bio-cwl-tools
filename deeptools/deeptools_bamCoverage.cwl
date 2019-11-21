@@ -15,6 +15,11 @@ hints:
     ramMin: 20000
   DockerRequirement:
     dockerPull: kerstenbreuer/deeptools:3.1.1
+  SoftwareRequirement:
+    packages:
+      deeptools:
+        specs: [ "https://bio.tools/deeptools" ]
+        version: [ "3.1.1" ]
 
 baseCommand: ["bamCoverage"]
 arguments:  

@@ -19,7 +19,11 @@ requirements:
 hints:
 - class: DockerRequirement
   dockerPull: biowardrobe2/deeptools:v0.0.1
-
+- class: SoftwareRequirement
+  packages:
+    deeptools:
+      specs: [ "https://bio.tools/deeptools" ]
+      version: [ "0.0.1" ]
 
 inputs:
 

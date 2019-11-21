@@ -6,6 +6,11 @@ class: CommandLineTool
 hints:
 - class: DockerRequirement
   dockerPull: biowardrobe2/hopach:v0.0.6
+- class:  SoftwareRequirement
+  packages:
+    hopach:
+      specs: [ "https://bio.tools/hopach" ]
+      version: [ "0.0.6" ]
 
 
 inputs:

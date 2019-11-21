@@ -10,7 +10,11 @@ requirements:
 hints:
 - class: DockerRequirement
   dockerPull: biowardrobe2/scidap-deseq:v0.0.8
-
+- class: SoftwareRequirement
+  packages:
+    deseq:
+      specs: [ "https://bio.tools/deseq" ]
+      version: [ "0.0.8" ] ## TODO: Update!
 
 inputs:
 

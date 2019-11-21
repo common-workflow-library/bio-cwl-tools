@@ -6,7 +6,11 @@ class: CommandLineTool
 hints:
 - class: DockerRequirement
   dockerPull: biowardrobe2/manorm:v0.0.2
-
+- class:  SoftwareRequirement
+  packages:
+    manorm:
+      specs: [ "https://bio.tools/manorm" ]
+      version: [ "0.0.2" ]
 
 inputs:
 

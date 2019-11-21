@@ -152,6 +152,9 @@ hints:
       kraken2:
         version:
           - 2.0.8-beta
+        specs:
+          - https://bio.tools/kraken2
+
 requirements:
   - class: InlineJavascriptRequirement
   - class: ResourceRequirement

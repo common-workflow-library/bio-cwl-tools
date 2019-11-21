@@ -15,6 +15,11 @@ requirements:
 hints:
 - class: DockerRequirement
   dockerPull: biowardrobe2/bedtools2:v2.26.0
+- class: SoftwareRequirement
+  packages:
+    bedtools:
+      specs: [ "https://bio.tools/bedtools" ]
+      version: [ "2.26.0" ]
 
 
 inputs:

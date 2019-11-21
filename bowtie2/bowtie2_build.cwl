@@ -13,7 +13,11 @@ hints:
   dockerPull: biowardrobe2/bowtie2:v2.3.0
   dockerFile: >
     $import: ./dockerfiles/bowtie2-Dockerfile
-
+- class: SoftwareRequirement
+    packages:
+      bowtie2:
+        specs: [ "https://bio.tools/bowtie2" ]
+        version: [ "2.3.0" ]
 
 inputs:
 

@@ -8,6 +8,13 @@ requirements:
 - class: DockerRequirement
   dockerPull: biowardrobe2/bismark:v0.0.2
 
+hints:
+  SoftwareRequirement:
+    packages:
+      bismark:
+        specs: [ "https://bio.tools/bismark" ]
+        version: [ "0.0.2" ]
+
 
 inputs:
 

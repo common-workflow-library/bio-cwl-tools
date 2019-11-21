@@ -10,7 +10,11 @@ requirements:
 hints:
 - class: DockerRequirement
   dockerPull: biowardrobe2/fastqc:v0.11.5
-
+- class:  SoftwareRequirement
+  packages:
+    fastqc:
+      specs: [ "https://bio.tools/fastqc" ]
+      version: [ "0.1.11.5" ]
 
 inputs:
 

@@ -18,6 +18,13 @@ requirements:
               ]
     }
 
+hints:
+  SoftwareRequirement:
+    packages:
+      bismark:
+        specs: [ "https://bio.tools/bismark" ]
+        version: [ "0.0.2" ]
+
 inputs:
 
   genome_folder:
