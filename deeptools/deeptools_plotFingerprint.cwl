@@ -19,7 +19,7 @@ hints:
     packages:
       deeptools:
         specs: [ "https://bio.tools/deeptools" ]
-        version: [ "3.1.1"
+        version: [ "3.1.1" ]
 
 baseCommand: ["plotFingerprint"]
 arguments:

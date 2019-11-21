@@ -31,7 +31,7 @@ hints:
   dockerFile: >
     $import: ./dockerfiles/bowtie2-Dockerfile
 - class: SoftwareRequirement
-    packages:
+  packages:
       bowtie2:
         specs: [ "https://bio.tools/bowtie2" ]
         version: [ "2.3.0" ]
