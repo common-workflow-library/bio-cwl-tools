@@ -9,7 +9,7 @@ hints:
 - class:  SoftwareRequirement
   packages:
     hopach:
-      specs: [ "https://bio.tools/hopach" ]
+      specs: [ "http://identifiers.org/biotools/hopach" ]
       version: [ "0.0.6" ]
 
 

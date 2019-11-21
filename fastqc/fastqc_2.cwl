@@ -13,7 +13,7 @@ hints:
 - class:  SoftwareRequirement
   packages:
     fastqc:
-      specs: [ "https://bio.tools/fastqc" ]
+      specs: [ "http://identifiers.org/biotools/fastqc" ]
       version: [ "0.1.11.5" ]
 
 inputs:

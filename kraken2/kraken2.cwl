@@ -153,7 +153,7 @@ hints:
         version:
           - 2.0.8-beta
         specs:
-          - https://bio.tools/kraken2
+          - http://identifiers.org/biotools/kraken2
 
 requirements:
   - class: InlineJavascriptRequirement

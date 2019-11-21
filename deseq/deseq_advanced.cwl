@@ -13,7 +13,7 @@ hints:
 - class: SoftwareRequirement
   packages:
     deseq:
-      specs: [ "https://bio.tools/deseq" ]
+      specs: [ "http://identifiers.org/biotools/deseq" ]
       version: [ "0.0.8" ] ## TODO: Update!
 
 inputs:

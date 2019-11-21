@@ -14,7 +14,7 @@ hints:
 - class: SoftwareRequirement
   packages:
     bamtools:
-      specs: [ "https://bio.tools/bamtools" ]
+      specs: [ "http://identifiers.org/biotools/bamtools" ]
       version: [ "2.4.1" ]
 
 

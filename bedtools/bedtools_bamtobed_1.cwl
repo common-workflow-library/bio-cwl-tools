@@ -16,7 +16,7 @@ hints:
   SoftwareRequirement:
     packages:
       bedtools:
-        specs: [ "https://bio.tools/bedtools" ]
+        specs: [ "http://identifiers.org/biotools/bedtools" ]
         version: [ "2.25.0" ]
 
 

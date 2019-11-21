@@ -9,7 +9,7 @@ hints:
 - class:  SoftwareRequirement
   packages:
     manorm:
-      specs: [ "https://bio.tools/manorm" ]
+      specs: [ "http://identifiers.org/biotools/manorm" ]
       version: [ "0.0.2" ]
 
 inputs:

@@ -12,7 +12,7 @@ hints:
   SoftwareRequirement:
     packages:
       bismark:
-        specs: [ "https://bio.tools/bismark" ]
+        specs: [ "http://identifiers.org/biotools/bismark" ]
         version: [ "0.0.2" ]
 
 

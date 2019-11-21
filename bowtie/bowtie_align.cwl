@@ -52,7 +52,7 @@ hints:
 - class: SoftwareRequirement
   packages:
     bowtie:
-      specs: [ "https://bio.tools/bowtie" ]
+      specs: [ "http://identifiers.org/biotools/bowtie" ]
       version: [ "1.2.0" ]
 
 

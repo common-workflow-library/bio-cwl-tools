@@ -33,7 +33,7 @@ hints:
 - class: SoftwareRequirement
   packages:
       bowtie2:
-        specs: [ "https://bio.tools/bowtie2" ]
+        specs: [ "http://identifiers.org/biotools/bowtie2" ]
         version: [ "2.3.0" ]
 
 

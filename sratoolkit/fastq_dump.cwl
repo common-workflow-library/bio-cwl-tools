@@ -13,7 +13,7 @@ hints:
 - class:  SoftwareRequirement
   packages:
     sra-tools:
-      specs: [ "https://bio.tools/sra-tools" ]
+      specs: [ "http://identifiers.org/biotools/sra-tools" ]
       version: [ "2.8.2" ]
 
 

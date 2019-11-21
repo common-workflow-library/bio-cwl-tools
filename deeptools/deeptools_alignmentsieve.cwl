@@ -22,7 +22,7 @@ hints:
 - class: SoftwareRequirement
   packages:
     deeptools:
-      specs: [ "https://bio.tools/deeptools" ]
+      specs: [ "http://identifiers.org/biotools/deeptools" ]
       version: [ "0.0.1" ]
 
 inputs:

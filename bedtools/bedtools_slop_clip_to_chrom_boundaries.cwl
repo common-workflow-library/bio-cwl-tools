@@ -14,7 +14,7 @@ hints:
   SoftwareRequirement:
     packages:
       bedtools:
-        specs: [ "https://bio.tools/bedtools" ]
+        specs: [ "http://identifiers.org/biotools/bedtools" ]
         version: [ "2.26.0" ]
 
 baseCommand: ["bedtools", "slop"]

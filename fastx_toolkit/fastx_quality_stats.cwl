@@ -17,7 +17,7 @@ hints:
 - class:  SoftwareRequirement
   packages:
     fastx-toolkit:
-      specs: [ "https://bio.tools/fastx-toolkit" ]
+      specs: [ "http://identifiers.org/biotools/fastx-toolkit" ]
       version: [ "0.0.14" ]
 
 inputs:

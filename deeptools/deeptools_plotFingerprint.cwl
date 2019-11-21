@@ -18,7 +18,7 @@ hints:
   SoftwareRequirement:
     packages:
       deeptools:
-        specs: [ "https://bio.tools/deeptools" ]
+        specs: [ "http://identifiers.org/biotools/deeptools" ]
         version: [ "3.1.1" ]
 
 baseCommand: ["plotFingerprint"]
