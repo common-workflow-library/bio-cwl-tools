@@ -50,11 +50,21 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "stian",
+      "name": "stian",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/11341?v=4",
+      "profile": "https://github.com/Stian",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
   "projectName": "bio-cwl-tools",
   "projectOwner": "common-workflow-library",
   "repoType": "github",
-  "repoHost": "https://github.com"
+  "repoHost": "https://github.com",
+  "skipCi": true
 }
