@@ -96,7 +96,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/michael-kotliar"><img src="https://avatars1.githubusercontent.com/u/19493721?v=4" width="100px;" alt=""/><br /><sub><b>Michael Kotliar</b></sub></a><br /><a href="#ideas-michael-kotliar" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/common-workflow-library/bio-cwl-tools/commits?author=michael-kotliar" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/pvanheus"><img src="https://avatars0.githubusercontent.com/u/4154788?v=4" width="100px;" alt=""/><br /><sub><b>pvanheus</b></sub></a><br /><a href="https://github.com/common-workflow-library/bio-cwl-tools/commits?author=pvanheus" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/medcelerate"><img src="https://avatars3.githubusercontent.com/u/32549017?v=4" width="100px;" alt=""/><br /><sub><b>medcelerate</b></sub></a><br /><a href="#ideas-medcelerate" title="Ideas, Planning, & Feedback">🤔</a></td>
-    <td align="center"><a href="https://github.com/Stian"><img src="https://avatars0.githubusercontent.com/u/11341?v=4" width="100px;" alt=""/><br /><sub><b>stian</b></sub></a><br /><a href="https://github.com/common-workflow-library/bio-cwl-tools/commits?author=stian" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/stain"><img src="https://avatars3.githubusercontent.com/u/253413?v=4" width="100px;" alt=""/><br /><sub><b>stain</b></sub></a><br /><a href="https://github.com/common-workflow-library/bio-cwl-tools/commits?author=stain" title="Code">💻</a></td>
   </tr>
 </table>
 
