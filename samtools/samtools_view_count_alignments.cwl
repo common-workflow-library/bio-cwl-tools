@@ -1,11 +1,10 @@
 #!/usr/bin/env cwl-runner
-# for single end data
-
 cwlVersion: v1.0
 class: CommandLineTool
 
 doc: |
   Count aligned reads in a BAM file. 
+  For single end data
 
 requirements:
   InlineJavascriptRequirement: {}
