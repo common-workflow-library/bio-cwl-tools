@@ -2,7 +2,6 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
   - class: InlineJavascriptRequirement
     expressionLib:
@@ -16,11 +15,9 @@ requirements:
         }
       };
 
-
 hints:
 - class: DockerRequirement
   dockerPull: biowardrobe2/hal:v0.0.1
-
 
 inputs:
 
@@ -90,7 +87,6 @@ inputs:
     doc: |
       Output filename
 
-
 outputs:
 
   projected_bed_file:
@@ -100,17 +96,13 @@ outputs:
     doc: |
       Projected BED file
 
-
 baseCommand: ["halLiftover"]
-
 
 $namespaces:
   s: http://schema.org/
 
 $schemas:
 - http://schema.org/version/latest/schema.rdf
-
-s:mainEntity: https://github.com/ComparativeGenomicsToolkit/hal
 
 s:name: "halliftover"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

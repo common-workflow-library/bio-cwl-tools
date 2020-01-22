@@ -8,7 +8,6 @@ Non-goals: software packaging or containerization, go to https://biocontainers.p
 All CWL tool descriptions are licensed under the Apache 2.0 license.
 The underlying tools are under one or more Free and Open Source Software licenses.
 
-
 # Styleguide
 
 ## Naming Tools 📛
@@ -35,7 +34,6 @@ The second specifies the cwl version.
 
 **IMPORTANT!** 
 We are using `cwlVersion` `v1.0` unless a `v1.1` feature is needed.
-
 
 ## Making Files Executable ✴️
 
@@ -82,6 +80,7 @@ Signs that a tool description is including too much: lots of javascript; complic
 
 If you use schema.org annotations, specify the schema using the RDF version: `$schemas: [ http://schema.org/version/latest/schema.rdf ]`
 
+However, don't use `s:mainEntity`, put that information under `hints` as a `SoftwareRequirement`
 
 ## Contributors ✨
 

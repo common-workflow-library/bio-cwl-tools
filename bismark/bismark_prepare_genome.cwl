@@ -2,7 +2,6 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
 - class: InlineJavascriptRequirement
 - class: DockerRequirement
@@ -18,6 +17,13 @@ requirements:
               ]
     }
 
+hints:
+  SoftwareRequirement:
+    packages:
+      bismark:
+        specs: [ "http://identifiers.org/biotools/bismark" ]
+        version: [ "0.0.2" ]
+
 inputs:
 
   genome_folder:
@@ -26,7 +32,6 @@ inputs:
       position: 2
     label: "Genome folder"
     doc: "Genome folder with FASTA files"
-
 
 outputs:
 
@@ -37,17 +42,13 @@ outputs:
     outputBinding:
       glob: "*"
 
-
 baseCommand: ["bismark_genome_preparation"]
-
 
 $namespaces:
   s: http://schema.org/
 
 $schemas:
 - http://schema.org/version/latest/schema.rdf
-
-s:mainEntity: https://bio.tools/bismark
 
 s:name: "bismark_prepare_genome"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

@@ -2,15 +2,12 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
 - class: InlineJavascriptRequirement
-
 
 hints:
 - class: DockerRequirement
   dockerPull: biowardrobe2/homer:v0.0.2
-
 
 inputs:
 
@@ -129,16 +126,13 @@ inputs:
     type: string
     doc: "Output histogram's filename"
 
-
 outputs:
 
   histogram_file:
     type: stdout
     doc: "Output histogram file"
 
-
 stdout: ${return inputs.histogram_filename;}
-
 
 baseCommand: ["makeMetaGeneProfile.pl"]
 arguments:
@@ -147,14 +141,11 @@ arguments:
   - valueFrom: $("none")
     position: 6
 
-
 $namespaces:
   s: http://schema.org/
 
 $schemas:
 - http://schema.org/version/latest/schema.rdf
-
-s:mainEntity: http://homer.ucsd.edu/homer/index.html
 
 s:name: "homer-make-metagene-profile"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

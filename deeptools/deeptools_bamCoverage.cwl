@@ -15,6 +15,11 @@ hints:
     ramMin: 20000
   DockerRequirement:
     dockerPull: kerstenbreuer/deeptools:3.1.1
+  SoftwareRequirement:
+    packages:
+      deeptools:
+        specs: [ "http://identifiers.org/biotools/deeptools" ]
+        version: [ "3.1.1" ]
 
 baseCommand: ["bamCoverage"]
 arguments:  
@@ -97,7 +102,6 @@ inputs:
     inputBinding:
       position: 10
       prefix: --outFileFormat
-
 
 outputs:
   bigwig:

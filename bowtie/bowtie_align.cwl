@@ -2,7 +2,6 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
 - class: ShellCommandRequirement
 - class: InlineJavascriptRequirement
@@ -45,11 +44,14 @@ requirements:
                   }
     };
 
-
 hints:
 - class: DockerRequirement
   dockerPull: biowardrobe2/bowtie:v1.2.0
-
+- class: SoftwareRequirement
+  packages:
+    bowtie:
+      specs: [ "http://identifiers.org/biotools/bowtie" ]
+      version: [ "1.2.0" ]
 
 inputs:
 
@@ -781,7 +783,6 @@ inputs:
     doc: |
       verbose output (for debugging)
 
-
 outputs:
 
   sam_file:
@@ -847,10 +848,8 @@ outputs:
           return parseInt(self[0].contents.match(totalRegex)[0].split(" ")[1]);
         }
 
-
 baseCommand:
   - bowtie
-
 
 arguments:
   - valueFrom: |
@@ -876,14 +875,11 @@ arguments:
     position: 100000
     shellQuote: false
 
-
 $namespaces:
   s: http://schema.org/
 
 $schemas:
 - http://schema.org/version/latest/schema.rdf
-
-s:mainEntity: https://bio.tools/bowtie
 
 s:name: "bowtie_align"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

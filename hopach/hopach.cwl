@@ -2,11 +2,14 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 hints:
 - class: DockerRequirement
   dockerPull: biowardrobe2/hopach:v0.0.6
-
+- class:  SoftwareRequirement
+  packages:
+    hopach:
+      specs: [ "http://identifiers.org/biotools/hopach" ]
+      version: [ "0.0.6" ]
 
 inputs:
 
@@ -133,7 +136,6 @@ inputs:
       prefix: "--output"
     doc: "Output prefix. Default: hopach"
 
-
 outputs:
 
   clustering_results:
@@ -178,19 +180,15 @@ outputs:
       glob: "hopach_stdout.log"
     doc: "Hopach stdout log"
 
-
 baseCommand: ["hopach_order.R"]
 stderr: hopach_stderr.log
 stdout: hopach_stdout.log
-
 
 $namespaces:
   s: http://schema.org/
 
 $schemas:
 - http://schema.org/version/latest/schema.rdf
-
-s:mainEntity: https://bio.tools/hopach
 
 s:name: "hopach"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

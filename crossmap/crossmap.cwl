@@ -2,7 +2,6 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
   - class: InlineJavascriptRequirement
     expressionLib:
@@ -35,11 +34,9 @@ requirements:
         }
       };
 
-
 hints:
 - class: DockerRequirement
   dockerPull: quay.io/biocontainers/crossmap:0.2.7--py27_0
-
 
 inputs:
 
@@ -114,7 +111,6 @@ inputs:
     doc: |
       For BAM only: Add tag to each alignment
 
-
 outputs:
 
   projected_file:
@@ -151,7 +147,6 @@ outputs:
 
 stdout: $(get_log_filename())
 
-
 baseCommand: ["CrossMap.py"]
 
 $namespaces:
@@ -159,8 +154,6 @@ $namespaces:
 
 $schemas:
 - http://schema.org/version/latest/schema.rdf
-
-s:mainEntity: http://crossmap.sourceforge.net/
 
 s:name: "crossmap"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

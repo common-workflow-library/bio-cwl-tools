@@ -2,7 +2,6 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
   - class: InlineJavascriptRequirement
     expressionLib:
@@ -16,11 +15,9 @@ requirements:
           }
       };
 
-
 hints:
   - class: DockerRequirement
     dockerPull: stevetsa/preseq:2.0
-
 
 inputs:
 
@@ -109,7 +106,6 @@ inputs:
       position: 16
     doc: "Coordinate sorted BAM file"
 
-
 outputs:
 
   estimates_file:
@@ -117,12 +113,9 @@ outputs:
     outputBinding:
       glob: $(get_output_filename(inputs.bam_file))
 
-
 baseCommand: ["preseq", "lc_extrap", "-bam"]
 
-
 successCodes: [1]
-
 
 $namespaces:
   s: http://schema.org/

@@ -2,15 +2,17 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
 - class: InlineJavascriptRequirement
-
 
 hints:
 - class: DockerRequirement
   dockerPull: biowardrobe2/fastqc:v0.11.5
-
+- class:  SoftwareRequirement
+  packages:
+    fastqc:
+      specs: [ "http://identifiers.org/biotools/fastqc" ]
+      version: [ "0.1.11.5" ]
 
 inputs:
 
@@ -146,7 +148,6 @@ inputs:
       really long reads, and your plots may end up a ridiculous size.
       You have been warned!
 
-
 outputs:
 
   zipped_file:
@@ -168,17 +169,13 @@ outputs:
           return "*/summary.txt";
         }
 
-
 baseCommand: [fastqc, --extract, --outdir, .]
-
 
 $namespaces:
   s: http://schema.org/
 
 $schemas:
 - http://schema.org/version/latest/schema.rdf
-
-s:mainEntity: https://bio.tools/fastqc
 
 s:name: "fastqc_2"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

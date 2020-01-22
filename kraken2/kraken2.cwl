@@ -152,6 +152,9 @@ hints:
       kraken2:
         version:
           - 2.0.8-beta
+        specs:
+          - http://identifiers.org/biotools/kraken2
+
 requirements:
   - class: InlineJavascriptRequirement
   - class: ResourceRequirement
@@ -167,7 +170,6 @@ $schemas:
   - "http://edamontology.org/EDAM.owl"
   - "http://schema.org/version/latest/schema.rdf"
 
-s:mainEntity: https://bio.tools/kraken2
 s:name: "kraken2"
 s:license: "https://spdx.org/licenses/MIT.html"
 

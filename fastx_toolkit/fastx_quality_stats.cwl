@@ -2,7 +2,6 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
 - class: InlineJavascriptRequirement
   expressionLib:
@@ -10,11 +9,14 @@ requirements:
           return inputs.input_file.location.split('/').slice(-1)[0].split('.').slice(0,-1).join('.') + ".fastxstat"
         };
 
-
 hints:
 - class: DockerRequirement
   dockerPull: biowardrobe2/fastx_toolkit:v0.0.14
-
+- class:  SoftwareRequirement
+  packages:
+    fastx-toolkit:
+      specs: [ "http://identifiers.org/biotools/fastx-toolkit" ]
+      version: [ "0.0.14" ]
 
 inputs:
 
@@ -69,7 +71,6 @@ inputs:
     doc: |
       Output file to store generated statistics. If not provided - return from default_output_filename function
 
-
 outputs:
 
   statistics_file:
@@ -85,17 +86,13 @@ outputs:
         }
     doc: Generated statistics file
 
-
 baseCommand: [fastx_quality_stats]
-
 
 $namespaces:
   s: http://schema.org/
 
 $schemas:
 - http://schema.org/version/latest/schema.rdf
-
-s:mainEntity: https://bio.tools/fastx-toolkit
 
 s:name: "fastx_quality_stats"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

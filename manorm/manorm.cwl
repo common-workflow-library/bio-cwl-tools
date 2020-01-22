@@ -2,11 +2,14 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 hints:
 - class: DockerRequirement
   dockerPull: biowardrobe2/manorm:v0.0.2
-
+- class:  SoftwareRequirement
+  packages:
+    manorm:
+      specs: [ "http://identifiers.org/biotools/manorm" ]
+      version: [ "0.0.2" ]
 
 inputs:
 
@@ -143,7 +146,6 @@ inputs:
       This option is used to exclude common peaks that only overlap on the edge of each other.
       Default: -w/--window-size/4"
 
-
 outputs:
 
   ma_values_file:
@@ -221,19 +223,15 @@ outputs:
   stderr_log:
     type: stderr
 
-
 baseCommand: ["manorm"]
 stderr: manorm_stderr.log
 stdout: manorm_stdout.log
-
 
 $namespaces:
   s: http://schema.org/
 
 $schemas:
 - http://schema.org/docs/schema_org_rdfa.html
-
-s:mainEntity: https://bio.tools/manorm
 
 s:name: "manorm"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

@@ -2,15 +2,17 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
 - class: InlineJavascriptRequirement
-
 
 hints:
 - class: DockerRequirement
   dockerPull: biowardrobe2/scidap-deseq:v0.0.8
-
+- class: SoftwareRequirement
+  packages:
+    deseq:
+      specs: [ "http://identifiers.org/biotools/deseq" ]
+      version: [ "0.0.8" ] ## TODO: Update!
 
 inputs:
 
@@ -66,7 +68,6 @@ inputs:
     doc: |
       Run script using multiple threads
 
-
 outputs:
 
   diff_expr_file:
@@ -86,16 +87,11 @@ outputs:
 
 baseCommand: [run_deseq.R]
 
-
 $namespaces:
   s: http://schema.org/
 
 $schemas:
 - http://schema.org/version/latest/schema.rdf
-
-s:mainEntity:
-- https://bio.tools/deseq
-- https://bio.tools/deseq2
 
 s:name: "deseq_advanced"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

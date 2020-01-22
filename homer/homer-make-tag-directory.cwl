@@ -2,7 +2,6 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
 - class: InlineJavascriptRequirement
 - class: InitialWorkDirRequirement
@@ -16,11 +15,9 @@ requirements:
       ]
     }
 
-
 hints:
 - class: DockerRequirement
   dockerPull: biowardrobe2/homer:v0.0.2
-
 
 inputs:
 
@@ -75,7 +72,6 @@ inputs:
     doc: |
       Discard reads bigger then
 
-
 outputs:
 
   output_tag_folder:
@@ -84,21 +80,16 @@ outputs:
       glob: $(inputs.bam_file.basename.split('.')[0])
     doc: "Tag directory"
 
-
-
 baseCommand: ["makeTagDirectory"]
 arguments:
   - valueFrom: $(inputs.bam_file.basename.split('.')[0])
   - valueFrom: $("default/" + inputs.bam_file.basename)
-
 
 $namespaces:
   s: http://schema.org/
 
 $schemas:
 - http://schema.org/version/latest/schema.rdf
-
-s:mainEntity: http://homer.ucsd.edu/homer/index.html
 
 s:name: "homer-make-tag-directory"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

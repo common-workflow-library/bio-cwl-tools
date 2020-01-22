@@ -2,7 +2,6 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
 - class: InlineJavascriptRequirement
   expressionLib:
@@ -11,11 +10,14 @@ requirements:
           return inputs.input_file.location.split('/').slice(-1)[0].split('.').slice(0,-1).join('.') + ext;
         };
 
-
 hints:
 - class: DockerRequirement
   dockerPull: biowardrobe2/bedtools2:v2.26.0
-
+- class: SoftwareRequirement
+  packages:
+    bedtools:
+      specs: [ "http://identifiers.org/biotools/bedtools" ]
+      version: [ "2.26.0" ]
 
 inputs:
   input_file:
@@ -185,7 +187,6 @@ inputs:
     doc: |
       Name for generated output file
 
-
 outputs:
 
   genome_coverage_file:
@@ -202,7 +203,6 @@ outputs:
     doc: |
       Generated genome coverage output file
 
-
 baseCommand: ["bedtools", "genomecov"]
 stdout: |
   ${
@@ -213,14 +213,11 @@ stdout: |
     }
   }
 
-
 $namespaces:
   s: http://schema.org/
 
 $schemas:
 - http://schema.org/version/latest/schema.rdf
-
-s:mainEntity: https://bio.tools/bedtools
 
 s:name: "bedtools_genomecov"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

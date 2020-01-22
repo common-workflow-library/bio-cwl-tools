@@ -38,7 +38,6 @@ inputs:
     inputBinding:
       prefix: "--contamination-table"
 
-
 baseCommand: ["/gatk/gatk"]
 
 arguments:

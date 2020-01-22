@@ -12,8 +12,6 @@ hints:
   DockerRequirement:
     dockerPull: kerstenbreuer/nucleoatac:0.3.4
 
-
-
 baseCommand: ["nucleoatac", "run"]
 stderr: $(inputs.output_basename).stderr
 stdout: $(inputs.output_basename).stout
@@ -43,7 +41,6 @@ inputs:
     inputBinding:
       prefix: --out
       position: 1
-
 
 outputs:
   nucl_occ_tracks:

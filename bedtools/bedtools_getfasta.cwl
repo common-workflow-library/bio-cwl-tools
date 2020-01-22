@@ -2,7 +2,6 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
 - class: InlineJavascriptRequirement
   expressionLib:
@@ -15,11 +14,14 @@ requirements:
           }
         };
 
-
 hints:
 - class: DockerRequirement
   dockerPull: biowardrobe2/bedtools2:v2.26.0
-
+- class: SoftwareRequirement
+  packages:
+    bedtools:
+      specs: [ "http://identifiers.org/biotools/bedtools" ]
+      version: [ "2.26.0" ]
 
 inputs:
 
@@ -43,7 +45,6 @@ inputs:
     default: ""
     doc: "Output file name"
 
-
 outputs:
 
   sequences_file:
@@ -52,18 +53,14 @@ outputs:
       glob: $(default_output_filename())
     doc: "Sequences file"
 
-
 baseCommand: ["bedtools", "getfasta"]
 stdout: $(default_output_filename())
-
 
 $namespaces:
   s: http://schema.org/
 
 $schemas:
 - http://schema.org/version/latest/schema.rdf
-
-s:mainEntity: https://bio.tools/bedtools
 
 s:name: "bedtools_getfasta"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

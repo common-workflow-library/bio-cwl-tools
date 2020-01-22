@@ -1,5 +1,4 @@
 #!/usr/bin/env cwl-runner
-
 cwlVersion: v1.0
 class: CommandLineTool
 
@@ -15,7 +14,12 @@ hints:
     ramMin: 15000
   DockerRequirement:
     dockerPull: kerstenbreuer/deeptools:3.1.1
-  
+  SoftwareRequirement:
+    packages:
+      deeptools:
+        specs: [ "http://identifiers.org/biotools/deeptools" ]
+        version: [ "3.1.1" ]
+
 baseCommand: ["plotFingerprint"]
 arguments:
   - valueFrom: $(inputs.sample_id)

@@ -6,7 +6,6 @@ requirements:
   DockerRequirement:
     dockerPull: "quay.io/biocontainers/hisat2:2.0.4--py35_1"
 
-
 inputs:
   # Required Inputs
   RunThreadN:

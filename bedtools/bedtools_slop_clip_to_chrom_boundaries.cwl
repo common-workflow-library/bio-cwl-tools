@@ -11,6 +11,11 @@ hints:
     ramMin: 15000
   DockerRequirement:
     dockerPull: biocontainers/bedtools:2.25.0
+  SoftwareRequirement:
+    packages:
+      bedtools:
+        specs: [ "http://identifiers.org/biotools/bedtools" ]
+        version: [ "2.26.0" ]
 
 baseCommand: ["bedtools", "slop"]
 arguments:

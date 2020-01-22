@@ -52,7 +52,6 @@ inputs:
     inputBinding:
       prefix: "--ignore-protein"
 
-
 baseCommand: ["pizzly"]
 
 outputs:

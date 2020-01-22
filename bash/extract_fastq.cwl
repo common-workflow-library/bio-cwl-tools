@@ -14,11 +14,9 @@ doc: |
 requirements:
 - class: ShellCommandRequirement
 
-
 hints:
 - class: DockerRequirement
   dockerPull: biowardrobe2/scidap:v0.0.3
-
 
 inputs:
 
@@ -74,7 +72,6 @@ inputs:
     doc: |
       Default extension for the extracted file
 
-
 outputs:
 
   fastq_file:
@@ -82,9 +79,7 @@ outputs:
     outputBinding:
       glob: "*"
 
-
 baseCommand: [bash, '-c']
-
 
 $namespaces:
   s: http://schema.org/
@@ -126,7 +121,6 @@ s:creator:
         s:email: mailto:misha.kotliar@gmail.com
         s:sameAs:
         - id: http://orcid.org/0000-0002-6486-3898
-
 
 s:about: |
   Tool to decompress input FASTQ file

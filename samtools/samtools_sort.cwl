@@ -1,7 +1,8 @@
 #!/usr/bin/env cwl-runner
-doc: Sort a bam file by read names.
 cwlVersion: v1.0
 class: CommandLineTool
+
+doc: Sort a bam file by read names.
 
 requirements:
   InlineJavascriptRequirement: {}
@@ -35,7 +36,6 @@ inputs:
     inputBinding:
       position: 1
       prefix: -n
-
 
 stdout: $(inputs.bam_unsorted.basename)
 

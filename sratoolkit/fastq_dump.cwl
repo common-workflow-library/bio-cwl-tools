@@ -2,15 +2,17 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
 - class: InlineJavascriptRequirement
-
 
 hints:
 - class: DockerRequirement
   dockerPull: biowardrobe2/sratoolkit:v2.8.2-1
-
+- class:  SoftwareRequirement
+  packages:
+    sra-tools:
+      specs: [ "http://identifiers.org/biotools/sra-tools" ]
+      version: [ "2.8.2" ]
 
 inputs:
 
@@ -253,7 +255,6 @@ inputs:
     doc: |
       disable multithreading
 
-
 outputs:
 
   fastq_file_1:
@@ -275,17 +276,13 @@ outputs:
           return inputs.sra_file.basename.split(".")[0] + "_2.fastq";
         }
 
-
 baseCommand: [fastq-dump]
-
 
 $namespaces:
   s: http://schema.org/
 
 $schemas:
 - http://schema.org/version/latest/schema.rdf
-
-s:mainEntity: https://bio.tools/sra-tools
 
 s:name: "fastq_dump"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
