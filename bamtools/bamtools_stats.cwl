@@ -2,11 +2,9 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
 - class: InlineJavascriptRequirement
 - class: ShellCommandRequirement
-
 
 hints:
 - class: DockerRequirement
@@ -16,7 +14,6 @@ hints:
     bamtools:
       specs: [ "http://identifiers.org/biotools/bamtools" ]
       version: [ "2.4.1" ]
-
 
 inputs:
 
@@ -28,7 +25,6 @@ inputs:
       prefix: -in
     doc: |
       the input BAM file
-
 
 outputs:
 
@@ -121,21 +117,17 @@ outputs:
           return pairedendreads;
         }
 
-
 baseCommand: [bamtools, stats]
 arguments:
   - valueFrom: $('> ' + 'stats.log')
     position: 1000
     shellQuote: false
 
-
 $namespaces:
   s: http://schema.org/
 
 $schemas:
 - http://schema.org/version/latest/schema.rdf
-
-s:mainEntity: https://bio.tools/bamtools
 
 s:name: "bamtools_stats"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
@@ -169,7 +161,6 @@ s:creator:
         s:email: mailto:michael.kotliar@cchmc.org
         s:sameAs:
         - id: http://orcid.org/0000-0002-6486-3898
-
 
 doc: |
   Tool runs `bamtools stats' to calculate general alignment statistics from the input BAM file

@@ -2,7 +2,6 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
 - class: InlineJavascriptRequirement
   expressionLib:
@@ -14,7 +13,6 @@ requirements:
             return inputs.output_filename;
         }
     };
-
 
 hints:
 - class: DockerRequirement
@@ -104,7 +102,6 @@ inputs:
       prefix: "--numberOfProcessors"
     doc: "Number of processors to use"
 
-
 outputs:
 
   filtered_bam_file:
@@ -119,18 +116,13 @@ outputs:
       glob: "*.log"
     doc: "alignmentSieve log"
 
-
 baseCommand: ["alignmentSieve", "--filterMetrics", "alignmentsieve.log"]
-
-
 
 $namespaces:
   s: http://schema.org/
 
 $schemas:
 - http://schema.org/version/latest/schema.rdf
-
-s:mainEntity: https://bio.tools/deeptools
 
 s:name: "deeptools_alignmentsieve"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

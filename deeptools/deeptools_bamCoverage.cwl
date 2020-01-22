@@ -103,7 +103,6 @@ inputs:
       position: 10
       prefix: --outFileFormat
 
-
 outputs:
   bigwig:
     type: File

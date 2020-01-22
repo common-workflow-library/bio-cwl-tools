@@ -63,6 +63,5 @@ for line in changed_files.decode('utf-8').rstrip().split('\n'):
         has_failed = True
     print("=====================")
 
-
 if has_failed == True:
     sys.exit(1)

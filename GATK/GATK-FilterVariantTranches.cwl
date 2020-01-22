@@ -53,7 +53,6 @@ inputs:
     inputBinding:
       prefix: "--info-key"
 
-
 baseCommand: ["/gatk/gatk"]
 
 arguments:

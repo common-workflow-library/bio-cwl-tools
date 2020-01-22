@@ -64,7 +64,6 @@ inputs:
     inputBinding:
       prefix: "--seed"
 
-
 #Using record inputs to create mutually exclusive inputs
   Strand:
     type:
@@ -112,7 +111,6 @@ inputs:
             type: File
             inputBinding:
               prefix: "--chromosomes"
-
 
 baseCommand: [ kallisto, quant ]
 

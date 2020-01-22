@@ -53,7 +53,6 @@ inputs:
     inputBinding:
       prefix: "--bed"
 
-
 # OPTIONAL ARGS
 
   MinKmer:

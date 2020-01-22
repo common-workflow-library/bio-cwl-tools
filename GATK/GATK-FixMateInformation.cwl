@@ -57,7 +57,6 @@ inputs:
     inputBinding:
       prefix: "--SORT_ORDER"
 
-
   JavaOptions: 
     type: string?
     inputBinding:
@@ -121,7 +120,6 @@ inputs:
     type: boolean?
     inputBinding:
       prefix: "--version" 
-
 
 baseCommand: ["/gatk/gatk"]
 

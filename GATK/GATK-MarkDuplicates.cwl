@@ -29,7 +29,6 @@ inputs:
       prefix: "--METRICS_FILE" 
       valueFrom: "MarkDuplicatesMetrics.txt"
 
-
   # OPTIONAL ARGS
 
   ArgumentsFile:
@@ -238,7 +237,6 @@ inputs:
     type: boolean?
     inputBinding:
       prefix: "--version" 
-
 
 arguments: 
   - valueFrom: "MarkDuplicates"

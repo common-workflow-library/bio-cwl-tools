@@ -6,11 +6,9 @@ doc: |
   Tool to run custom script set as `script` input with arguments from `param`.
   Default script runs sed command over the input file and exports results to the file with the same name as input's basename
 
-
 hints:
 - class: DockerRequirement
   dockerPull: biowardrobe2/scidap:v0.0.3
-
 
 inputs:
 
@@ -35,7 +33,6 @@ inputs:
     inputBinding:
       position: 3
 
-
 outputs:
 
   output_file:
@@ -43,9 +40,7 @@ outputs:
     outputBinding:
       glob: "*"
 
-
 baseCommand: [bash, '-c']
-
 
 $namespaces:
   s: http://schema.org/

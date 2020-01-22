@@ -2,11 +2,9 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
 - class: ShellCommandRequirement
 - class: InlineJavascriptRequirement
-
 
 hints:
 - class: DockerRequirement
@@ -201,7 +199,6 @@ inputs:
       position: 15
       prefix: '--quiet'
 
-
 outputs:
 
   indices:
@@ -226,24 +223,19 @@ outputs:
     outputBinding:
       glob: $(inputs.bt2_index_base + ".log")
 
-
 baseCommand:
   - bowtie2-build
-
 
 arguments:
   - valueFrom: $('2> ' + inputs.bt2_index_base + '.log')
     position: 100000
     shellQuote: false
 
-
 $namespaces:
   s: http://schema.org/
 
 $schemas:
 - http://schema.org/version/latest/schema.rdf
-
-s:mainEntity: https://bio.tools/bowtie2
 
 s:name: "bowtie2_build"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

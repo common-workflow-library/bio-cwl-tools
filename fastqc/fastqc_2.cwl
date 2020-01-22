@@ -2,10 +2,8 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
 - class: InlineJavascriptRequirement
-
 
 hints:
 - class: DockerRequirement
@@ -150,7 +148,6 @@ inputs:
       really long reads, and your plots may end up a ridiculous size.
       You have been warned!
 
-
 outputs:
 
   zipped_file:
@@ -172,17 +169,13 @@ outputs:
           return "*/summary.txt";
         }
 
-
 baseCommand: [fastqc, --extract, --outdir, .]
-
 
 $namespaces:
   s: http://schema.org/
 
 $schemas:
 - http://schema.org/version/latest/schema.rdf
-
-s:mainEntity: https://bio.tools/fastqc
 
 s:name: "fastqc_2"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

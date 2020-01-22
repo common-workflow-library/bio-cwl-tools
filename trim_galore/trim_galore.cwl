@@ -87,7 +87,6 @@ inputs:
       prefix: --stringency 
       position: 1
 
-
 arguments:
 
   ## hard-coded parameters:

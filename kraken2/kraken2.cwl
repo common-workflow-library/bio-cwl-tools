@@ -170,7 +170,6 @@ $schemas:
   - "http://edamontology.org/EDAM.owl"
   - "http://schema.org/version/latest/schema.rdf"
 
-s:mainEntity: https://bio.tools/kraken2
 s:name: "kraken2"
 s:license: "https://spdx.org/licenses/MIT.html"
 

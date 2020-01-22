@@ -53,7 +53,6 @@ inputs:
     inputBinding:
       prefix: "-weights"
 
-
 baseCommand: ["/gatk/gatk"]
 
 arguments:

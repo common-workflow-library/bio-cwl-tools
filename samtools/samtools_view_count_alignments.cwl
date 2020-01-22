@@ -66,7 +66,6 @@ inputs:
       position: 1
       prefix: -q
 
-
 outputs:
   aln_read_count_file:
     type: stdout

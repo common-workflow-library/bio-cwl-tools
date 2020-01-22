@@ -12,7 +12,6 @@ hints:
   DockerRequirement:
     dockerPull: kerstenbreuer/trim_galore:0.4.4_1.14_0.11.7
 
-
 baseCommand: "fastqc"
 arguments: 
   - valueFrom: $(runtime.outdir)

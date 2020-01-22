@@ -36,7 +36,6 @@ inputs:
       position: 1
       prefix: -n
 
-
 stdout: $(inputs.bam_unsorted.basename)
 
 outputs:

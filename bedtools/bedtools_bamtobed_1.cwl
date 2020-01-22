@@ -19,8 +19,6 @@ hints:
         specs: [ "http://identifiers.org/biotools/bedtools" ]
         version: [ "2.25.0" ]
 
-
-
 baseCommand: ["bedtools", "bamtobed"]
 stdout: |
   ${

@@ -271,7 +271,5 @@ outputs:
     outputBinding:
       glob: "*.vcf"
 
-
-
   
 

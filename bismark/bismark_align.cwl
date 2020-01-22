@@ -2,7 +2,6 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
 - class: InlineJavascriptRequirement
 - class: DockerRequirement
@@ -14,7 +13,6 @@ hints:
       bismark:
         specs: [ "http://identifiers.org/biotools/bismark" ]
         version: [ "0.0.2" ]
-
 
 inputs:
 
@@ -48,7 +46,6 @@ inputs:
     label: "Number of Bowtie2 threads to use"
     doc: "Set the number of threads for each Bowtie2 aligner"
 
-
 outputs:
 
   bam_file:
@@ -65,17 +62,13 @@ outputs:
     outputBinding:
       glob: "*.txt"
 
-
 baseCommand: ["bismark", "--non_directional"]
-
 
 $namespaces:
   s: http://schema.org/
 
 $schemas:
 - http://schema.org/version/latest/schema.rdf
-
-s:mainEntity: https://bio.tools/bismark
 
 s:name: "bismark_align"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
