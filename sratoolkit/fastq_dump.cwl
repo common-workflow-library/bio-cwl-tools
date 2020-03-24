@@ -256,7 +256,6 @@ inputs:
       disable multithreading
 
 outputs:
-
   fastq_file_1:
     type: File
     outputBinding:
@@ -274,6 +273,13 @@ outputs:
       glob: |
         ${
           return inputs.sra_file.basename.split(".")[0] + "_2.fastq";
+        }
+  all_fastq_files:
+    type: File[]
+    outputBinding:
+      glob: |
+        ${
+          return inputs.sra_file.basename.split(".")[0] + "*.fastq";
         }
 
 baseCommand: [fastq-dump]
