@@ -23,9 +23,17 @@ steps:
       sra_file: prefetch/sra_file
     out:
       - all_fastq_files
+      - fastq_file_1
+      - fastq_file_2
     run: ./fastq_dump.cwl
 
 outputs:
   fastq_files:
     type: File[]
     outputSource: fastq_dump/all_fastq_files
+  fastq_file_1:
+    type: File
+    outputSource: fastq_dump/fastq_file_1
+  fastq_file_2:
+    type: File?
+    outputSource: fastq_dump/fastq_file_2
