@@ -4,6 +4,7 @@ class: CommandLineTool
 
 doc: |
   Run multiqc on log files from supported bioinformatic tools.
+  26/04/2020: Fixed output filenames, added support for a single input file in qc_files_array (Miguel Boland)
 
 requirements:
   InlineJavascriptRequirement: {}
@@ -23,9 +24,20 @@ requirements:
         var output_array = [];
 
         // add items of the qc_files_array to the output_array
+        console.log('XXXX');
+        console.log(qc_files_array);
         if ( qc_files_array != null ){
-          for (var i=0; i<qc_files_array.length; i++){
-            output_array.push(qc_files_array[i])
+          console.log(1);
+          // Fix to allow single qc_file_array
+          if (qc_files_array.length === undefined){
+            console.log('undef');
+            output_array.push(qc_files_array)
+          } else {
+            console.log('list');
+            for (var i=0; i<qc_files_array.length; i++){
+              output_array.push(qc_files_array[i])
+            }
+
           }
         }
 
@@ -70,6 +82,7 @@ inputs:
       must be provided
     type:
       - "null"
+      - File
       - type: array
         items: File
   qc_files_array_of_array:
@@ -95,9 +108,17 @@ outputs:
   multiqc_zip:
     type: File
     outputBinding:
-      glob: $(inputs.report_name)_report_data.zip
+      glob: $(inputs.report_name)_data.zip
   multiqc_html:
     type: File
     outputBinding:
-      glob: $(inputs.report_name)_report.html
-  
+      glob: $(inputs.report_name).html
+  diree:
+    type: Directory
+    outputBinding:
+      glob: .
+#  multiqc_json:
+#    type: File
+#    outputBinding:
+#      glob: multiqc_data/$(inputs.report_name).json
+#
