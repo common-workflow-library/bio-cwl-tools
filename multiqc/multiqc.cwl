@@ -24,16 +24,11 @@ requirements:
         var output_array = [];
 
         // add items of the qc_files_array to the output_array
-        console.log('XXXX');
-        console.log(qc_files_array);
         if ( qc_files_array != null ){
-          console.log(1);
           // Fix to allow single qc_file_array
           if (qc_files_array.length === undefined){
-            console.log('undef');
             output_array.push(qc_files_array)
           } else {
-            console.log('list');
             for (var i=0; i<qc_files_array.length; i++){
               output_array.push(qc_files_array[i])
             }
