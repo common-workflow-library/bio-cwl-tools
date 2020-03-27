@@ -31,9 +31,17 @@ outputs:
   fastq_files:
     type: File[]
     outputSource: fastq_dump/all_fastq_files
+    format: edam:format_1931 # FASTQQ
   fastq_file_1:
     type: File
     outputSource: fastq_dump/fastq_file_1
+    format: edam:format_1931 # FASTQ
   fastq_file_2:
     type: File?
     outputSource: fastq_dump/fastq_file_2
+    format: edam:format_1931 # FASTQ
+
+$namespaces:
+  edam: http://edamontology.org/
+$schemas:
+  - http://edamontology.org/EDAM_1.18.owl

@@ -258,6 +258,7 @@ inputs:
 outputs:
   fastq_file_1:
     type: File
+    format: edam:format_1931 # FASTQ
     outputBinding:
       glob: |
         ${
@@ -269,6 +270,7 @@ outputs:
 
   fastq_file_2:
     type: File?
+    format: edam:format_1931 # FASTQ
     outputBinding:
       glob: |
         ${
@@ -276,6 +278,7 @@ outputs:
         }
   all_fastq_files:
     type: File[]
+    format: edam:format_1931 # FASTQ
     outputBinding:
       glob: |
         ${
@@ -286,9 +289,12 @@ baseCommand: [fastq-dump]
 
 $namespaces:
   s: http://schema.org/
+  edam: http://edamontology.org/
+
 
 $schemas:
-- http://schema.org/version/latest/schema.rdf
+  - http://schema.org/version/latest/schema.rdf
+  - http://edamontology.org/EDAM_1.18.owl
 
 s:name: "fastq_dump"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

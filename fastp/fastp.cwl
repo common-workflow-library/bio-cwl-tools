@@ -17,18 +17,24 @@ arguments:
     - |
       ${
         if (inputs.fastq2){
-          return ['-O ', "" + inputs.fastq2.nameroot + ".fastp.fastq"]
+          return ['-O ', inputs.fastq2.nameroot + ".fastp.fastq"];
         } else {
-          return ''
+          return '';
         }
       }
 
 inputs:
     fastq1:
       type: File
+      format:
+        - edam:format_1930 # FASTA
+        - edam:format_1931 # FASTQ
       inputBinding:
         prefix: -i
     fastq2:
+      format:
+        - edam:format_1930 # FASTA
+        - edam:format_1931 # FASTQ
       type: File?
       inputBinding:
         prefix: -I
@@ -72,15 +78,17 @@ inputs:
 outputs:
     out_fastq1:
        type: File
+       format: $(inputs.fastq1.format)
        outputBinding:
            glob: $(inputs.fastq1.nameroot).fastp.fastq
     out_fastq2:
        type: File?
+       format: $(inputs.fastq2.format)
        outputBinding:
            glob: |
             ${
              if (inputs.fastq2){
-                return inputs.fastq2.basename + ".fastp.fastq"
+                return inputs.fastq2.nameroot + ".fastp.fastq"
              } else {
                 return 'no_file'
               }
@@ -93,3 +101,8 @@ outputs:
       type: File
       outputBinding:
         glob: fastp.json
+
+$namespaces:
+  edam: http://edamontology.org/
+$schemas:
+  - http://edamontology.org/EDAM_1.18.owl
