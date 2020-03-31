@@ -6,6 +6,8 @@ doc: |
 
 requirements:
   MultipleInputFeatureRequirement: {}
+  StepInputExpressionRequirement: {}
+  InlineJavascriptRequirement: {}
 
 inputs:
   sra_accession: string
@@ -21,6 +23,8 @@ steps:
   fastq_dump:
     in:
       sra_file: prefetch/sra_file
+      split_files:
+        default: true
     out:
       - all_fastq_files
       - fastq_file_1
