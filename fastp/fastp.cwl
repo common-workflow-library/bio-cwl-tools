@@ -17,7 +17,15 @@ arguments:
     - |
       ${
         if (inputs.fastq2){
-          return ['-O ', inputs.fastq2.nameroot + ".fastp.fastq"];
+          return '-O';
+        } else {
+          return '';
+        }
+      }
+    - |
+      ${
+        if (inputs.fastq2){
+          return inputs.fastq2.nameroot + ".fastp.fastq";
         } else {
           return '';
         }
