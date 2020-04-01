@@ -169,19 +169,19 @@ outputs:
   histogram_read_length:
     type: File
     outputBinding:
-      glob: HistogramReadlength.png
+      glob: HistogramReadlength.*
   length_v_qual_scatter_plot_dot:
     type: File
     outputBinding:
-      glob: LengthvsQualityScatterPlot_dot.png
+      glob: LengthvsQualityScatterPlot_dot.*
   length_v_qual_scatter_plot_kde:
     type: File
     outputBinding:
-      glob: LengthvsQualityScatterPlot_kde.png
+      glob: LengthvsQualityScatterPlot_kde.*
   log_transformed_histogram_read_length:
     type: File
     outputBinding:
-      glob: LogTransformed_HistogramReadlength.png
+      glob: LogTransformed_HistogramReadlength.*
   report:
     type: File
     outputBinding:
@@ -197,15 +197,15 @@ outputs:
   weighted_histogram_read_length:
     type: File
     outputBinding:
-      glob: Weighted_HistogramReadlength.png
+      glob: Weighted_HistogramReadlength.*
   weighted_log_transform_histogram_read_length:
     type: File
     outputBinding:
-      glob: Weighted_LogTransformed_HistogramReadlength.png
+      glob: Weighted_LogTransformed_HistogramReadlength.*
   yield_by_length_img:
     type: File
     outputBinding:
-      glob: Yield_By_Length.png
+      glob: Yield_By_Length.*
 
 $namespaces:
   edam: http://edamontology.org/
