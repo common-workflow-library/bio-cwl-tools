@@ -31,6 +31,24 @@ steps:
       - fastq_file_2
     run: ./fastq_dump.cwl
 
+  rename_fastq1:
+    in:
+      srcfile: fastq_dump/fastq_file_1
+      fastq2: fastq_dump/fastq_file_2
+      accession: sra_accession
+      newname:
+        valueFrom: |
+          ${
+            if (inputs.fastq2) {
+              return inputs.srcfile.basename;
+            } else {
+              return inputs.accession + '.fastq';
+            }
+          }
+    out:
+      - outfile
+    run: ../util/rename.cwl
+
 outputs:
   fastq_files:
     type: File[]
@@ -38,7 +56,7 @@ outputs:
     format: edam:format_1931 # FASTQQ
   fastq_file_1:
     type: File
-    outputSource: fastq_dump/fastq_file_1
+    outputSource: rename_fastq1/outfile
     format: edam:format_1931 # FASTQ
   fastq_file_2:
     type: File?
