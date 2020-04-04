@@ -3,13 +3,13 @@ cwlVersion: v1.0
 class: CommandLineTool
 
 hints:
-- class: DockerRequirement
-  dockerPull: quay.io/biocontainers/nanoplot:1.29.0--py_0
-- class:  SoftwareRequirement
-  packages:
-    sra-tools:
-      specs: [ "https://github.com/wdecoster/NanoPlot/releases" ]
-      version: [ "1.29.0" ]
+  DockerRequirement:
+    dockerPull: quay.io/biocontainers/nanoplot:1.29.0--py_0
+  SoftwareRequirement:
+    packages:
+      sra-tools:
+        specs: [ "https://github.com/wdecoster/NanoPlot/releases" ]
+        version: [ "1.29.0" ]
 
 baseCommand: NanoPlot
 
