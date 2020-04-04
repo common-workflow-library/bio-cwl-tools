@@ -9,7 +9,9 @@ requirements:
 inputs:
   InputFile:
     type: File[]
-    format: http://edamontology.org/format_1930 # FASTA
+    format:
+      - edam:format_1930 # FASTA
+      - edam:format_1931 # FASTQ
     inputBinding:
       position: 201
     
@@ -126,4 +128,7 @@ outputs:
   reads_stdout:
     type: stdout
     
-  
+$namespaces:
+  edam: http://edamontology.org/
+$schemas:
+  - http://edamontology.org/EDAM_1.18.owl
