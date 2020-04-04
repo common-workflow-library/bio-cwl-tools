@@ -1,8 +1,9 @@
 #!/usr/bin/env cwl-runner
-
 cwlVersion: v1.0
 class: CommandLineTool
+
 baseCommand: minimap2
+
 doc: This CWL file defines running minimap2 to align some sequences to a database.
   We assume the database has been indexed. This is not necessary but we will do it
   in our use case
