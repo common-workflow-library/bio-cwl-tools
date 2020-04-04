@@ -47,7 +47,7 @@ for line in changed_files.decode('utf-8').rstrip().split('\n'):
                     print(crayons.red(f'Tool Failed Requirements: Line 2 : {fs}\n'))
                     tool_failed = True
             if index == 2:
-                if not (line == "class: CommandLineTool" or line == "class: Workflow"):
+                if not (line == "class: CommandLineTool" or line == "class: Workflow" or line == "class: ExpressionTool"):
                     print(crayons.red(f'Tool Failed Requirements: Line 3 : {fs}\n'))
                     tool_failed = True
     if tool_failed == False:

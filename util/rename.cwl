@@ -1,7 +1,10 @@
 #!/usr/bin/env cwl-runner
 cwlVersion: v1.0
-class: CommandLineTool
-baseCommand: "true"
+class: ExpressionTool
+
+doc: |
+  Also consider https://www.commonwl.org/user_guide/misc/#rename-an-input-file
+  or https://www.commonwl.org/user_guide/misc/#rename-an-output-file
 
 requirements:
   InlineJavascriptRequirement: {}
@@ -12,15 +15,12 @@ inputs:
   newname:
     type: string
 
+expression: |
+  ${
+     inputs.srcfile.basename = inputs.newname;
+     return {"outfile": inputs.srcfile};
+   }
+
 outputs:
   outfile:
     type: File
-    outputBinding:
-      outputEval: |
-        ${
-          console.log(self);
-          var file = inputs.srcfile;
-          file.basename = inputs.newname;
-          return file;
-        }
-
