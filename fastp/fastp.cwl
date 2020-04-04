@@ -13,8 +13,8 @@ hints:
 baseCommand: [fastp]
 
 arguments:
-    - -o
-    - $(inputs.fastq1.nameroot).fastp.fastq
+    - prefix: -o
+      valueFrom: $(inputs.fastq1.nameroot).fastp.fastq
     - |
       ${
         if (inputs.fastq2){
@@ -94,14 +94,7 @@ outputs:
        type: File?
        format: $(inputs.fastq2.format)
        outputBinding:
-           glob: |
-            ${
-             if (inputs.fastq2){
-                return inputs.fastq2.nameroot + ".fastp.fastq"
-             } else {
-                return 'no_file'
-              }
-             }
+           glob: $(inputs.fastq2.nameroot).fastp.fastq
     html_report:
       type: File
       outputBinding:
