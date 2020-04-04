@@ -2,18 +2,14 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-requirements:
-- class: InlineJavascriptRequirement
-
 hints:
-- class: DockerRequirement
-  dockerPull: quay.io/biocontainers/sra-tools:2.10.3--pl526haddd2b5_0
-
-- class:  SoftwareRequirement
-  packages:
-    sra-tools:
-      specs: [ "http://identifiers.org/biotools/sra-tools" ]
-      version: [ "2.8.2" ]
+  DockerRequirement:
+    dockerPull: quay.io/biocontainers/sra-tools:2.10.3--pl526haddd2b5_0
+  SoftwareRequirement:
+    packages:
+      sra-tools:
+        specs: [ "http://identifiers.org/biotools/sra-tools" ]
+        version: [ "2.10.3" ]
 
 inputs:
   accession:
@@ -36,10 +32,7 @@ outputs:
   sra_file:
     type: File
     outputBinding:
-      glob: |
-        ${
-          return inputs.accession + "/" + inputs.accession + ".sra"
-        }
+      glob: $(inputs.accession)/$(inputs.accession).sra
 
 baseCommand: [prefetch]
 
