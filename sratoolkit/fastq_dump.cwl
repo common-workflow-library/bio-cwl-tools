@@ -2,9 +2,6 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-requirements:
-- class: InlineJavascriptRequirement
-
 hints:
 - class: DockerRequirement
   dockerPull: biowardrobe2/sratoolkit:v2.8.2-1
@@ -260,30 +257,21 @@ outputs:
     type: File
     format: edam:format_1931 # FASTQ
     outputBinding:
-      glob: |
-        ${
-          return [
-              inputs.sra_file.basename.split(".")[0] + ".fastq",
-              inputs.sra_file.basename.split(".")[0] + "_1.fastq"
-            ];
-        }
+      glob:
+        - $(inputs.sra_file.nameroot).fastq
+        - $(inputs.sra_file.nameroot)_1.fastq
 
   fastq_file_2:
     type: File?
     format: edam:format_1931 # FASTQ
     outputBinding:
-      glob: |
-        ${
-          return inputs.sra_file.basename.split(".")[0] + "_2.fastq";
-        }
+      glob: $(inputs.sra_file.nameroot)_2.fastq
+
   all_fastq_files:
     type: File[]
     format: edam:format_1931 # FASTQ
     outputBinding:
-      glob: |
-        ${
-          return inputs.sra_file.basename.split(".")[0] + "*.fastq";
-        }
+      glob: $(inputs.sra_file.nameroot)*.fastq
 
 baseCommand: [fastq-dump]
 
