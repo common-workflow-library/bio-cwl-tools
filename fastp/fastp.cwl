@@ -6,6 +6,7 @@ doc: |
   Modified from https://github.com/nigyta/bact_genome/blob/master/cwl/tool/fastp/fastp.cwl
 requirements:
     InlineJavascriptRequirement: {}
+hints:
     DockerRequirement:
         dockerPull: quay.io/biocontainers/fastp:0.20.0--hdbcaa40_0
 
