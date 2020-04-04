@@ -1,6 +1,7 @@
 #!/usr/bin/env cwl-runner
 cwlVersion: v1.0
 class: Workflow
+
 doc: |
   Worfklow combining an SRA fetch from NCBI with a fastq-dump cmd
 
