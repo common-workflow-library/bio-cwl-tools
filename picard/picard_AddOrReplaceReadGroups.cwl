@@ -253,3 +253,8 @@ outputs:
     format: edam:format_2573  # SAM
     outputBinding:
       glob: $(inputs.OUTPUT)
+
+$namespaces:
+  edam: http://edamontology.org/
+$schemas:
+  - http://edamontology.org/EDAM_1.18.owl
