@@ -60,90 +60,101 @@ doc: |-
        -O output.chr20.vcf
    </pre>
 requirements:
-- class: ShellCommandRequirement
-- class: InlineJavascriptRequirement
-  expressionLib:
-  - |
-    /**
-     * File of functions to be added to cwl files
-     */
+  ShellCommandRequirement: {}
+  InlineJavascriptRequirement:
+    expressionLib:
+    - |
+      /**
+       * File of functions to be added to cwl files
+       */
 
-    function generateGATK4BooleanValue(){
-        /**
-         * Boolean types in GATK 4 are expressed on the command line as --<PREFIX> "true"/"false",
-         * so patch here
-         */
-        if(self === true || self === false){
-            return self.toString()
-        }
+      function generateGATK4BooleanValue(){
+          /**
+           * Boolean types in GATK 4 are expressed on the command line as --<PREFIX> "true"/"false",
+           * so patch here
+           */
+          if(self === true || self === false){
+              return self.toString()
+          }
 
-        return self;
-    }
+          return self;
+      }
 
-    function applyTagsToArgument(prefix, tags){
-        /**
-         * Function to be used in the field valueFrom of File objects to add gatk tags.
-         */
+      function applyTagsToArgument(prefix, tags){
+          /**
+           * Function to be used in the field valueFrom of File objects to add gatk tags.
+           */
 
-        if(!self){
-            return null;
-        }
-        else if(!tags){
-            return generateArrayCmd(prefix);
-        }
-        else{
-            function addTagToArgument(tagObject, argument){
-                var allTags = Array.isArray(tagObject) ? tagObject.join(",") : tagObject;
+          if(!self){
+              return null;
+          }
+          else if(!tags){
+              return generateArrayCmd(prefix);
+          }
+          else{
+              function addTagToArgument(tagObject, argument){
+                  var allTags = Array.isArray(tagObject) ? tagObject.join(",") : tagObject;
 
-                return [prefix + ":" + allTags, argument];
-            }
+                  return [prefix + ":" + allTags, argument];
+              }
 
-            if(Array.isArray(self)){
-                if(!Array.isArray(tags) || self.length !== tags.length){
-                    throw new TypeError("Argument '" + prefix + "' tag field is invalid");
-                }
+              if(Array.isArray(self)){
+                  if(!Array.isArray(tags) || self.length !== tags.length){
+                      throw new TypeError("Argument '" + prefix + "' tag field is invalid");
+                  }
 
-                var value = self.map(function(element, i) {
-                    return addTagToArgument(tags[i], element);
-                }).reduce(function(a, b){return a.concat(b)})
+                  var value = self.map(function(element, i) {
+                      return addTagToArgument(tags[i], element);
+                  }).reduce(function(a, b){return a.concat(b)})
 
-                return value;
-            }
-            else{
-                return addTagToArgument(tags, self);
-            }
-        }
-    }
+                  return value;
+              }
+              else{
+                  return addTagToArgument(tags, self);
+              }
+          }
+      }
 
-    function generateArrayCmd(prefix){
-        /**
-         * Function to be used in the field valueFrom of array objects, so that arrays are optional
-         * and prefixes are handled properly.
-         *
-         * The issue that this solves is documented here:
-         * https://www.biostars.org/p/258414/#260140
-         */
-        if(!self){
-            return null;
-        }
+      function generateArrayCmd(prefix){
+          /**
+           * Function to be used in the field valueFrom of array objects, so that arrays are optional
+           * and prefixes are handled properly.
+           *
+           * The issue that this solves is documented here:
+           * https://www.biostars.org/p/258414/#260140
+           */
+          if(!self){
+              return null;
+          }
 
-        if(!Array.isArray(self)){
-            self = [self];
-        }
+          if(!Array.isArray(self)){
+              self = [self];
+          }
 
-        var output = [];
-        self.forEach(function(element) {
-            output.push(prefix);
-            output.push(element);
-        })
+          var output = [];
+          self.forEach(function(element) {
+              output.push(prefix);
+              output.push(element);
+          })
 
-        return output;
-    }
+          return output;
+      }
 
-    /* Polyfill String.endsWith (it was introduced in ES6, but CWL 1.0 only supports ES5) */
-    String.prototype.endsWith = String.prototype.endsWith || function(suffix) {
-        return this.indexOf(suffix, this.length - suffix.length) >= 0;
-    };
+      /* Polyfill String.endsWith (it was introduced in ES6, but CWL 1.0 only supports ES5) */
+      String.prototype.endsWith = String.prototype.endsWith || function(suffix) {
+          return this.indexOf(suffix, this.length - suffix.length) >= 0;
+      };
+  SchemaDefRequirement:
+    types:
+      - type: enum
+        name: variants_type
+        symbols:
+         - INDEL
+         - SNP
+         - MIXED
+         - MNP
+         - SYMBOLIC
+         - NO_VARIATION
 hints:
   DockerRequirement:
     dockerPull: quay.io/biocontainers/gatk4:4.1.6.0--py38_0
@@ -841,58 +852,28 @@ inputs:
   type: double?
   inputBinding:
     prefix: --select-random-fraction
-- doc: Do not select certain type of variants from the input file [synonymous with
-    -xl-select-type]
-  id: select_type_to_exclude
-  type:
-  - 'null'
-  - type: array
-    items:
-      type: enum
-      symbols:
-      - INDEL
-      - SNP
-      - MIXED
-      - MNP
-      - SYMBOLIC
-      - NO_VARIATION
-    inputBinding:
-      valueFrom: $(null)
-  - type: enum
-    symbols:
-    - INDEL
-    - SNP
-    - MIXED
-    - MNP
-    - SYMBOLIC
-    - NO_VARIATION
-  inputBinding:
-    valueFrom: $(generateArrayCmd("--select-type-to-exclude"))
+# - doc: Do not select certain type of variants from the input file [synonymous with
+#     -xl-select-type]
+#   id: select_type_to_exclude
+#   type:
+#   - 'null'
+#   - type: array
+#     items: variants_type
+#     inputBinding:
+#       valueFrom: $(null)
+#   - variants_type
+#   inputBinding:
+#     valueFrom: $(generateArrayCmd("--select-type-to-exclude"))
 - doc: Select only a certain type of variants from the input file [synonymous with
     -select-type]
   id: select_type_to_include
-  type:
-  - 'null'
-  - type: array
-    items:
-      type: enum
-      symbols:
-      - INDEL
-      - SNP
-      - MIXED
-      - MNP
-      - SYMBOLIC
-      - NO_VARIATION
-    inputBinding:
-      valueFrom: $(null)
-  - type: enum
-    symbols:
-    - INDEL
-    - SNP
-    - MIXED
-    - MNP
-    - SYMBOLIC
-    - NO_VARIATION
+  type: string # "variants_type?"
+  # - 'null'
+  # - type: array
+  #   items: variants_type
+  #   inputBinding:
+  #     valueFrom: $(null)
+  # - variants_type
   inputBinding:
     valueFrom: $(generateArrayCmd("--select-type-to-include"))
 - doc: One or more criteria to use when selecting the data [synonymous with -select]
@@ -989,8 +970,8 @@ outputs:
   doc: Output file from corresponding to the input argument output-filename
   type: File
   outputBinding:
-    glob: $(inputs['output-filename'])
+    glob: $(inputs.output_filename)
   secondaryFiles:
-  - "$(inputs['create-output-variant-index']? self.basename + (inputs['output-filename'].endsWith('.gz')?\
+  - "$(inputs['create-output-variant-index']? self.basename + (inputs.output_filename.endsWith('.gz')?\
     \ '.tbi':'.idx') : [])"
   - "$(inputs['create-output-variant-md5']? self.basename + '.md5' : [])"

@@ -43,7 +43,7 @@ for line in changed_files.decode('utf-8').rstrip().split('\n'):
                     print(crayons.red(f'Tool Failed Requirements: Line 1 : {fs}\n'))
                     tool_failed = True  
             if index == 1:
-                if line not in ["cwlVersion:v1.0", "cwlVersion: v1.0"]:
+                if line not in ["cwlVersion:v1.0", "cwlVersion: v1.0", "cwlVersion:v1.1", "cwlVersion: v1.1"]:
                     print(crayons.red(f'Tool Failed Requirements: Line 2 : {fs}\n'))
                     tool_failed = True
             if index == 2:
