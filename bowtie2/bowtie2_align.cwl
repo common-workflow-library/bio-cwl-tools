@@ -36,8 +36,16 @@ hints:
 
 inputs:
 
+  indices_file:
+    type: File?
+    doc: File with secondaryFiles containing all the indices
+    inputBinding:
+      position: 81
+      prefix: -x
+      valueFrom: $(self.path.split('.').slice(0,-3).join('.'))
+
   indices_folder:
-    type: Directory
+    type: Directory?
     doc: "Folder with indices files"
     inputBinding:
       position: 81
