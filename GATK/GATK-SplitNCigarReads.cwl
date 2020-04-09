@@ -1,5 +1,5 @@
 #!/usr/bin/env cwl-runner
-cwlVersion: v1.0
+cwlVersion: v1.1
 class: CommandLineTool
 
 baseCommand:
@@ -130,7 +130,7 @@ inputs:
   - File
   inputBinding:
     prefix: --input
-  secondaryFiles: $(self.basename + self.nameext.replace('m','i'))
+  secondaryFiles: $(self.basename)$(self.nameext.replace('m','i'))?
 - doc: Write output to this BAM filename [synonymous with -O]
   id: output_filename
   type: string
@@ -667,7 +667,7 @@ outputs:
   doc: Output file from corresponding to the input argument output-filename
   type: File
   outputBinding:
-    glob: $(inputs['output-filename'])
+    glob: $(inputs.output_filename)
   secondaryFiles:
   - "$(inputs['create-output-bam-index']? self.basename + self.nameext.replace('m',\
     \ 'i') : [])"
