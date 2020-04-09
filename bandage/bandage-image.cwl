@@ -1,3 +1,4 @@
+#!/usr/bin/env cwl-runner
 cwlVersion: v1.0
 class: CommandLineTool
 id: bandage-image
@@ -50,13 +51,13 @@ inputs:
 outputs:
 
 
- - id: all_script
-   type:
-      - type: array
-        items: File
-   outputBinding:
-      glob: "*.sh"  
-   doc: "generated script to run bandage. for learning purpose" 
+# - id: all_script
+#   type:
+#      - type: array
+#        items: File
+#   outputBinding:
+#      glob: "*.sh"  
+#   doc: "generated script to run bandage. for learning purpose" 
 
 
  - id: image
