@@ -1,10 +1,10 @@
+#!/usr/bin/env cwl-runner
 class: CommandLineTool
 cwlVersion: v1.0
 
 id: spades
 baseCommand:
   - bash
-#  - cat
 inputs:
 
 ##############
@@ -203,13 +203,13 @@ outputs:
       glob: scaffolds.fasta
     doc: "scaffolds (fasta sequence)"
 
-  - id: all_script
-    type:
-      - type: array
-        items: File
-    outputBinding:
-      glob: "*.sh"  
-    doc: "generated script to run spades. for learning purpose" 
+#  - id: all_script
+#    type:
+#      - type: array
+#        items: File
+#    outputBinding:
+#      glob: "*.sh"  
+#    doc: "generated script to run spades. for learning purpose" 
 
   - id: all_log
     type:
