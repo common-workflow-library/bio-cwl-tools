@@ -781,7 +781,7 @@ inputs:
     prefix: --read-validation-stringency
 - doc: Reference sequence [synonymous with -R]
   id: reference
-  type: string?
+  type: File?
   inputBinding:
     prefix: --reference
   secondaryFiles:

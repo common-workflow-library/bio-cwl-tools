@@ -177,8 +177,8 @@ outputs:
   sequences_with_dictionary:
     type: File
     secondaryFiles:
-      - .dict
-      - ^.fai?
+      - ^.dict
+      - .fai?
     outputBinding:
       glob: $(inputs.REFERNCE.basename)
 
@@ -187,3 +187,8 @@ outputs:
     format: edam:format_2573  # SAM
     outputBinding:
       glob: $(inputs.REFERENCE.basename).dict
+
+$namespaces:
+  edam: http://edamontology.org/
+$schemas:
+  - http://edamontology.org/EDAM_1.18.owl
