@@ -1,3 +1,4 @@
+#!/usr/bin/env cwl-runner
 cwlVersion: v1.0
 class: CommandLineTool
 id: bandage-info
@@ -25,13 +26,13 @@ inputs:
 
 outputs:
 
- - id: all_script
-   type:
-      - type: array
-        items: File
-   outputBinding:
-      glob: "*.sh"  
-   doc: "generated script to run bandage. for learning purpose" 
+# - id: all_script
+#   type:
+#      - type: array
+#        items: File
+#   outputBinding:
+#      glob: "*.sh"  
+#   doc: "generated script to run bandage. for learning purpose" 
 
  - id: assembly_graph_info
    type: File
@@ -60,7 +61,7 @@ requirements:
                #!/bin/bash
                ###########################
                # Bandage info wrapper  
-               export QT_QPA_PLATFORM=offscreen
+               export QT_QPA_PLATFORM=minimal
                TMPDIR=$PWD"/tmp_runtime-bandage"
                mkdir -p $TMPDIR
                export XDG_RUNTIME_DIR=$TMPDIR
