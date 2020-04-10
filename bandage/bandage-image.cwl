@@ -1,119 +1,19 @@
 #!/usr/bin/env cwl-runner
 cwlVersion: v1.0
 class: CommandLineTool
-id: bandage-image
-inputs:
-
-  - id: graph
-    type: File
-    doc: |
-        Graphical Fragment Assembly
-        Supports multiple assembly graph formats: 
-        LastGraph (Velvet), FASTG (SPAdes), Trinity.fasta, ASQG and GFA.
- 
-
-  - id: format
-    type:  string
-    default: jpg
-    doc: |
-        Produce jpg, png or svg file
-
-
-  - id: height
-    type:  int
-    default: 1000
-    doc: |
-        Image height.If only height or width is set, 
-        the other will be determined automatically.
-        If both are set, the image will be exactly that size.
-
-
-  - id: width
-    type:  int?
-    doc: |
-        Image width. If only height or width is set, the other will be determined automatically.
-        If both are set, the image will be exactly that size.
-
-
-  - id: node_name
-    type:  boolean
-    default: true
-    doc: |
-        If true, define Node labels as name 
-
-  - id: node_length
-    type:  boolean
-    default: true
-    doc: |
-        If true, define Node labels as length 
-
-
-outputs:
-
-
-# - id: all_script
-#   type:
-#      - type: array
-#        items: File
-#   outputBinding:
-#      glob: "*.sh"  
-#   doc: "generated script to run bandage. for learning purpose" 
-
-
- - id: image
-   type: File
-   outputBinding:
-      glob: "*.$(inputs.format)"
-   doc: "Assembly Graph Image"
-
-
-
-
-baseCommand: bash
-
-arguments: [bandage_image_launch.sh]
 
 hints:
   DockerRequirement:
-    dockerPull: "fjrmore/bandage" 
-
+    dockerPull: biocontainers/bandage:v0.8.1-1-deb_cv1
 
 requirements:
-  - class:  InlineJavascriptRequirement
-  - class: InitialWorkDirRequirement
-    listing:
-      - entryname: bandage_image_launch.sh
-        entry: |
-               #!/bin/bash
-               ###########################
-               # Bandage image wrapper  
-               export QT_QPA_PLATFORM=minimal
-               TMPDIR=$PWD"/tmp_runtime-bandage"
-               mkdir -p $TMPDIR
-               export XDG_RUNTIME_DIR=$TMPDIR
-               GRAPH="$(inputs.graph.path)"
-               IMAGE="$(inputs.graph.nameroot).$(inputs.format)"
-               Bandage image $GRAPH $IMAGE  \\
-               ${
-                var opt=""
-                if(inputs.height!=null){ 
-                 opt+=" --height "+inputs.height+ " "
-                }
-                if(inputs.width!=null){ 
-                 opt+=" --width "+inputs.width +" "
-                }
-                if(inputs.node_length==true){ 
-                 opt+=" --names "
-                }
-                if(inputs.node_length==true){ 
-                 opt+=" --lengths "
-                }
-                return opt
-               }  
+  EnvVarRequirement:
+    envDef:
+      XDG_RUNTIME_DIR: $(runtime.tmpdir)
+      QT_QPA_PLATFORM: minimal
 
-
+label: Bandage image
 doc: |
-  CWL  tool for Bandage-info.
   an hybrid assembly pipeline for bacterial genomes
   *Bandage Overview**
   Bandage is a GUI program that allows users to interact with the assembly graphs made by de novo assemblers 
@@ -127,3 +27,70 @@ doc: |
   Bandage works with Graphical Fragment Assembly (GFA) files. 
   For more information about this file format, see https://gfa-spec.github.io/GFA-spec/GFA2.html
 
+baseCommand: [ Bandage, image ]
+
+inputs:
+  graph:
+    type: File
+    doc: |
+        Graphical Fragment Assembly
+        Supports multiple assembly graph formats: 
+        LastGraph (Velvet), FASTG (SPAdes), Trinity.fasta, ASQG and GFA.
+    inputBinding:
+      position: 1
+
+  format:
+    type:
+      - 'null'
+      - type: enum
+        symbols:
+          - jpg
+          - png
+          - svg
+    default: jpg
+    inputBinding:
+      position: 2
+      valueFrom: $(inputs.graph.nameroot).$(self) 
+    doc: |
+        Produce jpg, png or svg file
+
+  height:
+    type: int
+    default: 1000
+    inputBinding:
+      prefix: --height
+    doc: |
+        Image height.If only height or width is set, 
+        the other will be determined automatically.
+        If both are set, the image will be exactly that size.
+
+  width:
+    inputBinding:
+      prefix: --width
+    type:  int?
+    doc: |
+        Image width. If only height or width is set, the other will be determined automatically.
+        If both are set, the image will be exactly that size.
+
+  node_name:
+    type:  boolean
+    default: true
+    doc: |
+        If true, define Node labels as name 
+
+  node_length:
+    type:  boolean
+    default: true
+    inputBinding:
+      prefix: --names
+      valueFrom: --length
+    doc: |
+        If true, define Node labels as length 
+
+
+outputs:
+ image:
+   type: File
+   outputBinding:
+      glob: $(inputs.graph.nameroot).$(inputs.format)
+   doc: "Assembly Graph Image"
