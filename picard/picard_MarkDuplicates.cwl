@@ -18,7 +18,7 @@ arguments:
   - OUTPUT=$(inputs.alignments.nameroot)_markduplicates$(inputs.alignments.nameext)
   - METRICS_FILE=$(inputs.alignments.nameroot)_markduplicates.metrics
 
-stderr: $(inputs.aliments.nameroot).markduplicates.log
+stderr: $(inputs.alignments.nameroot).markduplicates.log
 
 inputs:
   alignments:
