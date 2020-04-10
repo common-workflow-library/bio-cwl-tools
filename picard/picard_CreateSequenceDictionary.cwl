@@ -31,7 +31,7 @@ requirements:
       }
 hints:
   DockerRequirement:
-    dockerPull: quay.io/biocontainers/picard:1.126--5
+    dockerPull: quay.io/biocontainers/picard:2.22.2--0
 inputs:
 - doc: Input reference fasta or fasta.gz [synonymous with -R]
   id: REFERENCE

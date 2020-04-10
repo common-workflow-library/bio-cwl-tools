@@ -1,37 +1,38 @@
-class: CommandLineTool
+#!/usr/bin/env cwl-runner
 cwlVersion: v1.0
-id: picard_SortSam
+class: CommandLineTool
 
 hints:
-  - class: DockerRequirement
-    dockerPull: broadinstitute/picard:latest
+  DockerRequirement:
+    dockerPull: quay.io/biocontainers/picard:2.22.2--0
 requirements:
   InlineJavascriptRequirement: {}
 
-baseCommand: [java, -jar, /usr/picard/picard.jar]
+baseCommand: [ picard, SortSam ]
+
 arguments:
-  - SortSam
-#  - VERBOSY=ERROR
+  - position: 2
+    prefix: OUTPUT=
+    separate: false
+    valueFrom: |
+      ${ if(inputs.sort_order == "coordinate") { return (inputs.inputFile.nameroot)+".bam";} else { return (inputs.inputFile.nameroot)+".sam"; } }
 
 inputs:
-  - id: inputFile
+  alignments:
     type: File
     inputBinding:
       position: 1
       prefix: INPUT=
       separate: false
 
-  - id: outFile_name
-    type: string?
-    inputBinding:
-      position: 2
-      prefix: OUTPUT=
-      valueFrom: |
-        ${ if(inputs.sort_order == "coordinate") { return (inputs.inputFile.nameroot)+".bam";} else { return (inputs.inputFile.nameroot)+".sam"; } }
-      separate: false
-
-  - id: sort_order
-    type: string?
+  sort_order:
+    type:
+      - 'null'
+      - type: enum
+        symbols:
+          - queryname
+          - coordinate
+          - duplicate
     default: coordinate
     doc: 'coordinate (bam) or queryname (sam)'
     inputBinding:
@@ -39,18 +40,24 @@ inputs:
       prefix: SORT_ORDER=
       separate: false
 
-  - id: validation_stringency
-    type: string?
+  validation_stringency:
     default: LENIENT
-    doc: 'LENIENT, SILENT or STRICT'
+    doc: Validation stringency for all SAM files read by this program.  Setting stringency
+      to SILENT can improve performance when processing a BAM file in which variable-length
+      data (read, qualities, tags) do not otherwise need to be decoded.
+    type:
+    - 'null'
+    - type: enum
+      symbols:
+      - STRICT
+      - LENIENT
+      - SILENT
     inputBinding:
-      position: 11
       prefix: VALIDATION_STRINGENCY=
       separate: false
 
-
 outputs:
-  - id: outFile
+  sorted_alignments:
     type: File
     outputBinding:
       glob: '*.*am'

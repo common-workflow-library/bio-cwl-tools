@@ -45,7 +45,7 @@ requirements:
       }
 hints:
   DockerRequirement:
-    dockerPull: quay.io/biocontainers/picard:1.126--5
+    dockerPull: quay.io/biocontainers/picard:2.22.2--0
 inputs:
 - doc: Input file (BAM or SAM or a GA4GH url). [synonymous with -I]
   id: INPUT
