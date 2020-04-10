@@ -99,6 +99,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/stain"><img src="ihttps://avatars3.githubusercontent.com/u/253413?v=4" width="100px;" alt=""/><br /><sub><b>stain</b></sub></a><br /><a href="https://github.com/common-workflow-library/bio-cwl-tools/commits?author=stain" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/mb1069"><img src="https://avatars1.githubusercontent.com/u/9156542?v=4" width="100px;" alt=""/><br /><sub><b>Miguel Boland</b></sub></a><br /><a href="https://github.com/common-workflow-library/bio-cwl-tools/commits?author=mb1069" title="Code">💻</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/fjrmoreews"><img src="https://avatars0.githubusercontent.com/u/15047744?v=4" width="100px;" alt=""/><br /><sub><b>fjrmoreews</b></sub></a><br /><a href="https://github.com/common-workflow-library/bio-cwl-tools/commits?author=fjrmoreews" title="Code">💻</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-enable -->
