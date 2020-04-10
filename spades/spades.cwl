@@ -1,120 +1,66 @@
 #!/usr/bin/env cwl-runner
-class: CommandLineTool
 cwlVersion: v1.0
+class: CommandLineTool
 
-id: spades
 baseCommand:
   - bash
+
 inputs:
-
-##############
-
- 
-
-  - id: libraries_metadata
+  libraries_metadata:
     type:
       type: array
       items:
           type: record
           fields:
-             - name: lib_index
-               type: int? 
-
-             - name: orientation
-               type: string?
-  
-             - name: lib_type
-               type: string? 
-
-
+             lib_index: int? 
+             orientation: string?
+             lib_type: string? 
     doc: |
         reads library metadata
         related to   libraries_fwd_rev and libraries_mono inputs
         lib_index(id) must match
-
-
-  - id: libraries_fwd_rev
+  libraries_fwd_rev:
     type:
       type: array
       items:
           type: record
           fields:
-
-             - name: lib_index
-               type: int? 
-
-             - name: fwd_reads
-               type: File?
-
-             - name: rev_reads
-               type: File?
+             lib_index: int? 
+             fwd_reads: File?
+             rev_reads: File?
     doc: |
         reads file
         orientation must be a value in  ff, fr, rf
         K-mer choices can be chosen by SPAdes instead of being entered manually
-
-
-  - id: libraries_mono
+  libraries_mono:
     type:
       type: array
       items:
           type: record
           fields:
-
-             - name: lib_index
-               type: int? 
-
-             - name: file_type
-               type: string?
-
-             - name: reads
-               type: File?
+             lib_index: int? 
+             file_type: string?
+             reads: File?
     doc: |
         reads file
         file_type value must be in : interleaved, merged, unpaired
-
-
-
-  - id: pacbio_reads
-    type:
-      - "null"
-      - type: array
-        items: File
-
-  - id: nanopore_reads
-    type:
-      - "null"
-      - type: array
-        items: File
-
-  - id: sanger_reads
-    type:
-      - "null"
-      - type: array
-        items: File
-
-  - id: trusted_contigs
-    type:
-      - "null"
-      - type: array
-        items: File
-
-  - id: untrusted_contigs
-    type:
-      - "null"
-      - type: array
-        items: File
- 
-
-
-  - id: auto_kmer_choice
+  pacbio_reads:
+    type: File[]?
+  nanopore_reads:
+    type: File[]?
+  sanger_reads:
+    type: File[]?
+  trusted_contigs:
+    type: File[]?
+  untrusted_contigs:
+    type: File[]?
+  auto_kmer_choice:
     type:  boolean
     default: true
     doc: |
         Automatically choose k-mer values.
         K-mer choices can be chosen by SPAdes instead of being entered manually
-
-  - id: kmers
+  kmers:
     type:  string
     default: "21,33,55"
     doc: |
@@ -122,10 +68,7 @@ inputs:
         Comma-separated list of k-mer sizes to be used 
         (all values must be odd, less than 128, listed in ascending order,
          and smaller than the read length). The default value is 21,33,55
-
-
-
-  - id: cov_state
+  cov_state:
     type:
      - "null"
      -  type: enum
@@ -136,35 +79,28 @@ inputs:
     doc: |
         Coverage cutoff ( 'auto', or 'off', or 'value'). auto if null
         when cov_state=value (User Specific) , cov_cutoff must be provided
-
-
-  - id: cov_cutoff
+  cov_cutoff:
     type:  float?
     doc: |
         coverage cutoff value (a positive float number )
-
-  - id: iontorrent
+  iontorrent:
     type:  boolean
     default: false
     doc: |
         true if Libraries are IonTorrent reads.
-
-  - id: sc
+  sc:
     type:  boolean
     default: false
     doc: |
         This option is required for MDA. 
         true if single-cell data. 
-
-  - id: onlyassembler
+  onlyassembler:
     type: boolean
     default: false
     doc: |
         Run only assembly if true
         (without read error correction)
-
-
-  - id: careful
+  careful:
     type: boolean
     default: true
     doc: |
@@ -173,36 +109,29 @@ inputs:
         Also runs MismatchCorrector, a post processing tool,
         which uses BWA tool (comes with SPAdes).
 
-
-
-
-      
 outputs:
-
-  - id: out_contig_stats
+  out_contig_stats:
     type: File
     outputBinding:
       glob: out_contig_stats.*
     doc: "contig stats, default column_names: name,length,coverage"
-
-  - id: out_scaffold_stats
+  out_scaffold_stats:
     type: File
     outputBinding:
       glob: out_scaffold_stats.*
     doc: "scaffold stats, default column_names: name,length,coverage"
 
-  - id: out_contigs
+  out_contigs:
     type: File
     outputBinding:
       glob: contigs.fasta
     doc: "contigs (fasta sequence)"
 
-  - id: out_scaffolds
+  out_scaffolds:
     type: File
     outputBinding:
       glob: scaffolds.fasta
     doc: "scaffolds (fasta sequence)"
-
 #  - id: all_script
 #    type:
 #      - type: array
@@ -210,58 +139,28 @@ outputs:
 #    outputBinding:
 #      glob: "*.sh"  
 #    doc: "generated script to run spades. for learning purpose" 
-
-  - id: all_log
+  all_log:
     type:
       - type: array
         items: File
     outputBinding:
       glob: "*.log"  
     doc: "spades output log and warnings" 
-
-
-
 #  - id: out_log
 #    type: File
 #    outputBinding:
 #      glob: spades.log
 #    doc: "spades output log"
-
-
-  - id: assembly_graph
+  assembly_graph:
     type: File
     outputBinding:
       glob: assembly_graph.fastg
     doc: "assembly graph" 
-
- 
-  - id: assembly_graph_with_scaffolds
+  assembly_graph_with_scaffolds:
     type: File
     outputBinding:
       glob: assembly_graph_with_scaffolds.gfa
     doc: "assembly graph with scaffolds" 
-
-
-############available ouput  files:
-#assembly_graph_with_scaffolds.gfa
-#assembly_graph.fastg
-#warnings.log
-#scaffolds.paths
-#contigs.paths
-#spades_wrapper.sh
-#before_rr.fasta
-#contigs.fasta
-#dataset.info
-#input_dataset.yaml
-#out_contig_stats.tab
-#out_scaffold_stats.tab
-#params.txt
-#run_spades.sh
-#scaffolds.fasta
-#write_tsv.py
- 
-
-      
       
 arguments:
   - spades_wrapper.sh
@@ -562,6 +461,3 @@ doc: |
   example workflow for js wrapper generation
   see  https://github.com/rrwick/Unicycler
   outputs : all genretated files
-
-
-    
