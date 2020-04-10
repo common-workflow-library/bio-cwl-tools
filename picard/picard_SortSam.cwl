@@ -11,8 +11,7 @@ requirements:
 baseCommand: [ picard, SortSam ]
 
 arguments:
-  - position: 2
-    prefix: OUTPUT=
+  - prefix: OUTPUT=
     separate: false
     valueFrom: |
       ${ if(inputs.sort_order == "coordinate") { return (inputs.inputFile.nameroot)+".bam";} else { return (inputs.inputFile.nameroot)+".sam"; } }
@@ -21,7 +20,6 @@ inputs:
   alignments:
     type: File
     inputBinding:
-      position: 1
       prefix: INPUT=
       separate: false
 
@@ -36,7 +34,6 @@ inputs:
     default: coordinate
     doc: 'coordinate (bam) or queryname (sam)'
     inputBinding:
-      position: 6
       prefix: SORT_ORDER=
       separate: false
 
