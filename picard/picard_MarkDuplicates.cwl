@@ -110,3 +110,8 @@ outputs:
     type: File
     outputBinding:
       glob: $(inputs.alignments.nameroot)_markduplicates.metrics
+
+$namespaces:
+  edam: http://edamontology.org/
+$schemas:
+  - http://edamontology.org/EDAM_1.18.owl
