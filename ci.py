@@ -7,7 +7,7 @@ has_failed = False
 tool_failed = False
 #changed_files = check_output("git --no-pager diff --name-status release..$(git branch | grep \* | cut -d ' ' -f2)", shell=True)
 try:
-    changed_files = check_output("git --no-pager diff --name-status release..FETCH_HEAD", shell=True)
+    changed_files = check_output("git --no-pager diff --name-status --diff-filter d release..FETCH_HEAD", shell=True)
     print("Using Head")
 except:
     print("Using Master")
