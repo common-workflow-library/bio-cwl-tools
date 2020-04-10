@@ -45,7 +45,7 @@ requirements:
       }
 hints:
   DockerRequirement:
-    dockerPull: quay.io/biocontainers/gatk4:4.1.6.0--py38_0
+    dockerPull: quay.io/biocontainers/picard:1.126--5
 inputs:
 - doc: Input file (BAM or SAM or a GA4GH url). [synonymous with -I]
   id: INPUT
@@ -253,3 +253,8 @@ outputs:
     format: edam:format_2573  # SAM
     outputBinding:
       glob: $(inputs.OUTPUT)
+
+$namespaces:
+  edam: http://edamontology.org/
+$schemas:
+  - http://edamontology.org/EDAM_1.18.owl

@@ -1,5 +1,5 @@
 #!/usr/bin/env cwl-runner
-cwlVersion: v1.0
+cwlVersion: v1.1
 class: CommandLineTool
 
 baseCommand:
@@ -31,7 +31,7 @@ requirements:
       }
 hints:
   DockerRequirement:
-    dockerPull: quay.io/biocontainers/gatk4:4.1.6.0--py38_0
+    dockerPull: quay.io/biocontainers/picard:1.126--5
 inputs:
 - doc: Input reference fasta or fasta.gz [synonymous with -R]
   id: REFERENCE
@@ -172,18 +172,24 @@ inputs:
 
 arguments:
  - TMP_DIR=$(runtime.tmpdir)
+ - OUTPUT=$(inputs.REFERENCE.nameroot).dict
 
 outputs:
   sequences_with_dictionary:
     type: File
+    format: edam:format_2573  # SAM
     secondaryFiles:
-      - .dict
-      - ^.fai?
+      - ^.dict
+      - .fai?
     outputBinding:
-      glob: $(inputs.REFERNCE.basename)
+      glob: $(inputs.REFERENCE.basename)
 
   sequence_dictionary:
     type: File
-    format: edam:format_2573  # SAM
     outputBinding:
-      glob: $(inputs.REFERENCE.basename).dict
+      glob: $(inputs.REFERENCE.nameroot).dict
+
+$namespaces:
+  edam: http://edamontology.org/
+$schemas:
+  - http://edamontology.org/EDAM_1.18.owl

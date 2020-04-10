@@ -42,7 +42,7 @@ inputs:
     inputBinding:
       position: 81
       prefix: -x
-      valueFrom: $(self.path.split('.').slice(0,-3).join('.'))
+      valueFrom: $(self.path.split('.').slice(0,-2).join('.'))
 
   indices_folder:
     type: Directory?

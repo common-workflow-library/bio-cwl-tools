@@ -712,7 +712,7 @@ inputs:
     prefix: --read-validation-stringency
 - doc: Reference sequence [synonymous with -R]
   id: reference
-  type: string?
+  type: File?
   inputBinding:
     prefix: --reference
   secondaryFiles:
@@ -806,8 +806,8 @@ outputs:
   doc: Output file from corresponding to the input argument output-filename
   type: File
   outputBinding:
-    glob: $(inputs['output-filename'])
+    glob: $(inputs.output_filename)
   secondaryFiles:
-  - "$(inputs['create-output-variant-index']? self.basename + (inputs['output-filename'].endsWith('.gz')?\
+  - "$(inputs['create-output-variant-index']? self.basename + (inputs.output_filename.endsWith('.gz')?\
     \ '.tbi':'.idx') : [])"
   - "$(inputs['create-output-variant-md5']? self.basename + '.md5' : [])"
