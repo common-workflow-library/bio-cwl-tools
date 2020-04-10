@@ -14,7 +14,7 @@ arguments:
   - prefix: OUTPUT=
     separate: false
     valueFrom: |
-      ${ if(inputs.sort_order == "coordinate") { return (inputs.inputFile.nameroot)+".bam";} else { return (inputs.inputFile.nameroot)+".sam"; } }
+      ${ if(inputs.sort_order == "coordinate") { return (inputs.alignments.nameroot)+".bam";} else { return (inputs.alignments.nameroot)+".sam"; } }
 
 inputs:
   alignments:
@@ -56,5 +56,12 @@ inputs:
 outputs:
   sorted_alignments:
     type: File
+    format: |-
+      ${ if(inputs.sort_order == "coordinate") { return "edam:format_2572";} else { return "edam:format_2573"; } }
     outputBinding:
       glob: '*.*am'
+
+$namespaces:
+  edam: http://edamontology.org/
+$schemas:
+  - http://edamontology.org/EDAM_1.18.owl
