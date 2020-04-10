@@ -32,7 +32,7 @@ inputs:
       separate: false
 
   alignments_are_sorted:
-    type: bool
+    type: boolean
     inputBinding:
       prefix: ASSUME_SORTED=TRUE
 
@@ -40,7 +40,7 @@ inputs:
     doc: |
      If true do not write duplicates to the output file instead of writing them
      with appropriate flags set.
-    type: bool
+    type: boolean
     inputBinding:
       prefix: REMOVE_DUPLICATES=TRUE
 
