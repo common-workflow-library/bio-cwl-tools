@@ -15,10 +15,10 @@ hints:
 baseCommand: [ picard, MarkDuplicates ]
 
 arguments:
-  - OUTPUT=$(inputs.alignments.nameroot)_markduplicates.$(inputs.alignments.nameext)
+  - OUTPUT=$(inputs.alignments.nameroot)_markduplicates$(inputs.alignments.nameext)
   - METRICS_FILE=$(inputs.alignments.nameroot)_markduplicates.metrics
 
-stderr: $(inputs.bam_sorted.nameroot).markduplicates.log
+stderr: $(inputs.aliments.nameroot).markduplicates.log
 
 inputs:
   alignments:
@@ -103,7 +103,7 @@ outputs:
     type: File
     format: $(inputs.alignments.format)
     outputBinding:
-      glob: $(inputs.alignments.nameroot)_markduplicates.$(inputs.alignments.nameext)
+      glob: $(inputs.alignments.nameroot)_markduplicates$(inputs.alignments.nameext)
   log:
     type: stderr
   metrics:
