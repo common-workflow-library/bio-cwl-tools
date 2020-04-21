@@ -59,34 +59,30 @@ inputs:
     default: 1000
     inputBinding:
       prefix: --height
+      position: 3
     doc: |
-        Image height.If only height or width is set, 
+        Image height.If only height or width is set,
         the other will be determined automatically.
         If both are set, the image will be exactly that size.
 
   width:
     inputBinding:
       prefix: --width
+      position: 3
     type:  int?
     doc: |
         Image width. If only height or width is set, the other will be determined automatically.
         If both are set, the image will be exactly that size.
 
-  node_name:
-    type:  boolean
-    default: true
-    doc: |
-        If true, define Node labels as name 
-
   node_length:
-    type:  boolean
+    type:  boolean?
     default: true
     inputBinding:
       prefix: --names
-      valueFrom: --length
+      valueFrom: --lengths
+      position: 3
     doc: |
-        If true, define Node labels as length 
-
+        If true, define Node labels as lengths
 
 outputs:
  image:
