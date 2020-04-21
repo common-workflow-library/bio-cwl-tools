@@ -1,19 +1,83 @@
 #!/usr/bin/env cwl-runner
 cwlVersion: v1.0
 class: CommandLineTool
+id: bandage-info
+inputs:
+
+  - id: graph
+    type:  File
+    doc: |
+        Graphical Fragment Assembly.
+        Supports multiple
+        assembly graph formats: 
+        LastGraph (Velvet), FASTG (SPAdes), Trinity.fasta, ASQG and GFA.    
+
+
+  - id: tsv
+    type:  boolean
+    default: false
+    doc: |
+        If true, output the information in a single tab-delimited line 
+        starting with the graph file
+
+
+
+
+
+outputs:
+
+# - id: all_script
+#   type:
+#      - type: array
+#        items: File
+#   outputBinding:
+#      glob: "*.sh"  
+#   doc: "generated script to run bandage. for learning purpose" 
+
+ - id: assembly_graph_info
+   type: File
+   outputBinding:
+      glob: "assembly_graph_info.txt"
+   doc: "Assembly Graph Information"
+
+
+
+
+baseCommand: bash
+
+arguments: [bandage_info_launch.sh]
 
 hints:
   DockerRequirement:
-    dockerPull: biocontainers/bandage:v0.8.1-1-deb_cv1
+    dockerPull: "fjrmore/bandage" 
+
 
 requirements:
-  EnvVarRequirement:
-    envDef:
-      XDG_RUNTIME_DIR: $(runtime.tmpdir)
-      QT_QPA_PLATFORM: minimal
+  - class:  InlineJavascriptRequirement
+  - class: InitialWorkDirRequirement
+    listing:
+      - entryname: bandage_info_launch.sh
+        entry: |
+               #!/bin/bash
+               ###########################
+               # Bandage info wrapper  
+               export QT_QPA_PLATFORM=minimal
+               TMPDIR=$PWD"/tmp_runtime-bandage"
+               mkdir -p $TMPDIR
+               export XDG_RUNTIME_DIR=$TMPDIR
+               Bandage info '$(inputs.graph.path)' \\
+               ${
+                var opt=""
+                if(inputs.tsv==true){ 
+                 opt+=" --tsv "
+                }
+                return opt
+               } \\
+                > assembly_graph_info.txt
 
-label: Bandage info
+
 doc: |
+  CWL  tool for Bandage-info.
   an hybrid assembly pipeline for bacterial genomes
   *Bandage Overview**
   Bandage is a GUI program that allows users to interact with the assembly graphs made by de novo assemblers 
@@ -26,31 +90,4 @@ doc: |
   that are not possible by looking at contigs alone. 
   Bandage works with Graphical Fragment Assembly (GFA) files. 
   For more information about this file format, see https://gfa-spec.github.io/GFA-spec/GFA2.html
-
-baseCommand: [ Bandage, info ]
-
-inputs:
-  graph:
-    type: File
-    doc: |
-        Graphical Fragment Assembly
-        Supports multiple assembly graph formats: 
-        LastGraph (Velvet), FASTG (SPAdes), Trinity.fasta, ASQG and GFA.
-    inputBinding:
-      position: 1
-
-  tsv:
-    type: boolean
-    inputBinding:
-      prefix: --tsv
-    doc: |
-        If true, output the information in a single tab-delimited line 
-        starting with the graph file
-
-stdout: assembly_graph_info.txt
-
-outputs:
- assembly_graph_info:
-   type: stdout
-   doc: "Assembly Graph Information"
 
