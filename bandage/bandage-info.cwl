@@ -37,12 +37,13 @@ inputs:
         Supports multiple assembly graph formats: 
         LastGraph (Velvet), FASTG (SPAdes), Trinity.fasta, ASQG and GFA.
     inputBinding:
-      position: 1
+      position: 0
 
   tsv:
-    type: boolean
+    type: boolean?
     inputBinding:
       prefix: --tsv
+      position: 1
     doc: |
         If true, output the information in a single tab-delimited line 
         starting with the graph file
