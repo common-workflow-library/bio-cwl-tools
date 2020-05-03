@@ -17,13 +17,18 @@ hints:
         RUN chmod a+x segmentation.py
         ENV PATH="/src/component_segmentation:${PATH}"
 
+requirements:
+  InlineJavascriptRequirement: {}
+  InitialWorkDirRequirement:
+    listing: |
+      ${ return [ { "class": "Directory",
+                    "listing": inputs.bins,
+                    "basename": "jsons" } ]; }
 
 inputs:
   bins:
-    type: File
-    inputBinding:
-      prefix: --json-file=
-      separate: false
+    type: File[]
+    format: iana:application/json
 
   cells_per_file:
     type: int?
@@ -36,8 +41,10 @@ inputs:
       separate: false
 
 arguments:
-  - --out-folder=$(runtime.outdir)
+  - --out-folder=$(runtime.outdir)/results
   - --parallel-cores=$(runtime.cores)
+  - --json-file=$(runtime.outdir)/jsons/*
+  #- --fasta=
 
 baseCommand: segmentation.py
 
@@ -45,4 +52,7 @@ outputs:
   colinear_components:
     type: File[]
     outputBinding:
-      glob: "*/*.schematic.json"
+      glob: "results/*/*.schematic.json"
+
+$namespaces:
+  iana: https://www.iana.org/assignments/media-types/
