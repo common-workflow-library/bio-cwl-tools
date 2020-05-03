@@ -36,7 +36,7 @@ inputs:
       prefix: --gfa=
       separate: false
       valueFrom: $(self.basename)
-    #format: GFA
+    #format: GFA1 or GFA2
 
 arguments:
   - --progress

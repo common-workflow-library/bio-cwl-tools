@@ -39,10 +39,25 @@ inputs:
 
 arguments:
   - --json
+  - --fasta=$(inputs.sparse_graph_index.nameroot).og.fasta
 
 stdout: $(inputs.sparse_graph_index.nameroot).w$(inputs.bin_width).json
 
 baseCommand: [ odgi, bin ]
 
 outputs:
-  bins: stdout
+  bins:
+    type: stdout
+    format: iana:application/json
+  pangenome_sequence:
+    type: File
+    format: edam:format_1929  # FASTA
+    outputBinding:
+      glob: $(inputs.sparse_graph_index.nameroot).og.fasta
+
+$namespaces:
+  edam: http://edamontology.org/
+  iana: https://www.iana.org/assignments/media-types/
+
+$schemas:
+  - http://edamontology.org/EDAM_1.18.owl
