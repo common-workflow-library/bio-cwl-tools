@@ -8,38 +8,44 @@ doc: This CWL file defines running minimap2 to align some sequences to a databas
   We assume the database has been indexed. This is not necessary but we will do it
   in our use case
 
+requirements:
+  InlineJavascriptRequirement: {}
 hints:
   DockerRequirement:
-    dockerPull: ttubb/minimap2:release-0.2.0
+    dockerPull: quay.io/biocontainers/minimap2:2.17--h8b12597_1
   SoftwareRequirement:
     packages:
       minimap2:
         specs: [ https://github.com/lh3/minimap2 ]
-        version: [ "2.16" ]
+        version: [ "2.17" ]
+  ResourceRequirement:
+    coresMin: 8
+    coresMax: 32
+    ramMin: $(15 * 1024)
+    outdirMin: $(Math.ceil(inputs.readsFA.size/(1024*1024*1024) + 20))
 
 inputs:
-  threads:
-    type: int?
-    inputBinding:
-      position: 1
-      prefix: "-t"
   preset:
-    type: string
-    default: sr
+    type:
+      - 'null'
+      - type: enum
+        symbols:
+          - map-pb
+          - map-ont
+          - ava-pb
+          - ava-ont
+          - asm5
+          - asm10
+          - asm20
+          - splice
+          - sr 
     inputBinding:
-      position: 2
       prefix: "-x"
-  samOutput:
-    type: boolean
-    default: true
-    inputBinding:
-      position: 3
-      prefix: "-a"
-  indexFile:
+  target:
     type: File
     inputBinding:
       position: 5
-  fastqFiles:
+  query:
     type:
       - File
       - type: array
@@ -48,15 +54,14 @@ inputs:
       position: 6
 
 arguments:
-  - -o
-  - output.sam
+  - -a # output in SAM format
+  - -t
+  - $(runtime.cores) 
+
+stdout: $(inputs.indexFile.nameroot)_$(inputs.fastqFiles[0].nameroot).sam
 
 outputs:
-  samfile:
-    type: File
-    outputBinding:
-      glob: "output.sam"
-    streamable: true
+  alignments: stdout
 
 $namespaces:
   s: http://schema.org/
