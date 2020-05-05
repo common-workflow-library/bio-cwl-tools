@@ -59,13 +59,12 @@ baseCommand: segmentation.py
 
 outputs:
   colinear_components:
-    type: File[]
+    type: Directory
     outputBinding:
-      glob: "results/*/*.schematic.json"
+      glob: results
 
 $namespaces:
   iana: https://www.iana.org/assignments/media-types/
   edam: http://edamontology.org/
-
 $schemas:
   - http://edamontology.org/EDAM_1.18.owl
