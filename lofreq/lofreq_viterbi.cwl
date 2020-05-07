@@ -29,7 +29,7 @@ arguments:
 inputs:
   reference:
     type: File
-    format: edam:format_1930  # FASTA
+    format: edam:format_1929  # FASTA
     inputBinding:
       prefix: --ref
       
