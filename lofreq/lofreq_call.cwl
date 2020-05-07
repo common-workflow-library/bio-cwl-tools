@@ -2,10 +2,8 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-doc: ""
-
 hints:
-  RessourceRequirement:
+  ResourceRequirement:
     coresMin: 1
     ramMin: 20000
   DockerRequirement:
@@ -26,16 +24,15 @@ arguments:
     position: 99
 
 inputs:
-  - id: threads
+  threads:
     type: int?
     default: 1
     inputBinding:
       prefix: --pp-threads
       position: 1
-  - id: reference_index
+  reference_index:
     type: File
-
-  - id: reference_fasta
+  reference_fasta:
     doc: 'fasta'
     type: File
     format: edam:format_1929  # FASTA
@@ -44,34 +41,34 @@ inputs:
       position: 1000
       valueFrom: $(self.basename)
 
-  - id: call-indels
+  call_indels:
     type: boolean?
     inputBinding:
       prefix: --call-indels
       position: 3
     doc: "Enable indel calls (note: preprocess your file to include indel alignment qualities!)"
 
-  - id: only-indels
+  only_indels:
     type: boolean?
     inputBinding:
       prefix: --only-indels
       position: 4
     doc: "Only call indels; no SNVs"
 
-  - id: bed
+  bed:
     label: regions_from_bed
     type: File?
     doc: 'List of positions (chr pos) or regions (BED)'
     inputBinding:
       prefix: --bed
 
-  - id: region
+  region:
     type: string?
     doc: 'Limit calls to this region (chrom:start-end)'
     inputBinding:
       prefix: --region
 
-  - id: min_bq
+  min_bq:
     label: min_base_quality
     type: int?
     default: 6
@@ -79,7 +76,7 @@ inputs:
       prefix: --min-bq
     doc: 'Skip any base with baseQ smaller than INT [6]'
 
-  - id: min-alt-bq
+  min_alt_bq:
     label: min_alterne_base_quality
     type: int?
     default: 6
@@ -87,7 +84,7 @@ inputs:
       prefix: --min-alt-bq
     doc: 'Skip alternate bases with baseQ smaller than INT [6]'
 
-  - id: def-alt-bq
+  def_alt_bq:
     label: def_alt_base_quality
     type: int?
     default: 0
@@ -95,7 +92,7 @@ inputs:
       prefix: --def-alt-bq
     doc: 'Overwrite baseQs of alternate bases (that passed bq filter) with this value (-1: use median ref-bq; 0: keep) [0]'
 
-  - id: min-jq
+  min_jq:
     label: min_joinedq
     type: int?
     default: 0
@@ -103,7 +100,7 @@ inputs:
       prefix:  --min-jq
     doc: 'Skip any base with joinedQ smaller than INT [0]'
 
-  - id: min-alt-jq
+  min_alt_jq:
     label: min_alt_joinedq
     type: int?
     default: 0
@@ -111,7 +108,7 @@ inputs:
       prefix: --min-alt-jq
     doc: "Skip alternate bases with joinedQ smaller than INT [0]"
 
-  - id: def-alt-jq
+  def_alt_jq:
     label: def_alt_joinedq
     type: int?
     default: 0
@@ -119,34 +116,34 @@ inputs:
       prefix: --def-alt-jq
     doc: "Overwrite joinedQs of alternate bases (that passed jq filter) with this value (-1: use median ref-bq; 0: keep) [0]"
 
-  - id: no-baq
+  no_baq:
     label: disable_base_alignment_quality
     type: boolean?
     inputBinding:
       prefix: --no-baq
     doc: 'Disable use of base-alignment quality (BAQ)'
 
-  - id: no-idaq
+  no_idaq:
     label: disable_indel_alignment_quality
     type: boolean?
     inputBinding:
       prefix: --no-idaq
     doc: "Don't use IDAQ values (NOT recommended under ANY circumstances other than debugging)"
 
-  - id: del-baq
+  del_baq:
     label: delete_base_alignment_quality
     type: boolean?
     inputBinding:
       prefix: --del-baq
     doc: "Delete pre-existing BAQ values, i.e. compute even if already present in BAM"
 
-  - id: no_ext_base_alignment_quality
+  no_ext_base_alignment_quality:
     type: boolean?
     inputBinding:
       prefix: --no-ext-baq
     doc: "Use 'normal' BAQ (samtools default) instead of extended BAQ (both computed on the fly if not already present in lb tag)"
 
-  - id: min_mq
+  min_mq:
     label: min_mapping_quality
     type: int?
     default: 0
@@ -154,53 +151,53 @@ inputs:
       prefix: --min-mq
     doc: "Skip reads with mapping quality smaller than INT [0]"
 
-  - id: max_mapping_quality
+  max_mapping_quality:
     type: int?
     default: 255
     inputBinding:
       prefix: --max-mq
     doc: "Cap mapping quality at INT [255]"
 
-  - id: no_mapping_quality
+  no_mapping_quality:
     type: boolean?
     inputBinding:
       prefix: --no-mq
     doc: "Don't merge mapping quality in LoFreq's model"
 
-  - id: enable_source_qual
+  enable_source_qual:
     type: boolean?
     inputBinding:
       prefix: --src-qual
     doc: 'Enable computation of source quality'
 
-  - id: ignore_vcf
+  ignore_vcf:
     type: File[]?
     inputBinding:
       prefix: --ign-vcf
     doc: "Ignore variants in this vcf file for source quality computation. Multiple files can be given separated by commas"
 
-  - id: replace_non_match
+  replace_non_match:
     type: int?
     default: -1
     inputBinding:
       prefix: --def-nm-q
     doc: 'If >= 0, then replace non-match base qualities with this default value [-1]'
 
-  - id: pvalue_cutoff
+  pvalue_cutoff:
     type: float?
     default: 0.01
     inputBinding:
       prefix: --sig
     doc: "P-Value cutoff / significance level [0.010000]"
 
-  - id: bonferroni
+  bonferroni:
     type: string?
     default: 'dynamic'
     inputBinding:
       prefix: --bonf
     doc: "Bonferroni factor. 'dynamic' (increase per actually performed test) or INT ['dynamic']"
 
-  - id: min_cov
+  min_cov:
     type: int?
     default: 10
     inputBinding:
@@ -208,26 +205,26 @@ inputs:
       position: 2
     doc: "Test only positions having at least this coverage [1] (note: without --no-default-filter default filters (incl. coverage) kick in after predictions are done)"
 
-  - id: max_depth_cov
+  max_depth_cov:
     type: int?
     default: 1000000
     inputBinding:
       prefix: --max-depth
     doc: "Cap coverage at this depth [1000000]"
 
-  - id: illumina_1_3
+  illumina_1_3:
     type: boolean?
     inputBinding:
       prefix: --illumina-1.3
     doc: "Assume the quality is Illumina-1.3-1.7/ASCII+64 encoded"
 
-  - id: use-orphan
+  use_orphan:
     type: boolean?
     inputBinding:
       prefix: --use-orphan
     doc: "Count anomalous read pairs (i.e. where mate is not aligned properly)"
 
-  - id: no-default-filter
+  no_default_filter:
     type: boolean?
     doc: "Don't run default lofreq filter automatically after calling variants"
     inputBinding:
@@ -238,7 +235,7 @@ inputs:
     # --verbose               Be verbose
     # --debug                 Enable debugging
 
-  - id: reads_align
+  reads_align:
     doc: 'bam'
     type: File
     format: edam:format_2572  # BAM
@@ -246,13 +243,14 @@ inputs:
       position: 1001
       valueFrom: $(self.basename)
 
-  - id: reads_index
-    doc: 'bai'
+  reads_index:
+    doc: bai
     type: File
 
 outputs:
-  - id: vcf
+  vcf:
     type: File
+    format: edam:format_3106  # VCF
     outputBinding:
       glob: "*.vcf"
 
