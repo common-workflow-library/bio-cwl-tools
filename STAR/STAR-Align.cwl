@@ -19,7 +19,7 @@ inputs:
       prefix: "--genomeDir"
 
   ForwardReads:
-    format: http://edamontology.org/format_1930
+    format: edam:format_1930  # FASTQ
     type:
      - File
      - File[]
@@ -30,7 +30,7 @@ inputs:
       position: 1
   # If paired-end reads (like Illumina), both 1 and 2 must be provided.
   ReverseReads:
-    format: http://edamontology.org/format_1930
+    format: edam:format_1930  # FASTQ
     type:
      - "null"
      - File
@@ -244,3 +244,8 @@ outputs:
     type: ["null", File]
     outputBinding:
       glob: "Unmapped.out*"
+
+$namespaces:
+  edam: http://edamontology.org/
+$schemas:
+  - http://edamontology.org/EDAM_1.18.owl

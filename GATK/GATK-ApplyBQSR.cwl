@@ -268,8 +268,11 @@ outputs:
       glob: "ApplyBQSR.bai"
   vcf:
     type: ["null", File]
+    format: edam:format_3016  # VCF
     outputBinding:
       glob: "*.vcf"
 
-  
-
+$namespaces:
+  edam: http://edamontology.org/
+$schemas:
+  - http://edamontology.org/EDAM_1.18.owl
