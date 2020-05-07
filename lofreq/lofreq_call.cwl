@@ -250,7 +250,7 @@ inputs:
 outputs:
   vcf:
     type: File
-    format: edam:format_3106  # VCF
+    format: edam:format_3016  # VCF
     outputBinding:
       glob: "*.vcf"
 
