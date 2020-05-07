@@ -2,9 +2,8 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-doc: "LoFreq is a fast and sensitive variant-caller for inferring SNVs and indels
-from next-generation sequencing data."
-label: "LoFreq Call Variants"
+doc: ""
+
 hints:
   RessourceRequirement:
     coresMin: 1
@@ -18,7 +17,6 @@ requirements:
       - $(inputs.reference_index)
       - $(inputs.reference_fasta)
       - $(inputs.reads_index)
-      - $(inputs.reads_align)
 
 baseCommand: [lofreq, call-parallel]
 
@@ -40,7 +38,7 @@ inputs:
   - id: reference_fasta
     doc: 'fasta'
     type: File
-    format: edam:format_1930  # FASTA
+    format: edam:format_1929  # FASTA
     inputBinding:
       prefix: -f
       position: 1000
@@ -234,7 +232,7 @@ inputs:
     doc: "Don't run default lofreq filter automatically after calling variants"
     inputBinding:
       prefix: --no-default-filter
-
+    # Other options 
     # --plp-summary-only      No variant calling. Just output pileup summary per column
     # --force-overwrite       Overwrite any existing output
     # --verbose               Be verbose
