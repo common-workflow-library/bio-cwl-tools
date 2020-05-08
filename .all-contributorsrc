@@ -86,6 +86,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "mberacochea",
+      "name": "Martín Beracochea",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1123897?v=4",
+      "profile": "https://github.com/mberacochea",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
