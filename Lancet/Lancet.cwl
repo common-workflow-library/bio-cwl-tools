@@ -26,7 +26,7 @@ inputs:
 
   Reference: 
     type: File
-    format: "http://edamontology.org/format_1929"
+    format: edam:format_1929  # FASTA
     inputBinding:
       prefix: "--ref"
 
@@ -246,10 +246,16 @@ inputs:
     inputBinding:
       prefix: "--verbose"
 
-baseCommand: ["lancet"]
+baseCommand: lancet
 
 outputs:
   vcf:
+    format: edam:format_3016  # VCF
     type: stdout
 
 stdout: "lancet-out.vcf"
+
+$namespaces:
+  edam: http://edamontology.org/
+$schemas:
+  - http://edamontology.org/EDAM_1.18.owl

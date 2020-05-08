@@ -9,7 +9,7 @@ requirements:
 inputs:
   InputReads:
     type: File[]
-    format: http://edamontology.org/format_1930 # FASTA
+    format: edam:format_1930  # FASTA
     inputBinding:
       position: 200
 
@@ -139,4 +139,8 @@ outputs:
     type: ["null", File]
     outputBinding:
       glob: "fusion.txt"
-  
+
+$namespaces:
+  edam: http://edamontology.org/
+$schemas:
+  - http://edamontology.org/EDAM_1.18.owl

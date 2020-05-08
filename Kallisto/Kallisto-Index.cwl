@@ -1,3 +1,4 @@
+#!/usr/bin/env cwl-runner
 cwlVersion: v1.0
 class: CommandLineTool
 
@@ -9,7 +10,7 @@ requirements:
 inputs:
   InputFiles:
     type: File[]
-    format: http://edamontology.org/format_1929 # FASTA
+    format: edam:format_1929 # FASTA
     inputBinding:
       position: 200
     
@@ -41,4 +42,8 @@ outputs:
     type: File
     outputBinding:
       glob: $(inputs.IndexName)
-  
+
+$namespaces:
+  edam: http://edamontology.org/
+$schemas:
+  - http://edamontology.org/EDAM_1.18.owl

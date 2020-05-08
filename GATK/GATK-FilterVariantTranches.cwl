@@ -62,5 +62,11 @@ arguments:
 outputs:
   filteredVCF:
     type: File
+    format: edam:format_3016  # VCF
     outputBinding:
       glob: "filtered.vcf"
+
+$namespaces:
+  edam: http://edamontology.org/
+$schemas:
+  - http://edamontology.org/EDAM_1.18.owl

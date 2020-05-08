@@ -248,17 +248,22 @@ outputs:
   alignment:
     type: File
     outputBinding:
-      glob: $("MarkDuplicatesOut" + inputs.InputFile.nameext)
+      glob: MarkDuplicatesOut$(inputs.InputFile.nameext)
   metrics:
     type: File
     outputBinding:
       glob: "MarkDuplicatesMetrics.txt"
   index:
-    type: ["null", File]
+    type: File?
     outputBinding:
       glob: "*.bai"
   vcf:
-    type: ["null", File]
+    type: File?
+    format: edam:format_3016  # VCF
     outputBinding:
       glob: "*.vcf"
 
+$namespaces:
+  edam: http://edamontology.org/
+$schemas:
+  - http://edamontology.org/EDAM_1.18.owl
