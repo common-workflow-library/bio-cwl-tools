@@ -18,8 +18,8 @@ hints:
     outdirMin: |
       ${
         var sum = 0;
-        for (var i = 0; i < inputs.readsFA.length; i++) {
-          sum += inputs.readsFA[i].size;
+        for (var i = 0; i < inputs.reads.length; i++) {
+          sum += inputs.reads[i].size;
         }
         return (sum/(1024*1024*1024)+1) + 20;
       }
@@ -46,8 +46,8 @@ baseCommand: [ seqkit, rmdup ]
 arguments:
  - --by-seq
  - --threads=$(runtime.cores)
- - --dup-num-file,
- - dups.txt,
- - --out-file,
+ - --dup-num-file
+ - dups.txt
+ - --out-file
  - $(inputs.reads.nameroot)_dedup.fasta
  - $(inputs.reads.path)
