@@ -5,6 +5,7 @@ class: CommandLineTool
 hints:
   ResourceRequirement:
     coresMin: 8
+    ramMin: 17408
   DockerRequirement:
     dockerImageId: graph-genome-component_segmentation
     dockerFile: |
