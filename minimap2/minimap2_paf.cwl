@@ -22,7 +22,7 @@ hints:
     coresMin: 8
     coresMax: 32
     ramMin: $(15 * 1024)
-    outdirMin: $(Math.ceil(inputs.readsFA.size/(1024*1024*1024) + 20))
+    outdirMin: $(Math.ceil(inputs.target.size/(1024*1024*1024) + 20))
 
 inputs:
   preset:
@@ -38,7 +38,7 @@ inputs:
           - asm10
           - asm20
           - splice
-          - sr 
+          - sr
     inputBinding:
       prefix: "-x"
   outputCIGAR:
@@ -46,6 +46,11 @@ inputs:
     label: output CIGAR in PAF
     inputBinding:
       prefix: -c
+  miniWinSize:
+    type: int?
+    label: minimizer window length
+    inputBinding:
+      prefix: -w
   target:
     type: File
     inputBinding:
@@ -60,9 +65,9 @@ inputs:
 
 arguments:
   - -t
-  - $(runtime.cores) 
+  - $(runtime.cores)
 
-stdout: $(inputs.indexFile.nameroot)_$(inputs.fastqFiles[0].nameroot).paf
+stdout: "$(inputs.target.nameroot)_$((Array.isArray(inputs.query) ? inputs.query[0] : inputs.query).nameroot).paf"
 
 outputs:
   alignments: stdout
