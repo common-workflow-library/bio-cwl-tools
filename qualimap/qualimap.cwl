@@ -7,14 +7,13 @@ id: qualimap
 label: qualimap-qc
 doc: This is qualimap CWL tool definition http://qualimap.bioinfo.cipf.es/
 
-# Requirements
-requirements:
+hints:
   - class: ResourceRequirement
     ramMin: 4000
     coresMin: 1
   - class: DockerRequirement
     dockerPull: 'quay.io/biocontainers/qualimap:2.2.2d--1'
-  - class: InlineJavascriptRequirement
+requirements:
   - class: ShellCommandRequirement
 
 # Base command
@@ -90,11 +89,6 @@ s:name: "qualimap_qc"
 s:codeRepository: https://github.com/common-workflow-library/bio-cwl-tools
 s:license: http://www.apache.org/licenses/LICENSE-2.0
 
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
-
 s:creator:
 - class: s:Organization
   s:legalName: "University of Melbourne Centre for Cancer Research"
@@ -103,4 +97,3 @@ s:creator:
     s:name: Dr. Sehrish Kanwal
     s:email: mailto:kanwals@unimelb.edu.au
   
-
