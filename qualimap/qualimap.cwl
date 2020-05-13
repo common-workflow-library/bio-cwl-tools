@@ -3,15 +3,21 @@ cwlVersion: v1.0
 class: CommandLineTool
 
 # Metadata
-id: qualimap
 label: qualimap-qc
 doc: This is qualimap CWL tool definition http://qualimap.bioinfo.cipf.es/
 
 hints:
-  - class: ResourceRequirement
+  ResourceRequirement:
     ramMin: 4000
     coresMin: 1
-  - class: DockerRequirement
+  SoftwareRequirement:
+    packages:
+      qualimap:
+        version: [ "2.2.2d" ]
+        specs:
+          - https://identifiers.org/rrid/RRID:SCR_001209
+          - https://bio.tools/qualimap
+  DockerRequirement:
     dockerPull: 'quay.io/biocontainers/qualimap:2.2.2d--1'
 requirements:
   - class: ShellCommandRequirement
@@ -85,7 +91,6 @@ $namespaces:
 $schemas:
 - http://schema.org/version/latest/schema.rdf
 
-s:name: "qualimap_qc"
 s:codeRepository: https://github.com/common-workflow-library/bio-cwl-tools
 s:license: http://www.apache.org/licenses/LICENSE-2.0
 
