@@ -27,7 +27,11 @@ requirements:
 # Base command
 baseCommand: [ "qualimap"]
 
+<<<<<<< HEAD
 # Desired java memory size can be set using --java-mem-size option
+=======
+# Perform RNA-seq QC analysis on paired-end data http://qualimap.bioinfo.cipf.es/doc_html/command_line.html
+>>>>>>> 0f70448a818b2c100cd9c40f1ec39f970739e815
 arguments:
   - valueFrom: |-
       rnaseq --paired --java-mem-size="$(inputs.javamem)"
