@@ -24,7 +24,7 @@ BWA-Index.cwl
 
 The first 3 lines of tool wrappers should be as follows. Our CI/CD system checks for these so make sure to include them so they can be merged into the repo.
 
-```yaml
+``` cwl
 #!/usr/bin/env cwl-runner
 cwlVersion: v1.0
 class: CommandLineTool
@@ -48,12 +48,12 @@ chmod +x tool.cwl
 
 There is a requirements section which handles settings for the runner config. Docker containers should be from biocontainers.pro if possible and placed in the hints section.
 
-```yaml
+``` cwl
 requirements:
   InlineJavascriptRequirement: {}
 ```
 
-```yaml
+``` cwl
 hints:
   DockerRequirement:
     dockerPull: "quay.io/biocontainers/bwa:0.7.17--ha92aebf_3"
@@ -87,7 +87,7 @@ However, don't use `s:mainEntity`, put that information under `hints` as a `Soft
 
 If your tool has well defined input or output files, we recommend the addition of file formats using ontologies such as EDAM. CWL executors like cwltool can do some basic reasoning using this information and can warn about obvious mismatches.  
 
-```
+``` cwl
 input_sequences:
     type: 
       - File
