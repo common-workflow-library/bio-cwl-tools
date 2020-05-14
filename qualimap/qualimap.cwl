@@ -29,7 +29,7 @@ baseCommand: [ qualimap, rnaseq ]
 
 arguments:
   - valueFrom: |-
-      rnaseq --paired --java-mem-size="$(inputs.javamem)"
+      --paired --java-mem-size="$(inputs.javamem)"
     shellQuote: false
   - prefix: -outdir
     valueFrom: $(inputs.inputBam.nameroot)
