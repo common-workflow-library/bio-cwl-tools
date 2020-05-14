@@ -9,10 +9,6 @@
         },
         {
             "class": "InlineJavascriptRequirement"
-        },
-        {
-            "class": "DockerRequirement",
-            "dockerPull": "docker"
         }
     ],
     "class": "CommandLineTool",
@@ -26,27 +22,23 @@
             "type": "string"
         },
         {
-            "id": "ReferenceGenome",
-            "type": "File"
-        },
-        {
-            "id": "docker",
+            "id": "samtoolsPath",
             "type": "string"
         }
     ],
-    "id": "bcftools",
+    "id": "samtoolsSort",
     "outputs": [
         {
-            "id": "rawVCF",
+            "id": "rawBAM",
             "type": "File",
             "outputBinding": {
-                "glob": "$(inputs.sampleName).vcf"
+                "glob": "$(inputs.sampleName).sorted.bam"
             }
         }
     ],
     "arguments": [
         {
-            "valueFrom": "bcftools mpileup -f $(inputs.ReferenceGenome.path) $(inputs.inputBAM.path) | bcftools call -mv -Ob -o $(inputs.sampleName).vcf",
+            "valueFrom": "samtools sort -l 0 -o $(inputs.sampleName).sorted.bam $(inputs.inputBAM.path)",
             "shellQuote": false
         }
     ],

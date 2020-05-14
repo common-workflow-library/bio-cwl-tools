@@ -32,23 +32,19 @@
     "class": "Workflow",
     "inputs": [
         {
-            "id": "bowtieDocker",
-            "type": "string"
-        },
-        {
-            "id": "samtoolsDocker",
-            "type": "string"
-        },
-        {
-            "id": "bcftoolsDocker",
-            "type": "string"
-        },
-        {
             "id": "referenceGenome",
             "type": "File"
         },
         {
             "id": "name",
+            "type": "string"
+        },
+        {
+            "id": "samtoolsPath",
+            "type": "string"
+        },
+        {
+            "id": "bcftoolsPath",
             "type": "string"
         },
         {
@@ -60,7 +56,7 @@
             "type": "File"
         }
     ],
-    "id": "samtoolsDocker",
+    "id": "samtools",
     "requirements": [
         {
             "class": "InlineJavascriptRequirement"
@@ -78,10 +74,6 @@
                 {
                     "id": "sampleName",
                     "source": "name"
-                },
-                {
-                    "id": "docker",
-                    "source": "bowtieDocker"
                 },
                 {
                     "id": "index",
@@ -111,8 +103,8 @@
                     "source": "#Alignment/rawSAM"
                 },
                 {
-                    "id": "docker",
-                    "source": "samtoolsDocker"
+                    "id": "samtoolsPath",
+                    "source": "samtoolsPath"
                 },
                 {
                     "id": "sampleName",
@@ -134,8 +126,8 @@
                     "source": "#samtoolsView/rawBAM"
                 },
                 {
-                    "id": "docker",
-                    "source": "samtoolsDocker"
+                    "id": "samtoolsPath",
+                    "source": "samtoolsPath"
                 },
                 {
                     "id": "sampleName",
@@ -157,8 +149,8 @@
                     "source": "#samtoolsSort/rawBAM"
                 },
                 {
-                    "id": "docker",
-                    "source": "samtoolsDocker"
+                    "id": "samtoolsPath",
+                    "source": "samtoolsPath"
                 },
                 {
                     "id": "sampleName",
@@ -184,12 +176,12 @@
                     "source": "name"
                 },
                 {
-                    "id": "ReferenceGenome",
-                    "source": "referenceGenome"
+                    "id": "bcftoolsPath",
+                    "source": "bcftoolsPath"
                 },
                 {
-                    "id": "docker",
-                    "source": "bcftoolsDocker"
+                    "id": "ReferenceGenome",
+                    "source": "referenceGenome"
                 }
             ],
             "out": [

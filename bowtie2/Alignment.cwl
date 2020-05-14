@@ -9,16 +9,20 @@
         },
         {
             "class": "InlineJavascriptRequirement"
-        },
-        {
-            "class": "DockerRequirement",
-            "dockerPull": "docker"
         }
     ],
     "class": "CommandLineTool",
     "inputs": [
         {
-            "id": "inputBAM",
+            "id": "leftFastq",
+            "type": "File"
+        },
+        {
+            "id": "rightFastq",
+            "type": "File"
+        },
+        {
+            "id": "ReferenceGenome",
             "type": "File"
         },
         {
@@ -26,23 +30,23 @@
             "type": "string"
         },
         {
-            "id": "docker",
+            "id": "index",
             "type": "string"
         }
     ],
-    "id": "samtoolsIndex",
+    "id": "Alignment",
     "outputs": [
         {
-            "id": "rawBAM",
+            "id": "rawSAM",
             "type": "File",
             "outputBinding": {
-                "glob": "$(inputs.sampleName).bam.bai"
+                "glob": "$(inputs.sampleName).sam"
             }
         }
     ],
     "arguments": [
         {
-            "valueFrom": "samtools index $(inputs.inputBAM.path) > $(inputs.sampleName).bam.bai",
+            "valueFrom": "export PATH=$PATH:/home/ngsap2/Downloads/bowtie2-2.4.1          bowtie2-build $(inputs.ReferenceGenome.path) $(inputs.index)                     bowtie2 -q -x $(inputs.index) -1 $(inputs.leftFastq.path) -2 $(inputs.rightFastq.path) -S $(inputs.sampleName).sam",
             "shellQuote": false
         }
     ],

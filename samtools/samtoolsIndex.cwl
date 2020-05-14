@@ -9,16 +9,12 @@
         },
         {
             "class": "InlineJavascriptRequirement"
-        },
-        {
-            "class": "DockerRequirement",
-            "dockerPull": "docker"
         }
     ],
     "class": "CommandLineTool",
     "inputs": [
         {
-            "id": "inputSAM",
+            "id": "inputBAM",
             "type": "File"
         },
         {
@@ -26,23 +22,23 @@
             "type": "string"
         },
         {
-            "id": "docker",
+            "id": "samtoolsPath",
             "type": "string"
         }
     ],
-    "id": "samtoolsView",
+    "id": "samtoolsIndex",
     "outputs": [
         {
             "id": "rawBAM",
             "type": "File",
             "outputBinding": {
-                "glob": "$(inputs.sampleName).bam"
+                "glob": "$(inputs.sampleName).bam.bai"
             }
         }
     ],
     "arguments": [
         {
-            "valueFrom": "samtools view -bS $(inputs.inputSAM.path) > $(inputs.sampleName).bam",
+            "valueFrom": "samtools index $(inputs.inputBAM.path) > $(inputs.sampleName).bam.bai",
             "shellQuote": false
         }
     ],
