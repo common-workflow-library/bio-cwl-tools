@@ -25,7 +25,7 @@ requirements:
   - class: ShellCommandRequirement
 
 # Base command
-baseCommand: [ "qualimap"]
+baseCommand: [ qualimap, rnaseq ]
 
 arguments:
   - valueFrom: |-
