@@ -64,13 +64,16 @@ inputs:
       Input mapping file in BAM format.
 
   seqProtocol:
-    type: string
+    type:
+      - "null"
+      - type: enum
+        symbols:
+           - strand-specific-forward
+           - strand-specific-reverse
+           - non-strand-specific
     inputBinding:
-      prefix: "-p"
-    doc: |
-      Sequencing library protocol:
-      strand-specific-forward, strand-specific-reverse or 
-      non-strand-specific (default).
+      prefix: "--sequencing-protocol"
+    label: Sequencing library protocol
   
   gtf:
     type: File
