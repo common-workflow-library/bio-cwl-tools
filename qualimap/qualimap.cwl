@@ -50,7 +50,7 @@ inputs:
   algo:
     type: string
     inputBinding:
-      prefix: "-a"
+      prefix: --algorithm
     doc: |
       Counting algorithm:
       uniquely-mapped-reads(default) or proportional.
