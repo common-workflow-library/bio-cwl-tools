@@ -90,8 +90,9 @@ inputs:
 outputs:
   qualimapQC:
     type: Directory
+    label: HTML report and raw data
     outputBinding:
-      glob: "$(inputs.outdir)" 
+      glob: $(inputs.inputBam.nameroot)
 
 $namespaces:
   s: http://schema.org/
