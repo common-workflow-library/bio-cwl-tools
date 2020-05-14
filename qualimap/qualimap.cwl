@@ -37,8 +37,8 @@ arguments:
 inputs:
   javamem:
     type: string
-    doc: |
-      Set desired Java heap memory size
+    default: "1200M"
+    label: Set desired Java heap memory size
 
   outdir:
     type: string
