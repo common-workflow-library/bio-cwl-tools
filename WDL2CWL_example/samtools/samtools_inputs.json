@@ -1,0 +1,9 @@
+{
+  "samtools.name": "ebola",
+  "samtools.Alignment.rightFastq": "/home/ngsap2/Downloads/ebola_DELDUPDELreads_2.fq",
+  "samtools.referenceGenome": "/home/ngsap2/Downloads/ebola.fasta",
+  "samtools.samtoolsPath": "/home/ngsap2/Downloads/samtools-1.10",
+  "samtools.bcftoolsPath": "/home/ngsap2/Downloads/bcftools-1.10.2",
+  "samtools.Alignment.leftFastq": "/home/ngsap2/Downloads/ebola_DELDUPDELreads_1.fq"
+}
+    
