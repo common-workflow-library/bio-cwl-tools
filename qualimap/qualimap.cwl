@@ -40,13 +40,6 @@ inputs:
     default: "1200M"
     label: Set desired Java heap memory size
 
-  outdir:
-    type: string
-    inputBinding:
-      prefix: "-outdir"
-    doc: |
-      Output folder for HTML report and raw data.
-
   algo:
     type:
       - "null"
@@ -93,6 +86,13 @@ outputs:
     label: HTML report and raw data
     outputBinding:
       glob: $(inputs.inputBam.nameroot)
+  
+  qualimapHTML:
+    type: File
+    label: HTML report
+    outputBinding:
+      glob: $(inputs.inputBam.nameroot)/qualimapReport.html
+      
 
 $namespaces:
   s: http://schema.org/
