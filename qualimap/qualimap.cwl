@@ -4,7 +4,9 @@ class: CommandLineTool
 
 # Metadata
 label: qualimap-qc
-doc: This is qualimap CWL tool definition http://qualimap.bioinfo.cipf.es/
+doc: |-
+  This is qualimap CWL tool definition http://qualimap.bioinfo.cipf.es/.
+  It perform RNA-seq QC analysis on paired-end data http://qualimap.bioinfo.cipf.es/doc_html/command_line.html.
 
 hints:
   ResourceRequirement:
@@ -25,7 +27,6 @@ requirements:
 # Base command
 baseCommand: [ "qualimap"]
 
-# Perform RNA-seq QC analysis on paired-end data http://qualimap.bioinfo.cipf.es/doc_html/command_line.html
 # Desired java memory size can be set using --java-mem-size option
 arguments:
   - valueFrom: |-
