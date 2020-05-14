@@ -83,6 +83,21 @@ If you use schema.org annotations, specify the schema using the RDF version: `$s
 
 However, don't use `s:mainEntity`, put that information under `hints` as a `SoftwareRequirement`
 
+## File Formats
+
+If your tool has well defined input or output files, we recommend the addition of file formats using ontologies such as EDAM. CWL executors like cwltool can do some basic reasoning using this information and can warn about obvious mismatches.  
+
+```
+input_sequences:
+    type: 
+      - File
+      - File[]
+    label: "Input sequence files"
+    format:
+      - edam:format_1929  # FASTA
+      - edam:format_1930  # FASTQ
+```
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
