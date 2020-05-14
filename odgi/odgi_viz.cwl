@@ -68,7 +68,7 @@ inputs:
 arguments:
   - --idx=$(inputs.sparse_graph_index.path)
   - --threads=$(runtime.cores)
-  - --out=$(inputs.sparse_graph.index.nameroot).png
+  - --out=$(inputs.sparse_graph_index.nameroot).png
 
 baseCommand: [ odgi, viz ]
 
