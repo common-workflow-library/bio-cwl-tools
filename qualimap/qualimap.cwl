@@ -48,12 +48,15 @@ inputs:
       Output folder for HTML report and raw data.
 
   algo:
-    type: string
+    type:
+      - "null"
+      - type: enum
+        symbols:
+          - uniquely-mapped-reads
+          - proportional
     inputBinding:
-      prefix: --algorithm
-    doc: |
-      Counting algorithm:
-      uniquely-mapped-reads(default) or proportional.
+      prefix: "--algorithm"
+    label: Counting algorithm
 
   inputBam:
     type: File
