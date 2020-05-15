@@ -28,9 +28,8 @@ requirements:
 baseCommand: [ qualimap, rnaseq ]
 
 arguments:
-  - valueFrom: |-
-      --paired --java-mem-size="$(inputs.javamem)"
-    shellQuote: false
+  - --paired
+  - --java-mem-size=$(inputs.javamem)
   - prefix: -outdir
     valueFrom: $(inputs.inputBam.nameroot)
 
