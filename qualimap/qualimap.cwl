@@ -21,8 +21,6 @@ hints:
           - https://bio.tools/qualimap
   DockerRequirement:
     dockerPull: 'quay.io/biocontainers/qualimap:2.2.2d--1'
-requirements:
-  - class: ShellCommandRequirement
 
 # Base command
 baseCommand: [ qualimap, rnaseq ]
@@ -55,8 +53,7 @@ inputs:
     secondaryFiles: .bai
     inputBinding:
       prefix: "-bam"
-    doc: |
-      Input mapping file in BAM format.
+    label: Input mapping file in BAM format.
 
   seqProtocol:
     type:
@@ -74,10 +71,7 @@ inputs:
     type: File
     inputBinding:
       prefix: "-gtf"
-    doc: |
-      Region file in GTF, GFF or BED format. 
-      If GTF format is provided, counting is based on
-      attributes, otherwise based on feature name.
+    label: Region file in GTF, GFF or BED format.
 
 outputs:
   qualimapQC:
@@ -90,8 +84,7 @@ outputs:
     type: File
     label: HTML report
     outputBinding:
-      glob: $(inputs.inputBam.nameroot)/qualimapReport.html
-      
+      glob: $(inputs.inputBam.nameroot)/qualimapReport.html    
 
 $namespaces:
   s: http://schema.org/
