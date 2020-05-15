@@ -96,6 +96,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "denis-yuen",
+      "name": "Denis Yuen",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1730679?v=4",
+      "profile": "https://orcid.org/0000-0002-6130-1021",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,

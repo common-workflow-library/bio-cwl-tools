@@ -1,6 +1,6 @@
 Goals: to collect and collaboratively maintain [CWL](https://www.commonwl.org) `CommandLineTool` descriptions of any biology/life-sciences related applications.
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END --> 
 [![Build Status](https://travis-ci.com/common-workflow-library/bio-cwl-tools.svg?branch=release)](https://travis-ci.com/common-workflow-library/bio-cwl-tools)
 
@@ -24,7 +24,7 @@ BWA-Index.cwl
 
 The first 3 lines of tool wrappers should be as follows. Our CI/CD system checks for these so make sure to include them so they can be merged into the repo.
 
-```yaml
+``` cwl
 #!/usr/bin/env cwl-runner
 cwlVersion: v1.0
 class: CommandLineTool
@@ -48,12 +48,12 @@ chmod +x tool.cwl
 
 There is a requirements section which handles settings for the runner config. Docker containers should be from biocontainers.pro if possible and placed in the hints section.
 
-```yaml
+``` cwl
 requirements:
   InlineJavascriptRequirement: {}
 ```
 
-```yaml
+``` cwl
 hints:
   DockerRequirement:
     dockerPull: "quay.io/biocontainers/bwa:0.7.17--ha92aebf_3"
@@ -83,6 +83,21 @@ If you use schema.org annotations, specify the schema using the RDF version: `$s
 
 However, don't use `s:mainEntity`, put that information under `hints` as a `SoftwareRequirement`
 
+## File Formats
+
+If your tool has well defined input or output files, we recommend the addition of file formats using ontologies such as EDAM. CWL executors like cwltool can do some basic reasoning using this information and can warn about obvious mismatches.  
+
+``` cwl
+input_sequences:
+    type: 
+      - File
+      - File[]
+    label: "Input sequence files"
+    format:
+      - edam:format_1929  # FASTA
+      - edam:format_1930  # FASTQ
+```
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
@@ -104,6 +119,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/fjrmoreews"><img src="https://avatars0.githubusercontent.com/u/15047744?v=4" width="100px;" alt=""/><br /><sub><b>fjrmoreews</b></sub></a><br /><a href="https://github.com/common-workflow-library/bio-cwl-tools/commits?author=fjrmoreews" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/hellymac"><img src="https://avatars3.githubusercontent.com/u/25847234?v=4" width="100px;" alt=""/><br /><sub><b>cjuigne</b></sub></a><br /><a href="https://github.com/common-workflow-library/bio-cwl-tools/commits?author=hellymac" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/mberacochea"><img src="https://avatars3.githubusercontent.com/u/1123897?v=4" width="100px;" alt=""/><br /><sub><b>Martín Beracochea</b></sub></a><br /><a href="https://github.com/common-workflow-library/bio-cwl-tools/commits?author=mberacochea" title="Code">💻</a></td>
+    <td align="center"><a href="https://orcid.org/0000-0002-6130-1021"><img src="https://avatars0.githubusercontent.com/u/1730679?v=4" width="100px;" alt=""/><br /><sub><b>Denis Yuen</b></sub></a><br /><a href="https://github.com/common-workflow-library/bio-cwl-tools/commits?author=denis-yuen" title="Documentation">📖</a></td>
   </tr>
 </table>
 
