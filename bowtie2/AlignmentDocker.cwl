@@ -50,7 +50,7 @@
                 glob: $(inputs.sampleName).sam
       
     arguments: 
-             valueFrom: bowtie2-build $(inputs.ReferenceGenome.path) $(inputs.index)    bowtie2 -q -x $(inputs.index) -1 $(inputs.leftFastq.path) -2 $(inputs.rightFastq.path) -S $(inputs.sampleName).sam
+             valueFrom: bowtie2-build $(inputs.ReferenceGenome.path) $(inputs.index) | bowtie2 -q -x $(inputs.index) -1 $(inputs.leftFastq.path) -2 $(inputs.rightFastq.path) -S $(inputs.sampleName).sam
              shellQuote: false
         
     
