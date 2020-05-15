@@ -4,13 +4,13 @@
     cwlVersion: v1.0
     baseCommand: []
     requirements:         
-           -class: ShellCommandRequirement
+           - class: ShellCommandRequirement
         
         
-           -class: InlineJavascriptRequirement
+           - class: InlineJavascriptRequirement
         
         
-           -class: DockerRequirement
+           - class: DockerRequirement
              dockerPull: docker
         
     
