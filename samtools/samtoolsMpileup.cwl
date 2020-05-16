@@ -25,6 +25,6 @@ outputs:
 baseCommand: []
 arguments:
 - valueFrom: |-
-    samtools index $(inputs.inputBAM.path)samtools mpileup -B -f $(inputs.ReferenceGenome.path) $(inputs.inputBAM.path) > $(inputs.sampleName).mpileup
+    samtools index $(inputs.inputBAM.path) | samtools mpileup -B -f $(inputs.ReferenceGenome.path) $(inputs.inputBAM.path) > $(inputs.sampleName).mpileup
   shellQuote: false
 id: samtoolsMpileup
