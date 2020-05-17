@@ -1,419 +1,215 @@
 #!/usr/bin/env cwl-runner
 # This tool description was generated automatically by wdl2cwl ver. 0.2
 
-{
-    "cwlVersion": "v1.0", 
-    "inputs": [
-        {
-            "type": "File", 
-            "id": "gatk"
-        }, 
-        {
-            "type": "File", 
-            "id": "refIndex"
-        }, 
-        {
-            "type": "File", 
-            "id": "refDict"
-        }, 
-        {
-            "type": "File", 
-            "id": "referenceGenome"
-        }, 
-        {
-            "type": "string", 
-            "id": "name"
-        }, 
-        {
-            "type": "File", 
-            "id": "Alignment_leftFastq"
-        }, 
-        {
-            "type": "File", 
-            "id": "Alignment_rightFastq"
-        }
-    ], 
-    "requirements": [
-        {
-            "class": "InlineJavascriptRequirement"
-        }
-    ], 
-    "outputs": [
-        {
-            "outputSource": "#Alignment/rawSAM", 
-            "type": "File", 
-            "id": "Alignment_rawSAM"
-        }, 
-        {
-            "outputSource": "#AddOrReplaceReadGroups/rawBAM", 
-            "type": "File", 
-            "id": "AddOrReplaceReadGroups_rawBAM"
-        }, 
-        {
-            "outputSource": "#SortSam/rawBAM", 
-            "type": "File", 
-            "id": "SortSam_rawBAM"
-        }, 
-        {
-            "outputSource": "#ReferenceSeqIndex/refIndex", 
-            "type": "File", 
-            "id": "ReferenceSeqIndex_refIndex"
-        }, 
-        {
-            "outputSource": "#ReferenceSeqDictionary/refDict", 
-            "type": "File", 
-            "id": "ReferenceSeqDictionary_refDict"
-        }, 
-        {
-            "outputSource": "#MarkDuplicates/rawBAM", 
-            "type": "File", 
-            "id": "MarkDuplicates_rawBAM"
-        }, 
-        {
-            "outputSource": "#SplitNCigarReads/rawBAM", 
-            "type": "File", 
-            "id": "SplitNCigarReads_rawBAM"
-        }, 
-        {
-            "outputSource": "#HaplotypeCaller/rawVCF", 
-            "type": "File", 
-            "id": "HaplotypeCaller_rawVCF"
-        }, 
-        {
-            "outputSource": "#VariantFilteration/rawVCF", 
-            "type": "File", 
-            "id": "VariantFilteration_rawVCF"
-        }, 
-        {
-            "outputSource": "#SelectSNPs/rawVCF", 
-            "type": "File", 
-            "id": "SelectSNPs_rawVCF"
-        }, 
-        {
-            "outputSource": "#SelectINDELs/rawVCF", 
-            "type": "File", 
-            "id": "SelectINDELs_rawVCF"
-        }
-    ], 
-    "class": "Workflow", 
-    "steps": [
-        {
-            "out": [
-                {
-                    "id": "rawSAM"
-                }
-            ], 
-            "run": "Alignment.cwl", 
-            "id": "Alignment", 
-            "in": [
-                {
-                    "source": "referenceGenome", 
-                    "id": "ReferenceGenome"
-                }, 
-                {
-                    "source": "name", 
-                    "id": "sampleName"
-                }, 
-                {
-                    "source": "name", 
-                    "id": "index"
-                }, 
-                {
-                    "source": "Alignment_leftFastq", 
-                    "id": "leftFastq"
-                }, 
-                {
-                    "source": "Alignment_rightFastq", 
-                    "id": "rightFastq"
-                }
-            ]
-        }, 
-        {
-            "out": [
-                {
-                    "id": "rawBAM"
-                }
-            ], 
-            "run": "AddOrReplaceReadGroups.cwl", 
-            "id": "AddOrReplaceReadGroups", 
-            "in": [
-                {
-                    "source": "#Alignment/rawSAM", 
-                    "id": "inputSAM"
-                }, 
-                {
-                    "source": "gatk", 
-                    "id": "GATK"
-                }, 
-                {
-                    "source": "name", 
-                    "id": "sampleName"
-                }
-            ]
-        }, 
-        {
-            "out": [
-                {
-                    "id": "rawBAM"
-                }
-            ], 
-            "run": "SortSam.cwl", 
-            "id": "SortSam", 
-            "in": [
-                {
-                    "source": "#AddOrReplaceReadGroups/rawBAM", 
-                    "id": "inputBAM"
-                }, 
-                {
-                    "source": "gatk", 
-                    "id": "GATK"
-                }, 
-                {
-                    "source": "name", 
-                    "id": "sampleName"
-                }
-            ]
-        }, 
-        {
-            "out": [
-                {
-                    "id": "refIndex"
-                }
-            ], 
-            "run": "ReferenceSeqIndex.cwl", 
-            "id": "ReferenceSeqIndex", 
-            "in": [
-                {
-                    "source": "referenceGenome", 
-                    "id": "ReferenceGenome"
-                }, 
-                {
-                    "source": "name", 
-                    "id": "sampleName"
-                }
-            ]
-        }, 
-        {
-            "out": [
-                {
-                    "id": "refDict"
-                }
-            ], 
-            "run": "ReferenceSeqDictionary.cwl", 
-            "id": "ReferenceSeqDictionary", 
-            "in": [
-                {
-                    "source": "gatk", 
-                    "id": "GATK"
-                }, 
-                {
-                    "source": "referenceGenome", 
-                    "id": "ReferenceGenome"
-                }, 
-                {
-                    "source": "name", 
-                    "id": "sampleName"
-                }
-            ]
-        }, 
-        {
-            "out": [
-                {
-                    "id": "rawBAM"
-                }
-            ], 
-            "run": "MarkDuplicates.cwl", 
-            "id": "MarkDuplicates", 
-            "in": [
-                {
-                    "source": "#SortSam/rawBAM", 
-                    "id": "inputBAM"
-                }, 
-                {
-                    "source": "gatk", 
-                    "id": "GATK"
-                }, 
-                {
-                    "source": "name", 
-                    "id": "sampleName"
-                }
-            ]
-        }, 
-        {
-            "out": [
-                {
-                    "id": "rawBAM"
-                }
-            ], 
-            "run": "SplitNCigarReads.cwl", 
-            "id": "SplitNCigarReads", 
-            "in": [
-                {
-                    "source": "#MarkDuplicates/rawBAM", 
-                    "id": "inputBAM"
-                }, 
-                {
-                    "source": "refIndex", 
-                    "id": "RefIndex"
-                }, 
-                {
-                    "source": "refDict", 
-                    "id": "RefDict"
-                }, 
-                {
-                    "source": "gatk", 
-                    "id": "GATK"
-                }, 
-                {
-                    "source": "referenceGenome", 
-                    "id": "ReferenceGenome"
-                }, 
-                {
-                    "source": "name", 
-                    "id": "sampleName"
-                }
-            ]
-        }, 
-        {
-            "out": [
-                {
-                    "id": "rawVCF"
-                }
-            ], 
-            "run": "HaplotypeCaller.cwl", 
-            "id": "HaplotypeCaller", 
-            "in": [
-                {
-                    "source": "#SplitNCigarReads/rawBAM", 
-                    "id": "inputBAM"
-                }, 
-                {
-                    "source": "refIndex", 
-                    "id": "RefIndex"
-                }, 
-                {
-                    "source": "refDict", 
-                    "id": "RefDict"
-                }, 
-                {
-                    "source": "gatk", 
-                    "id": "GATK"
-                }, 
-                {
-                    "source": "referenceGenome", 
-                    "id": "ReferenceGenome"
-                }, 
-                {
-                    "source": "name", 
-                    "id": "sampleName"
-                }
-            ]
-        }, 
-        {
-            "out": [
-                {
-                    "id": "rawVCF"
-                }
-            ], 
-            "run": "VariantFilteration.cwl", 
-            "id": "VariantFilteration", 
-            "in": [
-                {
-                    "source": "#HaplotypeCaller/rawVCF", 
-                    "id": "mutantVCF"
-                }, 
-                {
-                    "source": "refIndex", 
-                    "id": "RefIndex"
-                }, 
-                {
-                    "source": "refDict", 
-                    "id": "RefDict"
-                }, 
-                {
-                    "source": "gatk", 
-                    "id": "GATK"
-                }, 
-                {
-                    "source": "referenceGenome", 
-                    "id": "ReferenceGenome"
-                }, 
-                {
-                    "source": "name", 
-                    "id": "sampleName"
-                }
-            ]
-        }, 
-        {
-            "out": [
-                {
-                    "id": "rawVCF"
-                }
-            ], 
-            "run": "SelectSNPs.cwl", 
-            "id": "SelectSNPs", 
-            "in": [
-                {
-                    "source": "#VariantFilteration/rawVCF", 
-                    "id": "mutantVCF"
-                }, 
-                {
-                    "source": "gatk", 
-                    "id": "GATK"
-                }, 
-                {
-                    "source": "referenceGenome", 
-                    "id": "ReferenceGenome"
-                }, 
-                {
-                    "source": "refIndex", 
-                    "id": "RefIndex"
-                }, 
-                {
-                    "source": "refDict", 
-                    "id": "RefDict"
-                }, 
-                {
-                    "source": "name", 
-                    "id": "sampleName"
-                }
-            ]
-        }, 
-        {
-            "out": [
-                {
-                    "id": "rawVCF"
-                }
-            ], 
-            "run": "SelectINDELs.cwl", 
-            "id": "SelectINDELs", 
-            "in": [
-                {
-                    "source": "#VariantFilteration/rawVCF", 
-                    "id": "mutantVCF"
-                }, 
-                {
-                    "source": "gatk", 
-                    "id": "GATK"
-                }, 
-                {
-                    "source": "referenceGenome", 
-                    "id": "ReferenceGenome"
-                }, 
-                {
-                    "source": "refIndex", 
-                    "id": "RefIndex"
-                }, 
-                {
-                    "source": "refDict", 
-                    "id": "RefDict"
-                }, 
-                {
-                    "source": "name", 
-                    "id": "sampleName"
-                }
-            ]
-        }
-    ], 
-    "id": "variantcall"
-}
+class: Workflow
+cwlVersion: v1.0
+
+requirements:
+- class: InlineJavascriptRequirement
+
+inputs:
+- id: gatk
+  type: File
+- id: refIndex
+  type: File
+- id: refDict
+  type: File
+- id: referenceGenome
+  type: File
+- id: name
+  type: string
+- id: Alignment_leftFastq
+  type: File
+- id: Alignment_rightFastq
+  type: File
+
+outputs:
+- id: Alignment_rawSAM
+  type: File
+  outputSource: '#Alignment/rawSAM'
+- id: AddOrReplaceReadGroups_rawBAM
+  type: File
+  outputSource: '#AddOrReplaceReadGroups/rawBAM'
+- id: SortSam_rawBAM
+  type: File
+  outputSource: '#SortSam/rawBAM'
+- id: ReferenceSeqIndex_refIndex
+  type: File
+  outputSource: '#ReferenceSeqIndex/refIndex'
+- id: ReferenceSeqDictionary_refDict
+  type: File
+  outputSource: '#ReferenceSeqDictionary/refDict'
+- id: MarkDuplicates_rawBAM
+  type: File
+  outputSource: '#MarkDuplicates/rawBAM'
+- id: SplitNCigarReads_rawBAM
+  type: File
+  outputSource: '#SplitNCigarReads/rawBAM'
+- id: HaplotypeCaller_rawVCF
+  type: File
+  outputSource: '#HaplotypeCaller/rawVCF'
+- id: VariantFilteration_rawVCF
+  type: File
+  outputSource: '#VariantFilteration/rawVCF'
+- id: SelectSNPs_rawVCF
+  type: File
+  outputSource: '#SelectSNPs/rawVCF'
+- id: SelectINDELs_rawVCF
+  type: File
+  outputSource: '#SelectINDELs/rawVCF'
+
+steps:
+- id: Alignment
+  in:
+  - id: ReferenceGenome
+    source: referenceGenome
+  - id: sampleName
+    source: name
+  - id: index
+    source: name
+  - id: leftFastq
+    source: Alignment_leftFastq
+  - id: rightFastq
+    source: Alignment_rightFastq
+  run: Alignment.cwl
+  out:
+  - id: rawSAM
+- id: AddOrReplaceReadGroups
+  in:
+  - id: inputSAM
+    source: '#Alignment/rawSAM'
+  - id: GATK
+    source: gatk
+  - id: sampleName
+    source: name
+  run: AddOrReplaceReadGroups.cwl
+  out:
+  - id: rawBAM
+- id: SortSam
+  in:
+  - id: inputBAM
+    source: '#AddOrReplaceReadGroups/rawBAM'
+  - id: GATK
+    source: gatk
+  - id: sampleName
+    source: name
+  run: SortSam.cwl
+  out:
+  - id: rawBAM
+- id: ReferenceSeqIndex
+  in:
+  - id: ReferenceGenome
+    source: referenceGenome
+  - id: sampleName
+    source: name
+  run: ReferenceSeqIndex.cwl
+  out:
+  - id: refIndex
+- id: ReferenceSeqDictionary
+  in:
+  - id: GATK
+    source: gatk
+  - id: ReferenceGenome
+    source: referenceGenome
+  - id: sampleName
+    source: name
+  run: ReferenceSeqDictionary.cwl
+  out:
+  - id: refDict
+- id: MarkDuplicates
+  in:
+  - id: inputBAM
+    source: '#SortSam/rawBAM'
+  - id: GATK
+    source: gatk
+  - id: sampleName
+    source: name
+  run: MarkDuplicates.cwl
+  out:
+  - id: rawBAM
+- id: SplitNCigarReads
+  in:
+  - id: inputBAM
+    source: '#MarkDuplicates/rawBAM'
+  - id: RefIndex
+    source: refIndex
+  - id: RefDict
+    source: refDict
+  - id: GATK
+    source: gatk
+  - id: ReferenceGenome
+    source: referenceGenome
+  - id: sampleName
+    source: name
+  run: SplitNCigarReads.cwl
+  out:
+  - id: rawBAM
+- id: HaplotypeCaller
+  in:
+  - id: inputBAM
+    source: '#SplitNCigarReads/rawBAM'
+  - id: RefIndex
+    source: refIndex
+  - id: RefDict
+    source: refDict
+  - id: GATK
+    source: gatk
+  - id: ReferenceGenome
+    source: referenceGenome
+  - id: sampleName
+    source: name
+  run: HaplotypeCaller.cwl
+  out:
+  - id: rawVCF
+- id: VariantFilteration
+  in:
+  - id: mutantVCF
+    source: '#HaplotypeCaller/rawVCF'
+  - id: RefIndex
+    source: refIndex
+  - id: RefDict
+    source: refDict
+  - id: GATK
+    source: gatk
+  - id: ReferenceGenome
+    source: referenceGenome
+  - id: sampleName
+    source: name
+  run: VariantFilteration.cwl
+  out:
+  - id: rawVCF
+- id: SelectSNPs
+  in:
+  - id: mutantVCF
+    source: '#VariantFilteration/rawVCF'
+  - id: GATK
+    source: gatk
+  - id: ReferenceGenome
+    source: referenceGenome
+  - id: RefIndex
+    source: refIndex
+  - id: RefDict
+    source: refDict
+  - id: sampleName
+    source: name
+  run: SelectSNPs.cwl
+  out:
+  - id: rawVCF
+- id: SelectINDELs
+  in:
+  - id: mutantVCF
+    source: '#VariantFilteration/rawVCF'
+  - id: GATK
+    source: gatk
+  - id: ReferenceGenome
+    source: referenceGenome
+  - id: RefIndex
+    source: refIndex
+  - id: RefDict
+    source: refDict
+  - id: sampleName
+    source: name
+  run: SelectINDELs.cwl
+  out:
+  - id: rawVCF
+id: GATK4
