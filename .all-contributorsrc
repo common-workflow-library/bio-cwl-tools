@@ -105,6 +105,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "skanwal",
+      "name": "Sehrish Kanwal",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/9857259?v=4",
+      "profile": "https://www.linkedin.com/in/sehrish-kanwal-1b80bb42/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
