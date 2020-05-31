@@ -65,7 +65,7 @@ steps:
 
   index_reference_genome_with_bowtie2:
 
-    run: ../tools/bowtie2/bowtie2_build.cwl
+    run: bowtie2_build.cwl
 
     in:
 
@@ -81,7 +81,7 @@ steps:
 
   align_rnaseq_reads_to_genome:
 
-    run: ../tools/bowtie2/bowtie2_align.cwl
+    run: bowtie2_align.cwl
 
     in:
 
@@ -101,7 +101,7 @@ steps:
 
   index_reference_genome_with_samtools:
 
-    run: ../tools/samtools/samtools_faidx.cwl
+    run: samtools_faidx.cwl
 
     in:
 
@@ -113,7 +113,7 @@ steps:
 
   create_sequence_dictionary:
 
-    run: ../tools/picard/picard_CreateSequenceDictionary.cwl
+    run: picard_CreateSequenceDictionary.cwl
 
     in:
 
@@ -125,7 +125,7 @@ steps:
 
   update_read_group:
 
-    run: ../tools/picard/picard_AddOrReplaceReadGroups.cwl
+    run: picard_AddOrReplaceReadGroups.cwl
 
     in:
 
@@ -165,7 +165,7 @@ steps:
 
   sort_sam:
    
-    run: ../tools/gatk4/SortSamSparkNew.cwl
+    run: SortSamSparkNew.cwl
 
     in:
       
@@ -178,7 +178,7 @@ steps:
   
   mark_duplicates:
 
-    run: ../tools/gatk4/MarkDuplicatesSparkNew.cwl
+    run: MarkDuplicatesSparkNew.cwl
 
     in:
 
@@ -192,7 +192,7 @@ steps:
 
   split_alignments:
 
-    run: ../tools/GATK/GATK-SplitNCigarReads.cwl
+    run: GATK-SplitNCigarReads.cwl
 
     in:
 
@@ -214,7 +214,7 @@ steps:
 
   index_split_alignments:
 
-    run: ../tools/samtools/samtools_index.cwl
+    run: samtools_index.cwl
 
     in:
 
@@ -226,7 +226,7 @@ steps:
 
   call_plausible_haplotypes_and_detect_variants:
 
-    run: ../tools/gatk4/GATK-HaplotypeCaller.cwl
+    run: GATK-HaplotypeCaller.cwl
 
     in:
 
@@ -244,7 +244,7 @@ steps:
 
   filer_out_low_quality_variants:
 
-    run: ../tools/GATK/GATK-VariantFiltration.cwl
+    run: GATK-VariantFiltration.cwl
 
     in:
 
@@ -262,7 +262,7 @@ steps:
 
   select_indels:
 
-    run: ../tools/GATK/GATK-SelectVariants.cwl
+    run: GATK/GATK-SelectVariants.cwl
 
     in:
 
@@ -284,7 +284,7 @@ steps:
 
   select_snps:
 
-    run: ../tools/GATK/GATK-SelectVariants.cwl
+    run: GATK-SelectVariants.cwl
 
     in:
 
