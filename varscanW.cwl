@@ -61,7 +61,7 @@ steps:
 
   index_reference_genome_with_bowtie2:
 
-    run: /home/ngsap2/tools/bowtie2/bowtie2_build.cwl
+    run: bowtie2_build.cwl
 
     in:
 
@@ -77,7 +77,7 @@ steps:
 
   align_rnaseq_reads_to_genome:
 
-    run: /home/ngsap2/tools/bowtie2/bowtie2_align.cwl
+    run: bowtie2_align.cwl
 
     in:
 
@@ -97,7 +97,7 @@ steps:
 
   index_reference_genome_with_samtools:
 
-    run: /home/ngsap2/tools/samtools/samtools_faidx.cwl
+    run: samtools_faidx.cwl
 
     in: 
 
@@ -109,7 +109,7 @@ steps:
 
   sam_to_bam_conversion_using_samtools_view:
 
-    run: /home/ngsap2/tools/samtools/samtools_view_sam2bam.cwl
+    run: samtools_view_sam2bam.cwl
 
     in: 
 
@@ -120,7 +120,7 @@ steps:
 
   sort_alignment_files_using_samtools_sort:
    
-    run: /home/ngsap2/tools/samtools/samtools_sort.cwl
+    run: samtools_sort.cwl
 
     in: 
 
@@ -132,7 +132,7 @@ steps:
   
   index_bam_files_using_samtools_index:
     
-    run: /home/ngsap2/tools/samtools/samtools_index.cwl
+    run: samtools_index.cwl
 
     in: 
 
@@ -143,7 +143,7 @@ steps:
 
   mpileup_generation_using_samtools_mpileup:
    
-    run: /home/ngsap2/tools/samtools/samtools_mpileup.cwl
+    run: samtools_mpileup.cwl
     
     in:
       
@@ -160,7 +160,7 @@ steps:
   
   snp_calling_using_mpileup2snp:
 
-    run: /home/ngsap2/tools/varscan/mpileup2snp.cwl
+    run: mpileup2snp.cwl
 
     in:
 
@@ -174,7 +174,7 @@ steps:
 
   indel_calling_using_mpileup2indel:
 
-    run: /home/ngsap2/tools/varscan/mpileup2indel.cwl
+    run: mpileup2indel.cwl
 
     in:
 
