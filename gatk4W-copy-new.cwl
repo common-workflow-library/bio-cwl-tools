@@ -262,7 +262,7 @@ steps:
 
   select_indels:
 
-    run: GATK/GATK-SelectVariants.cwl
+    run: GATK-SelectVariants.cwl
 
     in:
 
