@@ -7,21 +7,11 @@ doc: Sort a bam file by read names.
 requirements:
   InlineJavascriptRequirement: {}
 hints:
-  ResourceRequirement:
-    coresMin: 4
-    ramMin: 15000
+  
   DockerRequirement:
     dockerPull: kerstenbreuer/samtools:1.7
 
 baseCommand: ["samtools", "sort"]
-arguments:
-  - valueFrom: $(runtime.cores)
-    prefix: -@
-  - prefix: -m
-    valueFrom: ${ return(parseInt(runtime.ram/runtime.cores-100).toString() + "M") }
-    position: 1
-    # specifies the allowed maximal memory usage per thread before
-    # samtools start to outsource memory to temporary files
 
 inputs:
   bam_unsorted:
