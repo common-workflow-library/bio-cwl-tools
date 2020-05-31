@@ -56,7 +56,7 @@ steps:
 
   index_reference_genome_with_bowtie2:
 
-    run: /home/ngsap2/tools/bowtie2/bowtie2_build.cwl
+    run: bowtie2_build.cwl
 
     in:
 
@@ -72,7 +72,7 @@ steps:
 
   align_rnaseq_reads_to_genome:
 
-    run: /home/ngsap2/tools/bowtie2/bowtie2_align.cwl
+    run: bowtie2_align.cwl
 
     in:
 
@@ -92,7 +92,7 @@ steps:
 
   index_reference_genome_with_samtools:
 
-    run: /home/ngsap2/tools/samtools/samtools_faidx.cwl
+    run: samtools_faidx.cwl
 
     in:
 
@@ -104,11 +104,11 @@ steps:
 
   create_sequence_dictionary:
 
-    run: /home/ngsap2/tools/picard/picard_CreateSequenceDictionary.cwl
+    run: picard_CreateSequenceDictionary.cwl
 
     in:
 
-      REFERENCE: index_reference_genome_with_samtools/sequences_with_index
+      REFERENCE: sequences_with_index
 
     out: [ sequences_with_dictionary ]
 
@@ -116,7 +116,7 @@ steps:
 
   update_read_group:
 
-    run: /home/ngsap2/tools/picard/picard_AddOrReplaceReadGroups.cwl
+    run: picard_AddOrReplaceReadGroups.cwl
 
     in:
 
@@ -156,7 +156,7 @@ steps:
 
   mark_duplicates:
 
-    run: /home/ngsap2/tools/picard/picard_markdup.cwl
+    run: picard_markdup.cwl
 
     in:
 
@@ -168,7 +168,7 @@ steps:
 
   split_alignments:
 
-    run: /home/ngsap2/tools/GATK/GATK-SplitNCigarReads.cwl
+    run: GATK-SplitNCigarReads.cwl
 
     in:
 
@@ -190,7 +190,7 @@ steps:
 
   index_split_alignments:
 
-    run: /home/ngsap2/tools/samtools/samtools_index.cwl
+    run: samtools_index.cwl
 
     in:
 
@@ -202,7 +202,7 @@ steps:
 
   call_plausible_haplotypes_and_detect_variants:
 
-    run: /home/ngsap2/tools/GATK/GATK-HaplotypeCaller.cwl
+    run: GATK-HaplotypeCaller.cwl
 
     in:
 
@@ -220,7 +220,7 @@ steps:
 
   filer_out_low_quality_variants:
 
-    run: /home/ngsap2/tools/GATK/GATK-VariantFiltration.cwl
+    run: GATK-VariantFiltration.cwl
 
     in:
 
@@ -238,7 +238,7 @@ steps:
 
   select_indels:
 
-    run: /home/ngsap2/tools/GATK/GATK-SelectVariants.cwl
+    run: GATK-SelectVariants.cwl
 
     in:
 
@@ -260,7 +260,7 @@ steps:
 
   select_snps:
 
-    run: /home/ngsap2/tools/GATK/GATK-SelectVariants.cwl
+    run: GATK-SelectVariants.cwl
 
     in:
 
