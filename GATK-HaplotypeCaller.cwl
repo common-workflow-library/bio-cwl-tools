@@ -3,7 +3,7 @@ cwlVersion: v1.0
 class: CommandLineTool
 baseCommand:
 - gatk
-- HaplotypeCaller
+- HaplotypeCallerSpark
 doc: |-
   Call germline SNPs and indels via local re-assembly of haplotypes
 
