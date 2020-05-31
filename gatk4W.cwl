@@ -108,7 +108,7 @@ steps:
 
     in:
 
-      REFERENCE: sequences_with_index
+      REFERENCE: sars_cov_2_reference_genome
 
     out: [ sequences_with_dictionary ]
 
