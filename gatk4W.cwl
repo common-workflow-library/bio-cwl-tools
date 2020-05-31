@@ -49,6 +49,11 @@ inputs:
     type: File
 
     format: edam:format_1930  # FASTQ
+    
+  indices_folder:
+  
+    type: Directory
+    
 
 
 
@@ -81,6 +86,8 @@ steps:
       filelist: rnaseq_left_reads
 
       filelist_mates: rnaseq_right_reads
+      
+      indices_folder: indices_folder
 
       output_filename:
 
