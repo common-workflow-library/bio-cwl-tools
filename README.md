@@ -79,9 +79,12 @@ Signs that a tool description is including too much: lots of javascript; complic
 
 ## Schema Description
 
-If you use schema.org annotations, specify the schema using the RDF version: `$schemas: [ http://schema.org/version/latest/schema.rdf ]`
+If you use schema.org annotations, specify the schema using the RDF version:
+`$schemas: [ http://schema.org/version/latest/schema.rdf ]` unless items from
+outside the core schema.org vocabulary are needed. In that case use
+`$schemas: [ https://schema.org/version/latest/all-layers.rdf ]`.
 
-However, don't use `s:mainEntity`, put that information under `hints` as a `SoftwareRequirement`
+However, don't use `s:mainEntity`, put that information under `hints` as a `SoftwareRequirement`.
 
 ## File Formats
 
