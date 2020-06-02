@@ -82,7 +82,7 @@ inputs:
       position: 12
       prefix: "-2"
   max_mapping_insert_length:
-    doc: usefull for very long fragments, as expected for ATAC
+    doc: useful for very long fragments, as expected for ATAC
     type: long?
     default: 2000
     inputBinding:
