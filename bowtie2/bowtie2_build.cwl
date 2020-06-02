@@ -3,16 +3,14 @@ cwlVersion: v1.0
 class: CommandLineTool
 
 requirements:
-- class: ShellCommandRequirement
-- class: InlineJavascriptRequirement
+ ShellCommandRequirement: {}
+ InlineJavascriptRequirement: {}
 
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/bowtie2:v2.3.0
-  dockerFile: >
-    $import: ./dockerfiles/bowtie2-Dockerfile
-- class: SoftwareRequirement
-  packages:
+  DockerRequirement:
+    dockerPull: quay.io/biocontainers/bowtie2:2.3.0--py36_1
+  SoftwareRequirement:
+    packages:
       bowtie2:
         specs: [ "http://identifiers.org/biotools/bowtie2" ]
         version: [ "2.3.0" ]
