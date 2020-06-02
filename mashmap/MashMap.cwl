@@ -121,7 +121,7 @@ $namespaces:
   edam: http://edamontology.org/
 
 $schemas:
-  - http://schema.org/docs/schema_org_rdfa.html
+  - https://schema.org/version/latest/schema.rdf
   - http://edamontology.org/EDAM_1.20.owl
 
 
