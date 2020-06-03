@@ -1,107 +1,49 @@
-Goals: to collect and collaboratively maintain [CWL](https://www.commonwl.org) `CommandLineTool` descriptions of any biology/life-sciences related applications.
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END --> 
 [![Build Status](https://travis-ci.com/common-workflow-library/bio-cwl-tools.svg?branch=release)](https://travis-ci.com/common-workflow-library/bio-cwl-tools)
+
+Goals: to collect and collaboratively maintain [CWL](https://www.commonwl.org) `CommandLineTool` descriptions of any biology/life-sciences related applications.
 
 Non-goals: software packaging or containerization, go to https://biocontainers.pro for that
 
 All CWL tool descriptions are licensed under the Apache 2.0 license.
 The underlying tools are under one or more Free and Open Source Software licenses.
 
-# Styleguide
+# How to donate your tool descriptions
 
-## Naming Tools 📛
+We welcome pull requests to this repository to add new CWL tool descriptions!
 
-Tools should follow the convention of being prefixed by the parent tool name and Camelcase like so i.e.
-`
-BWA-Mem.cwl`
-or `
-BWA-Index.cwl
-`
+For tools we already have, please compare your definition to the existing
+descriptions, maybe you can help improve them.
 
-## Tool Feature Requirements 🆕
+If you are using a tool (or its subcommand) for a different purpose than the
+existing description in this repository, then please submit it as a separate
+CWL file next to the existing description(s).
 
-The first 3 lines of tool wrappers should be as follows. Our CI/CD system checks for these so make sure to include them so they can be merged into the repo.
+Check out [CONTRIBUTING.md](CONTRIBUTING.md) for a Styleguide and other
+contribution tips. Thank you for your contribution!
 
-``` cwl
-#!/usr/bin/env cwl-runner
-cwlVersion: v1.0
-class: CommandLineTool
-```
-The first line allows the tool to be run as a single command.
-The second specifies the cwl version.
-<br/>
+# How to use these descriptions in your own repository
 
-**IMPORTANT!** 
-We are using `cwlVersion` `v1.0` unless a `v1.1` feature is needed.
+1. Make add a [git submodule](https://github.blog/2016-02-01-working-with-submodules/)
+   of [this repository](https://github.com/common-workflow-library/bio-cwl-tools) to
+   the Git repository of your workflow, typically under the path `tools`.
 
-## Making Files Executable ✴️
+   [Example of using git submodule with this repo.](https://github.com/arvados/bh20-seq-resource/tree/80cfaba31a99d0c34722312c1b1a69a139477510/workflows)
 
-Files should be marked as executable before being added 
+   Then you can control the exact version of this repository used in your workflow.
 
-`
-chmod +x tool.cwl
-`
+2. Copy the entire contents of this repo to your repository. You may have a
+   harder time managing updates, but if `git submodule` is uncomfortable
+   then this might be a good choice.
 
-## Requirements & Hints Section 🧾
+   [Example of copying the this repo](https://github.com/mdibl/biocore_analysis/tree/531ae1848cae08c3355175ef3abb048774df866a/biocore_pipelines/cwl_source)
 
-There is a requirements section which handles settings for the runner config. Docker containers should be from biocontainers.pro if possible and placed in the hints section.
+3. Use the in-development [CWL Dependency Manager](https://github.com/common-workflow-language/cwldep).
 
-``` cwl
-requirements:
-  InlineJavascriptRequirement: {}
-```
 
-``` cwl
-hints:
-  DockerRequirement:
-    dockerPull: "quay.io/biocontainers/bwa:0.7.17--ha92aebf_3"
-```
-
-## Validation ✅
-
-Tools need to be free of warning when running with
-
-`
-cwltool --validate
-`
-
-## Adding Tools To The Repository ➕
-
-Please add tools via pull requests to the repository. Our CI/CD runs validation against the tools and will soon support doing unit tests on the individual tools.
-
-## Descriptions 📃
-
-Tool descriptions should be motivated by a real world use of this tool in a workflow.
-The description should focus on a single way of using the tool.
-Signs that a tool description is including too much: lots of javascript; complicated data structures; every single flag is listed.
-
-## Schema Description
-
-If you use schema.org annotations, specify the schema using the RDF version:
-`$schemas: [ http://schema.org/version/latest/schema.rdf ]` unless items from
-outside the core schema.org vocabulary are needed. In that case use
-`$schemas: [ https://schema.org/version/latest/all-layers.rdf ]`.
-
-However, don't use `s:mainEntity`, put that information under `hints` as a `SoftwareRequirement`.
-
-## File Formats
-
-If your tool has well defined input or output files, we recommend the addition of file formats using ontologies such as EDAM. CWL executors like cwltool can do some basic reasoning using this information and can warn about obvious mismatches.  
-
-``` cwl
-input_sequences:
-    type: 
-      - File
-      - File[]
-    label: "Input sequence files"
-    format:
-      - edam:format_1929  # FASTA
-      - edam:format_1930  # FASTQ
-```
-
-## Contributors ✨
+# Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
