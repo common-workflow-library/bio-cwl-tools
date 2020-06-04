@@ -39,7 +39,10 @@ inputs:
       prefix: --remove_dups
 
   required_flag:
-    type: string?
+    type:
+      - string
+      - int
+      - "null"|
     default: "0"
     doc: " STR|INT Required flag, 0 for unset. See also `samtools flags` [0] "
     inputBinding:
