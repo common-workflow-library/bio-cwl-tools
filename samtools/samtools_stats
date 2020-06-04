@@ -129,11 +129,10 @@ inputs:
     doc: "Only bases with coverage above this value will be included in the target percentage computation [0] "
     inputBinding:
       prefix: -g
-  threads:
-    type: int?
-    doc: "Number of input/output compression threads to use in addition to main thread [0]."
-    inputBinding:
-      prefix: --threads
+
+arguments:
+  - prefix: --threads
+    valueFrom: $(runtime.cores)  
 # -X
 #     If this option is set, it will allows user to specify customized index file location(s) if the data folder does not contain any index file. Example usage: samtools stats [options] -X /data_folder/data.bam /index_folder/data.bai chrM:1-10
 
