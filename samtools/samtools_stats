@@ -1,5 +1,5 @@
 class: CommandLineTool
-cwlVersion: v1.1
+cwlVersion: v1.0
 
 baseCommand:
 - samtools
