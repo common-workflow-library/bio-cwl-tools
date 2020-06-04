@@ -144,3 +144,6 @@ outputs:
     outputBinding:
       glob: $(inputs.input_file.nameroot).stats.txt
 stdout: $(inputs.input_file.nameroot).stats.txt
+
+$schemas:
+  - 'http://edamontology.org/EDAM_1.18.owl'
