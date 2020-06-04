@@ -1,9 +1,7 @@
 class: CommandLineTool
 cwlVersion: v1.0
 
-baseCommand:
-- samtools
-- stats
+baseCommand: [samtools, stats]
 requirements:
 - class: DockerRequirement
   dockerPull: biocontainers/samtools:v1.7.0_cv3
@@ -11,10 +9,10 @@ requirements:
 inputs:
   input_file:
     type: File
-     format: edam:format_2572  # BAM
-  #    -
-  #    -
-  #    -
+     format: 
+      - edam:format_2572  # BAM
+      - edam:format_2573  # SAM
+      - edam:format_3462  # CRAM
     inputBinding:
       position: 100
   coverage:
@@ -43,14 +41,17 @@ inputs:
       - string
       - int
       - "null"|
-    default: "0"
+    default: 0
     doc: " STR|INT Required flag, 0 for unset. See also `samtools flags` [0] "
     inputBinding:
       prefix: -f
 
   filtering_flag:
-    type: string?
-    default: "0"
+    type:
+      - string
+      - int
+      - "null"|
+    default: 0
     doc: "STR|INT Filtering flag, 0 for unset. See also `samtools flags` [0] "
     inputBinding:
       prefix: -F
@@ -133,6 +134,7 @@ inputs:
 arguments:
   - prefix: --threads
     valueFrom: $(runtime.cores)  
+    
 # -X
 #     If this option is set, it will allows user to specify customized index file location(s) if the data folder does not contain any index file. Example usage: samtools stats [options] -X /data_folder/data.bam /index_folder/data.bai chrM:1-10
 
