@@ -9,7 +9,7 @@ requirements:
 inputs:
   input_file:
     type: File
-     format: 
+    format: 
       - edam:format_2572  # BAM
       - edam:format_2573  # SAM
       - edam:format_3462  # CRAM
@@ -40,7 +40,7 @@ inputs:
     type:
       - string
       - int
-      - "null"|
+      - "null"
     default: 0
     doc: " STR|INT Required flag, 0 for unset. See also `samtools flags` [0] "
     inputBinding:
@@ -50,7 +50,7 @@ inputs:
     type:
       - string
       - int
-      - "null"|
+      - "null"
     default: 0
     doc: "STR|INT Filtering flag, 0 for unset. See also `samtools flags` [0] "
     inputBinding:
@@ -145,5 +145,6 @@ outputs:
       glob: $(inputs.input_file.nameroot).stats.txt
 stdout: $(inputs.input_file.nameroot).stats.txt
 
+$namespaces: { edam: http://edamontology.org, iana: https://www.iana.org/assignments/media-types/ }
 $schemas:
   - 'http://edamontology.org/EDAM_1.18.owl'
