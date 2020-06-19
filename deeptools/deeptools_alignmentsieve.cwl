@@ -21,7 +21,7 @@ hints:
   packages:
     deeptools:
       specs: [ "http://identifiers.org/biotools/deeptools" ]
-      version: [ "0.0.1" ]
+      version: [ "3.1.1" ]
 
 inputs:
 
