@@ -18,7 +18,7 @@ inputs:
     type: string
     inputBinding:
       prefix: "--genomeDir"
-      valueFrom: $("./" + self)
+      valueFrom: "./"$(self)
 
 #Optional Inputs
   
@@ -47,7 +47,7 @@ inputs:
     inputBinding:
       prefix: "--genomeChrBinNbits"
 
-baseCommand: [STAR]     
+baseCommand: STAR
 
 arguments:
   - valueFrom: "--runmode genomeGenerate"
@@ -57,4 +57,4 @@ outputs:
   indexes:
     type: Directory
     outputBinding:
-      glob: $("./" + inputs.IndexName + "/")
+      glob: ./$(inputs.IndexName)/
