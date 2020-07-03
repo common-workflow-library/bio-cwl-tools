@@ -18,7 +18,7 @@ inputs:
     type: string
     inputBinding:
       prefix: "--genomeDir"
-      valueFrom: "./"$(self)
+      valueFrom: ./$(self)
 
 #Optional Inputs
   
