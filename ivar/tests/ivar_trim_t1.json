@@ -1,0 +1,15 @@
+{
+    "bam":
+    { 
+        "class": "File",
+        "path": "./data/PC00101P_sub.sorted.bam",
+        "format": "edam:format_2572"
+    },
+    "bed":
+    {   
+        "class": "File",
+        "path": "./data/ARTIC-V1.bed",
+        "format": "edam:format_3003"
+    },
+    "output_prefix": "trimmed_output"
+}
