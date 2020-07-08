@@ -1,5 +1,7 @@
 # Styleguide
 
+See also https://www.commonwl.org/user_guide/rec-practices/
+
 ## Naming Tools 📛
 
 Tools should follow the convention of being prefixed by the parent tool name and Camelcase like so i.e.
