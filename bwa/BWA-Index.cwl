@@ -13,14 +13,14 @@ inputs:
     format: edam:format_1929  # FASTA
     inputBinding:
       position: 200
-    
+
   IndexName:
     type: string
     inputBinding:
       prefix: "-p"
-      valueFrom: $(self + ".bwt")
 
 #Optional arguments
+
 
   algoType:
     type: 
@@ -38,8 +38,14 @@ outputs:
 
   index:
     type: File
+    secondaryFiles: |
+      ${
+        return [".amb", ".ann", ".pac", ".sa"].map(function(element) {
+          return self.basename.replace(/\.[^/.]+$/, "") + element;
+        });
+      }
     outputBinding:
-      glob: $(inputs.IndexName)
+      glob: $(inputs.IndexName + '.bwt')  
 
 $namespaces:
   edam: http://edamontology.org/

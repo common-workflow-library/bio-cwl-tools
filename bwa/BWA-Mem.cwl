@@ -5,6 +5,7 @@ class: CommandLineTool
 requirements:
   DockerRequirement:
     dockerPull: "quay.io/biocontainers/bwa:0.7.17--ha92aebf_3"
+  InlineJavascriptRequirement: {}
 
 inputs:
   InputFile:
@@ -17,16 +18,13 @@ inputs:
     
   Index:
     type: File
-    inputBinding:
-      position: 200
-    secondaryFiles:
-      - .fai
-      - .amb
-      - .ann
-      - .bwt
-      - .pac
-      - .sa
-
+    secondaryFiles: |
+      ${
+        return [".amb", ".ann", ".pac", ".sa"].map(function(element) {
+          return self.basename.replace(/\.[^/.]+$/, "") + element;
+        });
+      }    
+    
 #Optional arguments
 
   Threads:
@@ -121,6 +119,13 @@ inputs:
       
 
 baseCommand: [bwa, mem]
+arguments:
+  - valueFrom: |
+      ${
+        return inputs.Index.path.replace(/\.bwt$/, "")
+      }
+    position: 200
+    
 
 stdout: unsorted_reads.sam
 
