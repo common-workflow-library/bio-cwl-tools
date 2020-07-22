@@ -2,6 +2,10 @@
 
 See also https://www.commonwl.org/user_guide/rec-practices/
 
+## Getting started
+
+The auto-generated CWL tool descriptions at https://aclimatise.github.io/BaseCamp/packages may be a useful starting point.
+
 ## Naming Tools 📛
 
 Tools should follow the convention of being prefixed by the parent tool name and Camelcase like so i.e.
