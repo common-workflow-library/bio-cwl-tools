@@ -4,7 +4,7 @@ class: CommandLineTool
 
 requirements:
   DockerRequirement:
-    dockerPull: "quay.io/biocontainers/hisat2:2.0.4--py35_1"
+    dockerPull: "quay.io/biocontainers/star:2.7.5c--0"
 
 inputs:
    
