@@ -281,7 +281,7 @@ $namespaces:
 
 
 $schemas:
-  - http://schema.org/version/latest/schema.rdf
+  - http://schema.org/version/9.0/schemaorg-current-http.rdf
   - http://edamontology.org/EDAM_1.18.owl
 
 s:name: "fastq_dump"
