@@ -2,4 +2,3 @@ InputFile:
   class: File
   path: ./data/reference.fasta
   format: edam:format_1929
-IndexName: myindex

@@ -8,16 +8,6 @@ requirements:
   StepInputExpressionRequirement: {}
 
 inputs:
-  InputFile:
-    type: File[]
-    format:
-      - edam:format_1930 # FASTQ (no quality score encoding specified)
-      - edam:format_1931 # FASTQ-Illumina
-      - edam:format_1932 # FASTQ-Sanger
-      - edam:format_1933 # FASTQ-Solexa
-    inputBinding:
-      position: 201
-    
   Index:
     type: File
     secondaryFiles:
@@ -28,6 +18,16 @@ inputs:
     inputBinding:
       position: 200
       valueFrom: $(self.dirname + '/' + self.nameroot)
+    
+  InputFiles:
+    type: File[]
+    format:
+      - edam:format_1930 # FASTQ (no quality score encoding specified)
+      - edam:format_1931 # FASTQ-Illumina
+      - edam:format_1932 # FASTQ-Sanger
+      - edam:format_1933 # FASTQ-Solexa
+    inputBinding:
+      position: 201
     
 #Optional arguments
 
