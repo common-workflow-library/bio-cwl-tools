@@ -1,10 +1,10 @@
-InputFile:
+input_file:
   - class: File
     format: edam:format_1930
     path: data/reads1.fastq.gz
   - class: File
     format: edam:format_1930
     path: data/reads2.fastq.gz
-Index:
+index:
   class: File
   path: data/myindex.bwt

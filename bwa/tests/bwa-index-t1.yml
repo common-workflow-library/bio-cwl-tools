@@ -1,4 +1,4 @@
-InputFile:
+input_file:
   class: File
   path: ./data/reference.fasta
   format: edam:format_1929
