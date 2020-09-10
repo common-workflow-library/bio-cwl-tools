@@ -5,7 +5,7 @@ class: CommandLineTool
 requirements:
   DockerRequirement:
     dockerPull: "quay.io/biocontainers/bwa:0.7.17--ha92aebf_3"
-  InlineJavascriptRequirement: {}
+  StepInputExpressionRequirement: {}
 
 inputs:
   InputFile:
@@ -14,13 +14,7 @@ inputs:
     inputBinding:
       position: 200
 
-  IndexName:
-    type: string
-    inputBinding:
-      prefix: "-p"
-
 #Optional arguments
-
 
   algoType:
     type: 
@@ -32,20 +26,22 @@ inputs:
     inputBinding:
       prefix: "-a"
 
+arguments:
+  - $("-p" + inputs.InputFile.nameroot)
+
 baseCommand: [bwa, index]
 
 outputs:
 
   index:
     type: File
-    secondaryFiles: |
-      ${
-        return [".amb", ".ann", ".pac", ".sa"].map(function(element) {
-          return self.basename.replace(/\.[^/.]+$/, "") + element;
-        });
-      }
+    secondaryFiles: 
+      - ^.amb
+      - ^.ann
+      - ^.pac
+      - ^.sa
     outputBinding:
-      glob: $(inputs.IndexName + '.bwt')  
+      glob: $(inputs.InputFile.nameroot + '.bwt')
 
 $namespaces:
   edam: http://edamontology.org/

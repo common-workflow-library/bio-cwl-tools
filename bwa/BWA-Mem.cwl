@@ -5,25 +5,29 @@ class: CommandLineTool
 requirements:
   DockerRequirement:
     dockerPull: "quay.io/biocontainers/bwa:0.7.17--ha92aebf_3"
-  InlineJavascriptRequirement: {}
+  StepInputExpressionRequirement: {}
 
 inputs:
   InputFile:
     type: File[]
     format:
-      - edam:format_1930 # FASTA
-      - edam:format_1931 # FASTQ
+      - edam:format_1930 # FASTQ (no quality score encoding specified)
+      - edam:format_1931 # FASTQ-Illumina
+      - edam:format_1932 # FASTQ-Sanger
+      - edam:format_1933 # FASTQ-Solexa
     inputBinding:
       position: 201
     
   Index:
     type: File
-    secondaryFiles: |
-      ${
-        return [".amb", ".ann", ".pac", ".sa"].map(function(element) {
-          return self.basename.replace(/\.[^/.]+$/, "") + element;
-        });
-      }    
+    secondaryFiles:
+      - ^.amb
+      - ^.ann
+      - ^.pac
+      - ^.sa
+    inputBinding:
+      position: 200
+      valueFrom: $(self.dirname + '/' + self.nameroot)
     
 #Optional arguments
 
@@ -119,19 +123,13 @@ inputs:
       
 
 baseCommand: [bwa, mem]
-arguments:
-  - valueFrom: |
-      ${
-        return inputs.Index.path.replace(/\.bwt$/, "")
-      }
-    position: 200
     
-
 stdout: unsorted_reads.sam
 
 outputs:
   reads_stdout:
     type: stdout
+    format: edam:format_2573 # SAM format
     
 $namespaces:
   edam: http://edamontology.org/
