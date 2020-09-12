@@ -1,0 +1,12 @@
+input_fasta:
+  class: File
+  format: edam:format_1929
+  location: https://bigd.big.ac.cn/ncov/genome/sequence/download/single/MT981459
+output_json_filename: MT981459.json
+output_csv_filename: MT981459.csv
+
+$namespaces:
+  edam: http://edamontology.org/
+$schemas:
+  - http://edamontology.org/EDAM_1.18.owl
+  
