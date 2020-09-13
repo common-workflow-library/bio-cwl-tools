@@ -48,8 +48,7 @@ inputs:
     inputBinding:
       prefix: --input-tree
   # TODO: 
-  # 1. How to ensure that one or more of the following should be provided?
-  # 2. How to allow a path - instead of a simple filename - for output?
+  # How to ensure that one or more of the following should be provided?
   output_json_filename:
     type: string?
     doc: Filename of output JSON results file
