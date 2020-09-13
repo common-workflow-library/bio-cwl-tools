@@ -2,6 +2,10 @@
 
 See also https://www.commonwl.org/user_guide/rec-practices/
 
+## Getting started
+
+The auto-generated CWL tool descriptions at https://aclimatise.github.io/BaseCamp/packages may be a useful starting point.
+
 ## Naming Tools 📛
 
 Tools should follow the convention of being prefixed by the parent tool name and Camelcase like so i.e.
@@ -24,12 +28,12 @@ The first line allows the tool to be run as a single command.
 The second specifies the cwl version.
 <br/>
 
-**IMPORTANT!** 
+**IMPORTANT!**
 We are using `cwlVersion` `v1.0` unless a `v1.1` feature is needed.
 
 ## Making Files Executable ✴️
 
-Files should be marked as executable before being added 
+Files should be marked as executable before being added
 
 `
 chmod +x tool.cwl
@@ -71,19 +75,19 @@ Signs that a tool description is including too much: lots of javascript; complic
 ## Schema Description
 
 If you use schema.org annotations, specify the schema using the RDF version:
-`$schemas: [ http://schema.org/version/latest/schema.rdf ]` unless items from
+`$schemas: [ http://schema.org/version/9.0/schemaorg-current-http.rdf ]` unless items from
 outside the core schema.org vocabulary are needed. In that case use
-`$schemas: [ https://schema.org/version/latest/all-layers.rdf ]`.
+`$schemas: [ https://schema.org/version/9.0/schemaorg-all-http.rdf ]`.
 
 However, don't use `s:mainEntity`, put that information under `hints` as a `SoftwareRequirement`.
 
 ## File Formats
 
-If your tool has well defined input or output files, we recommend the addition of file formats using ontologies such as EDAM. CWL executors like cwltool can do some basic reasoning using this information and can warn about obvious mismatches.  
+If your tool has well defined input or output files, we recommend the addition of file formats using ontologies such as EDAM. CWL executors like cwltool can do some basic reasoning using this information and can warn about obvious mismatches.
 
 ``` cwl
 input_sequences:
-    type: 
+    type:
       - File
       - File[]
     label: "Input sequence files"
