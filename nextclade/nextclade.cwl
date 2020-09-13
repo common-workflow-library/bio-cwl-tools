@@ -13,7 +13,7 @@ dct:creator:
 
 requirements:
   DockerRequirement:
-    dockerPull: neherlab/nextclade:0.4.2-alpine
+    dockerPull: neherlab/nextclade:0.4.3-alpine
 
 hints:
   ResourceRequirement:
@@ -65,21 +65,32 @@ inputs:
     doc: Filename of output TSV results file
     inputBinding:
       prefix: --output-tsv
+  output_tree_filename:
+    type: string?
+    doc: Filename of output Auspice v2 tree file
 
 outputs:
   output_json:
     type: File?
+    format: edam:format_3464
     outputBinding:
       glob: $(inputs.output_json_filename)
   output_csv:
     type: File?
+    format: edam:format_3572  # Comma-separated values
     outputBinding:
       glob: $(inputs.output_csv_filename)
   output_tsv:
     type: File?
+    format: edam:format_3475  # Tab-separated values
     outputBinding:
       glob: $(inputs.output_tsv_filename)
-    
+  output_tree:
+    type: File?
+    format: edam:format_3464
+    outputBinding:
+      glob: $(inputs.output_tree_filename)
+
 baseCommand: [ nextclade.js ]
 
   
