@@ -13,7 +13,7 @@ dct:creator:
 
 requirements:
   DockerRequirement:
-    dockerPull: neherlab/nextclade:0.4.3-alpine
+    dockerPull: neherlab/nextclade:0.5.0-alpine
 
 hints:
   ResourceRequirement:
