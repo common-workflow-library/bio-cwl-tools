@@ -59,60 +59,63 @@ inputs:
     format: edam:format_3572
     inputBinding:
       prefix: --input-pcr-primers
-  # TODO: 
-  # How to ensure that one or more of the following should be provided?
-  output_json_filename:
-    type: string?
-    doc: Filename of output JSON results file
-    inputBinding:
-      prefix: --output-json
-  output_csv_filename:
-    type: string?
-    doc: Filename of output CSV results file
-    inputBinding:
-      prefix: --output-csv
-  output_tsv_filename:
-    type: string?
-    doc: Filename of output TSV results file
-    inputBinding:
-      prefix: --output-tsv
-  output_tsv_clades_only_filename:
-    type: string?
-    doc: Filename to output CSV clades-only file
-    inputBinding:
-      prefix: --output-tsv-clades-only
-  output_tree_filename:
-    type: string?
-    doc: Filename of output Auspice v2 tree file
-    inputBinding:
-      prefix: --output-tree
+  output_options:
+    type:
+      type: record
+      name: output_options_record
+      fields:
+        output_json_filename:
+          type: string?
+          doc: Filename of output JSON results file
+          inputBinding:
+            prefix: --output-json
+        output_csv_filename:
+          type: string?
+          doc: Filename of output CSV results file
+          inputBinding:
+            prefix: --output-csv
+        output_tsv_filename:
+          type: string?
+          doc: Filename of output TSV results file
+          inputBinding:
+            prefix: --output-tsv
+        output_tsv_clades_only_filename:
+          type: string?
+          doc: Filename to output CSV clades-only file
+          inputBinding:
+            prefix: --output-tsv-clades-only
+        output_tree_filename:
+          type: string?
+          doc: Filename of output Auspice v2 tree file
+          inputBinding:
+            prefix: --output-tree
 
 outputs:
   output_json:
     type: File?
     format: edam:format_3464
     outputBinding:
-      glob: $(inputs.output_json_filename)
+      glob: $(inputs.output_options.output_json_filename)
   output_csv:
     type: File?
     format: edam:format_3572  # Comma-separated values
     outputBinding:
-      glob: $(inputs.output_csv_filename)
+      glob: $(inputs.output_options.output_csv_filename)
   output_tsv_clades_only:
     type: File?
     format: edam:format_3475  # Tab-separated values
     outputBinding:
-      glob: $(inputs.output_tsv_clades_only_filename)
+      glob: $(inputs.output_options.output_tsv_clades_only_filename)
   output_tsv:
     type: File?
     format: edam:format_3475
     outputBinding:
-      glob: $(inputs.output_tsv_filename)
+      glob: $(inputs.output_options.output_tsv_filename)
   output_tree:
     type: File?
     format: edam:format_3464
     outputBinding:
-      glob: $(inputs.output_tree_filename)
+      glob: $(inputs.output_options.output_tree_filename)
 
 baseCommand: [ nextclade.js ]
 
