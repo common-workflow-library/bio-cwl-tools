@@ -84,6 +84,8 @@ inputs:
   output_tree_filename:
     type: string?
     doc: Filename of output Auspice v2 tree file
+    inputBinding:
+      prefix: --output-tree
 
 outputs:
   output_json:
