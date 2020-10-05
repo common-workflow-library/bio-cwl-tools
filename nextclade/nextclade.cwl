@@ -13,7 +13,7 @@ dct:creator:
 
 requirements:
   DockerRequirement:
-    dockerPull: neherlab/nextclade:0.5.0-alpine
+    dockerPull: neherlab/nextclade:0.7.3-alpine
 
 hints:
   ResourceRequirement:
@@ -47,6 +47,18 @@ inputs:
     format: edam:format_3464
     inputBinding:
       prefix: --input-tree
+  input-gene-map:
+    type: File?
+    doc: 'JSON file containing custom gene map. Gene map (sometimes also called "gene annotations") is used to resolve aminoacid changes in genes.'
+    format: edam:format_3464
+    inputBinding:
+      prefix: --input-gene-map
+  input-pcr-primers:
+    type: File?
+    doc: CSV file containing a list of custom PCR primer sites. These are used to report mutations in these sites.
+    format: edam:format_3572
+    inputBinding:
+      prefix: --input-pcr-primers
   # TODO: 
   # How to ensure that one or more of the following should be provided?
   output_json_filename:
@@ -64,6 +76,11 @@ inputs:
     doc: Filename of output TSV results file
     inputBinding:
       prefix: --output-tsv
+  output_tsv_clades_only_filename:
+    type: string?
+    doc: Filename to output CSV clades-only file
+    inputBinding:
+      prefix: --output-tsv-clades-only
   output_tree_filename:
     type: string?
     doc: Filename of output Auspice v2 tree file
@@ -79,9 +96,14 @@ outputs:
     format: edam:format_3572  # Comma-separated values
     outputBinding:
       glob: $(inputs.output_csv_filename)
-  output_tsv:
+  output_tsv_clades_only:
     type: File?
     format: edam:format_3475  # Tab-separated values
+    outputBinding:
+      glob: $(inputs.output_tsv_clades_only_filename)
+  output_tsv:
+    type: File?
+    format: edam:format_3475
     outputBinding:
       glob: $(inputs.output_tsv_filename)
   output_tree:
