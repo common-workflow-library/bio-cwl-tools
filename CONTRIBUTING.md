@@ -1,6 +1,10 @@
-# Styleguide
+## Styleguide
 
 See also https://www.commonwl.org/user_guide/rec-practices/
+
+## Code of Conduct
+
+Contributor to this repository should abide by the Common Workflow Language [Code of Conduct](https://github.com/common-workflow-language/common-workflow-language/blob/main/CODE_OF_CONDUCT.md)
 
 ## Getting started
 
