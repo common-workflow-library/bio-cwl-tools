@@ -7,11 +7,6 @@ id: nextclade
 label: Nextclade
 
 s:author:
-  - class: s:Organization
-    s:name: Neher Lab
-    s:url: https://neherlab.org/
-
-s:contributor:
   - class: s:Person
     s:identifier: https://orcid.org/0000-0001-6553-5274
     s:email: mailto:pvh@sanbi.ac.za
@@ -72,58 +67,58 @@ inputs:
       type: record
       name: output_options_record
       fields:
-        output_json_filename:
+        report_json_filename:
           type: string?
           doc: Filename of output JSON results file
           inputBinding:
             prefix: --output-json
-        output_csv_filename:
+        report_csv_filename:
           type: string?
           doc: Filename of output CSV results file
           inputBinding:
             prefix: --output-csv
-        output_tsv_filename:
+        report_tsv_filename:
           type: string?
           doc: Filename of output TSV results file
           inputBinding:
             prefix: --output-tsv
-        output_tsv_clades_only_filename:
+        report_tsv_clades_only_filename:
           type: string?
           doc: Filename to output CSV clades-only file
           inputBinding:
             prefix: --output-tsv-clades-only
-        output_tree_filename:
+        tree_filename:
           type: string?
           doc: Filename of output Auspice v2 tree file
           inputBinding:
             prefix: --output-tree
 
 outputs:
-  output_json:
+  report_json:
     type: File?
     format: iana:application/json
     outputBinding:
-      glob: $(inputs.output_options.output_json_filename)
-  output_csv:
+      glob: $(inputs.output_options.report_json_filename)
+  report_csv:
     type: File?
     format: iana:text/csv  # Comma-separated values
     outputBinding:
-      glob: $(inputs.output_options.output_csv_filename)
-  output_tsv_clades_only:
+      glob: $(inputs.output_options.report_csv_filename)
+  report_tsv_clades_only:
     type: File?
     format: iana:text/tab-separated-values  # Tab-separated values
     outputBinding:
-      glob: $(inputs.output_options.output_tsv_clades_only_filename)
-  output_tsv:
+      glob: $(inputs.output_options.report_tsv_clades_only_filename)
+  report_tsv:
     type: File?
     format: iana:text/tab-separated-values
     outputBinding:
-      glob: $(inputs.output_options.output_tsv_filename)
-  output_tree:
+      glob: $(inputs.output_options.report_tsv_filename)
+  tree:
     type: File?
     format: iana:application/json
     outputBinding:
-      glob: $(inputs.output_options.output_tree_filename)
+      glob: $(inputs.output_options.tree_filename)
 
 baseCommand: [ nextclade.js ]
 
