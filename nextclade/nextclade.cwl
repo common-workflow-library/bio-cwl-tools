@@ -29,7 +29,7 @@ hints:
     ramMin: 512  # 512 MB
 
 inputs:
-  input_fasta:
+  sequences:
     type: File
     doc: .fasta or .txt file with input sequences
     format: 
@@ -37,31 +37,31 @@ inputs:
       - iana:text/plain  # plain text format
     inputBinding:
       prefix: --input-fasta
-  input_qc_config:
+  qc_config:
     type: File?
     doc: QC config json file containing custom QC configuration
     format: iana:application/json  # JSON
     inputBinding:
       prefix: --input-qc-config
-  input_root_seq:
+  root_seq:
     type: File?
     doc: plain text file containing custom root sequence
     format: iana:text/plain
     inputBinding:
       prefix: --input-root-seq
-  input-tree:
+  tree:
     type: File?
     doc: Auspice JSON v2 file containing custom reference tree
     format: iana:application/json
     inputBinding:
       prefix: --input-tree
-  input-gene-map:
+  gene_map:
     type: File?
     doc: 'JSON file containing custom gene map. Gene map (sometimes also called "gene annotations") is used to resolve aminoacid changes in genes.'
     format: iana:application/json
     inputBinding:
       prefix: --input-gene-map
-  input-pcr-primers:
+  pcr_primers:
     type: File?
     doc: CSV file containing a list of custom PCR primer sites. These are used to report mutations in these sites.
     format: iana:text/csv
