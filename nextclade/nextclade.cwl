@@ -6,14 +6,22 @@ doc: Assign Nextstrain clades to SARS-CoV-2 sequences and provide QC information
 id: nextclade
 label: Nextclade
 
-dct:creator:
-  "@id": "https://orcid.org/0000-0001-6553-5274"
-  foaf:name: Peter van Heusden
-  foaf:mbox: "mailto:pvh@sanbi.ac.za"
+s:author:
+  - class: s:Organization
+    s:name: Neher Lab
+    s:url: https://neherlab.org/
+
+s:contributor:
+  - class: s:Person
+    s:identifier: https://orcid.org/0000-0001-6553-5274
+    s:email: mailto:pvh@sanbi.ac.za
+    s:name: Peter van Heusden
+
+s:codeRepository: https://github.com/nextstrain/nextclade
 
 requirements:
   DockerRequirement:
-    dockerPull: neherlab/nextclade:0.8.1-alpine
+    dockerPull: neherlab/nextclade:0.10.0-alpine
 
 hints:
   ResourceRequirement:
@@ -122,8 +130,9 @@ baseCommand: [ nextclade.js ]
   
 $namespaces:
   edam: http://edamontology.org/
-  dct: http://purl.org/dc/terms/
-  foaf: http://xmlns.com/foaf/0.1/
+  s: http://schema.org/
+
 $schemas:
+  - https://schema.org/version/latest/schemaorg-current-http.rdf
   - http://edamontology.org/EDAM_1.18.owl
 
