@@ -34,37 +34,37 @@ inputs:
     doc: .fasta or .txt file with input sequences
     format: 
       - edam:format_1929  # FASTA
-      - edam:format_1964  # plain text format
+      - iana:text/plain  # plain text format
     inputBinding:
       prefix: --input-fasta
   input_qc_config:
     type: File?
     doc: QC config json file containing custom QC configuration
-    format: edam:format_3464  # JSON
+    format: iana:application/json  # JSON
     inputBinding:
       prefix: --input-qc-config
   input_root_seq:
     type: File?
     doc: plain text file containing custom root sequence
-    format: edam:format_1964
+    format: iana:text/plain
     inputBinding:
       prefix: --input-root-seq
   input-tree:
     type: File?
     doc: Auspice JSON v2 file containing custom reference tree
-    format: edam:format_3464
+    format: iana:application/json
     inputBinding:
       prefix: --input-tree
   input-gene-map:
     type: File?
     doc: 'JSON file containing custom gene map. Gene map (sometimes also called "gene annotations") is used to resolve aminoacid changes in genes.'
-    format: edam:format_3464
+    format: iana:application/json
     inputBinding:
       prefix: --input-gene-map
   input-pcr-primers:
     type: File?
     doc: CSV file containing a list of custom PCR primer sites. These are used to report mutations in these sites.
-    format: edam:format_3572
+    format: iana:text/csv
     inputBinding:
       prefix: --input-pcr-primers
   output_options:
@@ -101,27 +101,27 @@ inputs:
 outputs:
   output_json:
     type: File?
-    format: edam:format_3464
+    format: iana:application/json
     outputBinding:
       glob: $(inputs.output_options.output_json_filename)
   output_csv:
     type: File?
-    format: edam:format_3572  # Comma-separated values
+    format: iana:text/csv  # Comma-separated values
     outputBinding:
       glob: $(inputs.output_options.output_csv_filename)
   output_tsv_clades_only:
     type: File?
-    format: edam:format_3475  # Tab-separated values
+    format: iana:text/tab-separated-values  # Tab-separated values
     outputBinding:
       glob: $(inputs.output_options.output_tsv_clades_only_filename)
   output_tsv:
     type: File?
-    format: edam:format_3475
+    format: iana:text/tab-separated-values
     outputBinding:
       glob: $(inputs.output_options.output_tsv_filename)
   output_tree:
     type: File?
-    format: edam:format_3464
+    format: iana:application/json
     outputBinding:
       glob: $(inputs.output_options.output_tree_filename)
 
@@ -130,6 +130,7 @@ baseCommand: [ nextclade.js ]
   
 $namespaces:
   edam: http://edamontology.org/
+  iana: https://www.iana.org/assignments/media-types/
   s: http://schema.org/
 
 $schemas:
