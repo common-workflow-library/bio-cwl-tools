@@ -3,7 +3,6 @@ cwlVersion: v1.0
 class: CommandLineTool
 
 doc: Assign Nextstrain clades to SARS-CoV-2 sequences and provide QC information
-id: nextclade
 label: Nextclade
 
 s:author:
@@ -11,8 +10,6 @@ s:author:
     s:identifier: https://orcid.org/0000-0001-6553-5274
     s:email: mailto:pvh@sanbi.ac.za
     s:name: Peter van Heusden
-
-s:codeRepository: https://github.com/nextstrain/nextclade
 
 requirements:
   DockerRequirement:
@@ -22,6 +19,9 @@ hints:
   ResourceRequirement:
     coresMin: 1
     ramMin: 512  # 512 MB
+  SoftwareRequirement:
+    packages:
+      nextclade: [ "https://github.com/nextstrain/nextclade" ]
 
 inputs:
   sequences:
