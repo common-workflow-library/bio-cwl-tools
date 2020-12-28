@@ -44,7 +44,11 @@ Here are four different ways that you can use tools from this repository in your
 
 3. Use the in-development [CWL Dependency Manager](https://github.com/common-workflow-language/cwldep).
 
-4. Refer to the tools in this repository by URL, as in this [example](https://github.com/pvanheus/lukasa/blob/main/protein_evidence_mapping.cwl#L29) which uses a [namespace](https://github.com/pvanheus/lukasa/blob/main/protein_evidence_mapping.cwl#L89) to refer to the `bio-cwl-tools` repository and then specifies in the individual tool by path within that namespace prefix. If this route is used, `cwltool --pack` can created a runnable version of the workflow with all remote references resolved.
+4. Refer to the tools in this repository by URL, as in this
+   [example](https://github.com/pvanheus/lukasa/blob/main/protein_evidence_mapping.cwl#L29) which uses a
+   [namespace](https://github.com/pvanheus/lukasa/blob/main/protein_evidence_mapping.cwl#L89) to refer to the
+   `bio-cwl-tools` repository and then specifies in the individual tool by path within that namespace prefix. If this route is
+   used, `cwltool --pack` can created a runnable version of the workflow with all remote references resolved.
 
 
 # Contributors ✨
