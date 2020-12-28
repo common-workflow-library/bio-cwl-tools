@@ -67,58 +67,63 @@ inputs:
       type: record
       name: output_options_record
       fields:
-        report_json_filename:
-          type: string?
+        report_json:
+          type: boolean?
           doc: Filename of output JSON results file
           inputBinding:
             prefix: --output-json
-        report_csv_filename:
-          type: string?
+            valueFrom: $(inputs.sequences.nameroot)_report.json
+        report_csv:
+          type: boolean?
           doc: Filename of output CSV results file
           inputBinding:
             prefix: --output-csv
-        report_tsv_filename:
-          type: string?
+            valueFrom: $(inputs.sequences.nameroot)_report.csv
+        report_tsv:
+          type: boolean?
           doc: Filename of output TSV results file
           inputBinding:
             prefix: --output-tsv
+            valueFrom: $(inputs.sequences.nameroot)_report.tsv
         report_tsv_clades_only_filename:
-          type: string?
+          type: boolean?
           doc: Filename to output CSV clades-only file
           inputBinding:
             prefix: --output-tsv-clades-only
+            valueFrom: $(inputs.sequences.nameroot)_clades_report.csv
         tree_filename:
-          type: string?
+          type: boolean?
           doc: Filename of output Auspice v2 tree file
           inputBinding:
             prefix: --output-tree
+            valueFrom: $(inputs.sequences.nameroot)_tree.json
 
 outputs:
   report_json:
     type: File?
     format: iana:application/json
     outputBinding:
-      glob: $(inputs.output_options.report_json_filename)
+      glob: $(inputs.sequences.nameroot)_report.json
   report_csv:
     type: File?
     format: iana:text/csv  # Comma-separated values
     outputBinding:
-      glob: $(inputs.output_options.report_csv_filename)
+      glob: $(inputs.sequences.nameroot)_report.csv
   report_tsv_clades_only:
     type: File?
     format: iana:text/tab-separated-values  # Tab-separated values
     outputBinding:
-      glob: $(inputs.output_options.report_tsv_clades_only_filename)
+      glob: $(inputs.sequences.nameroot)_clades_report.tsv
   report_tsv:
     type: File?
     format: iana:text/tab-separated-values
     outputBinding:
-      glob: $(inputs.output_options.report_tsv_filename)
+      glob: $(inputs.sequences.nameroot)_report.tsv
   tree:
     type: File?
     format: iana:application/json
     outputBinding:
-      glob: $(inputs.output_options.tree_filename)
+      glob: $(inputs.sequences.nameroot)_tree.json
 
 baseCommand: [ nextclade.js ]
 

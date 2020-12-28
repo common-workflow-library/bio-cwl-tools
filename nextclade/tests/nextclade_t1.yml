@@ -3,8 +3,8 @@ sequences:
   format: edam:format_1929
   location: https://bigd.big.ac.cn/ncov/genome/sequence/download/single/MT981459
 output_options:
-  report_json_filename: MT981459.json
-  report_csv_filename: MT981459.csv
+  report_json: true
+  report_csv: true
 
 $namespaces:
   edam: http://edamontology.org/
