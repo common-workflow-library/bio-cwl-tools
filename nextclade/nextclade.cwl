@@ -97,12 +97,9 @@ inputs:
           inputBinding:
             prefix: --output-tree
             valueFrom: $(inputs.sequences.nameroot)_tree.json
-<<<<<<< HEAD
     default:
       report_tsv: true
       report_json: true
-=======
->>>>>>> e9a923c18a7526868055e5b289de345483ca8ff3
 
 outputs:
   report_json:
@@ -125,11 +122,7 @@ outputs:
     format: iana:text/tab-separated-values
     outputBinding:
       glob: $(inputs.sequences.nameroot)_report.tsv
-<<<<<<< HEAD
   report_tree:
-=======
-  tree:
->>>>>>> e9a923c18a7526868055e5b289de345483ca8ff3
     type: File?
     format: iana:application/json
     outputBinding:
