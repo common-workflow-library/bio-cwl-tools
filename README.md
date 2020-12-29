@@ -26,6 +26,8 @@ contribution tips. Thank you for your contribution!
 
 # How to use these descriptions in your own repository
 
+Here are four different ways that you can use tools from this repository in your own workflows:
+
 1. Make add a [git submodule](https://github.blog/2016-02-01-working-with-submodules/)
    of [this repository](https://github.com/common-workflow-library/bio-cwl-tools) to
    the Git repository of your workflow, typically under the path `tools`.
@@ -42,8 +44,13 @@ contribution tips. Thank you for your contribution!
 
 3. Use the in-development [CWL Dependency Manager](https://github.com/common-workflow-language/cwldep).
 
-4. Refering to the tools in this repository by URL, as in this [example](https://github.com/pvanheus/lukasa/blob/main/protein_evidence_mapping.cwl#L29) which uses a [namespace](https://github.com/pvanheus/lukasa/blob/main/protein_evidence_mapping.cwl#L89) to refer to the `bio-cwl-tools` repository and then specifies in the individual tool by path within that namespace prefix. If this route is used, `cwltool --pack` can created a runnable version of the workflow with all remote references resolved.
-
+4. Refer to the tools in this repository by URL, as in this
+   [example](https://github.com/pvanheus/lukasa/blob/e0b6c262e1b31521c3a2ea125baf510729cf8950/protein_evidence_mapping.cwl#L29)
+   which uses a
+   [namespace](https://github.com/pvanheus/lukasa/blob/e0b6c262e1b31521c3a2ea125baf510729cf8950/protein_evidence_mapping.cwl#L89)
+   to refer to the  `bio-cwl-tools` repository and then specifies in the individual tool by path within that namespace prefix.
+   If this route is used, `cwltool --pack` can created a runnable version of the workflow with all remote references
+   resolved.
 
 # Contributors ✨
 
