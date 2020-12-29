@@ -1,0 +1,5 @@
+target_files:
+  - class: File
+    path: /data/nextclade_report.tsv
+field_separator: '\t'
+program: '$4 == "good" {print $1 }'
