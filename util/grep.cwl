@@ -63,7 +63,7 @@ outputs:
     format: |-
       $( inputs.inherit_format && inputs.search_target.format ? inputs.search_target.format : null )
     streamable: true
-stdout: search_result$(inputs.search_target.nameext)
+stdout: "search_result$( inputs.inherit_format ? inputs.search_target.nameext : '.txt')"
 
 baseCommand: grep
 

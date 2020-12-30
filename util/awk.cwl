@@ -43,7 +43,7 @@ outputs:
     format: |-
       $(inputs.inherit_format && inputs.target_files[0].format ? inputs.target_files[0].format : null)
     streamable: true
-stdout: awk_result$(inputs.target_files[0].nameext)
+stdout: "awk_result$( inputs.inherit_format ? inputs.target_files[0].nameext : '.txt')"
 
 baseCommand: awk
 
