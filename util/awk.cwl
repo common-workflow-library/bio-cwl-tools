@@ -1,6 +1,6 @@
 #!/usr/bin/env cwl-runner
-class: CommandLineTool
 cwlVersion: v1.0
+class: CommandLineTool
 label: awk
 doc: pattern scanning and processing with awk
 $namespaces:
