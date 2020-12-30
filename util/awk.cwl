@@ -9,6 +9,7 @@ $namespaces:
 requirements:
   DockerRequirement:
     dockerPull: busybox:latest
+  InlineJavascriptRequirement: {}
 
 inputs:
   field_separator:
@@ -16,6 +17,9 @@ inputs:
     type: string?
     inputBinding:
       prefix: -F
+  inherit_format:
+    doc: copy format from target_files input to result output
+    type: boolean?
   program:
     doc: AWK program
     type: string
@@ -36,6 +40,8 @@ inputs:
 outputs:
   result:
     type: stdout
+    format: |-
+      $(inputs.inherit_format && inputs.target_files[0].format ? inputs.target_files[0].format : null)
     streamable: true
 stdout: awk_result$(inputs.target_files[0].nameext)
 

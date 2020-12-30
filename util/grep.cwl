@@ -12,14 +12,14 @@ requirements:
   InlineJavascriptRequirement: {}
 
 inputs:
-  inherit_format:
-    doc: copy format from search_target input to result output
-    type: boolean?
   ignore_case:
     doc: ignore case while matching
     type: boolean?
     inputBinding:
       prefix: -i
+  inherit_format:
+    doc: copy format from search_target input to result output
+    type: boolean?
   invert_selection:
     doc: print non-matching lines
     type: boolean?
@@ -60,9 +60,9 @@ inputs:
 outputs:
   result:
     type: stdout
+    format: |-
+      $( inputs.inherit_format && inputs.search_target.format ? inputs.search_target.format : null )
     streamable: true
-    format: $(inputs.inherit_format ? inputs.search_target.format : null)
-
 stdout: search_result$(inputs.search_target.nameext)
 
 baseCommand: grep
@@ -78,3 +78,6 @@ s:author:
   s:email: mailto:pvh@sanbi.ac.za
   s:identifier: https://orcid.org/0000-0001-6553-5274
   s:name: Peter van Heusden
+successCodes:
+- 0
+- 1
