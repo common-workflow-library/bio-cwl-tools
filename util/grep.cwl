@@ -9,8 +9,12 @@ $namespaces:
 requirements:
   DockerRequirement:
     dockerPull: busybox:latest
+  InlineJavascriptRequirement: {}
 
 inputs:
+  inherit_format:
+    doc: copy format from search_target input to result output
+    type: boolean?
   ignore_case:
     doc: ignore case while matching
     type: boolean?
@@ -57,6 +61,8 @@ outputs:
   result:
     type: stdout
     streamable: true
+    format: $(inputs.inherit_format ? inputs.search_target.format : null)
+
 stdout: search_result$(inputs.search_target.nameext)
 
 baseCommand: grep
