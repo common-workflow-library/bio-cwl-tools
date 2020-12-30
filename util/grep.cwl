@@ -1,6 +1,6 @@
 #!/usr/bin/env cwl-runner
-class: CommandLineTool
 cwlVersion: v1.0
+class: CommandLineTool
 label: grep
 doc: print lines that match patterns
 $namespaces:
