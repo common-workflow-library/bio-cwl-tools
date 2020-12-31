@@ -83,7 +83,6 @@ $schemas:
 - http://edamontology.org/EDAM_1.18.owl
 s:author:
 - class: s:Person
-  s:email: mrc@commonwl.org
   s:identifier: https://orcid.org/0000-0002-2961-9670
   s:name: Michael R. Crusoe
 - class: s:Person
