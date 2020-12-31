@@ -1,0 +1,5 @@
+search_target:
+  class: File
+  path: /data/metadata.tsv
+pattern: SouthAfrica
+literal_pattern: true
