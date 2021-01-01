@@ -21,25 +21,25 @@ inputs:
       prefix: -b
   output_options:
     type:
-    - name: output_fasta
-      type: record
+    - type: record
+      name: output_fasta
       fields:
         output_fasta:
-          type: boolean?
+          type: boolean
           inputBinding:
             prefix: -m
-    - name: output_phylip
-      type: record
+    - type: record
+      name: output_phylip
       fields:
         output_phylip:
-          type: boolean?
+          type: boolean
           inputBinding:
             prefix: -p
-    - name: output_vcf
-      type: record
+    - type: record
+      name: output_vcf
       fields:
         output_vcf:
-          type: boolean?
+          type: boolean
           inputBinding:
             prefix: -v
     default:

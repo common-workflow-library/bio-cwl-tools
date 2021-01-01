@@ -3,7 +3,7 @@ sequences:
   path: /data/full_msa.fasta
   format: edam:format_1929
 output_options:
-  output_fasta: true
+  output_phylip: true
 
 $namespaces:
   edam: http://edamontology.org/
