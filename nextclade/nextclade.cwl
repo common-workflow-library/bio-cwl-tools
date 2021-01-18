@@ -13,7 +13,7 @@ s:author:
 
 requirements:
   DockerRequirement:
-    dockerPull: neherlab/nextclade:0.10.0-alpine
+    dockerPull: neherlab/nextclade:0.11.1-alpine
 
 hints:
   ResourceRequirement:
