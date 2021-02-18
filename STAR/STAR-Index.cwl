@@ -7,7 +7,7 @@ requirements:
     dockerPull: "quay.io/biocontainers/star:2.7.5c--0"
 
 inputs:
-   
+
   InputFiles:
     format: http://edamontology.org/format_1930
     type: File[]
@@ -21,7 +21,7 @@ inputs:
       valueFrom: ./$(self)
 
 #Optional Inputs
-  
+
   Gtf:
     type: File?
     inputBinding:
@@ -31,12 +31,12 @@ inputs:
     type: int?
     inputBinding:
       prefix: "--sjdbOverhang"
-  
+
   Junctions:
     type: File?
     inputBinding:
       prefix: "--sjdbFileChrStartEnd"
-  
+
   GenomeSize:
     type: int?
     inputBinding:
@@ -47,11 +47,9 @@ inputs:
     inputBinding:
       prefix: "--genomeChrBinNbits"
 
-baseCommand: STAR
+baseCommand: [STAR, --runMode, genomeGenerate]
 
-arguments:
-  - valueFrom: "--runmode genomeGenerate"
-    position: -1
+arguments: [--runThreadN, $(runtime.cores)]
 
 outputs:
   indexes:

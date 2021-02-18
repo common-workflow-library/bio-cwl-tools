@@ -25,7 +25,6 @@ inputs:
      - File[]
     inputBinding:
       prefix: "--readFilesIn"
-      separate: false
       itemSeparator: ","
       position: 1
   # If paired-end reads (like Illumina), both 1 and 2 must be provided.
@@ -72,24 +71,30 @@ inputs:
         - RemoveNoncanonicalUnannotated
     inputBinding:
       prefix: "--outFilterIntronMotifs"
-  
+
   OutSAMtype:
     type:
      - "null"
      - type: enum
        symbols:
-        - None
         - "BAM"
-        - "BAM Unsorted"
-        - "BAM SortedByCoordinate"
-        - "BAM Unsorted SortedByCoordinate"
         - "SAM"
-        - "SAM Unsorted"
-        - "SAM SortedByCoordinate"
-        - "SAM Unsorted SortedByCoordinate"
     inputBinding:
       prefix: "--outSAMtype"
-  
+      position: 1
+
+  Unsorted:
+    type: boolean?
+    inputBinding:
+      prefix: "Unsorted"
+      position: 2
+
+  SortedByCoordinate:
+    type: boolean?
+    inputBinding:
+      prefix: "SortedByCoordinate"
+      position: 3
+
   ReadFilesCommand:
     type: string?
     inputBinding:
@@ -99,12 +104,12 @@ inputs:
     type: int?
     inputBinding:
       prefix: "--alignIntronMin"
-  
+
   AlignIntronMax:
     type: int?
     inputBinding:
       prefix: "--alignIntronMax"
-  
+
   AlignMatesGapMax:
     type: int?
     inputBinding:
@@ -114,12 +119,12 @@ inputs:
     type: int?
     inputBinding:
       prefix: "--alignSJoverhangMin"
-  
+
   AlignSJDBoverhangMin:
     type: int?
     inputBinding:
       prefix: "--alignSJDBoverhangMin"
-  
+
   SeedSearchStartLmax:
     type: int?
     inputBinding:
@@ -140,7 +145,7 @@ inputs:
     type: int?
     inputBinding:
       prefix: "--chimSegmentMin"
-    
+
   ChimJunctionOverhangMin:
     type: int?
     inputBinding:
@@ -150,7 +155,7 @@ inputs:
     type: int?
     inputBinding:
       prefix: "--outFilterMultimapNmax"
-  
+
   OutFilterMismatchNmax:
     type: int?
     inputBinding:
@@ -170,7 +175,7 @@ inputs:
         - Fastx
     inputBinding:
       prefix: "--outReadsUnmapped"
-  
+
   OutSAMstrandField:
     type:
      - "null"
@@ -180,7 +185,7 @@ inputs:
         - intronMotif
     inputBinding:
       prefix: "--outSAMstrandField"
-  
+
   OutSAMunmapped:
     type:
      - "null"
@@ -191,14 +196,14 @@ inputs:
         - "Within KeepPairs"
     inputBinding:
       prefix: "--outSAMunmapped"
-  
+
   OutSAMmapqUnique:
     type: int?
     inputBinding:
       prefix: "--outSAMmapqUnique"
-  
+
   OutSamMode:
-    type: 
+    type:
      - "null"
      - type: enum
        symbols:
@@ -207,12 +212,12 @@ inputs:
         - NoQS
     inputBinding:
       prefix: "--outSAMmode"
-  
+
   LimitOutSAMoneReadBytes:
     type: int?
     inputBinding:
       prefix: "--limitOutSAMoneReadBytes"
-  
+
   OutFileNamePrefix:
     type: string?
     inputBinding:
@@ -231,7 +236,7 @@ inputs:
     inputBinding:
       prefix: "--genomeLoad"
 
-baseCommand: [STAR, --runmode, alignReads]       
+baseCommand: [STAR, --runMode, alignReads]
 
 outputs:
   alignment:

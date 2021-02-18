@@ -13,7 +13,7 @@ s:author:
 
 requirements:
   DockerRequirement:
-    dockerPull: neherlab/nextclade:0.10.0-alpine
+    dockerPull: nextstrain/nextclade:0.13.0-alpine
 
 hints:
   ResourceRequirement:
@@ -137,6 +137,6 @@ $namespaces:
   s: http://schema.org/
 
 $schemas:
-  - https://schema.org/version/latest/schemaorg-current-http.rdf
+  - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
   - http://edamontology.org/EDAM_1.18.owl
 
