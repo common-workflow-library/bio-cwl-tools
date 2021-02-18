@@ -52,7 +52,7 @@ hints:
     coresMin: 1
     ramMin: 10
 $schemas:
-- https://schema.org/version/latest/schemaorg-current-http.rdf
+- https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
 s:author:
 - class: s:Person
   s:email: mailto:pvh@sanbi.ac.za
