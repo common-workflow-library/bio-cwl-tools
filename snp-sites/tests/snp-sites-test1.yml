@@ -1,0 +1,12 @@
+sequences:
+  class: File
+  path: /data/full_msa.fasta
+  format: edam:format_1929
+output_options:
+  output_phylip: true
+
+$namespaces:
+  edam: http://edamontology.org/
+
+$schemas:
+- http://edamontology.org/EDAM_1.18.owl
