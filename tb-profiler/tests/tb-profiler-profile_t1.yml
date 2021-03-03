@@ -1,0 +1,6 @@
+sequences:
+  read1:
+    class: File
+    location: https://raw.githubusercontent.com/galaxyproject/tools-iuc/master/tools/tb-profiler/test-data/rif_resistant.fastq.gz
+csv_output: true
+text_output: true
