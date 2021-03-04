@@ -14,7 +14,6 @@ s:author:
 requirements:
   DockerRequirement:
     dockerPull: quay.io/biocontainers/tb-profiler:3.0.0--pypyh3252c3a_0
-  InlineJavascriptRequirement: {}
 
 hints:
   ResourceRequirement:
@@ -200,28 +199,25 @@ outputs:
   json_output_file:
     type: File
     outputBinding:
-      glob: "$('results/' + inputs.output_prefix + '*.json')"
+      glob: results/$(inputs.output_prefix)*.json
   csv_output_file:
     type: File?
     outputBinding:
-      glob: "$('results/' + inputs.output_prefix + '*.csv')"
+      glob: results/$(inputs.output_prefix)*.csv
   text_output_file:
     type: File?
     outputBinding:
-      glob: "$('results/' + inputs.output_prefix + '*.txt')"
+      glob: results/$(inputs.output_prefix)*.txt
   pdf_output_file:
     type: File?
     outputBinding:
-      glob: "$('results/' + inputs.output_prefix + '*.pdf')"
+      glob: results/$(inputs.output_prefix)*.pdf
 
 
 baseCommand: [ "tb-profiler", "profile" ]
 
 $namespaces:
-  edam: http://edamontology.org/
-  iana: https://www.iana.org/assignments/media-types/
   s: http://schema.org/
 
 $schemas:
   - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
-  - http://edamontology.org/EDAM_1.18.owl
