@@ -5,7 +5,6 @@ class: CommandLineTool
 requirements:
   DockerRequirement:
     dockerPull: "quay.io/biocontainers/bwa:0.7.17--ha92aebf_3"
-  InlineJavascriptRequirement: {}
 
 inputs:
   InputFile:
@@ -18,7 +17,7 @@ inputs:
     type: string
     inputBinding:
       prefix: "-p"
-      valueFrom: $(self + ".bwt")
+      valueFrom: $(self).bwt
 
 #Optional arguments
 
