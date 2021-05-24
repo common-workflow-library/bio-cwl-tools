@@ -13,7 +13,7 @@ s:author:
 
 requirements:
   DockerRequirement:
-    dockerPull: nextstrain/nextclade:0.14.3-alpine3.12
+    dockerPull: quay.io/biocontainers/nextclade_js:0.14.3--h9ee0642_0
 
 hints:
   ResourceRequirement:
