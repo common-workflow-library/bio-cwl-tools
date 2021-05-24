@@ -13,7 +13,7 @@ s:author:
 
 requirements:
   DockerRequirement:
-    dockerPull: nextstrain/nextclade:0.13.0-alpine
+    dockerPull: nextstrain/nextclade:0.14.3-alpine3.12
 
 hints:
   ResourceRequirement:
@@ -21,7 +21,12 @@ hints:
     ramMin: 512  # 512 MB
   SoftwareRequirement:
     packages:
-      nextclade: [ "https://github.com/nextstrain/nextclade" ]
+      nextclade: 
+       version: 
+        - 0.14.3
+       specs: 
+        - https://anaconda.org/bioconda/nextclade_js
+        - https://github.com/nextstrain/nextclade
 
 inputs:
   sequences:
