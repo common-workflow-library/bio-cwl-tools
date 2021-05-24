@@ -1,0 +1,11 @@
+sequences:
+  class: File
+  path: /data/sars-cov-2/MN908947_3_Wuhan-Hu-1.fasta
+  format: edam:format_1929
+addfragments:
+  class: File
+  path: /data/sars-cov-2/samples_8_and_4.fasta
+  format: edam:format_1929
+
+$namespaces:
+  edam: http://edamontology.org/

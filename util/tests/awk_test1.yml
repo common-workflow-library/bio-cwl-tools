@@ -1,0 +1,10 @@
+target_files:
+  - class: File
+    path: /data/nextclade_report.tsv
+    format: iana:text/tab-separated-values
+field_separator: '\t'
+inherit_format: true
+program: '$4 == "good" {print $1}'
+
+$namespaces:
+  iana: https://www.iana.org/assignments/media-types/
