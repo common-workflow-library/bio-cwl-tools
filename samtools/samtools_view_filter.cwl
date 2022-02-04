@@ -9,7 +9,7 @@ hints:
     coresMin: 1
     ramMin: 10000
   DockerRequirement:
-    dockerPull: kerstenbreuer/samtools:1.7
+    dockerPull: quay.io/biocontainers/samtools:1.14--hb421002_0
 
 doc: for single end data
 
