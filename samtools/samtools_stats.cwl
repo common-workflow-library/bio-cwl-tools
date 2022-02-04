@@ -3,9 +3,9 @@ cwlVersion: v1.0
 class: CommandLineTool
 
 baseCommand: [samtools, stats]
-requirements:
-- class: DockerRequirement
-  dockerPull: biocontainers/samtools:v1.7.0_cv3
+hints:
+  DockerRequirement:
+    dockerPull: quay.io/biocontainers/samtools:1.14--hb421002_0
 
 inputs:
   input_file:

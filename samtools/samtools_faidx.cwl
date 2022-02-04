@@ -4,7 +4,7 @@ class: CommandLineTool
 
 hints:
   DockerRequirement:
-    dockerPull: quay.io/biocontainers/samtools:1.2-0
+    dockerPull: quay.io/biocontainers/samtools:1.14--hb421002_0
 requirements:
   InitialWorkDirRequirement:
     listing: [ $(inputs.sequences) ]
