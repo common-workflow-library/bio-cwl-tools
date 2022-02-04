@@ -13,9 +13,9 @@ inputs:
 baseCommand: featureCounts
 
 arguments: [-T, $(runtime.cores),
-            -a, $(inputs.gtf),
+            -a, $(inputs.annotations),
             -o, featurecounts.tsv,
-            $(inputs.counts_input_bam)]
+            $(inputs.mapped_reads)]
 
 outputs:
   featurecounts:
