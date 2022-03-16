@@ -6,6 +6,7 @@ doc: |
   Bam to fastq conversion
 
 requirements:
+  InlineJavascriptRequirement: {}
   InitialWorkDirRequirement:
     listing:
       - $(inputs.bam_sorted)
