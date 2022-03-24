@@ -2,10 +2,9 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-requirements:
+hints:
   DockerRequirement:
     dockerPull: "broadinstitute/gatk:4.1.3.0"
-  InlineJavascriptRequirement: {}
 
 inputs:
   # REQUIRED ARGS

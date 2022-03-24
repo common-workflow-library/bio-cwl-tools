@@ -3,21 +3,21 @@ cwlVersion: v1.0
 class: CommandLineTool
 
 requirements:
-- class: InlineJavascriptRequirement
-  expressionLib:
-  - var default_output_filename = function() {
-          var ext = (inputs.depth == "-bg" || inputs.depth == "-bga")?".bedGraph":".tab";
-          return inputs.input_file.location.split('/').slice(-1)[0].split('.').slice(0,-1).join('.') + ext;
-        };
+  InlineJavascriptRequirement:
+    expressionLib:
+     - var default_output_filename = function() {
+             var ext = (inputs.depth == "-bg" || inputs.depth == "-bga")?".bedGraph":".tab";
+             return inputs.input_file.location.split('/').slice(-1)[0].split('.').slice(0,-1).join('.') + ext;
+           };
 
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/bedtools2:v2.26.0
-- class: SoftwareRequirement
-  packages:
-    bedtools:
-      specs: [ "http://identifiers.org/biotools/bedtools" ]
-      version: [ "2.26.0" ]
+  DockerRequirement:
+    dockerPull: biowardrobe2/bedtools2:v2.26.0
+  SoftwareRequirement:
+    packages:
+      bedtools:
+        specs: [ "http://identifiers.org/biotools/bedtools" ]
+        version: [ "2.26.0" ]
 
 inputs:
   input_file:

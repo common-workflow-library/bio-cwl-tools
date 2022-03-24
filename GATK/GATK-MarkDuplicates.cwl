@@ -2,10 +2,9 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-requirements:
+hints:
   DockerRequirement:
     dockerPull: "broadinstitute/gatk:4.1.1.0"
-  InlineJavascriptRequirement: {}
 
 inputs:
   # REQUIRED ARGS
@@ -17,10 +16,10 @@ inputs:
 
   Output: 
     type: string
-    default: $("MarkDuplicatesOut" + inputs.InputFile.nameext)
+    default: MarkDuplicatesOut$(inputs.InputFile.nameext)
     inputBinding:
       prefix: "--OUTPUT" 
-      valueFrom: $("MarkDuplicatesOut" + inputs.InputFile.nameext)
+      valueFrom: MarkDuplicatesOut$(inputs.InputFile.nameext)
 
   MetricsFile: 
     type: string

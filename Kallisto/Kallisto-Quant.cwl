@@ -2,7 +2,7 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-requirements:
+hints:
   DockerRequirement:
     dockerPull: "quay.io/biocontainers/kallisto:0.45.0--hdcc98e5_0"
 

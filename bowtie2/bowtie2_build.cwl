@@ -202,7 +202,7 @@ outputs:
   indices:
     type: File
     outputBinding:
-      glob: $(inputs.bt2_index_base + ".1.bt2*")
+      glob: $(inputs.bt2_index_base).1.bt2*
     secondaryFiles: |
       ${
         var ext = self.location.split('/').slice(-1)[0].split('.').slice(-1)[0];

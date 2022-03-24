@@ -2,7 +2,7 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-requirements:
+hints:
   DockerRequirement:
     dockerPull: "quay.io/biocontainers/star:2.7.5c--0"
 
@@ -81,19 +81,19 @@ inputs:
         - "SAM"
     inputBinding:
       prefix: "--outSAMtype"
-      position: 1
+      position: 3
 
   Unsorted:
     type: boolean?
     inputBinding:
       prefix: "Unsorted"
-      position: 2
+      position: 4
 
   SortedByCoordinate:
     type: boolean?
     inputBinding:
       prefix: "SortedByCoordinate"
-      position: 3
+      position: 5
 
   ReadFilesCommand:
     type: string?
@@ -251,6 +251,6 @@ outputs:
       glob: "Unmapped.out*"
 
 $namespaces:
-  edam: http://edamontology.org/
+  edam: https://edamontology.org/
 $schemas:
-  - http://edamontology.org/EDAM_1.18.owl
+  - https://edamontology.org/EDAM_1.18.owl

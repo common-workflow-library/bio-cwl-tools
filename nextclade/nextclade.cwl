@@ -11,11 +11,9 @@ s:author:
     s:email: mailto:pvh@sanbi.ac.za
     s:name: Peter van Heusden
 
-requirements:
+hints:
   DockerRequirement:
     dockerPull: quay.io/biocontainers/nextclade_js:0.14.3--h9ee0642_0
-
-hints:
   ResourceRequirement:
     coresMin: 1
     ramMin: 512  # 512 MB
