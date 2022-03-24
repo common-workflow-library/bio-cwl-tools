@@ -135,11 +135,11 @@ baseCommand: [ nextclade.js ]
 
   
 $namespaces:
-  edam: http://edamontology.org/
+  edam: https://edamontology.org/
   iana: https://www.iana.org/assignments/media-types/
   s: http://schema.org/
 
 $schemas:
   - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
-  - http://edamontology.org/EDAM_1.18.owl
+  - https://edamontology.org/EDAM_1.18.owl
 

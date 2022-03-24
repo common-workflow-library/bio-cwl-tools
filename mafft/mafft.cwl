@@ -5,7 +5,7 @@ label: Mafft
 doc: |-
   MAFFT (Multiple Alignment using Fast Fourier Transform) is a high speed multiple sequence alignment program.
 $namespaces:
-  edam: http://edamontology.org/
+  edam: https://edamontology.org/
   s: http://schema.org/
 
 inputs:
@@ -80,7 +80,7 @@ hints:
         - '7.458'
 $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
-- http://edamontology.org/EDAM_1.18.owl
+- https://edamontology.org/EDAM_1.18.owl
 s:author:
 - class: s:Person
   s:identifier: https://orcid.org/0000-0002-2961-9670
