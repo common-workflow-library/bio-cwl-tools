@@ -154,14 +154,14 @@ hints:
           - 2.0.8-beta
         specs:
           - http://identifiers.org/biotools/kraken2
+  - class: DockerRequirement
+    dockerPull: "quay.io/biocontainers/kraken2:2.0.8_beta--pl526h6bb024c_0"
 
 requirements:
   - class: InlineJavascriptRequirement
   - class: ResourceRequirement
     ramMin: 45000  # kraken2 standard DB is 38 GB. RAM requirement is modelled on testing with this 
     coresMin: 1
-  - class: DockerRequirement
-    dockerPull: "quay.io/biocontainers/kraken2:2.0.8_beta--pl526h6bb024c_0"
 
 $namespaces:
   edam: http://edamontology.org/

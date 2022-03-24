@@ -9,12 +9,16 @@ hints:
 baseCommand: cutadapt
 
 inputs:
-  reads_1: File
-  reads_2: File
+  reads_1:
+    type: File
+    inputBinding: {}
+  reads_2:
+    type: File
+    inputBinding: {}
   minimum_length:
     type: int?
     inputBinding:
-      prefix: --minimum_length
+      prefix: --minimum-length
 
   quality_cutoff:
     type: int?
@@ -25,19 +29,21 @@ stdout: report.txt
 
 arguments:
   - prefix: --output
-    valueFrom: $(inputs.reads_1.basename).trimmed.$(inputs.reads_1.nameext)
+    valueFrom: $(inputs.reads_1.basename).trimmed$(inputs.reads_1.nameext)
   - prefix: --paired-output
-    valueFrom: $(inputs.reads_2.basename).trimmed.$(inputs.reads_2.nameext)
+    valueFrom: $(inputs.reads_2.basename).trimmed$(inputs.reads_2.nameext)
 
 outputs:
   report: stdout
   trimmed_reads_1:
     type: File
+    format: $(inputs.reads_1.format)
     outputBinding:
-      glob: $(inputs.reads_1.basename).trimmed.$(inputs.reads_1.nameext)
+      glob: $(inputs.reads_1.basename).trimmed$(inputs.reads_1.nameext)
   trimmed_reads_2:
     type: File
+    format: $(inputs.reads_2.format)
     outputBinding:
-      glob: $(inputs.reads_2.basename).trimmed.$(inputs.reads_2.nameext)
+      glob: $(inputs.reads_2.basename).trimmed$(inputs.reads_2.nameext)
 
 

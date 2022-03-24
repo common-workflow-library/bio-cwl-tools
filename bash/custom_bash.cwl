@@ -7,8 +7,8 @@ doc: |
   Default script runs sed command over the input file and exports results to the file with the same name as input's basename
 
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/scidap:v0.0.3
+  DockerRequirement:
+    dockerPull: biowardrobe2/scidap:v0.0.3
 
 inputs:
 

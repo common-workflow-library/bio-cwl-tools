@@ -2,10 +2,9 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-requirements:
+hints:
   DockerRequirement:
     dockerPull: "sinaiiidgst/lancet:latest"
-  InlineJavascriptRequirement: {}
 
 inputs:
   # REQUIRED ARGS
@@ -47,7 +46,7 @@ inputs:
          # default: $(inputs.Chromosome + ":" + inputs.RegionStart + "-" + inputs.RegionEnd)
             inputBinding:
               prefix: "--reg"
-              valueFrom: $(inputs.GenomicRegion.Chromosome + ":" + inputs.GenomicRegion.RegionStart + "-" + inputs.GenomicRegion.RegionEnd)
+              valueFrom: $(inputs.GenomicRegion.Chromosome):$(inputs.GenomicRegion.RegionStart)-$(inputs.GenomicRegion.RegionEnd)
     
   BedFile:
     type: File?
