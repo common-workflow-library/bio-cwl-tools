@@ -58,5 +58,5 @@ outputs:
       glob: ./$(inputs.IndexName)/
 
 $namespaces:
-  edam: http://edamontology.org/
+  edam: https://edamontology.org/
 $schemas: [ https://edamontology.org/EDAM_1.25.owl ]
