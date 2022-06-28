@@ -14,8 +14,7 @@ hints:
 inputs:
 
   reads_file:
-    type:
-      - File
+    type: File
     inputBinding:
       position: 50
     doc: |
@@ -36,9 +35,7 @@ inputs:
       formats are bam,sam,bam_mapped,sam_mapped and fastq
 
   threads:
-    type:
-      - "null"
-      - int
+    type: int?
     inputBinding:
       position: 7
       prefix: '--threads'
@@ -50,9 +47,7 @@ inputs:
       6 threads on a 32 bit machine
 
   contaminants:
-    type:
-      - "null"
-      - File
+    type: File?
     inputBinding:
       position: 8
       prefix: '--contaminants'
@@ -64,9 +59,7 @@ inputs:
       be ignored.
 
   adapters:
-    type:
-      - "null"
-      - File
+    type: File?
     inputBinding:
       position: 9
       prefix: '--adapters'
@@ -78,9 +71,7 @@ inputs:
       will be ignored.
 
   limits:
-    type:
-      - "null"
-      - File
+    type: File?
     inputBinding:
       position: 10
       prefix: '--limits'
@@ -93,9 +84,7 @@ inputs:
       Configuration folder.
 
   kmers:
-    type:
-      - "null"
-      - int
+    type: int?
     inputBinding:
       position: 11
       prefix: '--kmers'
@@ -105,9 +94,7 @@ inputs:
       length is 7 if not specified.
 
   casava:
-    type:
-      - "null"
-      - boolean
+    type: boolean?
     inputBinding:
       position: 13
       prefix: '--casava'
@@ -121,9 +108,7 @@ inputs:
       won't be grouped together correctly.
 
   nofilter:
-    type:
-      - "null"
-      - boolean
+    type: boolean?
     inputBinding:
       position: 14
       prefix: '--nofilter'
@@ -132,9 +117,7 @@ inputs:
       casava as poor quality when performing the QC analysis.
 
   hide_group:
-    type:
-      - "null"
-      - boolean
+    type: boolean?
     inputBinding:
       position: 15
       prefix: '--nogroup'
@@ -148,18 +131,15 @@ inputs:
 outputs:
 
   zipped_file:
-    type:
-      - File
+    type: File
     outputBinding:
       glob: '*.zip'
   html_file:
-    type:
-      - File
+    type: File
     outputBinding:
       glob: '*.html'
   summary_file:
-    type:
-      - File
+    type: File
     outputBinding:
       glob: "*/summary.txt"
 
