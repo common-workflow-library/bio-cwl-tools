@@ -10,7 +10,7 @@ hints:
     coresMin: 1
     ramMin: 5000
   DockerRequirement:
-    dockerPull: quay.io/biocontainers/fastqc:0.11.5--hdfd78af_5
+    dockerPull: quay.io/biocontainers/fastqc:0.11.9--hdfd78af_1
 
 baseCommand: "fastqc"
 arguments: 

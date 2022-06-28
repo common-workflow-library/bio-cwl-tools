@@ -4,12 +4,12 @@ class: CommandLineTool
 
 hints:
   DockerRequirement:
-    dockerPull: quay.io/biocontainers/fastqc:0.11.5--hdfd78af_5
+    dockerPull: quay.io/biocontainers/fastqc:0.11.9--hdfd78af_1
   SoftwareRequirement:
     packages:
       fastqc:
         specs: [ "http://identifiers.org/biotools/fastqc" ]
-        version: [ "0.1.11.5" ]
+        version: [ "0.11.9--hdfd78af_1", "0.11.9" ]
 
 inputs:
 
