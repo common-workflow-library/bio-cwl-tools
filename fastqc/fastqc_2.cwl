@@ -4,7 +4,7 @@ class: CommandLineTool
 
 hints:
   DockerRequirement:
-    dockerPull: biowardrobe2/fastqc:v0.11.5
+    dockerPull: quay.io/biocontainers/fastqc:0.11.5--hdfd78af_5
   SoftwareRequirement:
     packages:
       fastqc:
@@ -173,11 +173,6 @@ $schemas:
 
 s:name: "fastqc_2"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

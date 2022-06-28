@@ -10,7 +10,7 @@ hints:
     coresMin: 1
     ramMin: 5000
   DockerRequirement:
-    dockerPull: kerstenbreuer/trim_galore:0.4.4_1.14_0.11.7
+    dockerPull: quay.io/biocontainers/fastqc:0.11.5--hdfd78af_5
 
 baseCommand: "fastqc"
 arguments: 
