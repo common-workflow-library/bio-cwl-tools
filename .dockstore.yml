@@ -1,0 +1,505 @@
+version: 1.2
+tools:
+# bamtools
+  - subclass: CWL
+    primaryDescriptorPath: /bamtools/bamtools_stats.cwl
+    name: bamtools_stats
+    testParameterFiles:
+      - /bamtools/tests/bamtools_stats_t1.json
+# bandage
+  - subclass: CWL
+    primaryDescriptorPath: /bandage/bandage-image.cwl
+    name: bandage-image
+  - subclass: CWL
+    primaryDescriptorPath: /bandage/bandage-info.cwl
+    name: bandage-info
+# bash
+  - subclass: CWL
+    primaryDescriptorPath: /bash/Gunzip.cwl
+    name: Gunzip
+  - subclass: CWL
+    primaryDescriptorPath: /bash/bedgraph_sort.cwl
+    name: bedgraph_sort
+  - subclass: CWL
+    primaryDescriptorPath: /bash/custom_bash.cwl
+    name: custom_bash
+    testParameterFiles:
+      - /bash/tests/custom_bash_t1.json
+      - /bash/tests/custom_bash_t2.json
+      - /bash/tests/custom_bash_t3.json
+      - /bash/tests/custom_bash_t4.json
+      - /bash/tests/custom_bash_t5.json
+  - subclass: CWL
+    primaryDescriptorPath: /bash/extract_fastq.cwl
+    name: extract_fastq
+    testParameterFiles:
+      - /bash/tests/extract_fastq_t1.json
+      - /bash/tests/extract_fastq_t2.json
+      - /bash/tests/extract_fastq_t3.json
+      - /bash/tests/extract_fastq_t4.json
+# bedtools
+  - subclass: CWL
+    primaryDescriptorPath: /bedtools/bedtools_bamtobed_1.cwl
+    name: bedtools_bamtobed_1
+  - subclass: CWL
+    primaryDescriptorPath: /bedtools/bedtools_bamtobed_2.cwl
+    name: bedtools_bamtobed_2
+    testParameterFiles:
+      - /bedtools/tests/bedtools_bamtobed_2_t1.json
+      - /bedtools/tests/bedtools_bamtobed_2_t2.json
+  - subclass: CWL
+    primaryDescriptorPath: /bedtools/bedtools_bedtobam.cwl
+    name: bedtools_bedtobam
+  - subclass: CWL
+    primaryDescriptorPath: /bedtools/bedtools_genomecov.cwl
+    name: bedtools_genomecov
+    testParameterFiles:
+      - /bedtools/tests/bedtools_genomecov_t1.json
+      - /bedtools/tests/bedtools_genomecov_t2.json
+      - /bedtools/tests/bedtools_genomecov_t3.json
+      - /bedtools/tests/bedtools_genomecov_t4.json
+      - /bedtools/tests/bedtools_genomecov_t5.json
+  - subclass: CWL
+    primaryDescriptorPath: /bedtools/bedtools_genomecov_bed2bedgraph.cwl
+    name: bedtools_genomecov_bed2bedgraph
+  - subclass: CWL
+    primaryDescriptorPath: /bedtools/bedtools_getfasta.cwl
+    name: bedtools_getfasta
+    testParameterFiles:
+      - /bedtools/tests/bedtools_getfasta_t1.json
+      - /bedtools/tests/bedtools_getfasta_t2.json
+  - subclass: CWL
+    primaryDescriptorPath: /bedtools/bedtools_intersect.cwl
+    name: bedtools_intersect
+    testParameterFiles:
+      - /bedtools/tests/bedtools_intersect_t1.json
+      - /bedtools/tests/bedtools_intersect_t2.json
+      - /bedtools/tests/bedtools_intersect_t3.json
+  - subclass: CWL
+    primaryDescriptorPath: /bedtools/bedtools_merge.cwl
+    name: bedtools_merge
+    testParameterFiles:
+      - /bedtools/tests/bedtools_merge_t1.json
+      - /bedtools/tests/bedtools_merge_t2.json
+  - subclass: CWL
+    primaryDescriptorPath: /bedtools/bedtools_slop_clip_to_chrom_boundaries.cwl
+    name: bedtools_slop_clip_to_chrom_boundaries
+# bismark
+  - subclass: CWL
+    primaryDescriptorPath: /bismark/bismark_align.cwl
+    name: bismark_align
+    testParameterFiles:
+      - /bismark/tests/bismark_align_t1.json
+  - subclass: CWL
+    primaryDescriptorPath: /bismark/bismark_extract_methylation.cwl
+    name: bismark_extract_methylation
+    testParameterFiles:
+      - /bismark/tests/bismark_extract_methylation_t1.json
+      - /bismark/tests/bismark_methylation_se_t1.json
+  - subclass: CWL
+    primaryDescriptorPath: /bismark/bismark_prepare_genome.cwl
+    name: bismark_prepare_genome
+    testParameterFiles:
+      - /bismark/tests/bismark_prepare_genome_t1.json
+  - subclass: CWL
+    primaryDescriptorPath: /bismark/bismark_report.cwl
+    name: bismark_report
+    testParameterFiles:
+      - /bismark/tests/bismark_report_t1.json
+# bowtie
+  - subclass: CWL
+    primaryDescriptorPath: /bowtie/bowtie_align.cwl
+    name: bowtie_align
+    testParameterFiles:
+      - /bowtie/tests/bowtie_align_t1.json
+      - /bowtie/tests/bowtie_align_t2.json
+      - /bowtie/tests/bowtie_align_t3.json
+      - /bowtie/tests/bowtie_align_t4.json
+      - /bowtie/tests/bowtie_align_t5.json
+      - /bowtie/tests/bowtie_align_t6.json
+      - /bowtie/tests/bowtie_align_t7.json
+      - /bowtie/tests/bowtie_align_t8.json
+      - /bowtie/tests/bowtie_align_t9.json
+  - subclass: CWL
+    primaryDescriptorPath: /bowtie/bowtie_build.cwl
+    name: bowtie_build
+    testParameterFiles:
+      - /bowtie/tests/bowtie_build_t1.json
+# bowtie2
+  - subclass: CWL
+    primaryDescriptorPath: /bowtie2/bowtie2.cwl
+    name: bowtie2
+  - subclass: CWL
+    primaryDescriptorPath: /bowtie2/bowtie2_align.cwl
+    name: bowtie2_align
+  - subclass: CWL
+    primaryDescriptorPath: /bowtie2/bowtie2_build.cwl
+    name: bowtie2_build
+# bwa
+  - subclass: CWL
+    primaryDescriptorPath: /bwa/BWA-Index.cwl
+    name: BWA-Index
+  - subclass: CWL
+    primaryDescriptorPath: /bwa/BWA-Mem.cwl
+    name: BWA-Mem
+# bzip2
+  - subclass: CWL
+    primaryDescriptorPath: /bzip2/bzip2_compress.cwl
+    name: bzip2_compress
+    testParameterFiles:
+      - /bzip2/tests/bzip2_compress_t1.json
+# crossmap
+  - subclass: CWL
+    primaryDescriptorPath: /crossmap/crossmap.cwl
+    name: crossmap
+    testParameterFiles:
+      - /crossmap/tests/crossmap-t1.json
+      - /crossmap/tests/crossmap-t2.json
+      - /crossmap/tests/crossmap-t3.json
+      - /crossmap/tests/crossmap-t4.json
+      - /crossmap/tests/crossmap-t5.json
+      - /crossmap/tests/crossmap-t6.json
+# cutadapt
+  - subclass: CWL
+    primaryDescriptorPath: /cutadapt/cutadapt-paired.cwl
+    name: cutadapt-paired
+# deeptools
+  - subclass: CWL
+    primaryDescriptorPath: /deeptools/deeptools_alignmentsieve.cwl
+    name: deeptools_alignmentsieve
+    testParameterFiles:
+      - /deeptools/tests/deeptools_alignmentsieve_t1.json
+      - /deeptools/tests/deeptools_alignmentsieve_t2.json
+  - subclass: CWL
+    primaryDescriptorPath: /deeptools/deeptools_bamCoverage.cwl
+    name: deeptools_bamCoverage
+  - subclass: CWL
+    primaryDescriptorPath: /deeptools/deeptools_plotCoverage.cwl
+    name: deeptools_plotCoverage
+  - subclass: CWL
+    primaryDescriptorPath: /deeptools/deeptools_plotFingerprint.cwl
+    name: deeptools_plotFingerprint
+# deseq
+  - subclass: CWL
+    primaryDescriptorPath: /deseq/deseq_advanced.cwl
+    name: deseq_advanced
+    testParameterFiles:
+      - /deseq/tests/deseq_advanced_t1.json
+      - /deseq/tests/deseq_advanced_t2.json
+      - /deseq/tests/deseq_advanced_t3.json
+      - /deseq/tests/deseq_advanced_t4.json
+      - /deseq/tests/deseq_advanced_t5.json
+      - /deseq/tests/deseq_advanced_t6.json
+# fastp
+  - subclass: CWL
+    primaryDescriptorPath: /fastp/fastp.cwl
+    name: fastp
+# fastqc
+  - subclass: CWL
+    primaryDescriptorPath: /fastqc/fastqc_1.cwl
+    name: fastqc_1
+  - subclass: CWL
+    primaryDescriptorPath: /fastqc/fastqc_2.cwl
+    name: fastqc_2
+    testParameterFiles:
+      - /fastqc/tests/fastqc_2_t1.json
+      - /fastqc/tests/fastqc_2_t2.json
+      - /fastqc/tests/fastqc_2_t3.json
+# fastx_toolkit
+  - subclass: CWL
+    primaryDescriptorPath: /fastx_toolkit/fastx_quality_stats.cwl
+    name: fastx_quality_stats
+    testParameterFiles:
+      - /fastx_toolkit/tests/fastx_quality_stats_t1.json
+      - /fastx_toolkit/tests/fastx_quality_stats_t2.json
+# GATK
+  - subclass: CWL
+    primaryDescriptorPath: /GATK/GATK-ApplyBQSR.cwl
+    name: GATK-ApplyBQSR
+  - subclass: CWL
+    primaryDescriptorPath: /GATK/GATK-BaseRecalibrator.cwl
+    name: GATK-BaseRecalibrator
+  - subclass: CWL
+    primaryDescriptorPath: /GATK/GATK-CNNScoreVariants.cwl
+    name: GATK-CNNScoreVariants
+  - subclass: CWL
+    primaryDescriptorPath: /GATK/GATK-FilterMutectCalls.cwl
+    name: GATK-FilterMutectCalls
+  - subclass: CWL
+    primaryDescriptorPath: /GATK/GATK-FilterVariantTranches.cwl
+    name: GATK-FilterVariantTranches
+  - subclass: CWL
+    primaryDescriptorPath: /GATK/GATK-FixMateInformation.cwl
+    name: GATK-FixMateInformation
+  - subclass: CWL
+    primaryDescriptorPath: /GATK/GATK-HaplotypeCaller.cwl
+    name: GATK-HaplotypeCaller
+  - subclass: CWL
+    primaryDescriptorPath: /GATK/GATK-MarkDuplicates.cwl
+    name: GATK-MarkDuplicates
+  - subclass: CWL
+    primaryDescriptorPath: /GATK/GATK-SelectVariants.cwl
+    name: GATK-SelectVariants
+  - subclass: CWL
+    primaryDescriptorPath: /GATK/GATK-SplitNCigarReads.cwl
+    name: GATK-SplitNCigarReads
+  - subclass: CWL
+    primaryDescriptorPath: /GATK/GATK-VariantFiltration.cwl
+    name: GATK-VariantFiltration
+# graph-genome-segmentation
+  - subclass: CWL
+    primaryDescriptorPath: /graph-genome-segmentation/component_segmentation.cwl
+    name: component_segmentation
+# hal
+  - subclass: CWL
+    primaryDescriptorPath: /hal/halliftover.cwl
+    name: halliftover
+    testParameterFiles:
+      - /hal/tests/halliftover-1.json
+      - /hal/tests/halliftover-2.json
+# homer
+  - subclass: CWL
+    primaryDescriptorPath: /homer/homer-annotate-peaks-hist.cwl
+    name: homer-annotate-peaks-hist
+    testParameterFiles:
+      - /homer/tests/homer-annotate-peaks-hist-1.json
+      - /homer/tests/homer-annotate-peaks-hist-2.json
+      - /homer/tests/homer-annotate-peaks-hist-3.json
+  - subclass: CWL
+    primaryDescriptorPath: /homer/homer-make-metagene-profile.cwl
+    name: homer-make-metagene-profile
+  - subclass: CWL
+    primaryDescriptorPath: /homer/homer-make-tag-directory.cwl
+    name: homer-make-tag-directory
+    testParameterFiles:
+      - /homer/tests/homer-make-tag-directory-1.json
+      - /homer/tests/homer-make-tag-directory-2.json
+      - /homer/tests/homer-make-tag-directory-3.json
+      - /homer/tests/homer-make-tag-directory-4.json
+      - /homer/tests/homer-make-tag-directory-5.json
+      - /homer/tests/homer-make-tag-directory-6.json
+      - /homer/tests/homer-make-tag-directory-7.json
+# hopach
+  - subclass: CWL
+    primaryDescriptorPath: /hopach/hopach.cwl
+    name: hopach
+    testParameterFiles:
+      - /hopach/tests/hopach-1.json
+      - /hopach/tests/hopach-2.json
+      - /hopach/tests/hopach-3.json
+      - /hopach/tests/hopach-4.json
+# ivar
+  - subclass: CWL
+    primaryDescriptorPath: /ivar/ivar_trim.cwl
+    name: ivar_trim
+    testParameterFiles:
+      - /ivar/tests/ivar_trim_t1.json
+# Kallisto
+  - subclass: CWL
+    primaryDescriptorPath: /Kallisto/Kallisto-Index.cwl
+    name: Kallisto-Index
+  - subclass: CWL
+    primaryDescriptorPath: /Kallisto/Kallisto-Quant.cwl
+    name: Kallisto-Quant
+# kraken2
+  - subclass: CWL
+    primaryDescriptorPath: /kraken2/kraken2.cwl
+    name: kraken2
+    testParameterFiles:
+      - /kraken2/tests/kraken2-t1.json
+      - /kraken2/tests/kraken2-t2.json
+      - /kraken2/tests/kraken2-t3.json
+# Lancet
+  - subclass: CWL
+    primaryDescriptorPath: /Lancet/Lancet.cwl
+    name: Lancet
+# lofreq
+  - subclass: CWL
+    primaryDescriptorPath: /lofreq/lofreq_call.cwl
+    name: lofreq_call
+  - subclass: CWL
+    primaryDescriptorPath: /lofreq/lofreq_viterbi.cwl
+    name: lofreq_viterbi
+# mafft
+  - subclass: CWL
+    primaryDescriptorPath: /mafft/mafft.cwl
+    name: mafft
+    testParameterFiles:
+      - /mafft/tests/mafft_test1.yml
+# manorm
+  - subclass: CWL
+    primaryDescriptorPath: /manorm/manorm.cwl
+    name: manorm
+# mashmap
+  - subclass: CWL
+    primaryDescriptorPath: /mashmap/MashMap.cwl
+    name: MashMap
+# minimap2
+  - subclass: CWL
+    primaryDescriptorPath: /minimap2/minimap2_paf.cwl
+    name: minimap2_paf
+  - subclass: CWL
+    primaryDescriptorPath: /minimap2/minimap2_sam.cwl
+    name: minimap2_sam
+# multiqc
+  - subclass: CWL
+    primaryDescriptorPath: /multiqc/multiqc.cwl
+    name: multiqc
+# nanoplot
+  - subclass: CWL
+    primaryDescriptorPath: /nanoplot/nanoplot.cwl
+    name: nanoplot
+# nextclade
+  - subclass: CWL
+    primaryDescriptorPath: /nextclade/nextclade.cwl
+    name: nextclade
+    testParameterFiles:
+      - /nextclade/tests/nextclade_t1.yml
+# nucleoatac
+  - subclass: CWL
+    primaryDescriptorPath: /nucleoatac/nucleoatac.cwl
+    name: nucleoatac
+# odgi
+  - subclass: CWL
+    primaryDescriptorPath: /odgi/odgi_bin.cwl
+    name: odgi_bin
+  - subclass: CWL
+    primaryDescriptorPath: /odgi/odgi_build.cwl
+    name: odgi_build
+  - subclass: CWL
+    primaryDescriptorPath: /odgi/odgi_pathindex.cwl
+    name: odgi_pathindex
+  - subclass: CWL
+    primaryDescriptorPath: /odgi/odgi_sort.cwl
+    name: odgi_sort
+  - subclass: CWL
+    primaryDescriptorPath: /odgi/odgi_viz.cwl
+    name: odgi_viz
+# pca
+  - subclass: CWL
+    primaryDescriptorPath: /pca/pca.cwl
+    name: pca
+    testParameterFiles:
+      - /pca/tests/pca_t1.json
+# phantompeakqualtools
+  - subclass: CWL
+    primaryDescriptorPath: /phantompeakqualtools/phantompeakqualtools.cwl
+    name: phantompeakqualtools
+# picard
+  - subclass: CWL
+    primaryDescriptorPath: /picard/picard_AddOrReplaceReadGroups.cwl
+    name: picard_AddOrReplaceReadGroups
+  - subclass: CWL
+    primaryDescriptorPath: /picard/picard_CreateSequenceDictionary.cwl
+    name: picard_CreateSequenceDictionary
+  - subclass: CWL
+    primaryDescriptorPath: /picard/picard_MarkDuplicates.cwl
+    name: picard_MarkDuplicates
+  - subclass: CWL
+    primaryDescriptorPath: /picard/picard_SortSam.cwl
+    name: picard_SortSam
+# Pizzly
+  - subclass: CWL
+    primaryDescriptorPath: /Pizzly/Pizzly.cwl
+    name: Pizzly
+# preseq
+  - subclass: CWL
+    primaryDescriptorPath: /preseq/preseq_lc_extrap.cwl
+    name: preseq_lc_extrap
+    testParameterFiles:
+      - /preseq/tests/preseq-lc-extrap-t1.json
+      - /preseq/tests/preseq-lc-extrap-t2.json
+      - /preseq/tests/preseq-lc-extrap-t3.json
+      - /preseq/tests/preseq-lc-extrap-t4.json
+# qualimap
+  - subclass: CWL
+    primaryDescriptorPath: /qualimap/qualimap_rnaseq.cwl
+    name: qualimap_rnaseq
+# samtools
+  - subclass: CWL
+    primaryDescriptorPath: /samtools/samtools_faidx.cwl
+    name: samtools_faidx
+  - subclass: CWL
+    primaryDescriptorPath: /samtools/samtools_fastq.cwl
+    name: samtools_fastq
+  - subclass: CWL
+    primaryDescriptorPath: /samtools/samtools_index.cwl
+    name: samtools_index
+  - subclass: CWL
+    primaryDescriptorPath: /samtools/samtools_merge.cwl
+    name: samtools_merge
+  - subclass: CWL
+    primaryDescriptorPath: /samtools/samtools_sort.cwl
+    name: samtools_sort
+  - subclass: CWL
+    primaryDescriptorPath: /samtools/samtools_stats.cwl
+    name: samtools_stats
+  - subclass: CWL
+    primaryDescriptorPath: /samtools/samtools_view_count_alignments.cwl
+    name: samtools_view_count_alignments
+  - subclass: CWL
+    primaryDescriptorPath: /samtools/samtools_view_filter.cwl
+    name: samtools_view_filter
+  - subclass: CWL
+    primaryDescriptorPath: /samtools/samtools_view_sam2bam.cwl
+    name: samtools_view_sam2bam
+# seqkit
+  - subclass: CWL
+    primaryDescriptorPath: /seqkit/seqkit_rmdup.cwl
+    name: seqkit_rmdup
+# spades
+  - subclass: CWL
+    primaryDescriptorPath: /spades/spades.cwl
+    name: spades
+# sratoolkit
+  - subclass: CWL
+    primaryDescriptorPath: /sratoolkit/fastq_dump.cwl
+    name: fastq_dump
+    testParameterFiles:
+      - /sratoolkit/tests/fastq_dump_t1.json
+      - /sratoolkit/tests/fastq_dump_t2.json
+      - /sratoolkit/tests/fastq_dump_t3.json
+      - /sratoolkit/tests/fastq_dump_t4.json
+      - /sratoolkit/tests/fastq_dump_t5.json
+  - subclass: CWL
+    primaryDescriptorPath: /sratoolkit/prefetch.cwl
+    name: prefetch
+# STAR
+  - subclass: CWL
+    primaryDescriptorPath: /STAR/STAR-Align.cwl
+    name: STAR-Align
+  - subclass: CWL
+    primaryDescriptorPath: /STAR/STAR-Index.cwl
+    name: STAR-Index
+# subread
+  - subclass: CWL
+    primaryDescriptorPath: /subread/featureCounts.cwl
+    name: featureCounts
+# trim_galore
+  - subclass: CWL
+    primaryDescriptorPath: /trim_galore/trim_galore.cwl
+    name: trim_galore
+# unicycler
+  - subclass: CWL
+    primaryDescriptorPath: /unicycler/unicycler.cwl
+    name: unicycler
+# util
+  - subclass: CWL
+    primaryDescriptorPath: /util/awk.cwl
+    name: awk
+    testParameterFiles:
+      - /util/tests/awk_test1.yml
+  - subclass: CWL
+    primaryDescriptorPath: /util/grep.cwl
+    name: grep
+    testParameterFiles:
+      - /util/tests/grep_test1.yml
+  - subclass: CWL
+    primaryDescriptorPath: /util/rename.cwl
+    name: rename
+
+workflows:
+# sratoolkit
+  - subclass: CWL
+    primaryDescriptorPath: /sratoolkit/prefetch_fastq.cwl
+    name: prefetch_fastq
