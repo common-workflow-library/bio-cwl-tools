@@ -146,6 +146,7 @@ If the path within this repository to the tool's description is `/foo/foo-bar.cw
   - subclass: CWL
     primaryDescriptorPath: /foo/foo-bar.cwl
     name: foo-bar
+    publish: true
 ```
 
 To include test files, append the `testParameterFiles` key and a list of file paths:
@@ -155,6 +156,7 @@ To include test files, append the `testParameterFiles` key and a list of file pa
   - subclass: CWL
     primaryDescriptorPath: /foo/foo-bar.cwl
     name: foo-bar
+    publish: true
     testParameterFiles:
       - /foo/tests/foo-bar-t1.json
       - /foo/tests/foo-bar-t2.json
