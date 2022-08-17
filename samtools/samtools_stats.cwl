@@ -3,9 +3,9 @@ cwlVersion: v1.0
 class: CommandLineTool
 
 baseCommand: [samtools, stats]
-requirements:
-- class: DockerRequirement
-  dockerPull: biocontainers/samtools:v1.7.0_cv3
+hints:
+  DockerRequirement:
+    dockerPull: quay.io/biocontainers/samtools:1.14--hb421002_0
 
 inputs:
   input_file:
@@ -146,6 +146,6 @@ outputs:
       glob: $(inputs.input_file.nameroot).stats.txt
 stdout: $(inputs.input_file.nameroot).stats.txt
 
-$namespaces: { edam: http://edamontology.org/, iana: https://www.iana.org/assignments/media-types/ }
+$namespaces: { edam: https://edamontology.org/, iana: https://www.iana.org/assignments/media-types/ }
 $schemas:
-  - 'http://edamontology.org/EDAM_1.18.owl'
+  - 'https://edamontology.org/EDAM_1.18.owl'

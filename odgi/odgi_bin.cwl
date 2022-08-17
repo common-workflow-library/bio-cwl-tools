@@ -66,8 +66,8 @@ outputs:
       glob: $(inputs.sparse_graph_index.nameroot).og.fasta
 
 $namespaces:
-  edam: http://edamontology.org/
+  edam: https://edamontology.org/
   iana: https://www.iana.org/assignments/media-types/
 
 $schemas:
-  - http://edamontology.org/EDAM_1.18.owl
+  - https://edamontology.org/EDAM_1.18.owl

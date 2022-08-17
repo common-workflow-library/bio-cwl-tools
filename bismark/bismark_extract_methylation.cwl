@@ -2,12 +2,9 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-requirements:
-- class: InlineJavascriptRequirement
-- class: DockerRequirement
-  dockerPull: biowardrobe2/bismark:v0.0.2
-
 hints:
+  DockerRequirement:
+    dockerPull: biowardrobe2/bismark:v0.0.2
   SoftwareRequirement:
     packages:
       bismark:

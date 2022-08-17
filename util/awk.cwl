@@ -7,9 +7,14 @@ $namespaces:
   s: http://schema.org/
 
 requirements:
+  InlineJavascriptRequirement: {}
+
+hints:
   DockerRequirement:
     dockerPull: busybox:latest
-  InlineJavascriptRequirement: {}
+  ResourceRequirement:
+    coresMin: 1
+    ramMin: 10
 
 inputs:
   field_separator:
@@ -47,10 +52,6 @@ stdout: "awk_result$( inputs.inherit_format ? inputs.target_files[0].nameext : '
 
 baseCommand: awk
 
-hints:
-  ResourceRequirement:
-    coresMin: 1
-    ramMin: 10
 $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
 s:author:

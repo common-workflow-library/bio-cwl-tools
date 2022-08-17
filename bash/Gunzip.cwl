@@ -2,7 +2,7 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-requirements:
+hints:
   DockerRequirement:
     dockerPull: ubuntu:xenial
 

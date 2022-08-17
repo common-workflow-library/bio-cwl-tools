@@ -14,7 +14,7 @@ hints:
     coresMin: 1
     ramMin: 20000
   DockerRequirement:
-    dockerPull: kerstenbreuer/samtools:1.7
+    dockerPull: quay.io/biocontainers/samtools:1.14--hb421002_0
 
 baseCommand: ["samtools", "index"]
 arguments:
@@ -32,7 +32,11 @@ outputs:
   bam_sorted_indexed:
     type: File
     secondaryFiles: .bai
+    format: edam:format_2572  # BAM 
     outputBinding:
       glob: $(inputs.bam_sorted.basename)
       
-    
+$namespaces:
+  edam: https://edamontology.org/
+$schemas:
+  - https://edamontology.org/EDAM_1.18.owl

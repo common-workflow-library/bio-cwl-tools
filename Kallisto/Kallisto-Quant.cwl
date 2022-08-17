@@ -2,7 +2,7 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-requirements:
+hints:
   DockerRequirement:
     dockerPull: "quay.io/biocontainers/kallisto:0.45.0--hdcc98e5_0"
 
@@ -141,6 +141,6 @@ outputs:
       glob: "fusion.txt"
 
 $namespaces:
-  edam: http://edamontology.org/
+  edam: https://edamontology.org/
 $schemas:
-  - http://edamontology.org/EDAM_1.18.owl
+  - https://edamontology.org/EDAM_1.18.owl
