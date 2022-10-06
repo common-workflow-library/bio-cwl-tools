@@ -62,7 +62,7 @@ steps:
       reference_genome:
         source: [ index_genome/indexed_sequences, reference_genome ]
         pickValue: first_non_null
-      paired_reads_1: paired_reads_1
+      reads: paired_reads_1
       paired_reads_2: paired_reads_2
       read_group_header_line: compute_read_group_header/read_group_name
     out: [ aligned_reads ]

@@ -5,6 +5,9 @@ class: CommandLineTool
 label: |
   map medium and long reads (> 100 bp) against reference genome
 
+requirements:
+  InlineJavascriptRequirement: {}
+
 hints:
   DockerRequirement:
     dockerPull: quay.io/biocontainers/bwa-mem2:2.2.1--hd03093a_2
@@ -58,14 +61,21 @@ arguments:
  - -v
  - "1" # Verbosity is set to 1 (errors only)
 
-stdout: unsorted_reads.sam
+stdout: |
+ ${
+    var filename = inputs.reads.nameroot;
+    if (inputs.paired_reads_2) {
+      filename += "_" + inputs.paired_reads_2.nameroot;
+    }
+    return filename += ".sam"
+  }
 
 outputs:
   aligned_reads:
     type: File
     format: edam:format_2573  # SAM
     outputBinding:
-      glob: unsorted_reads.sam
+      glob: "*.sam"
     
 $namespaces:
   edam: https://edamontology.org/
