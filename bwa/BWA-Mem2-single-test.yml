@@ -1,0 +1,9 @@
+reads:
+  class: File
+  location: https://github.com/galaxyproject/tools-iuc/raw/master/tools/bwa_mem2/test-data/bwa-mem-fasta1.fa
+  format: edam:format_1929  # FASTQ-sanger
+reference_genome:
+  class: File
+  location: https://github.com/galaxyproject/tools-iuc/raw/master/tools/bwa_mem2/test-data/bwa-mem-mt-genome.fa
+  format: edam:format_1929  # FASTA
+do_auto_name: True

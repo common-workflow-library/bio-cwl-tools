@@ -16,15 +16,9 @@ inputs:
      - .amb?
      - .pac?
      - ".0123?"
-  paired_reads_1:
+  reads:
     type: File
     label: "First (forward) set of reads"
-    format:
-       - edam:format_1929 # FASTA
-       - edam:format_1932 # FASTQ-sanger
-  paired_reads_2:
-    type: File
-    label: "Second (reverse) set of reads"
     format:
        - edam:format_1929 # FASTA
        - edam:format_1932 # FASTQ-sanger
@@ -53,8 +47,7 @@ steps:
     when: $(inputs.do_auto_name)
     in:
       do_auto_name: do_auto_name
-      input1: paired_reads_1
-      input2: paired_reads_2
+      input1: reads
     out: [ read_group_name ]
   align:
     run: BWA-Mem2.cwl
@@ -62,8 +55,7 @@ steps:
       reference_genome:
         source: [ index_genome/indexed_sequences, reference_genome ]
         pickValue: first_non_null
-      paired_reads_1: paired_reads_1
-      paired_reads_2: paired_reads_2
+      reads: reads
       read_group_header_line: compute_read_group_header/read_group_name
     out: [ aligned_reads ]
   sort:

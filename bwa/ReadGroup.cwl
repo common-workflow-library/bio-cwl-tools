@@ -15,7 +15,7 @@ requirements:
            // input1: File
            // input2: File?
            var input_name1 = clean(input1.nameroot);
-           if (input2 === undefined) {
+           if (input2 === null) {
              return input_name1;
            }
            var input_name2 = clean(input2.nameroot);

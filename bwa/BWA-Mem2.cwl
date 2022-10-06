@@ -1,83 +1,72 @@
 #!/usr/bin/env cwl-runner
-cwlVersion: v1.2
-class: Workflow
+cwlVersion: v1.0
+class: CommandLineTool
 
 label: |
   map medium and long reads (> 100 bp) against reference genome
 
+hints:
+  DockerRequirement:
+    dockerPull: quay.io/biocontainers/bwa-mem2:2.2.1--hd03093a_2
+  SoftwareRequirement:
+    packages:
+      bwa-mem2:
+        version: [ 2.2.1 ]
+        specs: [ https://bio.tools/bwa-mem2 ]
+
+baseCommand: [ bwa-mem2, mem ]
+
 inputs:
   reference_genome:
     type: File
-    label: "Reference genome sequences, optionally already indexed for BWA-Mem2."
     format: edam:format_1929 # FASTA
     secondaryFiles:
-     - .bwt.2bit.64?
-     - .ann?
-     - .amb?
-     - .pac?
-     - ".0123?"
-  paired_reads_1:
+     - .bwt.2bit.64
+     - .ann
+     - .amb
+     - .pac
+     - ".0123"
+    inputBinding:
+      position: 1
+  reads:
     type: File
-    label: "First (forward) set of reads"
+    label: "First (forward) set of reads (or unpaired reads)."
     format:
        - edam:format_1929 # FASTA
        - edam:format_1932 # FASTQ-sanger
+    inputBinding:
+      position: 2
   paired_reads_2:
-    type: File
-    label: "Second (reverse) set of reads"
+    type: File?
+    label: "Second (reverse) set of reads (if using paired reads)."
     format:
        - edam:format_1929 # FASTA
        - edam:format_1932 # FASTQ-sanger
-  do_auto_name:
-    type: boolean
-    default: False
-    label: "Auto-assign read groups"
-    doc: "If true, use the file name to automatically assign the read groups value."
+    inputBinding:
+      position: 3
+  read_group_header_line:
+    type: string?
+    doc: |
+      read group header line such as '@RG\tID:foo\tSM:bar'
+    inputBinding:
+      prefix: "-R"
+
+      
+arguments:
+ - -t
+ - $(runtime.cores)
+ - -v
+ - "1" # Verbosity is set to 1 (errors only)
+
+stdout: unsorted_reads.sam
 
 outputs:
-  sorted_alignments:
+  aligned_reads:
     type: File
-    format: edam:format_2572  # BAM
-    outputSource: sort/sorted_alignments
-
-steps:
-  index_genome:
-    run: BWA-Mem2-index.cwl
-    in:
-      sequences: reference_genome
-    when: |
-      $(inputs.sequences.secondaryFiles !== undefined)
-    out: [ indexed_sequences ]
-  compute_read_group_header:
-    run: ReadGroup.cwl
-    when: $(inputs.do_auto_name)
-    in:
-      do_auto_name: do_auto_name
-      input1: paired_reads_1
-      input2: paired_reads_2
-    out: [ read_group_name ]
-  align:
-    run: BWA-Mem2-paired.cwl
-    in:
-      reference_genome:
-        source: [ index_genome/indexed_sequences, reference_genome ]
-        pickValue: first_non_null
-      paired_reads_1: paired_reads_1
-      paired_reads_2: paired_reads_2
-      read_group_header_line: compute_read_group_header/read_group_name
-    out: [ aligned_reads ]
-  sort:
-    run: ../samtools/samtools_sort.cwl
-    in: 
-      unsorted_alignments: align/aligned_reads
-      force_format:
-        default: BAM
-    out: [ sorted_alignments ]
-
-requirements:
-  MultipleInputFeatureRequirement: {}
-  InlineJavascriptRequirement: {}
- 
+    format: edam:format_2573  # SAM
+    outputBinding:
+      glob: unsorted_reads.sam
+    
 $namespaces:
   edam: https://edamontology.org/
 $schemas:
