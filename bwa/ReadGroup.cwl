@@ -5,6 +5,9 @@ class: ExpressionTool
 # Inspired by https://github.com/galaxyproject/tools-iuc/blob/master/macros/read_group_macros.xml
 
 requirements:
+  SchemaDefRequirement:
+    types:
+      - $import: ReadGroupType.yml
   InlineJavascriptRequirement:
     expressionLib:
      - |
@@ -34,6 +37,7 @@ requirements:
 inputs:
   input1: File
   input2: File?
+  details: ReadGroupType.yml#ReadGroupDetails?
 
 # '@RG\tID:bwa-mem-fastq'
 
@@ -41,7 +45,14 @@ expression: |
   ${
     var rg_auto_name = read_group_name_default(inputs.input1, inputs.input2);
     var rg_id = rg_auto_name;
-    var rg_string = "@RG\\tID:" + rg_id;
+    var rg_string = "";
+    if (inputs.details) {
+      rg_string = "@RG\\tID:" + inputs.details.identifier;
+      rg_string += "\\tPL:" + inputs.details.platform;
+      rg_string += "\\tLB:" + inputs.details.library;
+    } else {
+      rg_string = "@RG\\tID:" + rg_id;
+    }
     return {"read_group_name": rg_string};
    }
 

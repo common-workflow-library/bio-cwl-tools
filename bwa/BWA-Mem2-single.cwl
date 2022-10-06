@@ -27,6 +27,8 @@ inputs:
     default: False
     label: "Auto-assign read groups"
     doc: "If true, use the file name to automatically assign the read groups value."
+  read_group:
+    type: ReadGroupType.yml#ReadGroupDetails?
 
 outputs:
   sorted_alignments:
@@ -44,9 +46,10 @@ steps:
     out: [ indexed_sequences ]
   compute_read_group_header:
     run: ReadGroup.cwl
-    when: $(inputs.do_auto_name)
+    when: $(inputs.do_auto_name !== null || inputs.details !== null)
     in:
       do_auto_name: do_auto_name
+      details: read_group
       input1: reads
     out: [ read_group_name ]
   align:
@@ -69,6 +72,9 @@ steps:
 requirements:
   MultipleInputFeatureRequirement: {}
   InlineJavascriptRequirement: {}
+  SchemaDefRequirement:
+    types:
+      - $import: ReadGroupType.yml
  
 $namespaces:
   edam: https://edamontology.org/
