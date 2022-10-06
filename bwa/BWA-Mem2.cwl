@@ -27,6 +27,11 @@ inputs:
     format:
        - edam:format_1929 # FASTA
        - edam:format_1932 # FASTQ-sanger
+  do_auto_name:
+    type: boolean
+    default: False
+    label: "Auto-assign read groups"
+    doc: "If true, use the file name to automatically assign the read groups value."
 
 outputs:
   sorted_alignments:
@@ -42,6 +47,14 @@ steps:
     when: |
       $(inputs.sequences.secondaryFiles !== undefined)
     out: [ indexed_sequences ]
+  compute_read_group_header:
+    run: ReadGroup.cwl
+    when: $(inputs.do_auto_name)
+    in:
+      do_auto_name: do_auto_name
+      input1: paired_reads_1
+      input2: paired_reads_2
+    out: [ read_group_name ]
   align:
     run: BWA-Mem2-paired.cwl
     in:
@@ -50,6 +63,7 @@ steps:
         pickValue: first_non_null
       paired_reads_1: paired_reads_1
       paired_reads_2: paired_reads_2
+      read_group_header_line: compute_read_group_header/read_group_name
     out: [ aligned_reads ]
   sort:
     run: ../samtools/samtools_sort.cwl
