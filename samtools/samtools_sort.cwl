@@ -1,5 +1,5 @@
 #!/usr/bin/env cwl-runner
-cwlVersion: v1.0
+cwlVersion: v1.2
 class: CommandLineTool
 
 doc: Sort a bam file by read names.
@@ -16,17 +16,22 @@ hints:
 baseCommand: ["samtools", "sort"]
 arguments:
   - valueFrom: $(runtime.cores)
-    prefix: -@
+    prefix: --threads  # a.k.a -@
   - prefix: -m
     valueFrom: ${ return(parseInt(runtime.ram/runtime.cores-100).toString() + "M") }
     position: 1
     # specifies the allowed maximal memory usage per thread before
     # samtools start to outsource memory to temporary files
+  - prefix: -T
+    valueFrom: $(runtime.tmpdir)
 
 inputs:
-  bam_unsorted:
+  unsorted_alignments:
     doc: aligned reads to be checked in sam or bam format
     type: File
+    format:
+      - edam:format_2572  # BAM
+      - edam:format_2573  # SAM
     inputBinding:
       position: 2
   by_name:
@@ -36,11 +41,42 @@ inputs:
     inputBinding:
       position: 1
       prefix: -n
+  force_format:
+    doc: If true, will force binary output (BAM)
+    type:
+      - 'null'
+      - type: enum
+        symbols: [ SAM, BAM, CRAM ]
+    inputBinding:
+      prefix: -O
 
-stdout: $(inputs.bam_unsorted.basename)
+stdout: |
+  ${
+    var filename = inputs.unsorted_alignments.nameroot + "_sorted.";
+    if (inputs.force_format !== undefined) {
+      return filename + inputs.force_format.toLowerCase();
+    }
+    return filename + (inputs.unsorted_alignments.format == "https://edamontology.org/format_2572" ? "bam" : "sam");
+   }
 
 outputs:
-  bam_sorted:
+  sorted_alignments:
     type: stdout
-  
-  
+    format: |
+      ${
+         if (inputs.force_format === undefined) {
+           return inputs.unsorted_alignments.format;
+         }
+         if (inputs.force_format == "SAM") {
+           return "https://edamontology.org/format_2573";
+         }
+         if (inputs.force_format == "BAM") {
+           return "https://edamontology.org/format_2572";
+         }
+         if (inputs.force_format == "CRAM") {
+           return "https://edamontology.org/format_3462";
+         }
+       }
+
+$namespaces:
+  edam: https://edamontology.org/ 
