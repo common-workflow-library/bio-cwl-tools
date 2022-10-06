@@ -13,6 +13,7 @@ hints:
     dockerPull: quay.io/biocontainers/samtools:1.14--hb421002_0
 
 baseCommand: ["samtools", "view"]
+
 arguments:
   - valueFrom: -h
     position: 1
@@ -20,17 +21,26 @@ arguments:
   - valueFrom: -b
     position: 1
     # output in bam format
+  - --no-PG  # but don't add our own PG header for more reproduciblity
+
 stdout: $(inputs.sam.nameroot).bam
 
 inputs:
   sam:
     doc: reads to be checked in sam format
     type: File
+    format: edam:format_2573  # SAM
     inputBinding:
       position: 2
 
 outputs:
   bam:
-    type: stdout
-  
-  
+    type: File
+    outputBinding:
+      glob: "*.bam"
+    format: edam:format_2572  # BAM
+
+$namespaces:
+  edam: https://edamontology.org/
+$schemas:
+  - https://edamontology.org/EDAM_1.18.owl 
