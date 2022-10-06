@@ -24,6 +24,7 @@ arguments:
     # samtools start to outsource memory to temporary files
   - prefix: -T
     valueFrom: $(runtime.tmpdir)
+  - --no-PG  # don't put the filepaths in the metadata, makes the output more reproducible
 
 inputs:
   unsorted_alignments:
