@@ -8,6 +8,7 @@ label: |
 inputs:
   reference_genome:
     type: File
+    label: "Reference genome sequences, optionally already indexed for BWA-Mem2."
     format: edam:format_1929 # FASTA
     secondaryFiles:
      - .bwt.2bit.64?
