@@ -1,3 +1,4 @@
+#!/usr/bin/env cwl-runner
 cwlVersion: v1.0
 class: CommandLineTool
 
@@ -32,7 +33,7 @@ arguments:
   - valueFrom: $(inputs.folder_to_compress.path.split("/").slice(0,-1).join("/"))
     prefix: "-C"
   - "-czvf"
-  - valueFrom: $(inputs.folder_to_compress.basename + ".tar.gz")
+  - valueFrom: $(inputs.folder_to_compress.basename).tar.gz
   - "."
 
 
@@ -45,11 +46,6 @@ $schemas:
 
 s:name: "tar-compress"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

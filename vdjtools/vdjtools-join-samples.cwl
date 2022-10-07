@@ -1,3 +1,4 @@
+#!/usr/bin/env cwl-runner
 class: CommandLineTool
 cwlVersion: v1.1
 
@@ -155,4 +156,4 @@ doc: |
   
   Joins several clonotype tables together to form a joint clonotype abundance table. Joint
   clonotype holds information on all clonotypes that match under a certain comparison criteria
-  (e.g. identical CDR3nt and V segment), their samples of origin and corresponding abundances. 
+  (e.g. identical CDR3nt and V segment), their samples of origin and corresponding abundances.
