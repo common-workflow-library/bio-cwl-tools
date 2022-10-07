@@ -2,12 +2,9 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-requirements:
-- class: InlineJavascriptRequirement
-
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/homer:v0.0.2
+  DockerRequirement:
+    dockerPull: biowardrobe2/homer:v0.0.2
 
 inputs:
 
@@ -132,13 +129,13 @@ outputs:
     type: stdout
     doc: "Output histogram file"
 
-stdout: ${return inputs.histogram_filename;}
+stdout: $(inputs.histogram_filename)
 
 baseCommand: ["makeMetaGeneProfile.pl"]
 arguments:
   - valueFrom: $(inputs.peak_file)
     position: 5
-  - valueFrom: $("none")
+  - valueFrom: none
     position: 6
 
 $namespaces:

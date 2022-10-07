@@ -118,11 +118,11 @@ outputs:
 
 $namespaces:
   s: http://schema.org/
-  edam: http://edamontology.org/
+  edam: https://edamontology.org/
 
 $schemas:
   - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
-  - http://edamontology.org/EDAM_1.20.owl
+  - https://edamontology.org/EDAM_1.20.owl
 
 
 s:name: "MashMap"

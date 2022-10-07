@@ -44,6 +44,7 @@ for line in changed_files.decode("utf-8").rstrip().split("\n"):
                 "cwlVersion: v1.0",
                 "cwlVersion:v1.1",
                 "cwlVersion: v1.1",
+                "cwlVersion: v1.2",
             ],
             ["class: CommandLineTool", "class: Workflow", "class: ExpressionTool"],
         ]

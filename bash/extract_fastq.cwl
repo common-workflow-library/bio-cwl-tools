@@ -12,11 +12,11 @@ doc: |
   This script also works of input file doesn't have any extension at all
 
 requirements:
-- class: ShellCommandRequirement
+  ShellCommandRequirement: {}
 
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/scidap:v0.0.3
+  DockerRequirement:
+    dockerPull: biowardrobe2/scidap:v0.0.3
 
 inputs:
 

@@ -13,9 +13,9 @@ inputs:
 baseCommand: featureCounts
 
 arguments: [-T, $(runtime.cores),
-            -a, $(inputs.gtf),
+            -a, $(inputs.annotations),
             -o, featurecounts.tsv,
-            $(inputs.counts_input_bam)]
+            $(inputs.mapped_reads)]
 
 outputs:
   featurecounts:
@@ -36,7 +36,7 @@ hints:
           - https://anaconda.org/bioconda/subread
 
 $namespaces:
- edam: http://edamontology.org/
+ edam: https://edamontology.org/
  iana: https://www.iana.org/assignments/media-types/
 $schemas:
  - https://edamontology.org/EDAM_1.25.owl

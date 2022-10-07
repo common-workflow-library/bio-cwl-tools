@@ -11,11 +11,9 @@ s:author:
     s:email: mailto:pvh@sanbi.ac.za
     s:name: Peter van Heusden
 
-requirements:
+hints:
   DockerRequirement:
     dockerPull: quay.io/biocontainers/nextclade_js:0.14.3--h9ee0642_0
-
-hints:
   ResourceRequirement:
     coresMin: 1
     ramMin: 512  # 512 MB
@@ -137,11 +135,11 @@ baseCommand: [ nextclade.js ]
 
   
 $namespaces:
-  edam: http://edamontology.org/
+  edam: https://edamontology.org/
   iana: https://www.iana.org/assignments/media-types/
   s: http://schema.org/
 
 $schemas:
   - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
-  - http://edamontology.org/EDAM_1.18.owl
+  - https://edamontology.org/EDAM_1.18.owl
 

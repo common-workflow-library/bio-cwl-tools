@@ -2,10 +2,9 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-requirements:
+hints:
   DockerRequirement:
     dockerPull: "broadinstitute/gatk:4.1.3.0"
-  InlineJavascriptRequirement: {}
 
 inputs:
   # REQUIRED ARGS
@@ -67,6 +66,6 @@ outputs:
       glob: "filtered.vcf"
 
 $namespaces:
-  edam: http://edamontology.org/
+  edam: https://edamontology.org/
 $schemas:
-  - http://edamontology.org/EDAM_1.18.owl
+  - https://edamontology.org/EDAM_1.18.owl

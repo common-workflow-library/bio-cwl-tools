@@ -7,9 +7,13 @@ $namespaces:
   s: http://schema.org/
 
 requirements:
+  InlineJavascriptRequirement: {}
+hints:
   DockerRequirement:
     dockerPull: busybox:latest
-  InlineJavascriptRequirement: {}
+  ResourceRequirement:
+    coresMin: 1
+    ramMin: 10
 
 inputs:
   ignore_case:
@@ -67,10 +71,6 @@ stdout: "search_result$( inputs.inherit_format ? inputs.search_target.nameext : 
 
 baseCommand: grep
 
-hints:
-  ResourceRequirement:
-    coresMin: 1
-    ramMin: 10
 $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
 s:author:
