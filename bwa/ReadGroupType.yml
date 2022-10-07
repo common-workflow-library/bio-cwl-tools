@@ -1,0 +1,15 @@
+- type: record
+  name: ReadGroupDetails
+  fields:
+    identifier:
+      type: string
+      label: "Read group identifier (ID)"
+      doc: "This value must be unique among multiple samples in your experiment"
+    platform:
+      type:
+        type: enum
+        symbols: [ CAPILLARY, LS454, ILLUMINA, SOLID, HELICOS, IONTORRENT, PACBIO ]
+      label: "Platform/technology used to produce the reads (PL)"
+    library:
+      type: string
+      label: "Library name (LB)"
