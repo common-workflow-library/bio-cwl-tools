@@ -67,11 +67,11 @@ outputs:
     format: |
       ${
         if (inputs.output_options.output_fasta) {
-          return 'edam:format_1929';
+          return 'http://edamontology.org/format_1929';
         } else if (inputs.output_options.output_phylip) {
-          return 'edam:format_1997';
+          return 'http://edamontology.org/format_1997';
         } else if (inputs.output_options.output_vcf) {
-          return 'edam:format_3016';
+          return 'http://edamontology.org/format_3016';
         }
       }
     streamable: true
