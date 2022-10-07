@@ -110,7 +110,7 @@ arguments:
   - prefix: --adapter
     valueFrom: |
       ${
-        if ( inputs.apdater1 != null && inputs.adapter1 != "illumina" && inputs.adapter1 != "nextera" && inputs.adapter1 != "small_rna" ){
+        if ( inputs.adapter1 != null && inputs.adapter1 != "illumina" && inputs.adapter1 != "nextera" && inputs.adapter1 != "small_rna" ){
           return inputs.adapter1
         } else {
           return null
@@ -120,7 +120,7 @@ arguments:
   - prefix: --adapter2
     valueFrom: |
       ${
-        if ( inputs.fastq2 != null && inputs.apdater2 != null && inputs.adapter1 != "illumina" && inputs.adapter1 != "nextera" && inputs.adapter1 != "small_rna" ){
+        if ( inputs.fastq2 != null && inputs.adapter2 != null && inputs.adapter1 != "illumina" && inputs.adapter1 != "nextera" && inputs.adapter1 != "small_rna" ){
           return inputs.adapter2
         } else {
           return null

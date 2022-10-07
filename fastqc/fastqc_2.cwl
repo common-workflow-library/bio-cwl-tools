@@ -2,23 +2,19 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-requirements:
-- class: InlineJavascriptRequirement
-
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/fastqc:v0.11.5
-- class:  SoftwareRequirement
-  packages:
-    fastqc:
-      specs: [ "http://identifiers.org/biotools/fastqc" ]
-      version: [ "0.1.11.5" ]
+  DockerRequirement:
+    dockerPull: quay.io/biocontainers/fastqc:0.11.9--hdfd78af_1
+  SoftwareRequirement:
+    packages:
+      fastqc:
+        specs: [ "http://identifiers.org/biotools/fastqc" ]
+        version: [ "0.11.9--hdfd78af_1", "0.11.9" ]
 
 inputs:
 
   reads_file:
-    type:
-      - File
+    type: File
     inputBinding:
       position: 50
     doc: |
@@ -39,9 +35,7 @@ inputs:
       formats are bam,sam,bam_mapped,sam_mapped and fastq
 
   threads:
-    type:
-      - "null"
-      - int
+    type: int?
     inputBinding:
       position: 7
       prefix: '--threads'
@@ -53,9 +47,7 @@ inputs:
       6 threads on a 32 bit machine
 
   contaminants:
-    type:
-      - "null"
-      - File
+    type: File?
     inputBinding:
       position: 8
       prefix: '--contaminants'
@@ -67,9 +59,7 @@ inputs:
       be ignored.
 
   adapters:
-    type:
-      - "null"
-      - File
+    type: File?
     inputBinding:
       position: 9
       prefix: '--adapters'
@@ -81,9 +71,7 @@ inputs:
       will be ignored.
 
   limits:
-    type:
-      - "null"
-      - File
+    type: File?
     inputBinding:
       position: 10
       prefix: '--limits'
@@ -96,9 +84,7 @@ inputs:
       Configuration folder.
 
   kmers:
-    type:
-      - "null"
-      - int
+    type: int?
     inputBinding:
       position: 11
       prefix: '--kmers'
@@ -108,9 +94,7 @@ inputs:
       length is 7 if not specified.
 
   casava:
-    type:
-      - "null"
-      - boolean
+    type: boolean?
     inputBinding:
       position: 13
       prefix: '--casava'
@@ -124,9 +108,7 @@ inputs:
       won't be grouped together correctly.
 
   nofilter:
-    type:
-      - "null"
-      - boolean
+    type: boolean?
     inputBinding:
       position: 14
       prefix: '--nofilter'
@@ -135,9 +117,7 @@ inputs:
       casava as poor quality when performing the QC analysis.
 
   hide_group:
-    type:
-      - "null"
-      - boolean
+    type: boolean?
     inputBinding:
       position: 15
       prefix: '--nogroup'
@@ -151,23 +131,17 @@ inputs:
 outputs:
 
   zipped_file:
-    type:
-      - File
+    type: File
     outputBinding:
       glob: '*.zip'
   html_file:
-    type:
-      - File
+    type: File
     outputBinding:
       glob: '*.html'
   summary_file:
-    type:
-      - File
+    type: File
     outputBinding:
-      glob: |
-        ${
-          return "*/summary.txt";
-        }
+      glob: "*/summary.txt"
 
 baseCommand: [fastqc, --extract, --outdir, .]
 
@@ -179,11 +153,6 @@ $schemas:
 
 s:name: "fastqc_2"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

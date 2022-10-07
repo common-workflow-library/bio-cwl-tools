@@ -127,7 +127,7 @@ inputs:
 
 ``` cwl
 $namespaces:
-  edam: http://edamontology.org/
+  edam: https://edamontology.org/
   iana: https://www.iana.org/assignments/media-types/
 ```
 
@@ -135,3 +135,31 @@ $namespaces:
 
 While there is no specific standard on the order of sections in a CWL file, [cwl-format](https://github.com/rabix/cwl-format) may be used to format the CWL
 code of a tool if the author feels that it is useful.
+
+## Dockstore
+
+Update [.dockstore.yml](.dockstore.yml) to allow the new tool description to be automatically registered on [Dockstore](https://dockstore.org/).
+If the path within this repository to the tool's description is `/foo/foo-bar.cwl`, you would add the following entry to the `tools` section of [.dockstore.yml](.dockstore.yml):
+
+```
+# foo
+  - subclass: CWL
+    primaryDescriptorPath: /foo/foo-bar.cwl
+    name: foo-bar
+    publish: true
+```
+
+To include test files, append the `testParameterFiles` key and a list of file paths:
+
+```
+# foo
+  - subclass: CWL
+    primaryDescriptorPath: /foo/foo-bar.cwl
+    name: foo-bar
+    publish: true
+    testParameterFiles:
+      - /foo/tests/foo-bar-t1.json
+      - /foo/tests/foo-bar-t2.json
+```
+
+[More information](https://docs.dockstore.org/en/stable/assets/templates/tools/tools.html) about [.dockstore.yml](.dockstore.yml).

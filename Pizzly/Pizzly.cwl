@@ -2,7 +2,7 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-requirements:
+hints:
   DockerRequirement:
     dockerPull: "quay.io/biocontainers/pizzly:0.37.3--0"
 

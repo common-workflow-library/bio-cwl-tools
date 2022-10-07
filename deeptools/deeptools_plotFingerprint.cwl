@@ -5,9 +5,6 @@ class: CommandLineTool
 doc: |
   Creates Fingerprint plots showing enrichment in coverage.
 
-requirements:
-  InlineJavascriptRequirement: {}
-  StepInputExpressionRequirement: {}
 hints:
   ResourceRequirement:
     coresMin: 1

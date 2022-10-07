@@ -3,26 +3,19 @@ cwlVersion: v1.0
 class: CommandLineTool
 
 requirements:
-- class: InlineJavascriptRequirement
-- class: DockerRequirement
-  dockerPull: biowardrobe2/bismark:v0.0.2
-- class: InitialWorkDirRequirement
-  listing: |
-    ${
-      return  [
-                {
-                  "entry": inputs.genome_folder,
-                  "writable": true
-                }
-              ]
-    }
+ InitialWorkDirRequirement:
+   listing:
+    - entry: inputs.genome_folder
+      writable: true
 
 hints:
-  SoftwareRequirement:
-    packages:
-      bismark:
-        specs: [ "http://identifiers.org/biotools/bismark" ]
-        version: [ "0.0.2" ]
+ DockerRequirement:
+   dockerPull: biowardrobe2/bismark:v0.0.2
+ SoftwareRequirement:
+   packages:
+     bismark:
+       specs: [ "http://identifiers.org/biotools/bismark" ]
+       version: [ "0.0.2" ]
 
 inputs:
 

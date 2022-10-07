@@ -2,7 +2,7 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-requirements:
+hints:
   DockerRequirement:
     dockerPull: "quay.io/biocontainers/bwa:0.7.17--ha92aebf_3"
 
@@ -54,6 +54,6 @@ outputs:
       glob: '$(((inputs.index_name !== null) ? inputs.index_name : inputs.input_file.nameroot) + ".bwt")'
 
 $namespaces:
-  edam: http://edamontology.org/
+  edam: https://edamontology.org/
 $schemas:
-  - http://edamontology.org/EDAM_1.18.owl
+  - https://edamontology.org/EDAM_1.18.owl
