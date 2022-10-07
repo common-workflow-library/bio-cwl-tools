@@ -1,0 +1,4 @@
+sequences:
+  class: File
+  location: https://github.com/galaxyproject/tools-iuc/raw/master/tools/bwa/test-data/bwa-mem-mt-genome.fa
+  format: edam:format_1929

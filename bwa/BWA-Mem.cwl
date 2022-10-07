@@ -6,127 +6,137 @@ requirements:
   DockerRequirement:
     dockerPull: "quay.io/biocontainers/bwa:0.7.17--ha92aebf_3"
 
+hints:
+  SoftwareRequirement:
+    packages:
+      bwa:
+        version: [ "0.7.17" ]
+        specs:
+          - https://bio.tools/bwa
+
 inputs:
-  InputFile:
+  index:
+    type: File
+    secondaryFiles:
+      - ^.amb
+      - ^.ann
+      - ^.pac
+      - ^.sa
+    inputBinding:
+      position: 200
+      valueFrom: $(self.dirname)/$(self.nameroot)
+    
+  input_files:
     type: File[]
     format:
-      - edam:format_1930 # FASTA
-      - edam:format_1931 # FASTQ
+      - edam:format_1930 # FASTQ (no quality score encoding specified)
+      - edam:format_1931 # FASTQ-Illumina
+      - edam:format_1932 # FASTQ-Sanger
+      - edam:format_1933 # FASTQ-Solexa
     inputBinding:
       position: 201
     
-  Index:
-    type: File
-    inputBinding:
-      position: 200
-    secondaryFiles:
-      - .fai
-      - .amb
-      - .ann
-      - .bwt
-      - .pac
-      - .sa
-
 #Optional arguments
 
-  Threads:
+  threads:
     type: int?
     inputBinding:
       prefix: "-t"
 
-  MinSeedLen:
+  min_seed_len:
     type: int?
     inputBinding:
       prefix: "-k"
   
-  BandWidth:
+  band_width:
     type: int?
     inputBinding:
       prefix: "-w"
 
-  ZDropoff:
+  z_dropoff:
     type: int?
     inputBinding:
       prefix: "-d"
 
-  SeedSplitRatio:
+  seed_split_ratio:
     type: float?
     inputBinding:
       prefix: "-r"
     
-  MaxOcc:
+  max_occ:
     type: int?
     inputBinding:
       prefix: "-c"
 
-  MatchScore:
+  match_score:
     type: int?
     inputBinding:
       prefix: "-A"
 
-  MmPenalty:
+  mm_penalty:
     type: int?
     inputBinding:
       prefix: "-B"
 
-  GapOpenPen:
+  gap_open_penalty:
     type: int?
     inputBinding:
       prefix: "-O"
 
-  GapExtPen:
+  gap_ext_penalty:
     type: int?
     inputBinding:
       prefix: "-E"
 
-  ClipPen:
+  clip_penalty:
     type: int?
     inputBinding:
       prefix: "-L"
 
-  UnpairPen:
+  unpair_pen:
     type: int?
     inputBinding:
       prefix: "-U"
 
-  RgLine:
+  rg_line:
     type: string?
     inputBinding:
       prefix: "-R"
 
-  VerboseLevel:
+  verbose_level:
     type: int?
     inputBinding:
       prefix: "-v"
 
-  isOutSecAlign:
+  is_out_sec_align:
     type: boolean?
     inputBinding:
       prefix: "-a"
 
-  isMarkShortSplit:
+  is_mark_short_split:
     type: boolean?
     inputBinding:
       prefix: "-M"
 
-  isUseHardClip:
+  is_use_hard_clip:
     type: boolean?
     inputBinding:
       prefix: "-H"
 
-  isMultiplexedPair:
+  is_multiplexed_pair:
     type: boolean?
     inputBinding:
       prefix: "-p"
       
 
 baseCommand: [bwa, mem]
-
+    
 stdout: unsorted_reads.sam
 
 outputs:
   reads_stdout:
     type: stdout
+    format: edam:format_2573 # SAM format
     
 $namespaces:
   edam: https://edamontology.org/
