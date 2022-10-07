@@ -5,7 +5,6 @@ class: CommandLineTool
 requirements:
   DockerRequirement:
     dockerPull: "quay.io/biocontainers/bwa:0.7.17--ha92aebf_3"
-  InlineJavascriptRequirement: {}
 
 hints:
   SoftwareRequirement:
@@ -25,7 +24,7 @@ inputs:
       - ^.sa
     inputBinding:
       position: 200
-      valueFrom: $(self.dirname + '/' + self.nameroot)
+      valueFrom: $(self.dirname)/$(self.nameroot)
     
   input_files:
     type: File[]

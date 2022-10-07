@@ -2,11 +2,12 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
+requirements:
+  InlineJavascriptRequirement: {}
+
 hints:
   DockerRequirement:
     dockerPull: "quay.io/biocontainers/bwa:0.7.17--ha92aebf_3"
-
-hints:
   SoftwareRequirement:
     packages:
       bwa:
@@ -15,7 +16,7 @@ hints:
           - https://bio.tools/bwa
           
 inputs:
-  input_file:
+  sequences:
     type: File
     format: edam:format_1929  # FASTA
     inputBinding:
@@ -38,7 +39,8 @@ inputs:
 # the expressions for the index name prefix are needed because 'default:' on an optional
 # parameter does not accept an expression
 arguments:
-  - '$("-p" + ((inputs.index_name !== null) ? inputs.index_name : inputs.input_file.nameroot))'
+  - -p
+  - '$(((inputs.index_name !== null) ? inputs.index_name : inputs.sequences.nameroot))'
 
 baseCommand: [bwa, index]
 
@@ -51,7 +53,7 @@ outputs:
       - ^.pac
       - ^.sa
     outputBinding:
-      glob: '$(((inputs.index_name !== null) ? inputs.index_name : inputs.input_file.nameroot) + ".bwt")'
+      glob: "*.bwt"
 
 $namespaces:
   edam: https://edamontology.org/
