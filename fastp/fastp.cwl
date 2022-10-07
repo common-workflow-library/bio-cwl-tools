@@ -105,6 +105,6 @@ outputs:
         glob: fastp.json
 
 $namespaces:
-  edam: http://edamontology.org/
+  edam: https://edamontology.org/
 $schemas:
-  - http://edamontology.org/EDAM_1.18.owl
+  - https://edamontology.org/EDAM_1.18.owl

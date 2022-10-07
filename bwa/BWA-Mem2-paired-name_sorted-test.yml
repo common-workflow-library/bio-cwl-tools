@@ -1,0 +1,14 @@
+paired_reads_1:
+  class: File
+  location: https://github.com/galaxyproject/tools-iuc/raw/master/tools/bwa_mem2/test-data/bwa-mem-fastq1.fq
+  format: edam:format_1932  # FASTQ-sanger
+paired_reads_2:
+  class: File
+  location: https://github.com/galaxyproject/tools-iuc/raw/master/tools/bwa_mem2/test-data/bwa-mem-fastq2.fq
+  format: edam:format_1932  # FASTQ-sanger
+reference_genome:
+  class: File
+  location: https://github.com/galaxyproject/tools-iuc/raw/master/tools/bwa_mem2/test-data/bwa-mem-mt-genome.fa
+  format: edam:format_1929  # FASTA
+do_auto_name: True
+sort_mode: name

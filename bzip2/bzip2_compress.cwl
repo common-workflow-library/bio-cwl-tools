@@ -3,22 +3,15 @@ cwlVersion: v1.0
 class: CommandLineTool
 
 requirements:
-- class: InlineJavascriptRequirement
-- class: InitialWorkDirRequirement
-  listing: |
-    ${
-      return  [
-                {
-                  "entry": inputs.input_file,
-                  "entryname": inputs.input_file.basename,
-                  "writable": true
-                }
-              ]
-    }
+ InitialWorkDirRequirement:
+   listing:
+     - entry: inputs.input_file
+       entryname: inputs.input_file.basename
+       writable: true
 
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/scidap:v0.0.2
+  DockerRequirement:
+    dockerPull: biowardrobe2/scidap:v0.0.2
 
 inputs:
 
@@ -54,10 +47,7 @@ outputs:
     type:
       - File
     outputBinding:
-      glob: |
-        ${
-          return inputs.input_file.basename + '.bz2';
-        }
+      glob: $(inputs.input_file.basename).bz2
 
 baseCommand: [bzip2]
 

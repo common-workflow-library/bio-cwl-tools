@@ -2,14 +2,14 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-requirements:
+hints:
   DockerRequirement:
     dockerPull: "quay.io/biocontainers/star:2.7.5c--0"
 
 inputs:
 
   InputFiles:
-    format: http://edamontology.org/format_1930
+    format: edam:format_1929  # FASTA
     type: File[]
     inputBinding:
       prefix: "--genomeFastaFiles"
@@ -56,3 +56,7 @@ outputs:
     type: Directory
     outputBinding:
       glob: ./$(inputs.IndexName)/
+
+$namespaces:
+  edam: https://edamontology.org/
+$schemas: [ https://edamontology.org/EDAM_1.25.owl ]
