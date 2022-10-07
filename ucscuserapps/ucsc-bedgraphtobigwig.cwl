@@ -2,27 +2,23 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
-- class: InlineJavascriptRequirement
-  expressionLib:
-  - var default_output_filename = function() {
-          var basename = inputs.bedgraph_file.location.split('/').slice(-1)[0];
-          var root = basename.split('.').slice(0,-1).join('.');
-          var ext = ".bigWig";
-          return (root == "")?basename+ext:root+ext;
-        };
-
+  InlineJavascriptRequirement: {}
 
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/ucscuserapps:v358
-
+  DockerRequirement:
+    dockerPull: quay.io/biocontainers/ucsc-bedgraphtobigwig:377--ha8a8165_3
+  SoftwareRequirement:
+    packages:
+      bedgraphtobigwig:
+        specs:
+          - https://bio.tools/bedgraphtobigwig
+          - https://anaconda.org/bioconda/ucsc-bedgraphtobigwig
 
 inputs:
-
   bedgraph_file:
     type: File
+    format: edam:format_3583  # bedGraph
     inputBinding:
       position: 10
     doc: |
@@ -66,50 +62,32 @@ inputs:
     inputBinding:
       position: 12
       valueFrom: |
-        ${
-            if (self == ""){
-              return default_output_filename();
-            } else {
-              return self;
-            }
-        }
+        $( self == "" ? inputs.bedgraph_file.nameroot + ".bigWig" : self )
     default: ""
     doc: |
       If set, writes the output bigWig file to output_filename,
-      otherwise generates filename from default_output_filename()
-
+      otherwise generates filename from the nameroot of the bedgraph_file
 
 outputs:
-
   bigwig_file:
     type: File
+    format: edam:format_3006  # BigWig
     outputBinding:
       glob: |
-        ${
-            if (inputs.output_filename == ""){
-              return default_output_filename();
-            } else {
-              return inputs.output_filename;
-            }
-        }
+        $( self == "" ? inputs.bedgraph_file.nameroot + ".bigWig" : self )
 
-
-baseCommand: ["bedGraphToBigWig"]
-
+baseCommand: bedGraphToBigWig
 
 $namespaces:
   s: http://schema.org/
+  edam: https://edamontology.org/
+  iana: https://www.iana.org/assignments/media-types/
 
 $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
 
-s:name: "ucsc-bedgraphtobigwig"
+label: "ucsc-bedgraphtobigwig"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

@@ -2,18 +2,18 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
-- class: InlineJavascriptRequirement
-
+  InlineJavascriptRequirement: {}
 
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/intervene:v0.0.1
-
+  DockerRequirement:
+    dockerPull: quay.io/biocontainers/intervene:0.6.5--pyh3252c3a_1
+  SoftwareRequirement:
+    packages:
+      intervene:
+        specs: [ https://bio.tools/intervene ]
 
 inputs:
-
   figure_format:
     type:
     - "null"
@@ -40,6 +40,10 @@ inputs:
 
   intervals_files:
     type: File[]
+    format:
+      - edam:format_3003  # BED
+      - edam:format_2306  # GTF
+      - edam:format_1974  # GFFv2
     inputBinding:
       position: 6
       prefix: "--input"
@@ -57,7 +61,7 @@ inputs:
       valueFrom: |
         ${
           if (self !== null) {
-            let cleaned = [];
+            var cleaned = [];
             self.forEach(function (s, i) {
               cleaned.push(s.replace(/\t|\s|\[|\]|\>|\</g, "_"));
             });
@@ -98,9 +102,7 @@ inputs:
     doc: |
       Diagram type to report
 
-
 outputs:
-
   overlapped_intervals_files:
     type:
     - "null"
@@ -133,21 +135,16 @@ outputs:
         }
     doc: "Diagram of the overlapped intervals"
 
-  stdout_log:
-    type: stdout
+baseCommand: intervene
 
-  stderr_log:
-    type: stderr
-
-
-baseCommand: ["intervene"]
 arguments:
-  - valueFrom: $(inputs.diagram_type)
+  - $(inputs.diagram_type)
   - "--type"
   - "genomic"
-  - valueFrom: $(inputs.diagram_type == "pairwise"?null:"--save-overlaps")
-  - valueFrom: $(inputs.diagram_type == "pairwise"?"--diagonal":null)
-  - valueFrom: $(inputs.diagram_type == "pairwise"?["--htype", "color"]:null)
+  - |
+    $(inputs.diagram_type == "pairwise" ? null : "--save-overlaps")
+  - $(inputs.diagram_type == "pairwise" ? "--diagonal" : null)
+  - $(inputs.diagram_type == "pairwise" ? ["--htype", "color"] : null)
   - valueFrom: |
       ${
         if (inputs.diagram_type == "venn" && inputs.intervals_colors !== null) {
@@ -162,25 +159,15 @@ arguments:
   - "-o"
   - "results"
 
-
-stdout: intervene_stdout.log
-stderr: intervene_stderr.log
-
-
 $namespaces:
   s: http://schema.org/
+  edam: https://edamontology.org/
+  iana: https://www.iana.org/assignments/media-types/
 
 $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
 
-
-s:name: "intervene"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

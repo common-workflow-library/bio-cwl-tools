@@ -2,46 +2,42 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
-- class: InlineJavascriptRequirement
-
-
+  InlineJavascriptRequirement: {}
 hints:
-- class: DockerRequirement
-  dockerPull: cumulusprod/cellranger:4.0.0
-- class: InitialWorkDirRequirement
-  listing: |
-    ${
-        const skipped_ids = [
-          "feature_bc_matrix_h5",
-          "aggregation_metadata",
-          "selected_barcodes",
-          "selected_genes",
-          "excluded_genes",
-          "force_cells_num",
-          "threads",
-          "memory_limit",
-          "virt_memory_limit"
-        ]
-        var entry = "";
-        for (const id in inputs){
-          if (skipped_ids.includes(id) || !inputs[id]){
-            continue;
+  DockerRequirement:
+    dockerPull: cumulusprod/cellranger:4.0.0
+  InitialWorkDirRequirement:
+    listing: |
+      ${
+          const skipped_ids = [
+            "feature_bc_matrix_h5",
+            "aggregation_metadata",
+            "selected_barcodes",
+            "selected_genes",
+            "excluded_genes",
+            "force_cells_num",
+            "threads",
+            "memory_limit",
+            "virt_memory_limit"
+          ]
+          var entry = "";
+          for (const id in inputs){
+            if (skipped_ids.includes(id) || !inputs[id]){
+              continue;
+            }
+            entry += id + "," + inputs[id] + "\n";
           }
-          entry += id + "," + inputs[id] + "\n";
-        }
-        return [{
-          "entry": entry,
-          "entryname": runtime.outdir + "/params.csv"
-        }];
-    }
-
+          return [{
+            "entry": entry,
+            "entryname": runtime.outdir + "/params.csv"
+          }];
+      }
 
 inputs:
-
   feature_bc_matrix_h5:
     type: File
+    format: edam:format_3590  # HDF5
     inputBinding:
       position: 5
       prefix: "--matrix"
@@ -50,6 +46,7 @@ inputs:
 
   aggregation_metadata:
     type: File?
+    format: iana:text/csv
     inputBinding:
       position: 6
       prefix: "--agg"
@@ -60,6 +57,7 @@ inputs:
 
   selected_barcodes:
     type: File?
+    format: iana:text/csv
     inputBinding:
       position: 7
       prefix: "--barcodes"
@@ -70,6 +68,7 @@ inputs:
 
   selected_genes:
     type: File?
+    format: iana:text/csv
     inputBinding:
       position: 8
       prefix: "--genes"
@@ -81,6 +80,7 @@ inputs:
 
   excluded_genes:
     type: File?
+    format: iana:text/csv
     inputBinding:
       position: 9
       prefix: "--exclude-genes"
@@ -349,7 +349,6 @@ inputs:
       different seeds and pick the TSNE or UMAP that looks best.
       Default: 0
 
-
 outputs:
 
   secondary_analysis_report_folder:
@@ -362,6 +361,7 @@ outputs:
 
   web_summary_report:
     type: File
+    format: iana:text/html
     outputBinding:
       glob: "reanalyzed/outs/web_summary.html"
     doc: |
@@ -369,6 +369,7 @@ outputs:
 
   reanalyze_params:
     type: File
+    format: iana:text/csv
     outputBinding:
       glob: "reanalyzed/outs/params.csv"
     doc: |
@@ -381,40 +382,25 @@ outputs:
     doc: |
       Loupe Browser visualization and analysis file for reanalyzed results
 
-  stdout_log:
-    type: stdout
-
-  stderr_log:
-    type: stderr
-
-
 baseCommand: ["cellranger", "reanalyze", "--disable-ui",  "--id", "reanalyzed"]
+
 arguments:
-- valueFrom: $(runtime.outdir + "/params.csv")    # fails if it's not absolute path
+- valueFrom: $(runtime.outdir)/params.csv    # fails if it's not absolute path
   prefix: "--params"
   position: 15
 
-
-stdout: cellranger_reanalyze_stdout.log
-stderr: cellranger_reanalyze_stderr.log
-
-
 $namespaces:
   s: http://schema.org/
+  edam: http://edamontology.org/
+  iana: https://www.iana.org/assignments/media-types/
 
 $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
 
 label: "Cellranger reanalyze - reruns secondary analysis performed on the feature-barcode matrix"
-s:name: "Cellranger reanalyze - reruns secondary analysis performed on the feature-barcode matrix"
 s:alternateName: "Reruns secondary analysis performed on the feature-barcode matrix (dimensionality reduction, clustering and visualization) using different parameter settings"
 
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

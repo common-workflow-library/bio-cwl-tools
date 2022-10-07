@@ -1,19 +1,15 @@
 #!/usr/bin/env cwl-runner
-class: CommandLineTool
 cwlVersion: v1.1
+class: CommandLineTool
 
-
-requirements:
-- class: InlineJavascriptRequirement
-- class: ResourceRequirement
-  ramMin: 3814
-  coresMin: 2
-- class: DockerRequirement
-  dockerPull: yyasumizu/vdjtools
-  
+hints:
+  ResourceRequirement:
+    ramMin: 3814
+    coresMin: 2
+  DockerRequirement:
+    dockerPull: yyasumizu/vdjtools
 
 inputs:
-
   top:
     type: int?
     inputBinding:
@@ -34,9 +30,7 @@ inputs:
     inputBinding:
       position: 7
 
-
 outputs:
-  
   fancy_spectratype_file:
     type: File
     outputBinding:
@@ -47,9 +41,7 @@ outputs:
     outputBinding:
       glob: "*.pdf"
 
-
 baseCommand: ["vdjtools", "PlotFancySpectratype"]
-
 
 $namespaces:
   s: http://schema.org/
@@ -58,15 +50,9 @@ $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
 
 label: "VDJtools Plot Spectratype"
-s:name: "VDJtools Plot Spectratype"
 s:alternateName: "Plots a spectratype that displays CDR3 lengths for top N clonotypes in a given sample"
 
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

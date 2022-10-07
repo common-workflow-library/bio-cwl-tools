@@ -2,55 +2,53 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
-- class: InlineJavascriptRequirement
-  expressionLib:
-  - var get_output_folder_name = function() {
-          if (inputs.output_folder_name == ""){
-            var root = inputs.genome_fasta_file.basename.split('.').slice(0,-1).join('.');
-            return (root == "")?inputs.genome_fasta_file.basename:root;
-          } else {
-            return inputs.output_folder_name;
-          }          
-        };
-- class: InitialWorkDirRequirement
-  listing: |
-    ${
-      var exclude_chr = "[]";
-      if (inputs.exclude_chr && inputs.exclude_chr.length > 0){
-        exclude_chr = '["' + inputs.exclude_chr.join('", "') + '"]'
+  InlineJavascriptRequirement:
+   expressionLib:
+    - |
+      var get_output_folder_name = function() {
+        if (inputs.output_folder_name == ""){
+          var root = inputs.genome_fasta_file.basename.split('.').slice(0,-1).join('.');
+          return (root == "") ? inputs.genome_fasta_file.basename : root;
+        } else {
+          return inputs.output_folder_name;
+        }          
+      };
+  InitialWorkDirRequirement:
+    listing: |
+      ${
+        var exclude_chr = "[]";
+        if (inputs.exclude_chr && inputs.exclude_chr.length > 0){
+          exclude_chr = '["' + inputs.exclude_chr.join('", "') + '"]'
+        }
+        var entry = `
+        {
+            genome: ["${get_output_folder_name()}"]
+            input_fasta: ["${inputs.genome_fasta_file.path}"]
+            input_gtf: ["${inputs.annotation_gtf_file.path}"]
+            non_nuclear_contigs: ${exclude_chr}
+        }`
+        return [{
+          "entry": entry,
+          "entryname": "config.txt"
+        }];
       }
-      var entry = `
-      {
-          genome: ["${get_output_folder_name()}"]
-          input_fasta: ["${inputs.genome_fasta_file.path}"]
-          input_gtf: ["${inputs.annotation_gtf_file.path}"]
-          non_nuclear_contigs: ${exclude_chr}
-      }`
-      return [{
-        "entry": entry,
-        "entryname": "config.txt"
-      }];
-    }
-
 
 hints:
-- class: DockerRequirement
-  dockerPull: cumulusprod/cellranger-arc:2.0.0
-
+  DockerRequirement:
+    dockerPull: cumulusprod/cellranger-arc:2.0.0
 
 inputs:
   
   genome_fasta_file:
     type: File
-    doc: |
-      Genome FASTA file
+    format: edam:format_1929  # FASTA
+    doc: "Genome FASTA file"
 
   annotation_gtf_file:
     type: File
-    doc: |
-      GTF annotation file.
+    format: edam:format_2306  # GTF
+    doc: "GTF annotation file."
 
   exclude_chr:
     type:
@@ -88,7 +86,6 @@ inputs:
 
 
 outputs:
-
   indices_folder:
     type: Directory
     outputBinding:
@@ -97,36 +94,20 @@ outputs:
       Compatible with Cell Ranger ARC reference folder that includes
       STAR and BWA indices
 
-  stdout_log:
-    type: stdout
-
-  stderr_log:
-    type: stderr
-
-
 baseCommand: ["cellranger-arc", "mkref", "--config", "config.txt"]
-
-
-stdout: cellranger_arc_mkref_stdout.log
-stderr: cellranger_arc_mkref_stderr.log
-
 
 $namespaces:
   s: http://schema.org/
+  edam: http://edamontology.org/
+  iana: https://www.iana.org/assignments/media-types/
 
 $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
 
 label: "Cell Ranger ARC mkref - builds compatible with Cell Ranger ARC indices"
-s:name: "Cell Ranger ARC mkref - builds compatible with Cell Ranger ARC indices"
 s:alternateName: "Builds compatible with Cell Ranger ARC reference folder from user-supplied genome FASTA and gene GTF files"
 
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

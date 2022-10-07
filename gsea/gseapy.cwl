@@ -1,20 +1,23 @@
+#!/usr/bin/env cwl-runner
 cwlVersion: v1.0
 class: CommandLineTool
 
-
-requirements:
-- class: InlineJavascriptRequirement
-
-
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/gseapy:v0.0.3
-
+  DockerRequirement:
+    dockerPull: quay.io/biocontainers/gseapy:0.13.0--py310hbee2dd9_0
+  SoftwareRequirement:
+    packages:
+      gseapy:
+        specs:
+          - https://anaconda.org/bioconda/gseapy
+          - https://github.com/zqfang/GSEApy
 
 inputs:
-
   read_counts_file:
     type: File
+    format:
+      - iana:text/plain
+      - edam:format_3709  # GCT
     inputBinding:
       prefix: "-d"
     doc: "Input gene expression dataset file in txt or gct format. Same with GSEA"
@@ -112,51 +115,37 @@ inputs:
       prefix: "-p"
     doc: "Threads number"
 
-
 outputs:
-
   enrichment_report:
     type: File?
+    format: iana:text/csv
     outputBinding:
       glob: "GSEApy_reports/*.report.csv"
 
   enrichment_plots:
     type: File[]
+    format: iana:application/pdf
     outputBinding:
       glob: "GSEApy_reports/*.gsea.pdf"
 
   enrichment_heatmaps:
     type: File[]
+    format: iana:application/pdf
     outputBinding:
       glob: "GSEApy_reports/*.heatmap.pdf"
 
-  stdout_log:
-    type: stdout
-
-  stderr_log:
-    type: stderr
-
-
-baseCommand: ["gseapy", "gsea"]
-
-stdout: gseapy_stdout.log
-stderr: gseapy_stderr.log
-
+baseCommand: [gseapy, gsea]
 
 $namespaces:
   s: http://schema.org/
+  edam: https://edamontology.org/
+  iana: https://www.iana.org/assignments/media-types/
 
 $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
 
-
-s:name: "gseapy"
+label: GSEApy
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

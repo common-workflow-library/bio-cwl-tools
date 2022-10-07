@@ -2,47 +2,36 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
-requirements:
-  - class: InlineJavascriptRequirement
-
-
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/scidap:v0.0.3
-
+  DockerRequirement:
+    dockerPull: biowardrobe2/scidap:v0.0.3
 
 inputs:
-
   folder_to_compress:
     type: Directory
     doc: "Folder to compressed"
 
-
 outputs:
-
   compressed_folder:
     type: File
     outputBinding:
       glob: "*"
     doc: "Compressed folder"
 
+baseCommand: tar
 
-baseCommand: ["tar"]
 arguments:
-  - valueFrom: $(inputs.folder_to_compress.path.split("/").slice(0,-1).join("/"))
+  - valueFrom: $(inputs.folder_to_compress.path)/../
     prefix: "-C"
   - "-czvf"
-  - valueFrom: $(inputs.folder_to_compress.basename).tar.gz
+  - $(inputs.folder_to_compress.basename).tar.gz
   - "."
-
 
 $namespaces:
   s: http://schema.org/
 
 $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
-
 
 s:name: "tar-compress"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

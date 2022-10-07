@@ -1,19 +1,17 @@
 #!/usr/bin/env cwl-runner
-class: CommandLineTool
 cwlVersion: v1.1
-
+class: CommandLineTool
 
 requirements:
-- class: InlineJavascriptRequirement
-- class: ResourceRequirement
-  ramMin: 3814
-  coresMin: 2
-- class: DockerRequirement
-  dockerPull: yyasumizu/vdjtools
+  InlineJavascriptRequirement: {}
+hints:
+  ResourceRequirement:
+    ramMin: 3814
+    coresMin: 2
+  DockerRequirement:
+    dockerPull: yyasumizu/vdjtools
   
-
 inputs:
-
   intersect_type:
     type:
     - "null"
@@ -48,12 +46,10 @@ inputs:
 
 
 outputs:
-
   diversity_stats_file:
     type: File
     outputBinding:
       glob: "*.exact.txt"
-
 
 baseCommand: ["vdjtools", "CalcDiversityStats"]
 
@@ -65,15 +61,9 @@ $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
 
 label: "VDJtools Calc Diversity Stats"
-s:name: "VDJtools Calc Diversity Stats"
 s:alternateName: "Computes a set of diversity statistics"
 
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

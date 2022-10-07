@@ -1,19 +1,18 @@
 #!/usr/bin/env cwl-runner
-class: CommandLineTool
 cwlVersion: v1.1
-
+class: CommandLineTool
 
 requirements:
-- class: ResourceRequirement
-  ramMin: 3814
-  coresMin: 2
-- class: DockerRequirement
-  dockerPull: yyasumizu/vdjtools
-- class: InlineJavascriptRequirement
+  InlineJavascriptRequirement: {}
+hints:
+  ResourceRequirement:
+    ramMin: 3814
+    coresMin: 2
+  DockerRequirement:
+    dockerPull: yyasumizu/vdjtools
 
 
 inputs:
-
   unweighted:
     type: boolean?
     inputBinding:
@@ -50,15 +49,9 @@ $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
 
 label: "VDJtools Calc Basic Stats"
-s:name: "VDJtools Calc Basic Stats"
 s:alternateName: "Computes a set of basic sample statistics, such as read counts, number of clonotypes, etc"
 
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

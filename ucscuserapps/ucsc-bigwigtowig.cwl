@@ -2,22 +2,18 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
-- class: InlineJavascriptRequirement
-  expressionLib:
-  - var default_output_filename = function() {
-          var basename = inputs.bigwig_file.location.split('/').slice(-1)[0];
-          var root = basename.split('.').slice(0,-1).join('.');
-          var ext = ".wig";
-          return (root == "")?basename+ext:root+ext;
-        };
-
-
+  InlineJavascriptRequirement:
+    expressionLib:
+    - var default_output_filename = function() {
+            var basename = inputs.bigwig_file.location.split('/').slice(-1)[0];
+            var root = basename.split('.').slice(0,-1).join('.');
+            var ext = ".wig";
+            return (root == "")?basename+ext:root+ext;
+          };
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/ucscuserapps:v358
-
+  DockerRequirement:
+    dockerPull: biowardrobe2/ucscuserapps:v358
 
 inputs:
 
@@ -74,7 +70,6 @@ inputs:
 
 
 outputs:
-
   wig_file:
     type: File
     outputBinding:
@@ -87,21 +82,18 @@ outputs:
             }
         }
 
-baseCommand: ["bigWigToWig"]
+baseCommand: bigWigToWig
 
 $namespaces:
   s: http://schema.org/
+  edam: https://edamontology.org/
+  iana: https://www.iana.org/assignments/media-types/
 
 $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
 
-s:name: "ucsc-bigwigtowig"
+label: "ucsc-bigwigtowig"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

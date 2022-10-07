@@ -2,29 +2,32 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
-- class: InlineJavascriptRequirement
-  expressionLib:
-  - var default_output_filename = function() {
-          if (inputs.output_filename == ""){
-            var root = inputs.segment_file.basename.split('.').slice(0,-1).join('.');
-            return (root == "")?inputs.segment_file.basename+".tsv":root+".tsv";
-          } else {
-            return inputs.output_filename;
-          }
-        };
-
-
+  InlineJavascriptRequirement:
+    expressionLib:
+    - var default_output_filename = function() {
+            if (inputs.output_filename == ""){
+              var root = inputs.segment_file.basename.split('.').slice(0,-1).join('.');
+              return (root == "")?inputs.segment_file.basename+".tsv":root+".tsv";
+            } else {
+              return inputs.output_filename;
+            }
+          };
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/gat:v0.0.1
-
+  DockerRequirement:
+    dockerPull: biowardrobe2/gat:v0.0.1
+  SoftwareRequirement:
+    packages:
+      gat:
+        specs:
+          - https://bio.tools/gat
+          - identifiers.org/rrid/RRID:SCR_020949
 
 inputs:
 
   segment_file:
     type: File
+    format: edam:format_3003  # BED
     inputBinding:
       position: 5
       prefix: "-s"
@@ -33,6 +36,7 @@ inputs:
 
   annotation_file:
     type: File
+    format: edam:format_3003  # BED
     inputBinding:
       position: 6
       prefix: "-a"
@@ -41,6 +45,7 @@ inputs:
 
   workspace_file:
     type: File
+    format: edam:format_3003  # BED
     inputBinding:
       position: 7
       prefix: "-w"
@@ -111,32 +116,18 @@ outputs:
     doc: |
       Report file
 
-  stdout_log:
-    type: stdout
-
-  stderr_log:
-    type: stderr
-
-
 baseCommand: ["gat-run.py", "--ignore-segment-tracks"]
-stdout: gat_stdout.log
-stderr: gat_stderr.log
-
 
 $namespaces:
   s: http://schema.org/
+  edam: https://edamontology.org/
+  iana: https://www.iana.org/assignments/media-types/
 
 $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
 
-
 s:name: "gat-run"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

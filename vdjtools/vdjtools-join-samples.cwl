@@ -1,37 +1,35 @@
 #!/usr/bin/env cwl-runner
-class: CommandLineTool
 cwlVersion: v1.1
+class: CommandLineTool
 
-
+hints:
+  ResourceRequirement:
+    ramMin: 3814
+    coresMin: 2
+  DockerRequirement:
+    dockerPull: yyasumizu/vdjtools
 requirements:
-- class: ResourceRequirement
-  ramMin: 3814
-  coresMin: 2
-- class: DockerRequirement
-  dockerPull: yyasumizu/vdjtools
-- class: InlineJavascriptRequirement
-  expressionLib:
-  - var get_label = function(i) {
-        var rootname = inputs.molecule_info_h5[i].basename.split('.').slice(0,-1).join('.');
-        rootname = (rootname=="")?inputs.molecule_info_h5[i].basename:rootname;
-        return inputs.gem_well_labels?inputs.gem_well_labels[i].replace(/,/g, "_"):rootname;
-    };
-- class: InitialWorkDirRequirement
-  listing: |
-    ${
-      var entry = "file.name\tsample.id\n"
-      for (var i=0; i < inputs.vdj_file.length; i++){
-        entry += inputs.vdj_file[i].path + "\t" + inputs.vdj_name[i] + "\n"
+  InlineJavascriptRequirement:
+    expressionLib:
+    - var get_label = function(i) {
+          var rootname = inputs.molecule_info_h5[i].basename.split('.').slice(0,-1).join('.');
+          rootname = (rootname=="")?inputs.molecule_info_h5[i].basename:rootname;
+          return inputs.gem_well_labels?inputs.gem_well_labels[i].replace(/,/g, "_"):rootname;
+      };
+  InitialWorkDirRequirement:
+    listing: |
+      ${
+        var entry = "file.name\tsample.id\n"
+        for (var i=0; i < inputs.vdj_file.length; i++){
+          entry += inputs.vdj_file[i].path + "\t" + inputs.vdj_name[i] + "\n"
+        }
+        return [{
+          "entry": entry,
+          "entryname": "metadata.tsv"
+        }];
       }
-      return [{
-        "entry": entry,
-        "entryname": "metadata.tsv"
-      }];
-    }
-
 
 inputs:
-
   vdj_file:
     type: File[]
     doc: |
@@ -80,7 +78,6 @@ inputs:
 
 
 outputs:
-
   combined_vdj_file:
     type: File
     outputBinding:
@@ -112,16 +109,9 @@ $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
 
 label: "VDJtools Join Samples"
-s:name: "VDJtools Join Samples"
 s:alternateName: "Joins several clonotype tables together to form a joint clonotype abundance table"
 
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
-
 s:creator:
 - class: s:Organization
   s:legalName: "Cincinnati Children's Hospital Medical Center"

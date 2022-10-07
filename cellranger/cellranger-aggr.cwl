@@ -2,38 +2,34 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
-- class: InlineJavascriptRequirement
-  expressionLib:
-  - var get_label = function(i) {
-        var rootname = inputs.molecule_info_h5[i].basename.split('.').slice(0,-1).join('.');
-        rootname = (rootname=="")?inputs.molecule_info_h5[i].basename:rootname;
-        return inputs.gem_well_labels?inputs.gem_well_labels[i].replace(/,/g, "_"):rootname;
-    };
-- class: InitialWorkDirRequirement
-  listing: |
-    ${
-      var entry = "library_id,molecule_h5\n"
-      for (var i=0; i < inputs.molecule_info_h5.length; i++){
-        entry += get_label(i) + "," + inputs.molecule_info_h5[i].path + "\n"
+  InlineJavascriptRequirement:
+    expressionLib:
+    - var get_label = function(i) {
+          var rootname = inputs.molecule_info_h5[i].basename.split('.').slice(0,-1).join('.');
+          rootname = (rootname=="")?inputs.molecule_info_h5[i].basename:rootname;
+          return inputs.gem_well_labels?inputs.gem_well_labels[i].replace(/,/g, "_"):rootname;
+      };
+  InitialWorkDirRequirement:
+    listing: |
+      ${
+        var entry = "library_id,molecule_h5\n"
+        for (var i=0; i < inputs.molecule_info_h5.length; i++){
+          entry += get_label(i) + "," + inputs.molecule_info_h5[i].path + "\n"
+        }
+        return [{
+          "entry": entry,
+          "entryname": "metadata.csv"
+        }];
       }
-      return [{
-        "entry": entry,
-        "entryname": "metadata.csv"
-      }];
-    }
-
-
 hints:
-- class: DockerRequirement
-  dockerPull: cumulusprod/cellranger:4.0.0
+  DockerRequirement:
+    dockerPull: cumulusprod/cellranger:4.0.0
 
-
-inputs:
-  
+inputs:  
   molecule_info_h5:
     type: File[]
+    format: edam:format_3590  # HDF5
     doc: |
       Array of molecule-level information files in HDF5 format.
       Outputs from "cellranger count" command
@@ -91,6 +87,7 @@ outputs:
 
   web_summary_report:
     type: File
+    format: iana:text/html
     outputBinding:
       glob: "aggregated/outs/web_summary.html"
     doc: |
@@ -98,6 +95,7 @@ outputs:
 
   metrics_summary_report_json:
     type: File
+    format: iana:application/json
     outputBinding:
       glob: "aggregated/outs/summary.json"
     doc: |
@@ -120,6 +118,7 @@ outputs:
 
   filtered_feature_bc_matrix_h5:
     type: File
+    format: edam:format_3590  # HDF5
     outputBinding:
       glob: "aggregated/outs/filtered_feature_bc_matrix.h5"
     doc: |
@@ -134,6 +133,7 @@ outputs:
 
   raw_feature_bc_matrices_h5:
     type: File
+    format: edam:format_3590  # HDF5
     outputBinding:
       glob: "aggregated/outs/raw_feature_bc_matrix.h5"
     doc: |
@@ -141,6 +141,7 @@ outputs:
 
   aggregation_metadata:
     type: File
+    format: iana:text/csv
     outputBinding:
       glob: "aggregated/outs/aggregation.csv"
     doc: |
@@ -169,20 +170,16 @@ stderr: cellranger_aggr_stderr.log
 
 $namespaces:
   s: http://schema.org/
+  edam: http://edamontology.org/
+  iana: https://www.iana.org/assignments/media-types/
 
 $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
 
 label: "Cellranger aggr - aggregates data from multiple Cellranger runs"
-s:name: "Cellranger aggr - aggregates data from multiple Cellranger runs"
 s:alternateName: "Cellranger aggr takes a list of cellranger count output files and produces a single feature-barcode matrix containing all the data"
 
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

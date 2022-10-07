@@ -1,19 +1,15 @@
 #!/usr/bin/env cwl-runner
-class: CommandLineTool
 cwlVersion: v1.1
+class: CommandLineTool
 
-
-requirements:
-- class: InlineJavascriptRequirement
-- class: ResourceRequirement
-  ramMin: 3814
-  coresMin: 2
-- class: DockerRequirement
-  dockerPull: yyasumizu/vdjtools
+hints:
+  ResourceRequirement:
+    ramMin: 3814
+    coresMin: 2
+  DockerRequirement:
+    dockerPull: yyasumizu/vdjtools
   
-
 inputs:
-
   top:
     type: int?
     inputBinding:
@@ -31,9 +27,7 @@ inputs:
     inputBinding:
       position: 7
 
-
 outputs:
-
   quantile_stats_file:
     type: File
     outputBinding:
@@ -43,7 +37,6 @@ outputs:
     type: File
     outputBinding:
       glob: "*.pdf"
-
 
 baseCommand: ["vdjtools", "PlotQuantileStats"]
 
@@ -55,15 +48,9 @@ $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
 
 label: "VDJtools Plot Quantile Stats"
-s:name: "VDJtools Plot Quantile Stats"
 s:alternateName: "Plots a three-layer donut chart to visualize the repertoire clonality"
 
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

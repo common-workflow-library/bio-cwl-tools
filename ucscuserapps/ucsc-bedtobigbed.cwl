@@ -3,74 +3,73 @@ cwlVersion: v1.0
 class: CommandLineTool
 
 requirements:
-- class: InlineJavascriptRequirement
-  expressionLib:
-  - var default_output_filename = function() {
-        return inputs.input_bed.location.split('/').slice(-1)[0].split('.').slice(0,-1).join('.')+".bb";
-    };
-  - var get_bed_type = function() {
-        if (inputs.input_bed.location.split('.').slice(-1)[0].toLowerCase() == "narrowpeak"){
-            return "bed6+4";
-        } else if (inputs.input_bed.location.split('.').slice(-1)[0].toLowerCase() == "broadpeak"){
-            return "bed6+3";
-        } else {
-            return null;
-        }
-    };
-  - var get_bed_template = function() {
-        if (inputs.input_bed.location.split('.').slice(-1)[0].toLowerCase() == "narrowpeak"){
-            return "narrowpeak.as";
-        } else if (inputs.input_bed.location.split('.').slice(-1)[0].toLowerCase() == "broadpeak"){
-            return "broadpeak.as";
-        } else {
-            return null;
-        }
-    };
-- class: InitialWorkDirRequirement
-  listing:
-    - entryname: narrowpeak.as
-      entry: |
-        table narrowPeak
-        "BED6+4 Peaks of signal enrichment based on pooled, normalized (interpreted) data."
-        (
-          string  chrom;        "Reference sequence chromosome or scaffold"
-          uint    chromStart;   "Start position in chromosome"
-          uint    chromEnd;     "End position in chromosome"
-          string  name;	        "Name given to a region (preferably unique). Use . if no name is assigned"
-          uint    score;        "Indicates how dark the peak will be displayed in the browser (0-1000) "
-          char[1] strand;       "+ or - or . for unknown"
-          float   signalValue;  "Measurement of average enrichment for the region"
-          float   pValue;       "Statistical significance of signal value (-log10). Set to -1 if not used."
-          float   qValue;       "Statistical significance with multiple-test correction applied (FDR -log10). Set to -1 if not used."
-          int     peak;         "Point-source called for this peak; 0-based offset from chromStart. Set to -1 if no point-source called."
-        )
-    - entryname: broadpeak.as
-      entry: |
-        table broadPeak
-        "BED6+3 Peaks of signal enrichment based on pooled, normalized (interpreted) data."
-        (
-          string  chrom;        "Reference sequence chromosome or scaffold"
-          uint    chromStart;   "Start position in chromosome"
-          uint    chromEnd;     "End position in chromosome"
-          string  name;	        "Name given to a region (preferably unique). Use . if no name is assigned."
-          uint    score;        "Indicates how dark the peak will be displayed in the browser (0-1000)"
-          char[1] strand;       "+ or - or . for unknown"
-          float   signalValue;  "Measurement of average enrichment for the region"
-          float   pValue;       "Statistical significance of signal value (-log10). Set to -1 if not used."
-          float   qValue;       "Statistical significance with multiple-test correction applied (FDR -log10). Set to -1 if not used."
-        )
-
+  InlineJavascriptRequirement:
+     expressionLib:
+     - var default_output_filename = function() {
+           return inputs.input_bed.location.split('/').slice(-1)[0].split('.').slice(0,-1).join('.')+".bb";
+       };
+     - var get_bed_type = function() {
+           if (inputs.input_bed.location.split('.').slice(-1)[0].toLowerCase() == "narrowpeak"){
+               return "bed6+4";
+           } else if (inputs.input_bed.location.split('.').slice(-1)[0].toLowerCase() == "broadpeak"){
+               return "bed6+3";
+           } else {
+               return null;
+           }
+       };
+     - var get_bed_template = function() {
+           if (inputs.input_bed.location.split('.').slice(-1)[0].toLowerCase() == "narrowpeak"){
+               return "narrowpeak.as";
+           } else if (inputs.input_bed.location.split('.').slice(-1)[0].toLowerCase() == "broadpeak"){
+               return "broadpeak.as";
+           } else {
+               return null;
+           }
+       };
+  InitialWorkDirRequirement:
+    listing:
+      - entryname: narrowpeak.as
+        entry: |
+          table narrowPeak
+          "BED6+4 Peaks of signal enrichment based on pooled, normalized (interpreted) data."
+          (
+            string  chrom;        "Reference sequence chromosome or scaffold"
+            uint    chromStart;   "Start position in chromosome"
+            uint    chromEnd;     "End position in chromosome"
+            string  name;	        "Name given to a region (preferably unique). Use . if no name is assigned"
+            uint    score;        "Indicates how dark the peak will be displayed in the browser (0-1000) "
+            char[1] strand;       "+ or - or . for unknown"
+            float   signalValue;  "Measurement of average enrichment for the region"
+            float   pValue;       "Statistical significance of signal value (-log10). Set to -1 if not used."
+            float   qValue;       "Statistical significance with multiple-test correction applied (FDR -log10). Set to -1 if not used."
+            int     peak;         "Point-source called for this peak; 0-based offset from chromStart. Set to -1 if no point-source called."
+          )
+      - entryname: broadpeak.as
+        entry: |
+          table broadPeak
+          "BED6+3 Peaks of signal enrichment based on pooled, normalized (interpreted) data."
+          (
+            string  chrom;        "Reference sequence chromosome or scaffold"
+            uint    chromStart;   "Start position in chromosome"
+            uint    chromEnd;     "End position in chromosome"
+            string  name;	        "Name given to a region (preferably unique). Use . if no name is assigned."
+            uint    score;        "Indicates how dark the peak will be displayed in the browser (0-1000)"
+            char[1] strand;       "+ or - or . for unknown"
+            float   signalValue;  "Measurement of average enrichment for the region"
+            float   pValue;       "Statistical significance of signal value (-log10). Set to -1 if not used."
+            float   qValue;       "Statistical significance with multiple-test correction applied (FDR -log10). Set to -1 if not used."
+          )
 
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/ucscuserapps:v358
-
+  DockerRequirement:
+    dockerPull: quay.io/biocontainers/ucsc-bedToBigBed:377--ha8a8165_3
+  SoftwareRequirement:
+    packages:
+      bedtobigbed:
+        specs: [ https://anaconda.org/bioconda/ucsc-bedToBigBed ]
 inputs:
-
   bed_type:
-    type:
-      - "null"
-      - string
+    type: string?
     inputBinding:
       position: 5
       prefix: -type=
@@ -121,9 +120,7 @@ inputs:
       Number of items to bundle in r-tree.  Default 256
 
   items_per_slot:
-    type:
-      - "null"
-      - int
+    type: int?
     inputBinding:
       position: 8
       prefix: -itemsPerSlot=
@@ -132,9 +129,7 @@ inputs:
       Number of data points bundled at lowest level. Default 512
 
   unc:
-    type:
-      - "null"
-      - boolean
+    type: boolean?
     inputBinding:
       position: 9
       prefix: '-unc'
@@ -142,9 +137,7 @@ inputs:
       If set, do not use compression
 
   tab_sep:
-    type:
-      - "null"
-      - boolean
+    type: boolean?
     inputBinding:
       position: 10
       prefix: '-tab'
@@ -152,9 +145,7 @@ inputs:
       If set, expect fields to be tab separated, normally expects white space separator
 
   extra_index:
-    type:
-      - "null"
-      - string
+    type: string?
     inputBinding:
       position: 11
       prefix: -extraIndex=
@@ -163,9 +154,7 @@ inputs:
       Makes an index on each field in a comma separated list extraIndex=name and extraIndex=name,id are commonly used
 
   size_2bit:
-    type:
-      - "null"
-      - boolean
+    type: boolean?
     inputBinding:
       position: 12
       prefix: -sizesIs2Bit=
@@ -174,25 +163,20 @@ inputs:
       If set, the chrom.sizes file is assumed to be a 2bit file
 
   input_bed:
-    type:
-      - File
+    type: File
+    format: edam:format_3003  # BED
     inputBinding:
       position: 20
-    doc: |
-      Input BED file
+    doc: "Input BED file"
 
   chrom_length_file:
-    type:
-      - File
+    type: File
     inputBinding:
       position: 21
-    doc: |
-      Chromosome length files
+    doc: "Chromosome length files"
 
   output_filename:
-    type:
-      - "null"
-      - string
+    type: string?
     inputBinding:
       position: 22
       valueFrom: |
@@ -204,13 +188,13 @@ inputs:
             }
         }
     default: ""
-    doc: |
-      Output filename
+    doc: "Output filename"
 
 
 outputs:
   bigbed_file:
     type: File
+    format: edam:format_3004  # bigBed
     outputBinding:
       glob: |
         ${
@@ -221,24 +205,20 @@ outputs:
           }
         }
 
-
-baseCommand: ["bedToBigBed"]
+baseCommand: bedToBigBed
 
 
 $namespaces:
   s: http://schema.org/
+  edam: https://edamontology.org/
+  iana: https://www.iana.org/assignments/media-types/
 
 $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
 
-s:name: "ucsc-bedtobigbed"
+label: "ucsc-bedtobigbed"
+
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
-
 s:creator:
 - class: s:Organization
   s:legalName: "Cincinnati Children's Hospital Medical Center"

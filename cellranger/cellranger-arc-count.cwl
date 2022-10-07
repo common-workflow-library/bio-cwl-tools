@@ -4,72 +4,72 @@ class: CommandLineTool
 
 
 requirements:
-- class: InlineJavascriptRequirement
-- class: InitialWorkDirRequirement
-  listing: |
-    ${
-      var listing = [
-        {
-          "entry": inputs.gex_fastq_file_r1,
-          "entryname": "gex_S1_L001_R1_001.fastq",
-          "writable": true
-        },
-        {
-          "entry": inputs.gex_fastq_file_r2,
-          "entryname": "gex_S1_L001_R2_001.fastq",
-          "writable": true
-        },
-        {
-          "entry": inputs.atac_fastq_file_r1,
-          "entryname": "atac_S1_L001_R1_001.fastq",
-          "writable": true
-        },
-        {
-          "entry": inputs.atac_fastq_file_r2,
-          "entryname": "atac_S1_L001_R2_001.fastq",
-          "writable": true
-        },
-        {
-          "entry": inputs.atac_fastq_file_r3,
-          "entryname": "atac_S1_L001_R3_001.fastq",
-          "writable": true
-        },
-        {
-          "entry":`fastqs,sample,library_type
-          ${runtime.outdir},gex,Gene Expression
-          ${runtime.outdir},atac,Chromatin Accessibility`,
-          "entryname": "libraries.csv"
-        }
-      ]
-      if (inputs.gex_fastq_file_i1){
-        listing.push(
+  InlineJavascriptRequirement: {}
+  InitialWorkDirRequirement:
+    listing: |
+      ${
+        var listing = [
           {
-            "entry": inputs.gex_fastq_file_i1,
-            "entryname": "gex_S1_L001_I1_001.fastq",
+            "entry": inputs.gex_fastq_file_r1,
+            "entryname": "gex_S1_L001_R1_001.fastq",
             "writable": true
-          }
-        );
-      };
-      if (inputs.gex_fastq_file_i2){
-        listing.push(
+          },
           {
-            "entry": inputs.gex_fastq_file_i2,
-            "entryname": "gex_S1_L001_I2_001.fastq",
+            "entry": inputs.gex_fastq_file_r2,
+            "entryname": "gex_S1_L001_R2_001.fastq",
             "writable": true
-          }
-        );
-      };
-      if (inputs.atac_fastq_file_i1){
-        listing.push(
+          },
           {
-            "entry": inputs.atac_fastq_file_i1,
-            "entryname": "atac_S1_L001_I1_001.fastq",
+            "entry": inputs.atac_fastq_file_r1,
+            "entryname": "atac_S1_L001_R1_001.fastq",
             "writable": true
+          },
+          {
+            "entry": inputs.atac_fastq_file_r2,
+            "entryname": "atac_S1_L001_R2_001.fastq",
+            "writable": true
+          },
+          {
+            "entry": inputs.atac_fastq_file_r3,
+            "entryname": "atac_S1_L001_R3_001.fastq",
+            "writable": true
+          },
+          {
+            "entry":`fastqs,sample,library_type
+            ${runtime.outdir},gex,Gene Expression
+            ${runtime.outdir},atac,Chromatin Accessibility`,
+            "entryname": "libraries.csv"
           }
-        );
-      };
-      return listing;
-    }
+        ]
+        if (inputs.gex_fastq_file_i1){
+          listing.push(
+            {
+              "entry": inputs.gex_fastq_file_i1,
+              "entryname": "gex_S1_L001_I1_001.fastq",
+              "writable": true
+            }
+          );
+        };
+        if (inputs.gex_fastq_file_i2){
+          listing.push(
+            {
+              "entry": inputs.gex_fastq_file_i2,
+              "entryname": "gex_S1_L001_I2_001.fastq",
+              "writable": true
+            }
+          );
+        };
+        if (inputs.atac_fastq_file_i1){
+          listing.push(
+            {
+              "entry": inputs.atac_fastq_file_i1,
+              "entryname": "atac_S1_L001_I1_001.fastq",
+              "writable": true
+            }
+          );
+        };
+        return listing;
+      }
 
 
 hints:
@@ -81,41 +81,49 @@ inputs:
   
   gex_fastq_file_r1:
     type: File
+    format: edam:format_1930  # FASTQ (generic)
     doc: |
       GEX FASTQ read 1 file (will be staged into workdir as gex_S1_L001_R1_001.fastq)
 
   gex_fastq_file_r2:
     type: File
+    format: edam:format_1930  # FASTQ (generic)
     doc: |
       GEX FASTQ read 2 file (will be staged into workdir as gex_S1_L001_R2_001.fastq)
 
   gex_fastq_file_i1:
     type: File?
+    format: edam:format_1930  # FASTQ (generic)
     doc: |
       GEX FASTQ index i7 file (will be staged into workdir as gex_S1_L001_I1_001.fastq)
 
   gex_fastq_file_i2:
     type: File?
+    format: edam:format_1930  # FASTQ (generic)
     doc: |
       GEX FASTQ index i5 file (will be staged into workdir as gex_S1_L001_I2_001.fastq)
 
   atac_fastq_file_r1:
     type: File
+    format: edam:format_1930  # FASTQ (generic)
     doc: |
       ATAC FASTQ read 1 file (will be staged into workdir as atac_S1_L001_R1_001.fastq)
 
   atac_fastq_file_r2:
     type: File
+    format: edam:format_1930  # FASTQ (generic)
     doc: |
       ATAC FASTQ read 2 (it's actually index i5) file (will be staged into workdir as atac_S1_L001_R2_001.fastq)
 
   atac_fastq_file_r3:
     type: File
+    format: edam:format_1930  # FASTQ (generic)
     doc: |
       ATAC FASTQ read 3 (it's actually read 2) file (will be staged into workdir as atac_S1_L001_R3_001.fastq)
 
   atac_fastq_file_i1:
     type: File?
+    format: edam:format_1930  # FASTQ (generic)
     doc: |
       ATAC FASTQ index i7 file (will be staged into workdir as atac_S1_L001_I1_001.fastq)
 
@@ -164,6 +172,7 @@ inputs:
 
   force_peaks_bed_file:
     type: File?
+    format: edam:format_3003  # BED
     inputBinding:
       position: 9
       prefix: "--peaks"
@@ -204,6 +213,7 @@ outputs:
 
   web_summary_report:
     type: File
+    format: iana:text/html
     outputBinding:
       glob: "sample/outs/web_summary.html"
     doc: |
@@ -211,6 +221,7 @@ outputs:
 
   metrics_summary_report:
     type: File
+    format: iana:text/csv
     outputBinding:
       glob: "sample/outs/summary.csv"
     doc: |
@@ -218,6 +229,7 @@ outputs:
 
   barcode_metrics_report:
     type: File
+    format: iana:text/csv
     outputBinding:
       glob: "sample/outs/per_barcode_metrics.csv"
     doc: |
@@ -232,6 +244,7 @@ outputs:
 
   gex_possorted_genome_bam_bai:
     type: File
+    format: edam:format_2572  # BAM
     outputBinding:
       glob: "sample/outs/gex_possorted_bam.bam"
     secondaryFiles:
@@ -242,6 +255,7 @@ outputs:
   
   atac_possorted_genome_bam_bai:
     type: File
+    format: edam:format_2572  # BAM
     outputBinding:
       glob: "sample/outs/atac_possorted_bam.bam"
     secondaryFiles:
@@ -262,6 +276,7 @@ outputs:
 
   filtered_feature_bc_matrix_h5:
     type: File
+    format: edam:format_3590  # HDF5
     outputBinding:
       glob: "sample/outs/filtered_feature_bc_matrix.h5"
     doc: |
@@ -282,6 +297,7 @@ outputs:
 
   raw_feature_bc_matrices_h5:
     type: File
+    format: edam:format_3590  # HDF5
     outputBinding:
       glob: "sample/outs/raw_feature_bc_matrix.h5"
     doc: |
@@ -302,6 +318,7 @@ outputs:
 
   gex_molecule_info_h5:
     type: File
+    format: edam:format_3590  # HDF5
     outputBinding:
       glob: "sample/outs/gex_molecule_info.h5"
     doc: |
@@ -317,6 +334,7 @@ outputs:
 
   atac_fragments_file:
     type: File
+    format: iana:text/tab-separated-values
     outputBinding:
       glob: "sample/outs/atac_fragments.tsv.gz"
     secondaryFiles:
@@ -327,6 +345,7 @@ outputs:
 
   atac_peaks_bed_file:
     type: File
+    format: edam:format_3003  # BED
     outputBinding:
       glob: "sample/outs/atac_peaks.bed"
     doc: |
@@ -335,6 +354,7 @@ outputs:
 
   atac_cut_sites_bigwig_file:
     type: File
+    format: edam:format_3006  # bigWig
     outputBinding:
       glob: "sample/outs/atac_cut_sites.bigwig"
     doc: |
@@ -343,6 +363,7 @@ outputs:
 
   atac_peak_annotation_file:
     type: File
+    format: iana:text/tab-separated-values
     outputBinding:
       glob: "sample/outs/atac_peak_annotation.tsv"
     doc: |
@@ -350,36 +371,20 @@ outputs:
       Note that these are not functional annotations and they
       do not make use of linkage with GEX data.
 
-  stdout_log:
-    type: stdout
-
-  stderr_log:
-    type: stderr
-
-
 baseCommand: ["cellranger-arc", "count", "--disable-ui", "--libraries", "libraries.csv", "--id", "sample"]
-
-
-stdout: cellranger_arc_count_stdout.log
-stderr: cellranger_arc_count_stderr.log
-
 
 $namespaces:
   s: http://schema.org/
+  edam: http://edamontology.org/
+  iana: https://www.iana.org/assignments/media-types/
 
 $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
 
 label: "Cell Ranger ARC count - generates single cell feature counts for a single multiome library"
-s:name: "Cell Ranger ARC count - generates single cell feature counts for a single multiome library"
 s:alternateName: "Counts ATAC and gene expression reads from a single 10x Genomics Cell Ranger Multiome ATAC + Gene Expression library"
 
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

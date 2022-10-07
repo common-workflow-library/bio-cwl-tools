@@ -1,19 +1,16 @@
 #!/usr/bin/env cwl-runner
-class: CommandLineTool
 cwlVersion: v1.1
+class: CommandLineTool
 
-
-requirements:
-- class: InlineJavascriptRequirement
-- class: ResourceRequirement
-  ramMin: 3814
-  coresMin: 2
-- class: DockerRequirement
-  dockerPull: yyasumizu/vdjtools
+hints:
+  ResourceRequirement:
+    ramMin: 3814
+    coresMin: 2
+  DockerRequirement:
+    dockerPull: yyasumizu/vdjtools
   
 
 inputs:
-
   unweighted:
     type: boolean?
     inputBinding:
@@ -71,7 +68,6 @@ $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
 
 label: "VDJtools Calc Spectratype"
-s:name: "VDJtools Calc Spectratype"
 s:alternateName: "Calculates spectratype, that is, histogram of read counts by CDR3 nucleotide length"
 
 s:license: http://www.apache.org/licenses/LICENSE-2.0

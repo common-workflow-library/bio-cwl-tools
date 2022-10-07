@@ -3,7 +3,7 @@ cwlVersion: v1.0
 class: CommandLineTool
 
 requirements:
-  - class: InlineJavascriptRequirement
+  InlineJavascriptRequirement:
     expressionLib:
     - var default_output_filename = function() {
         var ext = ".bed";
@@ -16,11 +16,10 @@ requirements:
       };
 
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/hal:v0.0.1
+  DockerRequirement:
+    dockerPull: biowardrobe2/hal:v0.0.1
 
 inputs:
-
   keep_extra:
     type: boolean?
     inputBinding:
@@ -66,6 +65,7 @@ inputs:
 
   input_bed_file:
     type: File
+    format: edam:format_3003  # BED
     inputBinding:
       position: 6
     doc: |
@@ -87,32 +87,29 @@ inputs:
     doc: |
       Output filename
 
-
 outputs:
-
   projected_bed_file:
     type: File
+    format: edam:format_3003  # BED
     outputBinding:
       glob: $(default_output_filename())
     doc: |
       Projected BED file
 
 
-baseCommand: ["halLiftover"]
+baseCommand: halLiftover
 
 $namespaces:
   s: http://schema.org/
+  edam: https://edamontology.org/
+  iana: https://www.iana.org/assignments/media-types/
 
 $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
 
-s:name: "halliftover"
-s:license: http://www.apache.org/licenses/LICENSE-2.0
+label: halLiftover
 
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
+s:license: http://www.apache.org/licenses/LICENSE-2.0
 
 s:creator:
 - class: s:Organization
@@ -140,7 +137,7 @@ s:creator:
         - id: http://orcid.org/0000-0002-6486-3898
 
 doc: |
-  Runs halliftover to project input BED file from source to target genome.
+  Runs halLiftover to project input BED file from source to target genome.
   `source_genome_name` and `target_genome_name` should correspond to the fields in `hal_file`.
 
   If `output_filename` is not set, call `default_output_filename` function.

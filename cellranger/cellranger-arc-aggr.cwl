@@ -4,36 +4,33 @@ class: CommandLineTool
 
 
 requirements:
-- class: InlineJavascriptRequirement
-  expressionLib:
-  - var get_label = function(i) {
-        var rootname = inputs.gex_molecule_info_h5[i].basename.split('.').slice(0,-1).join('.');
-        rootname = (rootname=="")?inputs.gex_molecule_info_h5[i].basename:rootname;
-        return inputs.gem_well_labels?inputs.gem_well_labels[i].replace(/\t|\s|\[|\]|\>|\<|,|\./g, "_"):rootname;
-    };
-- class: InitialWorkDirRequirement
-  listing: |
-    ${
-      var entry = "library_id,atac_fragments,per_barcode_metrics,gex_molecule_info\n"
-      for (var i=0; i < inputs.gex_molecule_info_h5.length; i++){
-        entry += get_label(i) + "," + inputs.atac_fragments_file[i].path + "," + inputs.barcode_metrics_report[i].path + "," + inputs.gex_molecule_info_h5[i].path + "\n"
+  InlineJavascriptRequirement:
+    expressionLib:
+    - var get_label = function(i) {
+          var rootname = inputs.gex_molecule_info_h5[i].basename.split('.').slice(0,-1).join('.');
+          rootname = (rootname=="")?inputs.gex_molecule_info_h5[i].basename:rootname;
+          return inputs.gem_well_labels?inputs.gem_well_labels[i].replace(/\t|\s|\[|\]|\>|\<|,|\./g, "_"):rootname;
+      };
+  InitialWorkDirRequirement:
+    listing: |
+      ${
+        var entry = "library_id,atac_fragments,per_barcode_metrics,gex_molecule_info\n"
+        for (var i=0; i < inputs.gex_molecule_info_h5.length; i++){
+          entry += get_label(i) + "," + inputs.atac_fragments_file[i].path + "," + inputs.barcode_metrics_report[i].path + "," + inputs.gex_molecule_info_h5[i].path + "\n"
+        }
+        return [{
+          "entry": entry,
+          "entryname": "metadata.csv"
+        }];
       }
-      return [{
-        "entry": entry,
-        "entryname": "metadata.csv"
-      }];
-    }
-
-
 hints:
-- class: DockerRequirement
-  dockerPull: cumulusprod/cellranger-arc:2.0.0
-
+  DockerRequirement:
+    dockerPull: cumulusprod/cellranger-arc:2.0.0
 
 inputs:
-
   atac_fragments_file:
     type: File[]
+    format: iana:text/tab-separated-values
     secondaryFiles:
     - .tbi
     doc: |
@@ -49,6 +46,7 @@ inputs:
 
   gex_molecule_info_h5:
     type: File[]
+    format: edam:format_3590  # HDF5
     doc: |
       Array of GEX molecule-level information files in HDF5 format.
       Outputs from "cellranger-arc count" command.
@@ -117,6 +115,7 @@ outputs:
 
   web_summary_report:
     type: File
+    format: iana:text/html
     outputBinding:
       glob: "aggregated/outs/web_summary.html"
     doc: |
@@ -124,6 +123,7 @@ outputs:
 
   metrics_summary_report:
     type: File
+    format: iana:text/csv
     outputBinding:
       glob: "aggregated/outs/summary.csv"
     doc: |
@@ -131,6 +131,7 @@ outputs:
 
   atac_fragments_file:
     type: File
+    format: iana:text/tab-separated-values
     outputBinding:
       glob: "aggregated/outs/atac_fragments.tsv.gz"
     secondaryFiles:
@@ -141,6 +142,7 @@ outputs:
 
   atac_peaks_bed_file:
     type: File
+    format: edam:format_3003  # BED
     outputBinding:
       glob: "aggregated/outs/atac_peaks.bed"
     doc: |
@@ -149,6 +151,7 @@ outputs:
 
   atac_peak_annotation_file:
     type: File
+    format: iana:text/tab-separated-values
     outputBinding:
       glob: "aggregated/outs/atac_peak_annotation.tsv"
     doc: |
@@ -174,6 +177,7 @@ outputs:
 
   filtered_feature_bc_matrix_h5:
     type: File
+    format: edam:format_3590  # HDF5
     outputBinding:
       glob: "aggregated/outs/filtered_feature_bc_matrix.h5"
     doc: |
@@ -190,6 +194,7 @@ outputs:
 
   raw_feature_bc_matrices_h5:
     type: File
+    format: edam:format_3590  # HDF5
     outputBinding:
       glob: "aggregated/outs/raw_feature_bc_matrix.h5"
     doc: |
@@ -198,6 +203,7 @@ outputs:
 
   aggregation_metadata:
     type: File
+    format: iana:text/csv
     outputBinding:
       glob: "aggregated/outs/aggr.csv"
     doc: |
@@ -210,36 +216,20 @@ outputs:
     doc: |
       Loupe Browser visualization and analysis file for aggregated results
 
-  stdout_log:
-    type: stdout
-
-  stderr_log:
-    type: stderr
-
-
 baseCommand: ["cellranger-arc", "aggr", "--disable-ui", "--id", "aggregated", "--csv", "metadata.csv"]
-
-
-stdout: cellranger_arc_aggr_stdout.log
-stderr: cellranger_arc_aggr_stderr.log
-
 
 $namespaces:
   s: http://schema.org/
+  edam: http://edamontology.org/
+  iana: https://www.iana.org/assignments/media-types/
 
 $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
 
 label: "Cellranger ARC aggr - aggregates data from multiple Cellranger ARC runs"
-s:name: "Cellranger ARC aggr - aggregates data from multiple Cellranger ARC runs"
 s:alternateName: "Cellranger ARC aggr takes a list of cellranger ARC count output files and produces a single feature-barcode matrix containing all the data"
 
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

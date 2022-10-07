@@ -2,9 +2,8 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
-  - class: InlineJavascriptRequirement
+  InlineJavascriptRequirement:
     expressionLib:
     - var get_output_filename = function() {
             if (inputs.output_filename == ""){
@@ -16,30 +15,31 @@ requirements:
             }
           };
 
-
 hints:
-  - class: DockerRequirement
+  DockerRequirement:
     dockerPull: quay.io/biocontainers/gffread:0.11.7--h8b12597_0
-
+  SoftwareRequirement:
+    packages:
+      gffread:
+        specs: [ https://bio.tools/gffread ]
 
 inputs:
-
   genome_fasta_file:
     type: File
+    format: edam:format_1929  # FASTA
     secondaryFiles:
       - .fai
     inputBinding:
       position: 5
       prefix: "-g"
-    doc: |
-      Genome file in FASTA format, uncompressed
+    doc: "Genome file in FASTA format, uncompressed"
 
   annotation_gtf_file:
     type: File
+    format: edam:format_2306  # GTF
     inputBinding:
       position: 10
-    doc: |
-      GTF annotation file
+    doc: "GTF annotation file"
 
   output_filename:
     type: string?
@@ -48,44 +48,27 @@ inputs:
       prefix: "-w"
       valueFrom: $(get_output_filename())
     default: ""
-    doc: |
-      Filename for generated transcriptome FASTA file
-
+    doc: "Filename for generated transcriptome FASTA file"
 
 outputs:
-
   transcriptome_fasta_file:
     type: File
+    format: edam:format_1929  # FASTA
     outputBinding:
       glob: $(get_output_filename())
 
-  stdout_log:
-    type: stdout
-
-  stderr_log:
-    type: stderr
-
-
-baseCommand: [ "gffread"]
-
-
-stdout: gffread_stdout.log
-stderr: gffread_stderr.log
-
+baseCommand: gffread
 
 $namespaces:
   s: http://schema.org/
+  edam: https://edamontology.org/
+  iana: https://www.iana.org/assignments/media-types/
 
 $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
 
 s:name: "gffread"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

@@ -2,18 +2,11 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
-requirements:
-- class: InlineJavascriptRequirement
-
-
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/rose:v0.0.2
-
+  DockerRequirement:
+    dockerPull: biowardrobe2/rose:v0.0.2
 
 inputs:
-
   binding_sites_file:
     type: File
     inputBinding:
@@ -51,9 +44,7 @@ inputs:
       prefix: "-t"
     doc: "Distance from TSS to exclude. 0 = no TSS exclusion"
 
-
 outputs:
-
   gff_directory:
     type: Directory
     outputBinding:
@@ -105,17 +96,14 @@ baseCommand: ['ROSE_main', '-o', './']
 
 $namespaces:
   s: http://schema.org/
+  edam: https://edamontology.org/
+  iana: https://www.iana.org/assignments/media-types/
 
 $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
 
 s:name: "rose"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

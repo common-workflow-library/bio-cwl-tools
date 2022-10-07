@@ -2,28 +2,26 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
-- class: InlineJavascriptRequirement
-  expressionLib:
-  - var get_output_folder_name = function() {
-          if (inputs.output_folder_name == ""){
-            var root = inputs.genome_fasta_file.basename.split('.').slice(0,-1).join('.');
-            return (root == "")?inputs.genome_fasta_file.basename:root;
-          } else {
-            return inputs.output_folder_name;
-          }          
-        };
-
+  InlineJavascriptRequirement:
+    expressionLib:
+    - var get_output_folder_name = function() {
+            if (inputs.output_folder_name == ""){
+              var root = inputs.genome_fasta_file.basename.split('.').slice(0,-1).join('.');
+              return (root == "")?inputs.genome_fasta_file.basename:root;
+            } else {
+              return inputs.output_folder_name;
+            }          
+          };
 hints:
-- class: DockerRequirement
-  dockerPull: cumulusprod/cellranger:4.0.0
-
+  DockerRequirement:
+    dockerPull: cumulusprod/cellranger:4.0.0
 
 inputs:
   
   genome_fasta_file:
     type: File
+    format: edam:format_1929  # FASTA
     inputBinding:
       position: 5
       prefix: "--fasta"
@@ -32,6 +30,7 @@ inputs:
 
   annotation_gtf_file:
     type: File
+    format: edam:format_2306  # GTF
     inputBinding:
       position: 6
       prefix: "--genes"
@@ -77,36 +76,22 @@ outputs:
       Cellranger-compatible reference folder that includes
       STAR indices and some additional files
 
-  stdout_log:
-    type: stdout
-
-  stderr_log:
-    type: stderr
-
-
 baseCommand: ["cellranger", "mkref"]
-
-
-stdout: cellranger_mkref_stdout.log
-stderr: cellranger_mkref_stderr.log
-
 
 $namespaces:
   s: http://schema.org/
+  edam: http://edamontology.org/
+  iana: https://www.iana.org/assignments/media-types/
 
 $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
 
 label: "Cell Ranger mkref - builds a Cell Ranger compatible indices"
-s:name: "Cell Ranger mkref - builds a Cell Ranger compatible indices"
-s:alternateName: "Builds a Cell Ranger compatible reference folder from user-supplied genome FASTA and gene GTF files"
+doc: |
+  Builds a Cell Ranger compatible reference folder from user-supplied
+  genome FASTA and gene GTF files.
 
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization
@@ -134,6 +119,4 @@ s:creator:
         - id: http://orcid.org/0000-0002-6486-3898
 
 
-doc: |
-  Builds a Cell Ranger compatible reference folder from user-supplied
-  genome FASTA and gene GTF files.
+

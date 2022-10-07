@@ -2,14 +2,15 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/rgt:v0.0.1
-
+  DockerRequirement:
+    dockerPull: quay.io/biocontainers/rgt:0.12.3--py27h2b63b92_3
+  SoftwareRequirement:
+    packages:
+      rgt:
+        specs: [ https://doi.org/10.1093/nar/gkw680 ]
 
 inputs:
-
   script:
     type: string?
     default: |
@@ -242,7 +243,6 @@ inputs:
 
 
 outputs:
-
   diffpeaks_bed_file:
     type: File?
     outputBinding:
@@ -282,34 +282,20 @@ outputs:
     outputBinding:
       glob: "*-setup.info"
 
-  stdout_log:
-    type: stdout
-
-  stderr_log:
-    type: stderr
-
-
 baseCommand: ["bash", "-c"]
-stderr: thor_stderr.log
-stdout: thor_stdout.log
-
 
 $namespaces:
   s: http://schema.org/
+  edam: https://edamontology.org/
+  iana: https://www.iana.org/assignments/media-types/
 
 $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
 
 label: "THOR - differential peak calling of ChIP-seq signals with replicates"
-s:name: "THOR - differential peak calling of ChIP-seq signals with replicates"
 s:alternateName: "THOR is an HMM-based approach to detect and analyze differential peaks in two sets of ChIP-seq data from distinct biological conditions with replicates"
 
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

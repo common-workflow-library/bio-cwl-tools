@@ -2,56 +2,55 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-
 requirements:
-- class: InlineJavascriptRequirement
-- class: InitialWorkDirRequirement
-  listing: |
-    ${
-      var listing = [
-        {
-          "entry": inputs.fastq_file_r1,
-          "entryname": "sample_S1_L001_R1_001.fastq",
-          "writable": true
-        },
-        {
-          "entry": inputs.fastq_file_r2,
-          "entryname": "sample_S1_L001_R2_001.fastq",
-          "writable": true
-        }
-      ];
-      if (inputs.fastq_file_i1){
-        listing.push(
-          {
-            "entry": inputs.fastq_file_i1,
-            "entryname": "sample_S1_L001_I1_001.fastq",
-            "writable": true
-          }
-        );
-      };
-      return listing;
-    }
-
+  InlineJavascriptRequirement: {}
+  InitialWorkDirRequirement:
+   listing: |
+     ${
+       var listing = [
+         {
+           "entry": inputs.fastq_file_r1,
+           "entryname": "sample_S1_L001_R1_001.fastq",
+           "writable": true
+         },
+         {
+           "entry": inputs.fastq_file_r2,
+           "entryname": "sample_S1_L001_R2_001.fastq",
+           "writable": true
+         }
+       ];
+       if (inputs.fastq_file_i1){
+         listing.push(
+           {
+             "entry": inputs.fastq_file_i1,
+             "entryname": "sample_S1_L001_I1_001.fastq",
+             "writable": true
+           }
+         );
+       };
+       return listing;
+     }
 
 hints:
-- class: DockerRequirement
-  dockerPull: cumulusprod/cellranger:4.0.0
+  DockerRequirement:
+    dockerPull: cumulusprod/cellranger:4.0.0
 
-
-inputs:
-  
+inputs: 
   fastq_file_r1:
     type: File
+    format: edam:format_1931  # FASTQ (generic)
     doc: |
       FASTQ read 1 file (will be staged into workdir as sample_S1_L001_R1_001.fastq)
 
   fastq_file_r2:
     type: File
+    format: edam:format_1931  # FASTQ (generic)
     doc: |
       FASTQ read 2 file (will be staged into workdir as sample_S1_L001_R2_001.fastq)
 
   fastq_file_i1:
     type: File?
+    format: edam:format_1931  # FASTQ (generic)
     doc: |
       FASTQ index file (if provided, will be staged into workdir as sample_S1_L001_I1_001.fastq)
 
@@ -125,6 +124,7 @@ outputs:
 
   web_summary_report:
     type: File
+    format: iana:text/html
     outputBinding:
       glob: "sample/outs/web_summary.html"
     doc: |
@@ -132,6 +132,7 @@ outputs:
 
   metrics_summary_report:
     type: File
+    format: iana:text/csv
     outputBinding:
       glob: "sample/outs/metrics_summary.csv"
     doc: |
@@ -139,6 +140,7 @@ outputs:
 
   possorted_genome_bam_bai:
     type: File
+    format: edam:format_2572  # BAM
     outputBinding:
       glob: "sample/outs/possorted_genome_bam.bam"
     secondaryFiles:
@@ -156,6 +158,7 @@ outputs:
 
   filtered_feature_bc_matrix_h5:
     type: File
+    format: edam:format_3590  # HDF5
     outputBinding:
       glob: "sample/outs/filtered_feature_bc_matrix.h5"
     doc: |
@@ -172,6 +175,7 @@ outputs:
 
   raw_feature_bc_matrices_h5:
     type: File
+    format: edam:format_3590  # HDF5
     outputBinding:
       glob: "sample/outs/raw_feature_bc_matrix.h5"
     doc: |
@@ -187,6 +191,7 @@ outputs:
 
   molecule_info_h5:
     type: File
+    format: edam:format_3590  # HDF5
     outputBinding:
       glob: "sample/outs/molecule_info.h5"
     doc: |
@@ -200,36 +205,20 @@ outputs:
     doc: |
       Loupe Browser visualization and analysis file
 
-  stdout_log:
-    type: stdout
-
-  stderr_log:
-    type: stderr
-
-
 baseCommand: ["cellranger", "count", "--disable-ui", "--fastqs", ".", "--id", "sample"]
-
-
-stdout: cellranger_count_stdout.log
-stderr: cellranger_count_stderr.log
-
 
 $namespaces:
   s: http://schema.org/
+  edam: http://edamontology.org/
+  iana: https://www.iana.org/assignments/media-types/
 
 $schemas:
 - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
 
 label: "Cellranger count - generates single cell feature counts for a single library"
-s:name: "Cellranger count - generates single cell feature counts for a single library"
 s:alternateName: "Counts gene expression and feature barcoding reads from a single sample and GEM well"
 
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization
