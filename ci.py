@@ -1,6 +1,6 @@
 import crayons
 import os
-from subprocess import check_output, check_call
+from subprocess import check_output, check_call, CalledProcessError
 import sys
 
 has_failed = False
@@ -27,10 +27,14 @@ for line in changed_files.decode("utf-8").rstrip().split("\n"):
     if not fs.lower().endswith(".cwl"):
         continue
     print(crayons.blue(f"Testing CWL Validation: {fs} \n"))
-    file_validation_status = check_call(f"cwltool --validate {fs}", shell=True)
+    try:
+        file_validation_status = check_call(f"cwltool --validate {fs}", shell=True)
+    except CalledProcessError:
+        file_validation_status = -1
     if file_validation_status != 0:
         print(f"Tool Failed Validation: {fs}")
         tool_failed = True
+        continue
 
     if file_validation_status == 0:
         print(crayons.green(f"Tool Passed Validation: {fs}\n"))
