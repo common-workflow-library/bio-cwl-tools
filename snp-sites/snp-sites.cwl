@@ -102,7 +102,7 @@ hints:
       - 2.5.1
 $schemas:
 - https://schema.org/version/latest/schemaorg-current-http.rdf
-- http://edamontology.org/EDAM_1.18.owl
+- https://edamontology.org/EDAM_1.18.owl
 s:author:
 - class: s:Person
   s:email: mailto:pvh@sanbi.ac.za

@@ -57,11 +57,11 @@ outputs:
   sorted_alignments:
     type: File
     format: |-
-      ${ if(inputs.sort_order == "coordinate") { return "https://edamontology.org/format_2572";} else { return "http://edamontology.org/format_2573"; } }
+      ${ if(inputs.sort_order == "coordinate") { return "http://edamontology.org/format_2572";} else { return "http://edamontology.org/format_2573"; } }
     outputBinding:
       glob: '*.*am'
 
 $namespaces:
-  edam: https://edamontology.org/
+  edam: http://edamontology.org/
 $schemas:
   - https://edamontology.org/EDAM_1.18.owl

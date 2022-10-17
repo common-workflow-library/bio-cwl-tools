@@ -58,6 +58,6 @@ outputs:
 
 $namespaces:
   iana: https://www.iana.org/assignments/media-types/
-  edam: https://edamontology.org/
+  edam: http://edamontology.org/
 $schemas:
   - https://edamontology.org/EDAM_1.18.owl

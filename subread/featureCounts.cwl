@@ -36,7 +36,7 @@ hints:
           - https://anaconda.org/bioconda/subread
 
 $namespaces:
- edam: https://edamontology.org/
+ edam: http://edamontology.org/
  iana: https://www.iana.org/assignments/media-types/
 $schemas:
  - https://edamontology.org/EDAM_1.25.owl

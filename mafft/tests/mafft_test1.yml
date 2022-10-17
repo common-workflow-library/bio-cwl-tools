@@ -8,4 +8,4 @@ addfragments:
   format: edam:format_1929
 
 $namespaces:
-  edam: https://edamontology.org/
+  edam: http://edamontology.org/

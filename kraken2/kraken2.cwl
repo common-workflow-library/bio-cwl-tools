@@ -164,7 +164,7 @@ requirements:
     coresMin: 1
 
 $namespaces:
-  edam: https://edamontology.org/
+  edam: http://edamontology.org/
   s: http://schema.org/
 $schemas:
   - "https://edamontology.org/EDAM.owl"

@@ -251,6 +251,6 @@ outputs:
       glob: "Unmapped.out*"
 
 $namespaces:
-  edam: https://edamontology.org/
+  edam: http://edamontology.org/
 $schemas:
   - https://edamontology.org/EDAM_1.18.owl
