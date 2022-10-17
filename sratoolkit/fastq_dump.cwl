@@ -277,7 +277,7 @@ baseCommand: [fastq-dump]
 
 $namespaces:
   s: http://schema.org/
-  edam: https://edamontology.org/
+  edam: http://edamontology.org/
 
 
 $schemas:

@@ -65,6 +65,6 @@ outputs:
     format: edam:format_1931 # FASTQ
 
 $namespaces:
-  edam: https://edamontology.org/
+  edam: http://edamontology.org/
 $schemas:
   - https://edamontology.org/EDAM_1.18.owl

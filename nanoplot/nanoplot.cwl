@@ -208,6 +208,6 @@ outputs:
       glob: Yield_By_Length.*
 
 $namespaces:
-  edam: https://edamontology.org/
+  edam: http://edamontology.org/
 $schemas:
   - https://edamontology.org/EDAM_1.18.owl

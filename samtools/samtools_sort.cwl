@@ -57,7 +57,7 @@ stdout: |
     if (inputs.force_format !== undefined) {
       return filename + inputs.force_format.toLowerCase();
     }
-    return filename + (inputs.unsorted_alignments.format == "https://edamontology.org/format_2572" ? "bam" : "sam");
+    return filename + (inputs.unsorted_alignments.format == "http://edamontology.org/format_2572" ? "bam" : "sam");
    }
 
 outputs:
@@ -69,15 +69,15 @@ outputs:
            return inputs.unsorted_alignments.format;
          }
          if (inputs.force_format == "SAM") {
-           return "https://edamontology.org/format_2573";
+           return "http://edamontology.org/format_2573";
          }
          if (inputs.force_format == "BAM") {
-           return "https://edamontology.org/format_2572";
+           return "http://edamontology.org/format_2572";
          }
          if (inputs.force_format == "CRAM") {
-           return "https://edamontology.org/format_3462";
+           return "http://edamontology.org/format_3462";
          }
        }
 
 $namespaces:
-  edam: https://edamontology.org/ 
+  edam: http://edamontology.org/ 

@@ -146,6 +146,6 @@ outputs:
       glob: $(inputs.input_file.nameroot).stats.txt
 stdout: $(inputs.input_file.nameroot).stats.txt
 
-$namespaces: { edam: https://edamontology.org/, iana: https://www.iana.org/assignments/media-types/ }
+$namespaces: { edam: http://edamontology.org/, iana: https://www.iana.org/assignments/media-types/ }
 $schemas:
   - 'https://edamontology.org/EDAM_1.18.owl'

@@ -2,7 +2,7 @@
     "fastq_file": {
         "class": "File",
         "location": "./data/dm3_chr4/main_inputs/fastq/chr4_100_chrM_25_mapped_reads/upstream.fastq",
-        "format": "https://edamontology.org/format_1930"
+        "format": "http://edamontology.org/format_1930"
     },
     "indices_folder": {
         "class": "Directory",

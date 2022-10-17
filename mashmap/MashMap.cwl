@@ -118,7 +118,7 @@ outputs:
 
 $namespaces:
   s: http://schema.org/
-  edam: https://edamontology.org/
+  edam: http://edamontology.org/
 
 $schemas:
   - https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
