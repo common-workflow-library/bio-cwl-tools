@@ -138,7 +138,7 @@ baseCommand: [gseapy, gsea]
 
 $namespaces:
   s: http://schema.org/
-  edam: https://edamontology.org/
+  edam: http://edamontology.org/
   iana: https://www.iana.org/assignments/media-types/
 
 $schemas:
