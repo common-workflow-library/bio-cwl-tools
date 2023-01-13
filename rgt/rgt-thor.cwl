@@ -290,7 +290,7 @@ $namespaces:
   iana: https://www.iana.org/assignments/media-types/
 
 $schemas:
-- https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
+- https://schema.org/version/latest/schemaorg-current-https.rdf
 
 label: "THOR - differential peak calling of ChIP-seq signals with replicates"
 s:alternateName: "THOR is an HMM-based approach to detect and analyze differential peaks in two sets of ChIP-seq data from distinct biological conditions with replicates"

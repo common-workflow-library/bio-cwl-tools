@@ -214,7 +214,7 @@ $namespaces:
   s: http://schema.org/
 
 $schemas:
-- https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
+- https://schema.org/version/latest/schemaorg-current-https.rdf
 
 s:name: "bowtie_build"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

@@ -35,7 +35,7 @@ $namespaces:
   s: http://schema.org/
 
 $schemas:
-- https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
+- https://schema.org/version/latest/schemaorg-current-https.rdf
 
 label: "VDJtools Convert from MiXcr"
 s:alternateName: "Converts datasets from MiXcr format to VDJtools format"

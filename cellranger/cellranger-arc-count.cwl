@@ -379,7 +379,7 @@ $namespaces:
   iana: https://www.iana.org/assignments/media-types/
 
 $schemas:
-- https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
+- https://schema.org/version/latest/schemaorg-current-https.rdf
 
 label: "Cell Ranger ARC count - generates single cell feature counts for a single multiome library"
 s:alternateName: "Counts ATAC and gene expression reads from a single 10x Genomics Cell Ranger Multiome ATAC + Gene Expression library"

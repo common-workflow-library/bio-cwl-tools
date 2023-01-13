@@ -395,7 +395,7 @@ $namespaces:
   iana: https://www.iana.org/assignments/media-types/
 
 $schemas:
-- https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
+- https://schema.org/version/latest/schemaorg-current-https.rdf
 
 label: "Cellranger reanalyze - reruns secondary analysis performed on the feature-barcode matrix"
 s:alternateName: "Reruns secondary analysis performed on the feature-barcode matrix (dimensionality reduction, clustering and visualization) using different parameter settings"

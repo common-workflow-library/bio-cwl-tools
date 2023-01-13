@@ -45,7 +45,7 @@ $namespaces:
   s: http://schema.org/
 
 $schemas:
-- https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
+- https://schema.org/version/latest/schemaorg-current-https.rdf
 
 label: "VDJtools Plot Quantile Stats"
 s:alternateName: "Plots a three-layer donut chart to visualize the repertoire clonality"

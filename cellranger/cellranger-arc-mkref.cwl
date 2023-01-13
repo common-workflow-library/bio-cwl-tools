@@ -102,7 +102,7 @@ $namespaces:
   iana: https://www.iana.org/assignments/media-types/
 
 $schemas:
-- https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
+- https://schema.org/version/latest/schemaorg-current-https.rdf
 
 label: "Cell Ranger ARC mkref - builds compatible with Cell Ranger ARC indices"
 s:alternateName: "Builds compatible with Cell Ranger ARC reference folder from user-supplied genome FASTA and gene GTF files"

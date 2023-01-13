@@ -85,9 +85,9 @@ Signs that a tool description is including too much: lots of javascript; complic
 ## Schema Description
 
 If you use schema.org annotations, specify the schema using the RDF version:
-`$schemas: [ https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf ]` unless items from
+`$schemas: [ https://schema.org/version/latest/schemaorg-current-https.rdf ]` unless items from
 outside the core schema.org vocabulary are needed. In that case use
-`$schemas: [ https://schema.org/version/9.0/schemaorg-all-http.rdf ]`.
+`$schemas: [ https://schema.org/version/latest/schemaorg-all-https.rdf ]`.
 
 However, don't use `s:mainEntity`, put that information under `hints` as a `SoftwareRequirement`.
 
