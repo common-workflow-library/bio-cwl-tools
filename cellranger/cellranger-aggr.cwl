@@ -174,7 +174,7 @@ $namespaces:
   iana: https://www.iana.org/assignments/media-types/
 
 $schemas:
-- https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
+- https://schema.org/version/latest/schemaorg-current-https.rdf
 
 label: "Cellranger aggr - aggregates data from multiple Cellranger runs"
 s:alternateName: "Cellranger aggr takes a list of cellranger count output files and produces a single feature-barcode matrix containing all the data"

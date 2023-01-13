@@ -72,7 +72,7 @@ stdout: "search_result$( inputs.inherit_format ? inputs.search_target.nameext : 
 baseCommand: grep
 
 $schemas:
-- https://github.com/schemaorg/schemaorg/raw/main/data/releases/11.01/schemaorg-current-http.rdf
+- https://schema.org/version/latest/schemaorg-current-https.rdf
 s:author:
 - class: s:Person
   s:email: mailto:pvh@sanbi.ac.za
