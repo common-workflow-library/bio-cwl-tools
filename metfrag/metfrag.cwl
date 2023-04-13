@@ -1,3 +1,4 @@
+#!/usr/bin/env cwl-runner
 cwlVersion: v1.0
 class: CommandLineTool
 
@@ -30,45 +31,23 @@ requirements:
 
 
 inputs: # additional inputs for all files; make them to show certain paths
-  PeakList:
-        type: File
+  PeakList: File
+  IonizedPrecursorMass: string
+  PrecursorIonMode: int
+  IsPositiveIonMode: boolean
+  LocalDatabase: File
+  SampleName: string
+  #MetFragDatabaseType: string
+  #DatabaseSearchRelativeMassDeviation: int
+  #FragmentPeakMatchAbsoluteMassDeviation: float
+  #FragmentPeakMatchRelativeMassDeviation: float
+  #MetFragCandidateWriter: string
+  #MetFragPreProcessingCandidateFilter: string
+  #MetFragPostProcessingCandidateFilter: string
+  #MaximumTreeDepth: int
+  #NumberThreads: int
 
-  IonizedPrecursorMass:
-      type: string
-
-  PrecursorIonMode:
-      type: int
-
-  IsPositiveIonMode:
-      type: boolean
-  LocalDatabase:
-      type: File
-  SampleName:
-      type: string
-# MetFragDatabaseType:
-  #     type: string
-  # DatabaseSearchRelativeMassDeviation:
-  #     type: int
-
-  # FragmentPeakMatchAbsoluteMassDeviation:
-  #     type: float
-
-  # FragmentPeakMatchRelativeMassDeviation:
-  #     type: float
-
-  # MetFragCandidateWriter:
-  #     type: string
-
-  # MetFragPreProcessingCandidateFilter:
-  #     type: string
-  # MetFragPostProcessingCandidateFilter:
-  #     type: string
-  # MaximumTreeDepth:
-  #     type: int
-  # NumberThreads:
-  #     type: int
-
-arguments: 
+arguments:
   - ParameterFile=param_file.txt
 
 outputs:
@@ -76,4 +55,3 @@ outputs:
     type: File
     outputBinding:
         glob: "*.csv"
-        #loadContents: true

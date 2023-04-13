@@ -1,4 +1,5 @@
-cwlVersion: v1.0 
+#!/usr/bin/env cwl-runner
+cwlVersion: v1.0
 class: CommandLineTool
 
 $namespaces:
@@ -19,15 +20,13 @@ requirements:
       SIRIUS_USER: $(inputs.sirius_user)
       SIRIUS_PASSWORD: $(inputs.sirius_password)
 
-inputs: 
+inputs:
   sirius_user:
     type: string
   sirius_password:
     type: string
   spectrum:
     type: File
-#    inputBinding: 
-#      prefix: --input
   profile:
     type: string
     default: "orbitrap"
@@ -47,14 +46,13 @@ inputs:
     type: boolean
     default: False
 
-
 arguments:
     - sirius
     - login
-    - --user-env 
+    - --user-env
     - SIRIUS_USER
-    - --password-env 
-    - SIRIUS_PASSWORD 
+    - --password-env
+    - SIRIUS_PASSWORD
     - shellQuote: False
       valueFrom: ";"
     - sirius
@@ -65,15 +63,14 @@ arguments:
     - formula
     - --profile
     - $(inputs.profile)
-    - | 
+    - |
       ${
-        if (inputs.isotope) { 
+        if (inputs.isotope) {
           return ["--no-isotope-filter",
             "--no-isotope-score"];
         } else {
           return null;
         }
-        
       }
     - --candidates
     - $(inputs.candidates)
@@ -91,8 +88,7 @@ arguments:
     - $(inputs.spectrum.nameroot).json
 
 outputs:
-  results: 
+  results:
     type: Directory
     outputBinding:
        glob: $(inputs.spectrum.nameroot).json
-  
