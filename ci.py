@@ -5,9 +5,17 @@ import sys
 
 has_failed = False
 tool_failed = False
+check_all = False
 # changed_files = check_output("git --no-pager diff --name-status release..$(git branch | grep \* | cut -d ' ' -f2)", shell=True)
 
-if "GITHUB_REF" in os.environ:
+if "CHECK_ALL" in os.environ:
+    changed_files = check_output(
+        "git --no-pager diff --name-status "
+        "--diff-filter d 7751de13d48cfd43c5968ec1eb8d164eb1496121..HEAD", shell=True)
+    # 7751de13d48cfd43c5968ec1eb8d164eb1496121 is the first commit, using `git diff`
+    # instead of `git ls-files *.cwl` to match the logic of the normal usage
+    print("Checking all CWL files.")
+elif "GITHUB_REF" in os.environ:
     changed_files = check_output(
         "git --no-pager diff --name-status --diff-filter d HEAD^1 HEAD",
         shell=True,
@@ -47,7 +55,7 @@ for line in changed_files.decode("utf-8").rstrip().split("\n"):
     if file_validation_status == 0:
         print(crayons.green(f"Tool Passed Validation: {fs}\n"))
 
-    print(crayons.blue(f"Testing Repo Requirements\n"))
+    print(crayons.blue("Testing Repo Requirements\n"))
     with open(fs) as f:
         lines_expected = [
             ["#!/usr/bin/env cwl-runner"],
@@ -76,7 +84,7 @@ for line in changed_files.decode("utf-8").rstrip().split("\n"):
                     )
                 )
                 tool_failed = True
-    if tool_failed == False:
+    if tool_failed is False:
         print(crayons.green(f"Tool Passed Repo Requirements: {fs}\n"))
     else:
         print(crayons.red(f"Tool Failed Repo Requirements: {fs}\n"))
@@ -89,5 +97,5 @@ for line in changed_files.decode("utf-8").rstrip().split("\n"):
         has_failed = True
     print("=====================")
 
-if has_failed == True:
+if has_failed is True:
     sys.exit(1)
