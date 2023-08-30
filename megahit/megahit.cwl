@@ -34,8 +34,8 @@ hints:
     packages:
       megahit:
         specs:
-          - https://bio.tools/megahit
-          - https://scicrunch.org/resolver/RRID:SCR_018551
+          - https://identifiers.org/biotools/megahit
+          - https://identifiers.org/rrid/RRID:SCR_018551
   DockerRequirement:
     dockerPull: quay.io/biocontainers/megahit:1.2.9--h43eeafb_4
   ResourceRequirement:

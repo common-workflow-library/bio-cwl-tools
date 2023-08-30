@@ -11,8 +11,7 @@ hints:
     packages:
       bwa:
         version: [ "0.7.17" ]
-        specs:
-          - https://bio.tools/bwa
+        specs: [ https://identifiers.org/biotools/bwa ]
 
 inputs:
   index:

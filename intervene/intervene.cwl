@@ -11,7 +11,7 @@ hints:
   SoftwareRequirement:
     packages:
       intervene:
-        specs: [ https://bio.tools/intervene ]
+        specs: [ https://identifiers.org/biotools/intervene ]
 
 inputs:
   figure_format:

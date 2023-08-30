@@ -12,7 +12,7 @@ hints:
     packages:
       bedgraphtobigwig:
         specs:
-          - https://bio.tools/bedgraphtobigwig
+          - https://identifiers.org/biotools/bedgraphtobigwig
           - https://anaconda.org/bioconda/ucsc-bedgraphtobigwig
 
 inputs:

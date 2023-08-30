@@ -13,7 +13,7 @@ hints:
       bwa:
         version: [ "0.7.17" ]
         specs:
-          - https://bio.tools/bwa
+          - http://identifiers.org/biotools/bwa
           
 inputs:
   sequences:

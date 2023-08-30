@@ -18,11 +18,10 @@ hints:
         version: [ "2.2.2d" ]
         specs:
           - https://identifiers.org/rrid/RRID:SCR_001209
-          - https://bio.tools/qualimap
+          - https://identifiers.org/biotools/qualimap
   DockerRequirement:
     dockerPull: 'quay.io/biocontainers/qualimap:2.2.2d--1'
 
-# Base command
 baseCommand: [ qualimap, rnaseq ]
 
 arguments:
