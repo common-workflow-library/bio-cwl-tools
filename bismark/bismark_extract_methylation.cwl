@@ -8,7 +8,7 @@ hints:
   SoftwareRequirement:
     packages:
       bismark:
-        specs: [ "http://identifiers.org/biotools/bismark" ]
+        specs: [ https://identifiers.org/biotools/bismark ]
         version: [ "0.0.2" ]
 
 inputs:
@@ -116,11 +116,6 @@ $schemas:
 
 s:name: "bismark_extract_methylation"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

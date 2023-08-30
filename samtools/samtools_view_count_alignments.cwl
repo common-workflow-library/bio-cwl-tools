@@ -14,6 +14,11 @@ hints:
     ramMin: 10000
   DockerRequirement:
     dockerPull: quay.io/biocontainers/samtools:1.14--hb421002_0
+  SoftwareRequirement:
+    packages:
+      samtools:
+        specs: [ https://identifiers.org/biotools/samtools ]
+        version: [ "1.14" ]
 
 baseCommand: ["samtools", "view"]
 arguments:

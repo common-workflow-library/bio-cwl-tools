@@ -3,13 +3,13 @@ cwlVersion: v1.0
 class: CommandLineTool
 
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/sratoolkit:v2.8.2-1
-- class:  SoftwareRequirement
-  packages:
-    sra-tools:
-      specs: [ "http://identifiers.org/biotools/sra-tools" ]
-      version: [ "2.8.2" ]
+  DockerRequirement:
+    dockerPull: biowardrobe2/sratoolkit:v2.8.2-1
+  SoftwareRequirement:
+    packages:
+      sra-tools:
+        specs: [ https://identifiers.org/biotools/sra-tools ]
+        version: [ "2.8.2" ]
 
 inputs:
 
@@ -286,11 +286,6 @@ $schemas:
 
 s:name: "fastq_dump"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

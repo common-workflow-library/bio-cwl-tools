@@ -8,11 +8,13 @@ label: MashMap
 
 hints:
   DockerRequirement:
-    dockerPull: "quay.io/biocontainers/mashmap:2.0--gsl2.2_1"
+    dockerPull: quay.io/biocontainers/mashmap:2.0--gsl2.2_1
   SoftwareRequirement:
     packages:
       mashmap:
-        specs: [ "https://github.com/marbl/MashMap" ]
+        specs:
+          - https://identifiers.org/biotools/mashmap
+          - https://github.com/marbl/MashMap
         version: [ "2.0" ]
 
 baseCommand: mashmap
@@ -127,11 +129,6 @@ $schemas:
 
 s:name: "MashMap"
 s:license: "https://github.com/marbl/MashMap/blob/master/LICENSE.txt"
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

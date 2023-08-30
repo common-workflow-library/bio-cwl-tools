@@ -18,10 +18,10 @@ hints:
   SoftwareRequirement:
     packages:
       deeptools:
-        specs: [ "http://identifiers.org/biotools/deeptools" ]
+        specs: [ https://identifiers.org/biotools/deeptools ]
         version: [ "3.1.1" ]
 
-baseCommand: ["bamCoverage"]
+baseCommand: bamCoverage
 arguments:  
   - valueFrom: $(inputs.bam.nameroot).bigwig
     prefix: --outFileName

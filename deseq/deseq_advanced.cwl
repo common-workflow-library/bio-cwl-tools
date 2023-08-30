@@ -8,7 +8,7 @@ hints:
   SoftwareRequirement:
     packages:
       deseq:
-        specs: [ "http://identifiers.org/biotools/deseq" ]
+        specs: [ https://identifiers.org/biotools/deseq ]
         version: [ "0.0.8" ] ## TODO: Update!
 
 inputs:
@@ -92,11 +92,6 @@ $schemas:
 
 s:name: "deseq_advanced"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

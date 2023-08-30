@@ -3,13 +3,8 @@ cwlVersion: v1.0
 class: CommandLineTool
 
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/hopach:v0.0.6
-- class:  SoftwareRequirement
-  packages:
-    hopach:
-      specs: [ "http://identifiers.org/biotools/hopach" ]
-      version: [ "0.0.6" ]
+  DockerRequirement
+    dockerPull: biowardrobe2/hopach:v0.0.6
 
 inputs:
 
@@ -180,7 +175,8 @@ outputs:
       glob: "hopach_stdout.log"
     doc: "Hopach stdout log"
 
-baseCommand: ["hopach_order.R"]
+baseCommand: hopach_order.R  # from https://github.com/Barski-lab/workflows/blob/master/tools/dockerfiles/scripts/hopach_order.R
+
 stderr: hopach_stderr.log
 stdout: hopach_stdout.log
 
@@ -192,11 +188,6 @@ $schemas:
 
 s:name: "hopach"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

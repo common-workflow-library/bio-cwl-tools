@@ -14,10 +14,10 @@ hints:
   SoftwareRequirement:
     packages:
       deeptools:
-        specs: [ "http://identifiers.org/biotools/deeptools" ]
+        specs: [ https://identifiers.org/biotools/deeptools ]
         version: [ "3.1.1" ]
 
-baseCommand: ["plotFingerprint"]
+baseCommand: plotFingerprint
 arguments:
   - valueFrom: $(inputs.sample_id)
     prefix: --labels

@@ -3,25 +3,25 @@ cwlVersion: v1.0
 class: CommandLineTool
 
 requirements:
-- class: ShellCommandRequirement
-- class: InlineJavascriptRequirement
-  expressionLib:
-  - var default_output_filename = function() {
-        if (Array.isArray(inputs.filelist) && inputs.filelist.length > 0){
-          return inputs.filelist[0].location.split('/').slice(-1)[0].split('.').slice(0,-1).join('.')+".sam";
-        } else
-          if (inputs.filelist != null){
-            return inputs.filelist.location.split('/').slice(-1)[0].split('.').slice(0,-1).join('.')+".sam";
+  ShellCommandRequirement: {}
+  InlineJavascriptRequirement:
+    expressionLib:
+    - var default_output_filename = function() {
+          if (Array.isArray(inputs.filelist) && inputs.filelist.length > 0){
+            return inputs.filelist[0].location.split('/').slice(-1)[0].split('.').slice(0,-1).join('.')+".sam";
           } else
-            if (Array.isArray(inputs.filelist_mates) && inputs.filelist_mates.length > 0){
-              return inputs.filelist_mates[0].location.split('/').slice(-1)[0].split('.').slice(0,-1).join('.')+".sam";
+            if (inputs.filelist != null){
+              return inputs.filelist.location.split('/').slice(-1)[0].split('.').slice(0,-1).join('.')+".sam";
             } else
-              if (inputs.filelist_mates != null){
-                return inputs.filelist_mates.location.split('/').slice(-1)[0].split('.').slice(0,-1).join('.')+".sam";
-              } else {
-                return null;
-              }
-    };
+              if (Array.isArray(inputs.filelist_mates) && inputs.filelist_mates.length > 0){
+                return inputs.filelist_mates[0].location.split('/').slice(-1)[0].split('.').slice(0,-1).join('.')+".sam";
+              } else
+                if (inputs.filelist_mates != null){
+                  return inputs.filelist_mates.location.split('/').slice(-1)[0].split('.').slice(0,-1).join('.')+".sam";
+                } else {
+                  return null;
+                }
+      };
 
 hints:
   DockerRequirement:
@@ -29,7 +29,7 @@ hints:
   SoftwareRequirement:
     packages:
       bowtie2:
-        specs: [ "http://identifiers.org/biotools/bowtie2" ]
+        specs: [ https://identifiers.org/biotools/bowtie2 ]
         version: [ "2.3.0" ]
 
 inputs:
@@ -904,11 +904,6 @@ $schemas:
 
 s:name: "bowtie2_align"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

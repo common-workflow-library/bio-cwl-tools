@@ -4,7 +4,12 @@ class: CommandLineTool
 
 hints:
   DockerRequirement:
-    dockerPull: "quay.io/biocontainers/kallisto:0.45.0--hdcc98e5_0"
+    dockerPull: quay.io/biocontainers/kallisto:0.45.0--hdcc98e5_0
+  SoftwareRequirement:
+    packages:
+      kallisto:
+        version: [ "0.45.0" ]
+        specs: [ https://identifiers.org/biotools/kallisto ]
 
 inputs:
   InputFiles:

@@ -6,16 +6,21 @@ doc: |
   Performs strand cross-correlation analysis of aligned reads and estimates the fragment size.
 
 requirements:
-  - class: InlineJavascriptRequirement
+  InlineJavascriptRequirement: {}
 hints:
-  DockerRequirement:
-    dockerPull: kerstenbreuer/phantompeakqualtools:1.2
   ResourceRequirement:
     coresMin: 1
     ramMin: 20000
+  DockerRequirement:
+    dockerPull: quay.io/biocontainers/phantompeakqualtools:1.2--1
+  SoftwareRequirement:
+    packages:
+      phantompeakqualtools:
+        version: [ "1.2" ]
+        specs: [ https://identifiers.org/biotools/phantompeakqualtools ]
 
 # Please note: please adjust the path to run_spp.R if not using containers:
-baseCommand: ["Rscript", "--verbose", "--max-ppsize=500000", "/usr/bin/phantompeakqualtools-1.2/run_spp.R"]
+baseCommand: ["Rscript", "--verbose", "--max-ppsize=500000", "/usr/local/bin/run_spp.R"]
 arguments:
   - valueFrom: $(runtime.tmpdir)
     prefix: -tmpdir=

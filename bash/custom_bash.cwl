@@ -8,7 +8,7 @@ doc: |
 
 hints:
   DockerRequirement:
-    dockerPull: biowardrobe2/scidap:v0.0.3
+    dockerPull: debian:stable
 
 inputs:
 
@@ -52,11 +52,6 @@ s:name: "custom_bash"
 s:downloadUrl: https://raw.githubusercontent.com/common-workflow-library/bio-cwl-tools/release/tools/bash/custom_bash.cwl
 s:codeRepository: https://github.com/common-workflow-library/bio-cwl-tools
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

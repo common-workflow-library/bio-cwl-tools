@@ -4,7 +4,12 @@ class: CommandLineTool
 
 hints:
   DockerRequirement:
-    dockerPull: "sinaiiidgst/lancet:latest"
+    dockerPull: docker.io/sinaiiidgst/lancet:latest
+  SoftwareRequirement:
+    packages:
+      lancet:
+        version: [ "1.0.7" ]
+        specs: [ https://identifiers.org/biotools/lancet ]
 
 inputs:
   # REQUIRED ARGS

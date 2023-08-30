@@ -72,11 +72,6 @@ s:alternateName: "Calculates spectratype, that is, histogram of read counts by C
 
 s:license: http://www.apache.org/licenses/LICENSE-2.0
 
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
-
 s:creator:
 - class: s:Organization
   s:legalName: "Cincinnati Children's Hospital Medical Center"

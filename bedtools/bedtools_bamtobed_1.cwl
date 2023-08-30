@@ -16,7 +16,7 @@ hints:
   SoftwareRequirement:
     packages:
       bedtools:
-        specs: [ "http://identifiers.org/biotools/bedtools" ]
+        specs: [ https://identifiers.org/biotools/bedtools ]
         version: [ "2.25.0" ]
 
 baseCommand: ["bedtools", "bamtobed"]

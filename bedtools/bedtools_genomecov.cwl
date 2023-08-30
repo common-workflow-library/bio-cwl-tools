@@ -16,7 +16,7 @@ hints:
   SoftwareRequirement:
     packages:
       bedtools:
-        specs: [ "http://identifiers.org/biotools/bedtools" ]
+        specs: [ https://identifiers.org/biotools/bedtools ]
         version: [ "2.26.0" ]
 
 inputs:
@@ -221,11 +221,6 @@ $schemas:
 
 s:name: "bedtools_genomecov"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

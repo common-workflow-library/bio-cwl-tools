@@ -13,6 +13,11 @@ hints:
     ramMin: 7000
   DockerRequirement:
     dockerPull: kerstenbreuer/trim_galore:0.4.4_1.14_0.11.7
+  SoftwareRequirement:
+    packages:
+      trim_galore:
+        specs: [ https://identifiers.org/biotools/trim_galore ]
+        version: [ "0.4.4" ]
 
 baseCommand: trim_galore
 

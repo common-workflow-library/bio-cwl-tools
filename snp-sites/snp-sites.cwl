@@ -96,10 +96,8 @@ hints:
   SoftwareRequirement:
     packages:
       snp-sites:
-        specs:
-        - https://anaconda.org/bioconda/snp-sites
-      versions:
-      - 2.5.1
+        specs: [ https://anaconda.org/bioconda/snp-sites ]
+        version: [ "2.5.1" ]
 $schemas:
 - https://schema.org/version/latest/schemaorg-current-http.rdf
 - https://edamontology.org/EDAM_1.18.owl

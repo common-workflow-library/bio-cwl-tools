@@ -8,7 +8,9 @@ hints:
   SoftwareRequirement:
     packages:
       gseapy:
+        version: [ "0.13.0" ]
         specs:
+          - https://identifiers.org/biotools/gseapy
           - https://anaconda.org/bioconda/gseapy
           - https://github.com/zqfang/GSEApy
 

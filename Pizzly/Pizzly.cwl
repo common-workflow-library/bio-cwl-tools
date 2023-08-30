@@ -4,7 +4,12 @@ class: CommandLineTool
 
 hints:
   DockerRequirement:
-    dockerPull: "quay.io/biocontainers/pizzly:0.37.3--0"
+    dockerPull: quay.io/biocontainers/pizzly:0.37.3--0
+  SoftwareRequirement:
+    packages:
+      pizzly:
+        version: [ "0.37.3" ]
+        specs: [ https://identifiers.org/biotools/pizzly ]
 
 inputs:
   InputFile:

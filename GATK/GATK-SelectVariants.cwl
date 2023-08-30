@@ -158,6 +158,13 @@ requirements:
 hints:
   DockerRequirement:
     dockerPull: quay.io/biocontainers/gatk4:4.1.6.0--py38_0
+  SoftwareRequirement:
+    packages:
+      gatk:
+        specs:
+          - https://identifiers.org/biotools/gatk
+          - https://anaconda.org/bioconda/gatk4
+        version: [ "4.1.6.0" ]
 inputs:
 - doc: Threshold number of ambiguous bases. If null, uses threshold fraction; otherwise,
     overrides threshold fraction.

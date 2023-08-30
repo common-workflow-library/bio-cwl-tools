@@ -14,6 +14,11 @@ s:author:
 requirements:
   DockerRequirement:
     dockerPull: quay.io/biocontainers/tb-profiler:3.0.0--pypyh3252c3a_0
+  SoftwareRequirement:
+    packages:
+      tb-profiler:
+        specs: [ https://identifiers.org/biotools/tb-profiler ]
+        version: [ "3.0.0" ]
 
 hints:
   ResourceRequirement:

@@ -66,6 +66,7 @@ hints:
   SoftwareRequirement:
     packages:
       bedtobigbed:
+        version: [ "377" ]
         specs: [ https://anaconda.org/bioconda/ucsc-bedToBigBed ]
 inputs:
   bed_type:

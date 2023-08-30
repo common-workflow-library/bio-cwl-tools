@@ -5,12 +5,17 @@ class: CommandLineTool
 doc: |
   Modified from https://github.com/nigyta/bact_genome/blob/master/cwl/tool/fastp/fastp.cwl
 requirements:
-    InlineJavascriptRequirement: {}
+  InlineJavascriptRequirement: {}
 hints:
-    DockerRequirement:
-        dockerPull: quay.io/biocontainers/fastp:0.20.0--hdbcaa40_0
+  DockerRequirement:
+    dockerPull: quay.io/biocontainers/fastp:0.20.0--hdbcaa40_0
+  SoftwareRequirement:
+    packages:
+      fastp:
+        specs: [ https://identifiers.org/biotools/fastp ]
+        version: [ "0.20.0" ]
 
-baseCommand: [fastp]
+baseCommand: fastp
 
 arguments:
     - prefix: -o

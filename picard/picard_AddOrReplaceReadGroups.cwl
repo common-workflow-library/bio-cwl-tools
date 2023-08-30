@@ -46,6 +46,12 @@ requirements:
 hints:
   DockerRequirement:
     dockerPull: quay.io/biocontainers/picard:2.22.2--0
+  SoftwareRequirement:
+    packages:
+      picard:
+        version: [ "2.22.2" ]
+        specs: [ https://identifiers.org/biotools/picard_tools ]
+     
 inputs:
 - doc: Input file (BAM or SAM or a GA4GH url). [synonymous with -I]
   id: INPUT

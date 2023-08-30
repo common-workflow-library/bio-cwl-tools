@@ -5,12 +5,13 @@ class: CommandLineTool
 requirements:
   InlineJavascriptRequirement: {}
 hints:
+  DockerRequirement:
+    dockerPull: quay.io/biocontainers/seqkit:0.7.1--0
   SoftwareRequirement:
     packages:
       seqkit:
-        version: [ 0.7.1 ]
-  DockerRequirement:
-    dockerPull: "quay.io/biocontainers/seqkit:0.7.1--0"
+        specs: [ https://identifiers.org/biotools/seqkit ]
+        version: [ "0.7.1" ]
   ResourceRequirement:
     coresMin: 8
     coresMax: 32

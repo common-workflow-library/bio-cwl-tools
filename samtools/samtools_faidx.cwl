@@ -5,6 +5,11 @@ class: CommandLineTool
 hints:
   DockerRequirement:
     dockerPull: quay.io/biocontainers/samtools:1.14--hb421002_0
+  SoftwareRequirement:
+    packages:
+      samtools:
+        specs: [ https://identifiers.org/biotools/samtools ]
+        version: [ "1.14" ]
 requirements:
   InitialWorkDirRequirement:
     listing: [ $(inputs.sequences) ]

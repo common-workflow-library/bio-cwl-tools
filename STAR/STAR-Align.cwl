@@ -4,7 +4,12 @@ class: CommandLineTool
 
 hints:
   DockerRequirement:
-    dockerPull: "quay.io/biocontainers/star:2.7.5c--0"
+    dockerPull: quay.io/biocontainers/star:2.7.5c--0
+  SoftwareRequirement:
+    packages:
+      star:
+        specs: [ https://identifiers.org/biotools/star ]
+        version: [ "2.7.5c" ]
 
 inputs:
   # Required Inputs

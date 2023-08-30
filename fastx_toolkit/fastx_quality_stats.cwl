@@ -3,20 +3,19 @@ cwlVersion: v1.0
 class: CommandLineTool
 
 requirements:
-- class: InlineJavascriptRequirement
-  expressionLib:
-  - var default_output_filename = function() {
-          return inputs.input_file.location.split('/').slice(-1)[0].split('.').slice(0,-1).join('.') + ".fastxstat"
-        };
-
+  InlineJavascriptRequirement
+    expressionLib:
+    - var default_output_filename = function() {
+            return inputs.input_file.location.split('/').slice(-1)[0].split('.').slice(0,-1).join('.') + ".fastxstat"
+          };
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/fastx_toolkit:v0.0.14
-- class:  SoftwareRequirement
-  packages:
-    fastx-toolkit:
-      specs: [ "http://identifiers.org/biotools/fastx-toolkit" ]
-      version: [ "0.0.14" ]
+  DockerRequirement:
+    dockerPull: docker pull biocontainers/fastx-toolkit:v0.0.14-6-deb_cv1
+  SoftwareRequirement:
+    packages:
+      fastx-toolkit:
+        specs: [ https://identifiers.org/biotools/fastx-toolkit ]
+        version: [ "0.0.14" ]
 
 inputs:
 
@@ -96,11 +95,6 @@ $schemas:
 
 s:name: "fastx_quality_stats"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization
