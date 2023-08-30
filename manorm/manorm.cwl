@@ -3,13 +3,13 @@ cwlVersion: v1.0
 class: CommandLineTool
 
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/manorm:v0.0.2
-- class:  SoftwareRequirement
-  packages:
-    manorm:
-      specs: [ "http://identifiers.org/biotools/manorm" ]
-      version: [ "0.0.2" ]
+  DockerRequirement:
+    dockerPull: biowardrobe2/manorm:v0.0.2
+  SoftwareRequirement:
+    packages:
+      manorm:
+        specs: [ https://identifiers.org/biotools/manorm ]
+        version: [ "0.0.2" ]
 
 inputs:
 
@@ -235,11 +235,6 @@ $schemas:
 
 s:name: "manorm"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

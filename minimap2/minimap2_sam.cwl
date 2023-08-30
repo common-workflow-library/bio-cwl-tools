@@ -16,7 +16,9 @@ hints:
   SoftwareRequirement:
     packages:
       minimap2:
-        specs: [ https://github.com/lh3/minimap2 ]
+        specs:
+          - https://identifiers.org/biotools/minimap2
+          - https://github.com/lh3/minimap2
         version: [ "2.17" ]
   ResourceRequirement:
     coresMin: 8

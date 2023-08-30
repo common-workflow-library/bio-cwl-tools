@@ -3,17 +3,17 @@ cwlVersion: v1.0
 class: CommandLineTool
 
 requirements:
-- class: ShellCommandRequirement
-- class: InlineJavascriptRequirement
+  ShellCommandRequirement: {}
+  InlineJavascriptRequirement: {}
 
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/bowtie:v1.2.0
-- class: SoftwareRequirement
-  packages:
-    bowtie:
-      specs: [ "http://identifiers.org/biotools/bowtie" ]
-      version: [ "1.2.0" ]
+  DockerRequirement:
+    dockerPull: biowardrobe2/bowtie:v1.2.0
+  SoftwareRequirement:
+    packages:
+      bowtie:
+        specs: [ https://identifiers.org/biotools/bowtie ]
+        version: [ "1.2.0" ]
 
 inputs:
 
@@ -218,11 +218,6 @@ $schemas:
 
 s:name: "bowtie_build"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

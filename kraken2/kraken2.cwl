@@ -1,9 +1,9 @@
 #!/usr/bin/env cwl-runner
 cwlVersion: v1.0
 class: CommandLineTool
-id: kraken2
-baseCommand:
-  - kraken2
+
+baseCommand: kraken2
+
 inputs:
   database:
     type: 
@@ -147,19 +147,17 @@ outputs:
     outputBinding:
       glob: $(inputs.unclassified_output)
 hints:
-  - class: SoftwareRequirement
+  SoftwareRequirement:
     packages:
       kraken2:
-        version:
-          - 2.0.8-beta
-        specs:
-          - http://identifiers.org/biotools/kraken2
-  - class: DockerRequirement
-    dockerPull: "quay.io/biocontainers/kraken2:2.0.8_beta--pl526h6bb024c_0"
+        version: [ "2.0.8-beta" ]
+        specs: [  https://identifiers.org/biotools/kraken2 ]
+  DockerRequirement:
+    dockerPull: quay.io/biocontainers/kraken2:2.0.8_beta--pl526h6bb024c_0
 
 requirements:
-  - class: InlineJavascriptRequirement
-  - class: ResourceRequirement
+  InlineJavascriptRequirement: {}
+  ResourceRequirement:
     ramMin: 45000  # kraken2 standard DB is 38 GB. RAM requirement is modelled on testing with this 
     coresMin: 1
 
@@ -172,12 +170,6 @@ $schemas:
 
 s:name: "kraken2"
 s:license: "https://spdx.org/licenses/MIT.html"
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
-
 s:creator:
 - class: s:Organization
   s:legalName: "South African National Bioinformatics Institute"

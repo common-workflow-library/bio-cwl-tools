@@ -5,6 +5,11 @@ class: CommandLineTool
 hints:
   DockerRequirement:
    dockerPull: quay.io/biocontainers/cutadapt:3.7--py39hbf8eff0_1
+  SoftwareRequirement:
+    packages:
+      cutadapt:
+        version: [ "3.7" ]
+        specs: [ https://identifiers.org/biotools/cutadapt ]
 
 baseCommand: cutadapt
 

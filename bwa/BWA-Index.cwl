@@ -7,13 +7,12 @@ requirements:
 
 hints:
   DockerRequirement:
-    dockerPull: "quay.io/biocontainers/bwa:0.7.17--ha92aebf_3"
+    dockerPull: quay.io/biocontainers/bwa:0.7.17--ha92aebf_3
   SoftwareRequirement:
     packages:
       bwa:
         version: [ "0.7.17" ]
-        specs:
-          - http://identifiers.org/biotools/bwa
+        specs: [ https://identifiers.org/biotools/bwa ]
           
 inputs:
   sequences:

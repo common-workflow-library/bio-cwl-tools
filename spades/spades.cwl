@@ -454,8 +454,13 @@ requirements:
  
   - class: InlineJavascriptRequirement
 hints:
-  - class: DockerRequirement
-    dockerPull: 'biocontainers/unicycler:v0.4.7dfsg-2-deb_cv1'
+  DockerRequirement:
+    dockerPull: quay.io/biocontainers/spades:3.13.0--0
+  SoftwareRequirement:
+    packages:
+      spades:
+        specs: [ https://identifiers.org/biotools/spades ]
+        version: [ "3.13.0" ]
   
 doc: |
   example workflow for js wrapper generation

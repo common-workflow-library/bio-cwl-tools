@@ -8,7 +8,11 @@ hints:
     coresMin: 1
     ramMin: 15000
   DockerRequirement:
-    dockerPull: kerstenbreuer/samtools:1.7
+    dockerPull: docker.io/debian:stable-slim
+  SoftwareRequirement:
+    packages:
+      coreutils:
+        specs: [ https://anaconda.org/conda-forge/coreutils ]
 
 doc: |
   sorting a bedgraph file by genomic coordinates

@@ -15,13 +15,13 @@ requirements:
     };
 
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/deeptools:v0.0.1
-- class: SoftwareRequirement
-  packages:
-    deeptools:
-      specs: [ "http://identifiers.org/biotools/deeptools" ]
-      version: [ "3.1.1" ]
+  DockerRequirement:
+    dockerPull: biowardrobe2/deeptools:v0.0.1
+  SoftwareRequirement:
+    packages:
+      deeptools:
+        specs: [ https://identifiers.org/biotools/deeptools ]
+        version: [ "3.1.1" ]
 
 inputs:
 
@@ -126,11 +126,6 @@ $schemas:
 
 s:name: "deeptools_alignmentsieve"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

@@ -11,6 +11,12 @@ hints:
     ramMin: 5000
   DockerRequirement:
     dockerPull: quay.io/biocontainers/fastqc:0.11.9--hdfd78af_1
+  SoftwareRequirement:
+    packages:
+      fastqc:
+        specs: [ https://identifiers.org/biotools/fastqc ]
+        version: [ "0.11.9" ]
+
 
 baseCommand: "fastqc"
 arguments: 

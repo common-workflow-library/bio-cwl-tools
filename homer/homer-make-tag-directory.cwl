@@ -3,21 +3,26 @@ cwlVersion: v1.0
 class: CommandLineTool
 
 requirements:
-- class: InlineJavascriptRequirement
-- class: InitialWorkDirRequirement
-  listing: |
-    ${
-      return [
-        {"class": "Directory",
-         "basename": "default",
-         "listing": [inputs.bam_file],
-         "writable": true}
-      ]
-    }
+  InlineJavascriptRequirement: {}
+  InitialWorkDirRequirement:
+    listing: |
+      ${
+        return [
+          {"class": "Directory",
+           "basename": "default",
+           "listing": [inputs.bam_file],
+           "writable": true}
+        ]
+      }
 
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/homer:v0.0.2
+  DockerRequirement:
+    dockerPull: biowardrobe2/homer:v0.0.2
+  SoftwareRequirement:
+    packages:
+      homer:
+        specs: [ https://identifiers.org/biotools/homer ]
+        version: [ "4.10.3" ]
 
 inputs:
 
@@ -93,11 +98,6 @@ $schemas:
 
 s:name: "homer-make-tag-directory"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

@@ -32,6 +32,11 @@ requirements:
 hints:
   DockerRequirement:
     dockerPull: quay.io/biocontainers/picard:2.22.2--0
+  SoftwareRequirement:
+    packages:
+      picard:
+        version: [ "2.22.2" ]
+        specs: [ https://identifiers.org/biotools/picard_tools ]
 inputs:
 - doc: Input reference fasta or fasta.gz [synonymous with -R]
   id: REFERENCE

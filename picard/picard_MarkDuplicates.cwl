@@ -11,6 +11,11 @@ hints:
     ramMin: 20000
   DockerRequirement:
     dockerPull: quay.io/biocontainers/picard:2.22.2--0
+  SoftwareRequirement:
+    packages:
+      picard:
+        version: [ "2.22.2" ]
+        specs: [ https://identifiers.org/biotools/picard_tools ]
   
 baseCommand: [ picard, MarkDuplicates ]
 

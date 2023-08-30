@@ -12,7 +12,7 @@ hints:
   SoftwareRequirement:
     packages:
       bamtools:
-        specs: [ "http://identifiers.org/biotools/bamtools" ]
+        specs: [ "https://identifiers.org/biotools/bamtools" ]
         version: [ "2.4.1" ]
 
 inputs:
@@ -131,11 +131,6 @@ $schemas:
 
 s:name: "bamtools_stats"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

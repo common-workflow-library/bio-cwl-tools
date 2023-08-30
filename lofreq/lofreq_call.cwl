@@ -8,9 +8,14 @@ hints:
     ramMin: 20000
   DockerRequirement:
     dockerPull: quay.io/biocontainers/lofreq:2.1.4--py27hc3dfafe_1
+  SoftwareRequirement:
+    packages:
+      lofreq:
+        version: [ "2.1.4" ]
+        specs: [ https://identifiers.org/biotools/lofreq ]
 
 requirements:
-  - class: InitialWorkDirRequirement
+  InitialWorkDirRequirement:
     listing:
       - $(inputs.reference_index)
       - $(inputs.reference_fasta)

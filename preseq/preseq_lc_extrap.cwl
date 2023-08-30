@@ -16,8 +16,13 @@ requirements:
       };
 
 hints:
-  - class: DockerRequirement
+  DockerRequirement:
     dockerPull: stevetsa/preseq:2.0
+  SoftwareRequirement:
+    packages:
+      preseq:
+        version: [ "2.0.0" ]
+        specs: [ https://identifiers.org/biotools/preseq ]
 
 inputs:
 
@@ -125,12 +130,6 @@ $schemas:
 
 s:name: "preseq-lc-extrap"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
-
 s:creator:
 - class: s:Organization
   s:legalName: "Cincinnati Children's Hospital Medical Center"

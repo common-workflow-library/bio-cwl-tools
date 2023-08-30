@@ -53,10 +53,14 @@ hints:
     coresMin: 1
     ramMin: 10000
   DockerRequirement:
-    dockerPull: kerstenbreuer/multiqc:1.7
-  
+    dockerPull: quay.io/biocontainers/multiqc:1.7--py_4
+  SoftwareRequirement:
+    packages:
+      multiqc:
+        version: [ "1.7" ]
+        specs: [ https://identifiers.org/biotools/multiqc ]  
 
-baseCommand: ["multiqc"]
+baseCommand: multiqc
 arguments:
   - valueFrom: --zip-data-dir
     position: 1

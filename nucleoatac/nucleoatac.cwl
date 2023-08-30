@@ -10,7 +10,7 @@ hints:
     coresMin: 1
     ramMin: 10000
   DockerRequirement:
-    dockerPull: kerstenbreuer/nucleoatac:0.3.4
+    dockerPull: quay.io/biocontainers/nucleoatac:0.3.4--py27h984c793_7
 
 baseCommand: ["nucleoatac", "run"]
 stderr: $(inputs.output_basename).stderr

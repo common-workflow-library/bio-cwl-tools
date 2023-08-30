@@ -8,7 +8,7 @@ hints:
   SoftwareRequirement:
     packages:
       fastqc:
-        specs: [ "http://identifiers.org/biotools/fastqc" ]
+        specs: [ https://identifiers.org/biotools/fastqc ]
         version: [ "0.11.9--hdfd78af_1", "0.11.9" ]
 
 inputs:

@@ -23,6 +23,11 @@ baseCommand: iqtree2
 hints:
   DockerRequirement:
     dockerPull: quay.io/biocontainers/iqtree:2.2.2.7--h21ec9f0_2
+  SoftwareRequirement:
+    packages:
+      iqtree:
+        version: [ "2.2.2.7" ]
+        specs: [ https://identifiers.org/biotools/iqtree ]
 
 requirements:
   InitialWorkDirRequirement:

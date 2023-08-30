@@ -4,7 +4,14 @@ class: CommandLineTool
 
 hints:
   DockerRequirement:
-    dockerPull: "broadinstitute/gatk:4.1.3.0"
+    dockerPull: quay.io/biocontainers/gatk4:4.1.3.0--0
+  SoftwareRequirement:
+    packages:
+      gatk:
+        specs:
+          - https://identifiers.org/biotools/gatk
+          - https://anaconda.org/bioconda/gatk4
+        version: [ "4.1.3.0" ]
 
 inputs:
   # REQUIRED ARGS

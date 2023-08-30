@@ -5,6 +5,11 @@ class: CommandLineTool
 hints:
   DockerRequirement:
     dockerPull: biocontainers/bandage:v0.8.1-1-deb_cv1
+  SoftwareRequirement:
+    packages:
+      bandage:
+        version: [ "0.8" ]
+        specs: [ https://identifiers.org/biotools/bandage ]
 
 requirements:
   EnvVarRequirement:

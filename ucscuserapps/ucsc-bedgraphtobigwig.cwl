@@ -11,6 +11,7 @@ hints:
   SoftwareRequirement:
     packages:
       bedgraphtobigwig:
+        version: [ "377" ]
         specs:
           - https://identifiers.org/biotools/bedgraphtobigwig
           - https://anaconda.org/bioconda/ucsc-bedgraphtobigwig

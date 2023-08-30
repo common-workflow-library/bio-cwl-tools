@@ -3,25 +3,25 @@ cwlVersion: v1.0
 class: CommandLineTool
 
 requirements:
-- class: InlineJavascriptRequirement
-  expressionLib:
-  - var default_output_filename = function() {
-          if (inputs.output_filename == ""){
-            var root = inputs.intervals_file.basename.split('.').slice(0,-1).join('.');
-            return (root == "")?inputs.intervals_file.basename+".fa":root+".fa";
-          } else {
-            return inputs.output_filename;
-          }
-        };
+  InlineJavascriptRequirement:
+    expressionLib:
+    - var default_output_filename = function() {
+            if (inputs.output_filename == ""){
+              var root = inputs.intervals_file.basename.split('.').slice(0,-1).join('.');
+              return (root == "")?inputs.intervals_file.basename+".fa":root+".fa";
+            } else {
+              return inputs.output_filename;
+            }
+          };
 
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/bedtools2:v2.26.0
-- class: SoftwareRequirement
-  packages:
-    bedtools:
-      specs: [ "http://identifiers.org/biotools/bedtools" ]
-      version: [ "2.26.0" ]
+  DockerRequirement:
+    dockerPull: biowardrobe2/bedtools2:v2.26.0
+  SoftwareRequirement:
+    packages:
+      bedtools:
+        specs: [ https://identifiers.org/biotools/bedtools ]
+        version: [ "2.26.0" ]
 
 inputs:
 
@@ -65,10 +65,6 @@ $schemas:
 s:name: "bedtools_getfasta"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
 
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization

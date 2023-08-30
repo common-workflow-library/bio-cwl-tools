@@ -3,7 +3,7 @@ cwlVersion: v1.0
 class: CommandLineTool
 
 requirements:
-  - class: InlineJavascriptRequirement
+  InlineJavascriptRequirement:
     expressionLib:
     - var default_output_filename = function() {
         var ext = ".bed";
@@ -16,8 +16,8 @@ requirements:
       };
 
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/hal:v0.0.1
+  DockerRequirement:
+    dockerPull: biowardrobe2/hal:v0.0.1
 
 inputs:
 
@@ -106,11 +106,6 @@ $schemas:
 
 s:name: "halliftover"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
-
-s:isPartOf:
-  class: s:CreativeWork
-  s:name: Common Workflow Language
-  s:url: http://commonwl.org/
 
 s:creator:
 - class: s:Organization
