@@ -21,7 +21,7 @@ hints:
   SoftwareRequirement:
     packages:
       gffread:
-        specs: [ https://bio.tools/gffread ]
+        specs: [ https://identifiers.org/biotools/gffread ]
 
 inputs:
   genome_fasta_file:

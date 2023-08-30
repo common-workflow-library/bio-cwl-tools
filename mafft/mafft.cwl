@@ -74,10 +74,10 @@ hints:
     packages:
       mafft:
         specs:
-        - https://bio.tools/MAFFT
-        - https://anaconda.org/bioconda/mafft
+          - https://identifiers.org/biotools/MAFFT
+          - https://anaconda.org/bioconda/mafft
         version:
-        - '7.458'
+          - '7.458'
 $schemas:
 - https://schema.org/version/latest/schemaorg-current-https.rdf
 - https://edamontology.org/EDAM_1.18.owl

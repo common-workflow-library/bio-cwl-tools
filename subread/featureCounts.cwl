@@ -32,7 +32,7 @@ hints:
       featureCounts:
         specs:
           - https://identifiers.org/rrid/RRID:SCR_012919
-          - https://bio.tools/featurecounts
+          - https://identifiers.org/biotools/featurecounts
           - https://anaconda.org/bioconda/subread
 
 $namespaces:

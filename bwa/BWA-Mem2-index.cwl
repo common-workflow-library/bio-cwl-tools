@@ -14,7 +14,7 @@ hints:
     packages:
       bwa-mem2:
         version: [ 2.2.1 ]                                                      
-        specs: [ https://bio.tools/bwa-mem2 ]
+        specs: [ https://identifiers.org/biotools/bwa-mem2 ]
 
 requirements:
   InitialWorkDirRequirement:

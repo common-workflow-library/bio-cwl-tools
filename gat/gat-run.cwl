@@ -20,8 +20,8 @@ hints:
     packages:
       gat:
         specs:
-          - https://bio.tools/gat
-          - identifiers.org/rrid/RRID:SCR_020949
+          - https://identifiers.org/biotools/gat
+          - https://identifiers.org/rrid/RRID:SCR_020949
 
 inputs:
 
