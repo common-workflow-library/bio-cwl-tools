@@ -1,9 +1,8 @@
 #!/usr/bin/env cwl-runner
 cwlVersion: v1.0
 class: CommandLineTool
-
 label: Kallisto quant
-doc: |
+doc: |2
 
   Docs: https://pachterlab.github.io/kallisto/
 
@@ -36,147 +35,124 @@ doc: |
   -t, --threads=INT             Number of threads to use (default: 1)
       --verbose                 Print out progress information every 1M proccessed reads
 
+inputs:
+  BootstrapSamples:
+    type: int?
+    inputBinding:
+      prefix: --bootstrap-samples=
+      separate: false
+  FragmentLength:
+    type: double?
+    inputBinding:
+      prefix: --fragment-length=
+      separate: false
+  GenomeBam:
+    type:
+    - 'null'
+    - name: genome_bam
+      type: record
+      fields:
+        chromosomes:
+          type: File
+          inputBinding:
+            prefix: --chromosomes
+        genomebam:
+          type: boolean
+          inputBinding:
+            prefix: --genomebam
+        gtf:
+          type: File
+          inputBinding:
+            prefix: --gtf
+  Index:
+    type: File
+    inputBinding:
+      prefix: --index
+      position: 1
+  InputReads:
+    type: File[]
+    format: edam:format_1930
+    inputBinding:
+      position: 200
+  PseudoBam:
+    type: boolean?
+    inputBinding:
+      prefix: --pseudobam
+  QuantOutfolder:
+    type: string
+  Seed:
+    type: int?
+    inputBinding:
+      prefix: --seed
+  StandardDeviation:
+    type: double?
+    inputBinding:
+      prefix: --sd
+  Strand:
+    type:
+    - 'null'
+    - name: forward
+      type: record
+      fields:
+        forward:
+          type: boolean
+          inputBinding:
+            prefix: --fr-stranded
+    - name: reverse
+      type: record
+      fields:
+        reverse:
+          type: boolean
+          inputBinding:
+            prefix: --rf-stranded
+  isBias:
+    type: boolean?
+    inputBinding:
+      prefix: --bias
+  isFusion:
+    type: boolean?
+    inputBinding:
+      prefix: --fusion
+  isSingle:
+    type: boolean
+    inputBinding:
+      prefix: --single
+      position: 2
+  isSingleOverhang:
+    type: boolean?
+    inputBinding:
+      prefix: --single-overhang
 
-  This CWL was adapted from: https://github.com/common-workflow-library/bio-cwl-tools/commit/91c42fb809ce18eafe16155cca0abf362270c0fe
+outputs:
+  kallistoQuantOutDir:
+    type: Directory
+    outputBinding:
+      glob: $(runtime.outdir)/$(inputs.QuantOutfolder)
 
+baseCommand:
+- kallisto
+- quant
+arguments:
+- --output-dir
+- $(inputs.QuantOutfolder)
 
 hints:
   DockerRequirement:
     dockerPull: quay.io/biocontainers/kallisto:0.51.1--ha4fb952_1
   SoftwareRequirement:
     packages:
-      - package: kallisto
-        version: [ "0.51.1" ]
-        specs: [ https://identifiers.org/biotools/kallisto ]
-
-inputs:
-  InputReads:
-    type: File[]
-    format: edam:format_1930  # FASTQ
-    inputBinding:
-      position: 200
-
-  QuantOutfolder: 
-    type: string
-
-  Index:
-    type: File
-    inputBinding:
-      position: 1
-      prefix: "--index"
-
-  isSingle:
-    type: boolean
-    inputBinding:
-      position: 2
-      prefix: "--single"
-
-  #Optional Inputs
-
-  isBias:
-    type: boolean?
-    inputBinding:
-      prefix: "--bias"
-
-  isFusion:
-    type: boolean?
-    inputBinding:
-      prefix: "--fusion"
-
-  isSingleOverhang:
-    type: boolean?
-    inputBinding:
-      prefix: "--single-overhang"
-  
-  FragmentLength:
-    type: double?
-    inputBinding:
-      separate: false
-      prefix: "--fragment-length="
-  
-  StandardDeviation:
-    type: double?
-    inputBinding:
-      prefix: "--sd"
-  
-  BootstrapSamples:
-    type: int?
-    inputBinding:
-      separate: false
-      prefix: "--bootstrap-samples="
-  
-  Seed:
-    type: int?
-    inputBinding:
-      prefix: "--seed"
-
-#Using record inputs to create mutually exclusive inputs
-  Strand:
-    type:
-      - "null"
-      - type: record
-        name: forward
-        fields:
-          forward:
-              type: boolean
-              inputBinding:
-                prefix: "--fr-stranded"
-
-      - type: record
-        name: reverse
-        fields:
-          reverse:
-            type: boolean
-            inputBinding:
-              prefix: "--rf-stranded"
-
-  PseudoBam:
-    type: boolean?
-    inputBinding:
-      prefix: "--pseudobam"
-
-#Using record inputs to create dependent inputs
-  
-  GenomeBam:
-    type:
-      - "null"
-      - type: record
-        name: genome_bam
-        fields:
-          genomebam:
-            type: boolean
-            inputBinding:
-              prefix: "--genomebam"
-
-          gtf:
-            type: File
-            inputBinding:
-              prefix: "--gtf"
-
-          chromosomes:
-            type: File
-            inputBinding:
-              prefix: "--chromosomes"
-
-baseCommand: [ kallisto, quant ]
-
-arguments: [ "--output-dir", $(inputs.QuantOutfolder) ]
-
-outputs:
-
-  kallistoQuantOutDir:
-    type: Directory
-    outputBinding:
-      glob: $(runtime.outdir)/$(inputs.QuantOutfolder)
-
+    - package: kallisto
+      specs:
+      - https://identifiers.org/biotools/kallisto
+      version:
+      - 0.51.1
 
 $namespaces:
   edam: https://edamontology.org/
   s: https://schema.org/
 $schemas:
-  - https://edamontology.org/EDAM_1.25.owl
-  - https://schema.org/version/latest/schemaorg-current-https.rdf
-
-s:license: https://spdx.org/licenses/BSD-2-Clause
+- https://edamontology.org/EDAM_1.25.owl
+- https://schema.org/version/latest/schemaorg-current-https.rdf
 s:citation: https://dx.doi.org/10.1038/nbt.3519
 s:codeRepository: https://github.com/pachterlab/kallisto
+s:license: https://spdx.org/licenses/BSD-2-Clause
