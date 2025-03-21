@@ -2,21 +2,62 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
+label: Kallisto quant
+doc: |
+
+  Docs: https://pachterlab.github.io/kallisto/
+
+  Computes equivalence classes for reads and quantifies abundances
+
+  Usage: kallisto quant [arguments] FASTQ-files
+
+  Required arguments:
+  -i, --index=STRING            Filename for the kallisto index to be used for
+                                quantification
+  -o, --output-dir=STRING       Directory to write output to
+
+  Optional arguments:
+  -b, --bootstrap-samples=INT   Number of bootstrap samples (default: 0)
+      --seed=INT                Seed for the bootstrap sampling (default: 42)
+      --plaintext               Output plaintext instead of HDF5
+      --single                  Quantify single-end reads
+      --single-overhang         Include reads where unobserved rest of fragment is
+                                predicted to lie outside a transcript
+      --fr-stranded             Strand specific reads, first read forward
+      --rf-stranded             Strand specific reads, first read reverse
+  -l, --fragment-length=DOUBLE  Estimated average fragment length
+  -s, --sd=DOUBLE               Estimated standard deviation of fragment length
+                                (default: -l, -s values are estimated from paired
+                                end data, but are required when using --single)
+  -p, --priors                  Priors for the EM algorithm, either as raw counts or as
+                                probabilities. Pseudocounts are added to raw reads to
+                                prevent zero valued priors. Supplied in the same order
+                                as the transcripts in the transcriptome
+  -t, --threads=INT             Number of threads to use (default: 1)
+      --verbose                 Print out progress information every 1M proccessed reads
+
+
+  This CWL was adapted from: https://github.com/common-workflow-library/bio-cwl-tools/commit/91c42fb809ce18eafe16155cca0abf362270c0fe
+
+
 hints:
   DockerRequirement:
-    dockerPull: quay.io/biocontainers/kallisto:0.45.0--hdcc98e5_0
+    dockerPull: quay.io/biocontainers/kallisto:0.51.1--ha4fb952_1
   SoftwareRequirement:
     packages:
-      kallisto:
-        version: [ "0.45.0" ]
+      - package: kallisto
+        version: [ "0.51.1" ]
         specs: [ https://identifiers.org/biotools/kallisto ]
 
 inputs:
   InputReads:
     type: File[]
-    format: edam:format_1930  # FASTA
+    format: edam:format_1930  # FASTQ
     inputBinding:
       position: 200
+
+  QuantOutfolder: 
+    type: string
 
   Index:
     type: File
@@ -119,33 +160,23 @@ inputs:
 
 baseCommand: [ kallisto, quant ]
 
-arguments: [ "--output-dir", out ]
+arguments: [ "--output-dir", $(inputs.QuantOutfolder) ]
 
 outputs:
 
-  quantification_h5:
-    type: File
+  kallistoQuantOutDir:
+    type: Directory
     outputBinding:
-      glob: out/abundances.h5
+      glob: $(runtime.outdir)/$(inputs.QuantOutfolder)
 
-# Long form method for defining optional outputs
-
-  quantification_tsv:
-    type: File
-    outputBinding:
-      glob: out/abundances.tsv
-
-  bam:
-    type: ["null", File]
-    outputBinding:
-      glob: "out/*.bam"
-
-  fusions:
-    type: ["null", File]
-    outputBinding:
-      glob: "fusion.txt"
 
 $namespaces:
-  edam: http://edamontology.org/
+  edam: https://edamontology.org/
+  s: https://schema.org/
 $schemas:
-  - https://edamontology.org/EDAM_1.18.owl
+  - https://edamontology.org/EDAM_1.25.owl
+  - https://schema.org/version/latest/schemaorg-current-https.rdf
+
+s:license: https://spdx.org/licenses/BSD-2-Clause
+s:citation: https://dx.doi.org/10.1038/nbt.3519
+s:codeRepository: https://github.com/pachterlab/kallisto
