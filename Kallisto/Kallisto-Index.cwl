@@ -69,4 +69,9 @@ hints:
       version:
       - 0.51.1
 
-
+$namespaces:
+  edam: https://edamontology.org/
+  s: https://schema.org/
+$schemas:
+- https://edamontology.org/EDAM_1.25.owl
+- https://schema.org/version/latest/schemaorg-current-https.rdf
