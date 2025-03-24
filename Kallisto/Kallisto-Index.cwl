@@ -69,12 +69,4 @@ hints:
       version:
       - 0.51.1
 
-$namespaces:
-  edam: https://edamontology.org/
-  s: https://schema.org/
-$schemas:
-- https://edamontology.org/EDAM_1.25.owl
-- https://schema.org/version/latest/schemaorg-current-https.rdf
-s:citation: https://dx.doi.org/10.1038/nbt.3519
-s:codeRepository: https://github.com/pachterlab/kallisto
-s:license: https://spdx.org/licenses/BSD-2-Clause
+
